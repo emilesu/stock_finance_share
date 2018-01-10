@@ -21,3 +21,5 @@
 /yarn-error.log
 
 .byebug_history
+
+config/juhe.yml
