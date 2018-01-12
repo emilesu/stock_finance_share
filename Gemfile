@@ -41,6 +41,8 @@ gem 'font-awesome-rails'
 
 gem 'rest-client'
 
+gem 'figaro'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

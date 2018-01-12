@@ -7,7 +7,7 @@ class Admin::BaseDataController < AdminController
   # 全局扫描更新 沪股 股票代码和名称
   def update_stock_symbol
 
-    response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => JUHE_CONFIG["api_key"], :page => "2", :type => "4" }
+    response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => "2", :type => "4" }
     data = JSON.parse(response.body)
 
     data["result"]["data"].each do |s|

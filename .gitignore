@@ -22,4 +22,6 @@
 
 .byebug_history
 
-config/juhe.yml
+
+# Ignore application configuration
+/config/application.yml

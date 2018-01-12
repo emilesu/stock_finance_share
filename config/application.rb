@@ -20,4 +20,4 @@ module StockFinanceShare
   end
 end
 
-JUHE_CONFIG = Rails.application.config_for(:juhe)
+KEY_CONFIG = Rails.application.config_for(:application)
