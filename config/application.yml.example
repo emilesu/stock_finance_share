@@ -1,2 +1,9 @@
 development:
-  juhe_api_key: "<juhe api key>"
+  juhe_api_key: ***
+production:
+  juhe_api_key: ***
+
+development:
+  liangyee_api_key: ***
+production:
+  liangyee_api_key: ***

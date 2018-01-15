@@ -23,7 +23,10 @@ class Admin::BaseDataController < AdminController
 
   end
 
-
+  #全局扫描更新 三表数据 股票行业
+  def update_stock_data_table
+    #code
+  end
 
 
 end
