@@ -20,6 +20,7 @@ class Admin::BaseDataController < AdminController
       end
     end
     puts "更新完毕*******"
+    flash[:notice] = "沪股 股票代码和名称 更新完毕"
 
   end
 
@@ -74,6 +75,8 @@ class Admin::BaseDataController < AdminController
       end
 
     end
+
+    flash[:notice] = "三表数据 股票行业 更新完毕"
   end
 
 
