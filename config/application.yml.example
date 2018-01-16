@@ -1,9 +1,6 @@
 development:
   juhe_api_key: ***
-production:
-  juhe_api_key: ***
-
-development:
   liangyee_api_key: ***
 production:
+  juhe_api_key: ***
   liangyee_api_key: ***
