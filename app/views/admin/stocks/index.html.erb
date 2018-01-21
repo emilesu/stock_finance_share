@@ -1,0 +1,70 @@
+<div>
+
+  <div>
+    <%= link_to("新建股票数据", new_admin_stock_path, :class => "btn btn-default pull-right" ) %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>代码/symbol</th>
+        <th>名称/name</th>
+        <th>行业/industry</th>
+        <th>利润表/lrb</th>
+        <th>流量表/llb</th>
+        <th>资产表/zcb</th>
+        <th>负债表/fzb</th>
+        <th>股东表/gdb</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <tr>
+          <td><%= stock.symbol %></td>
+          <td><%= stock.name %></td>
+          <td><%= stock.industry %></td>
+
+          <!--  -->
+          <% if stock.lrb != nil %>
+            <td>是</td>
+          <% else %>
+            <td style="color: red">nil</td>
+          <% end %>
+          <!--  -->
+          <% if stock.llb != nil %>
+            <td>是</td>
+          <% else %>
+            <td style="color: red">nil</td>
+          <% end %>
+          <!--  -->
+          <% if stock.zcb != nil %>
+            <td>是</td>
+          <% else %>
+            <td style="color: red">nil</td>
+          <% end %>
+          <!--  -->
+          <% if stock.fzb != nil %>
+            <td>是</td>
+          <% else %>
+            <td style="color: red">nil</td>
+          <% end %>
+          <!--  -->
+          <% if stock.gdb != nil %>
+            <td>是</td>
+          <% else %>
+            <td style="color: red">nil</td>
+          <% end %>
+
+          <td>
+            <%= link_to("编辑", edit_admin_stock_path(stock), :class => "btn btn-xs btn-default") %>
+            <%= link_to("删除", admin_stock_path(stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+</div>

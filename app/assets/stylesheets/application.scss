@@ -28,4 +28,7 @@ body {
   margin-top: 50px;
   min-height: 100%;                                   // footer固定底部
   display: flex;                                      // footer固定底部
+  .content {
+    flex: 1;                                          // footer固定底部
+  }
   }
