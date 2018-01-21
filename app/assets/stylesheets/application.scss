@@ -18,3 +18,14 @@
   @import "bootstrap-sprockets";
   @import "bootstrap";
   @import "font-awesome";
+
+
+html {
+  height: 100%;
+  }
+
+body {
+  margin-top: 50px;
+  min-height: 100%;                                   // footer固定底部
+  display: flex;                                      // footer固定底部
+  }
