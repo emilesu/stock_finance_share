@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require bootstrap-sprockets
 //= require bootstrap/collapse
 //= require bootstrap/button
 //= require turbolinks

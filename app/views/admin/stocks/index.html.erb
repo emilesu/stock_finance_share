@@ -21,7 +21,7 @@
     <tbody>
       <% @stocks.each do |stock| %>
         <tr>
-          <td><%= stock.symbol %></td>
+          <td><%=link_to(stock.symbol, admin_stock_path(stock)) %></td>
           <td><%= stock.name %></td>
           <td><%= stock.industry %></td>
 
