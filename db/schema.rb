@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112084230) do
+ActiveRecord::Schema.define(version: 20180123080027) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20180112084230) do
     t.string "fzb"
     t.string "gdb"
     t.string "industry"
+    t.string "easy_symbol"
+    t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
   end

@@ -15,7 +15,8 @@ class Admin::BaseDataController < AdminController
       if existing_stock.nil?
         Stock.create!(
           :symbol => s["symbol"],
-          :name => s["name"]
+          :name => s["name"],
+          :easy_symbol => s["symbol"][2..7]
         )
       end
     end
@@ -30,35 +31,35 @@ class Admin::BaseDataController < AdminController
     @stocks.each do |s|
 
       # zcb 资产表更新
-      response_zcb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getBalanceSheet", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7], :yearly => false }
+      response_zcb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getBalanceSheet", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
       data_zcb = JSON.parse(response_zcb.body)
       s.update!(
         :zcb => data_zcb["result"],
       )
 
       # lrb 利润表更新
-      response_lrb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockProfit", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7], :yearly => false }
+      response_lrb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockProfit", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
       data_lrb = JSON.parse(response_lrb.body)
       s.update!(
         :lrb => data_lrb["result"],
       )
 
       # llb 流量表更新
-      response_llb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockCashFlow", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7], :yearly => false }
+      response_llb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockCashFlow", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
       data_llb = JSON.parse(response_llb.body)
       s.update!(
         :llb => data_llb["result"],
       )
 
       # fzb 负债表更新
-      response_fzb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetLiabilities", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7], :yearly => false }
+      response_fzb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetLiabilities", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
       data_fzb = JSON.parse(response_fzb.body)
       s.update!(
         :fzb => data_fzb["result"],
       )
 
       # gdb 股东权益表更新
-      response_gdb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetShareholder", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7], :yearly => false }
+      response_gdb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetShareholder", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
       data_gdb = JSON.parse(response_gdb.body)
       s.update!(
         :gdb => data_gdb["result"],
@@ -67,11 +68,14 @@ class Admin::BaseDataController < AdminController
       # industry 行业分类更新
       existing_stock_industry = s.industry
       if existing_stock_industry.nil?
-        response_industry = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetStockIndustryClassification", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.symbol[2..7] }
-        data_industry = JSON.parse(response_industry.body)
-        s.update!(
-          :industry => data_industry["result"],
-        )
+        response_industry = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetStockIndustryClassification", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol }
+        data_industry = JSON.parse(response_industry.body)["result"]
+        main_data = data_industry[0]
+        if !main_data.nil?
+          s.update!(
+            :industry => main_data.split(",")[2],
+          )
+        end
       end
 
     end

@@ -5,7 +5,7 @@ class Admin::StocksController < AdminController
   end
 
   def show
-    @stock = Stock.find(params[:id])
+    @stock = Stock.find_by_easy_symbol!(params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class Admin::StocksController < AdminController
   end
 
   def edit
-    @stock = Stock.find(params[:id])
+    @stock = Stock.find_by_easy_symbol!(params[:id])
   end
 
   def update
-    @stock = Stock.find(params[:id])
+    @stock = Stock.find_by_easy_symbol!(params[:id])
 
     if @stock.update(stock_params)
       redirect_to admin_stocks_path
@@ -37,7 +37,7 @@ class Admin::StocksController < AdminController
   end
 
   def destroy
-    @stock = Stock.find(params[:id])
+    @stock = Stock.find_by_easy_symbol!(params[:id])
 
     @stock.destroy
     redirect_to admin_stocks_path
@@ -47,7 +47,7 @@ class Admin::StocksController < AdminController
   private
 
   def stock_params
-    params.require(:stock).permit(:symbol, :name, :lrb, :llb, :zcb, :fzb, :gdb, :industry)
+    params.require(:stock).permit(:symbol, :easy_symbol, :name, :lrb, :llb, :zcb, :fzb, :gdb, :industry)
   end
 
 end
