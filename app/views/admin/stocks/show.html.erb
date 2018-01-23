@@ -131,7 +131,7 @@
 
       <!-- 最新季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[0] %>
+        <% col = JSON.parse(@stock.lrb)[0 + 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -141,7 +141,7 @@
 
       <!-- 去年同季季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[0 + 4] %>
+        <% col = JSON.parse(@stock.lrb)[0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -233,7 +233,7 @@
 
       <!-- 最新季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[0] %>
+        <% col = JSON.parse(@stock.llb)[0 + 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -243,7 +243,7 @@
 
       <!-- 去年同季季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[0 + 4] %>
+        <% col = JSON.parse(@stock.llb)[0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -335,7 +335,7 @@
 
       <!-- 最新季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[0] %>
+        <% col = JSON.parse(@stock.zcb)[0 + 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -345,7 +345,7 @@
 
       <!-- 去年同季季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[0 + 4] %>
+        <% col = JSON.parse(@stock.zcb)[0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -437,7 +437,7 @@
 
       <!-- 最新季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[0] %>
+        <% col = JSON.parse(@stock.fzb)[0 + 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -447,7 +447,7 @@
 
       <!-- 去年同季季报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[0 + 4] %>
+        <% col = JSON.parse(@stock.fzb)[0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
