@@ -1,24 +1,5 @@
-# README
+#正在开发中…
+#Are being developed...
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+*这是一个关于股票财报数据的分析系统
+*This is a webapp about stock finance analysis system
