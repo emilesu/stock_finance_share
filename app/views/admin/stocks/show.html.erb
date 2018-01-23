@@ -66,7 +66,7 @@
 
       <!-- 2012年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[3 + 4 * 4] %>
+        <% col = JSON.parse(@stock.lrb)[@stock.quarter_lrb + 4 * 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -76,7 +76,7 @@
 
       <!-- 2013年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[3 + 4 * 3] %>
+        <% col = JSON.parse(@stock.lrb)[@stock.quarter_lrb + 4 * 3] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -86,7 +86,7 @@
 
       <!-- 2014年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[3 + 4 * 2] %>
+        <% col = JSON.parse(@stock.lrb)[@stock.quarter_lrb + 4 * 2] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -96,7 +96,7 @@
 
       <!-- 2015年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[3 + 4 * 1] %>
+        <% col = JSON.parse(@stock.lrb)[@stock.quarter_lrb + 4 * 1] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -106,7 +106,7 @@
 
       <!-- 2016年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.lrb)[3 + 4 * 0] %>
+        <% col = JSON.parse(@stock.lrb)[@stock.quarter_lrb + 4 * 0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -151,7 +151,7 @@
     </div>
 
 
-    <!-- 流量表/lrb TAB -->
+    <!-- 流量表/llb TAB -->
     <div class="tab-pane" id="tab_default_2" style="font-size:8px; white-space:nowrap;">
       <h3>流量表/lrb</h3>
       <!-- 栏目 -->
@@ -168,7 +168,7 @@
 
       <!-- 2012年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[3 + 4 * 4] %>
+        <% col = JSON.parse(@stock.llb)[@stock.quarter_llb + 4 * 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -178,7 +178,7 @@
 
       <!-- 2013年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[3 + 4 * 3] %>
+        <% col = JSON.parse(@stock.llb)[@stock.quarter_llb + 4 * 3] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -188,7 +188,7 @@
 
       <!-- 2014年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[3 + 4 * 2] %>
+        <% col = JSON.parse(@stock.llb)[@stock.quarter_llb + 4 * 2] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -198,7 +198,7 @@
 
       <!-- 2015年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[3 + 4 * 1] %>
+        <% col = JSON.parse(@stock.llb)[@stock.quarter_llb + 4 * 1] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -208,7 +208,7 @@
 
       <!-- 2016年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.llb)[3 + 4 * 0] %>
+        <% col = JSON.parse(@stock.llb)[@stock.quarter_llb + 4 * 0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -270,7 +270,7 @@
 
       <!-- 2012年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[3 + 4 * 4] %>
+        <% col = JSON.parse(@stock.zcb)[@stock.quarter_zcb + 4 * 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -280,7 +280,7 @@
 
       <!-- 2013年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[3 + 4 * 3] %>
+        <% col = JSON.parse(@stock.zcb)[@stock.quarter_zcb + 4 * 3] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -290,7 +290,7 @@
 
       <!-- 2014年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[3 + 4 * 2] %>
+        <% col = JSON.parse(@stock.zcb)[@stock.quarter_zcb + 4 * 2] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -300,7 +300,7 @@
 
       <!-- 2015年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[3 + 4 * 1] %>
+        <% col = JSON.parse(@stock.zcb)[@stock.quarter_zcb + 4 * 1] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -310,7 +310,7 @@
 
       <!-- 2016年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.zcb)[3 + 4 * 0] %>
+        <% col = JSON.parse(@stock.zcb)[@stock.quarter_zcb + 4 * 0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -372,7 +372,7 @@
 
       <!-- 2012年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[3 + 4 * 4] %>
+        <% col = JSON.parse(@stock.fzb)[@stock.quarter_fzb + 4 * 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -382,7 +382,7 @@
 
       <!-- 2013年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[3 + 4 * 3] %>
+        <% col = JSON.parse(@stock.fzb)[@stock.quarter_fzb + 4 * 3] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -392,7 +392,7 @@
 
       <!-- 2014年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[3 + 4 * 2] %>
+        <% col = JSON.parse(@stock.fzb)[@stock.quarter_fzb + 4 * 2] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -402,7 +402,7 @@
 
       <!-- 2015年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[3 + 4 * 1] %>
+        <% col = JSON.parse(@stock.fzb)[@stock.quarter_fzb + 4 * 1] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -412,7 +412,7 @@
 
       <!-- 2016年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.fzb)[3 + 4 * 0] %>
+        <% col = JSON.parse(@stock.fzb)[@stock.quarter_fzb + 4 * 0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -474,7 +474,7 @@
 
       <!-- 2012年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.gdb)[3 + 4 * 4] %>
+        <% col = JSON.parse(@stock.gdb)[@stock.quarter_gdb + 4 * 4] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -484,7 +484,7 @@
 
       <!-- 2013年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.gdb)[3 + 4 * 3] %>
+        <% col = JSON.parse(@stock.gdb)[@stock.quarter_gdb + 4 * 3] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -494,7 +494,7 @@
 
       <!-- 2014年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.gdb)[3 + 4 * 2] %>
+        <% col = JSON.parse(@stock.gdb)[@stock.quarter_gdb + 4 * 2] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -504,7 +504,7 @@
 
       <!-- 2015年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.gdb)[3 + 4 * 1] %>
+        <% col = JSON.parse(@stock.gdb)[@stock.quarter_gdb + 4 * 1] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
@@ -514,7 +514,7 @@
 
       <!-- 2016年报 -->
       <table class="table-striped col-sm-1">
-        <% col = JSON.parse(@stock.gdb)[3 + 4 * 0] %>
+        <% col = JSON.parse(@stock.gdb)[@stock.quarter_gdb + 4 * 0] %>
         <% col.split(",").each do |data| %>
           <tr>
             <td><%= data %></td>
