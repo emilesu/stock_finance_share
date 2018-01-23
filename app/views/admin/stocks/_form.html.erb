@@ -1,0 +1,15 @@
+<%= simple_form_for [:admin, @stock] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :symbol, :label => "代码/symbol", input_html: { class: "form-control"} %>
+    <%= f.input :name, :label => "名称/name", input_html: { class: "form-control"} %>
+    <%= f.input :industry, :label => "行业/industry", input_html: { class: "form-control"} %>
+    <%= f.input :lrb, :label => "利润表/lrb", input_html: { class: "form-control"} %>
+    <%= f.input :llb, :label => "流量表/lrb", input_html: { class: "form-control"} %>
+    <%= f.input :zcb, :label => "资产负债表下 资产/zcb", input_html: { class: "form-control"} %>
+    <%= f.input :fzb, :label => "资产负债表下 负债/fzb", input_html: { class: "form-control"} %>
+    <%= f.input :gdb, :label => "资产负债表下 股东/gdb", input_html: { class: "form-control"} %>
+    <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>
