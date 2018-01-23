@@ -1,3 +1,46 @@
-// Place all the styles related to the stocks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.wrapper {
+  margin-top: 80px;
+  color: #666;
+}
+
+.industry-list {
+  .industry-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .industry-li {
+    white-space: nowrap;     //压缩后不换行
+    margin-top: 20px;
+    li {
+      margin-right: 35px;
+      padding: 7px 10px;
+    }
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+    li:hover {
+      background-color: #666;
+      text-decoration: none;
+      color: #fff;
+      filter:alpha(Opacity=100);
+      -moz-opacity:0.8;
+      transition: 0.4s;
+      border-radius:5px;
+    }
+  }
+}
+
+.stock-info {
+  .stock-title {
+    h1 {
+      margin-top: 0;
+    }
+    span {
+      font-size: 20px;
+    }
+    .to-finance-btn {
+      margin: 20px 0 154px;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<div class="row wrapper">
+
+  <!-- 同类行业列表栏 -->
+  <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
+
+    <!-- 所属行业 -->
+    <div class="industry-title">
+      <%= @stock.industry %>
+    </div>
+
+    <!-- 所属行业股票列表 -->
+    <div class="industry-li">
+      <ul class="list-unstyled">
+        <% @industrys.each do |stock| %>
+          <%= link_to stock_path(stock) do %>
+            <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- 左表：股票信息+资产负债信息 分析 -->
+  <div class="col-lg-5 col-md-6 stock-info">
+
+    <!-- 股票信息 -->
+    <div class="stock-title">
+      <h1>
+        <%= @stock.name %>
+        <span> (<%= @stock.easy_symbol %>)</span>
+      </h1>
+      <h5>
+        <%= @stock.industry %>
+      </h5>
+      <div class="to-finance-btn">
+        <%= link_to("详细财报 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>
+      </div>
+    </div>
+
+    <!-- 资产负债信息 -->
+    <%= render "main_finance_table_1" %>
+    <%= render "main_finance_table_3" %>
+
+  </div>
+
+  <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
+  <div class="col-lg-5 col-md-6">
+  <%= render "main_finance_table_2" %>
+  </div>
+
+</div>

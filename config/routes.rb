@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :stocks
+
   namespace :admin do
     resources :stocks
     namespace :base_data do
