@@ -168,18 +168,66 @@
       <td>现金流量比率(%)</td>
       <% if @stock.industry == "金融业" %>
         <td colspan=5 align=center>金融业无此项统计</td>
-      <% else %>
+      <% elsif @stock.operating_cash_flow_ratio.count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.operating_cash_flow_ratio.count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.operating_cash_flow_ratio.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_cash_flow_ratio.count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.operating_cash_flow_ratio.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_cash_flow_ratio.count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.operating_cash_flow_ratio.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_cash_flow_ratio.count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.operating_cash_flow_ratio.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_cash_flow_ratio.count == 5 %>
         <% @stock.operating_cash_flow_ratio.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% end %>
     </tr>
+
     <tr>
       <td>现金流量允当比率(%)</td>
-      <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
-        <td><%= i %></td>
+      <% if @stock.cash_flow_adequancy_ratio[0..4].count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 5 %>
+        <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
       <% end %>
     </tr>
+
     <tr>
       <td>现金再投资比率(%)</td>
       <td></td>
