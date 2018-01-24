@@ -166,8 +166,12 @@
     <tr>
       <th rowspan="3">现金流量</th>
       <td>现金流量比率(%)</td>
-      <% @stock.operating_cash_flow_ratio.each do |i| %>
-        <td><%= i %></td>
+      <% if @stock.industry == "金融业" %>
+        <td colspan=5 align=center>金融业无此项统计</td>
+      <% else %>
+        <% @stock.operating_cash_flow_ratio.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
       <% end %>
     </tr>
     <tr>
