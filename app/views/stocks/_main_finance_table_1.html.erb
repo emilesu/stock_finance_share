@@ -2,11 +2,9 @@
   <table class="table table-striped table-bordered">
     <tr>
       <th width = "35%">财务比率(占总资产%)</th>
-      <th>2012</th>
-      <th>2013</th>
-      <th>2014</th>
-      <th>2015</th>
-      <th>2016</th>
+      <% @stock.quarter_years.each do |i| %>
+        <th width = "13%"><%= i[0..3] %></th>
+      <% end %>
     </tr>
     <tr>
       <td>现金与约当现金</td>

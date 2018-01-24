@@ -39,14 +39,20 @@
     </div>
 
     <!-- 资产负债信息 -->
-    <%= render "main_finance_table_1" %>
-    <%= render "main_finance_table_3" %>
+    <% if @stock.zcb != "" %>
+      <%= render "main_finance_table_1" %>
+      <%= render "main_finance_table_3" %>
+    <% else %>
+      <p>暂无数据</p>
+    <% end %>
 
   </div>
 
   <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
   <div class="col-lg-5 col-md-6">
-  <%= render "main_finance_table_2" %>
+    <% if @stock.zcb != "" %>
+      <%= render "main_finance_table_2" %>
+    <% end %>
   </div>
 
 </div>

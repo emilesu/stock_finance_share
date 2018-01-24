@@ -3,11 +3,9 @@
     <tr>
       <th width = "10%">类别</th>
       <th width = "25%">财务比率</th>
-      <th>2012</th>
-      <th>2013</th>
-      <th>2014</th>
-      <th>2015</th>
-      <th>2016</th>
+      <% @stock.quarter_years.each do |i| %>
+        <th width = "13%"><%= i[0..3] %></th>
+      <% end %>
     </tr>
     <tr>
       <th rowspan="2">财务结构</th>
@@ -168,11 +166,9 @@
     <tr>
       <th rowspan="3">现金流量</th>
       <td>现金流量比率(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% @stock.operating_cash_flow_ratio.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
     </tr>
     <tr>
       <td>现金流量允当比率(%)</td>
