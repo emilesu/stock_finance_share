@@ -2,7 +2,7 @@
   <table class="table table-striped table-bordered">
     <tr>
       <th width = "35%">现金走向(百万元)</th>
-      <% @stock.quarter_years.each do |i| %>
+      <% @stock.quarter_years[0..4].reverse.each do |i| %>
         <th width = "13%"><%= i[0..3] %></th>
       <% end %>
     </tr>

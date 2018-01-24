@@ -3,7 +3,7 @@
     <tr>
       <th width = "10%">类别</th>
       <th width = "25%">财务比率</th>
-      <% @stock.quarter_years.each do |i| %>
+      <% @stock.quarter_years[0..4].reverse.each do |i| %>
         <th width = "13%"><%= i[0..3] %></th>
       <% end %>
     </tr>
@@ -172,11 +172,9 @@
     </tr>
     <tr>
       <td>现金流量允当比率(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
     </tr>
     <tr>
       <td>现金再投资比率(%)</td>
