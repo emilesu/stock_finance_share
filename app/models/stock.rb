@@ -155,8 +155,10 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..years.count-1).each do |i|
-      m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      if col_fzb_main[i].to_i != 0
+        m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
+        result << eval(sprintf("%8.2f",m))
+      end
     end
     # 返回现金流量比率
     return result
