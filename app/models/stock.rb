@@ -545,6 +545,78 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- A3-1、应收账款周转率 ---
+  # =  营业收入  lrb4  /  应收账款 zcb9
+  def accounts_receivable_turnover_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 营业收入
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[4]
+      end
+    end
+    # 数据提取 - 应收账款
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[9]
+      end
+    end
+    # 运算 判断分母不能为0
+    result = []
+    (0..years.count-1).each do |i|
+      if col_zcb_main[i].to_i != 0
+        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+        result << eval(sprintf("%8.2f",m))
+      end
+    end
+    # 返回应收账款周转率
+    return result
+  end
+
+
+
+  # --- A3-2、存货周转率 ---
+  # =  营业成本  lrb11  /  存货 zcb22
+  def inventory_turnover_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 营业成本
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[11]
+      end
+    end
+    # 数据提取 - 存货
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[22]
+      end
+    end
+    # 运算 判断分母不能为0
+    result = []
+    (0..years.count-1).each do |i|
+      if col_zcb_main[i].to_i != 0
+        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+        result << eval(sprintf("%8.2f",m))
+      end
+    end
+    # 返回存货周转率
+    return result
+  end
+
 
 
 end

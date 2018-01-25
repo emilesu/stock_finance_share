@@ -79,39 +79,140 @@
       <td></td>
       <td></td>
     </tr>
+
     <tr>
       <th rowspan="6">经营能力</th>
-      <td>应收款项周转率(次)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>应收账款周转率(次)</td>
+      <% if @stock.industry == "金融业" %>
+        <td colspan=5 align=center>金融业无此项统计</td>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 5 %>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>平均收现日数</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.industry == "金融业" %>
+        <td colspan=5 align=center>金融业无此项统计</td>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.accounts_receivable_turnover_ratio[0..4].reverse.count == 5 %>
+        <% @stock.accounts_receivable_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>存货周转率(次)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.industry == "金融业" %>
+        <td colspan=5 align=center>金融业无此项统计</td>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 5 %>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>平均销货日数(平均在库天数)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.industry == "金融业" %>
+        <td colspan=5 align=center>金融业无此项统计</td>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% elsif @stock.inventory_turnover_ratio[0..4].reverse.count == 5 %>
+        <% @stock.inventory_turnover_ratio[0..4].reverse.each do |i| %>
+          <td><%= (360 / i).round(2) %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>不动产/厂房及设备周转率(次)</td>
       <td></td>
@@ -207,24 +308,24 @@
       <% if @stock.industry == "金融业" %>
         <td colspan=5 align=center>金融业无此项统计</td>
       <% elsif @stock.operating_cash_flow_ratio[0..4].reverse.count == 0 %>
-        <td colspan=5 align=center>无财报</td>
+        <td colspan=5 align=center>无统计</td>
       <% elsif @stock.operating_cash_flow_ratio[0..4].reverse.count == 1 %>
-        <td colspan=4 align=center>无财报</td>
+        <td colspan=4 align=center>无统计</td>
         <% @stock.operating_cash_flow_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.operating_cash_flow_ratio[0..4].reverse.count == 2 %>
-        <td colspan=3 align=center>无财报</td>
+        <td colspan=3 align=center>无统计</td>
         <% @stock.operating_cash_flow_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.operating_cash_flow_ratio[0..4].reverse.count == 3 %>
-        <td colspan=2 align=center>无财报</td>
+        <td colspan=2 align=center>无统计</td>
         <% @stock.operating_cash_flow_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.operating_cash_flow_ratio[0..4].reverse.count == 4 %>
-        <td colspan=1 align=center>无财报</td>
+        <td colspan=1 align=center>无统计</td>
         <% @stock.operating_cash_flow_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
@@ -238,24 +339,24 @@
     <tr>
       <td>现金流量允当比率(%)</td>
       <% if @stock.cash_flow_adequancy_ratio[0..4].count == 0 %>
-        <td colspan=5 align=center>无财报</td>
+        <td colspan=5 align=center>无统计</td>
       <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 1 %>
-        <td colspan=4 align=center>无财报</td>
+        <td colspan=4 align=center>无统计</td>
         <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 2 %>
-        <td colspan=3 align=center>无财报</td>
+        <td colspan=3 align=center>无统计</td>
         <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 3 %>
-        <td colspan=2 align=center>无财报</td>
+        <td colspan=2 align=center>无统计</td>
         <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_flow_adequancy_ratio[0..4].count == 4 %>
-        <td colspan=1 align=center>无财报</td>
+        <td colspan=1 align=center>无统计</td>
         <% @stock.cash_flow_adequancy_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
@@ -269,24 +370,24 @@
     <tr>
       <td>现金再投资比率(%)</td>
       <% if @stock.cash_re_investment_ratio[0..4].reverse.count == 0 %>
-        <td colspan=5 align=center>无财报</td>
+        <td colspan=5 align=center>无统计</td>
       <% elsif @stock.cash_re_investment_ratio[0..4].reverse.count == 1 %>
-        <td colspan=4 align=center>无财报</td>
+        <td colspan=4 align=center>无统计</td>
         <% @stock.cash_re_investment_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_re_investment_ratio[0..4].reverse.count == 2 %>
-        <td colspan=3 align=center>无财报</td>
+        <td colspan=3 align=center>无统计</td>
         <% @stock.cash_re_investment_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_re_investment_ratio[0..4].reverse.count == 3 %>
-        <td colspan=2 align=center>无财报</td>
+        <td colspan=2 align=center>无统计</td>
         <% @stock.cash_re_investment_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
       <% elsif @stock.cash_re_investment_ratio[0..4].reverse.count == 4 %>
-        <td colspan=1 align=center>无财报</td>
+        <td colspan=1 align=center>无统计</td>
         <% @stock.cash_re_investment_ratio[0..4].reverse.each do |i| %>
           <td><%= i %></td>
         <% end %>
