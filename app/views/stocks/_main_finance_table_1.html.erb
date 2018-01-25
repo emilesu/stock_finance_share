@@ -108,28 +108,107 @@
 
     <tr>
       <td>存货(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.inventory_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.inventory_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.inventory_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.inventory_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.inventory_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.inventory_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.inventory_ratio[0..4].reverse.count == 5 %>
+        <% @stock.inventory_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>流动资产(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.current_assets_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.current_assets_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.current_assets_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_assets_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.current_assets_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_assets_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.current_assets_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_assets_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.current_assets_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_assets_ratio[0..4].reverse.count == 5 %>
+        <% @stock.current_assets_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>总资产(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.quarter_years[0..4].count == 0 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      <% elsif @stock.quarter_years[0..4].count == 1 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>100</td>
+      <% elsif  @stock.quarter_years[0..4].count == 2 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif @stock.quarter_years[0..4].count == 3 %>
+        <td></td>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif @stock.quarter_years[0..4].count == 4 %>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif %>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% end %>
     </tr>
+
     <tr>
       <td>应付账款(%)</td>
       <td></td>
@@ -162,13 +241,47 @@
       <td></td>
       <td></td>
     </tr>
+
     <tr>
       <td>总负债+股东权益(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.quarter_years[0..4].count == 0 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      <% elsif @stock.quarter_years[0..4].count == 1 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>100</td>
+      <% elsif  @stock.quarter_years[0..4].count == 2 %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif @stock.quarter_years[0..4].count == 3 %>
+        <td></td>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif @stock.quarter_years[0..4].count == 4 %>
+        <td></td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% elsif %>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+        <td>100</td>
+      <% end %>
     </tr>
+
   </table>
 </div>

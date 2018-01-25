@@ -347,7 +347,70 @@ class Stock < ApplicationRecord
     end
     # 返回应收账款占总资产比率
     return result
+  end
 
+  # --- A2-3、存货占总资产比率 ---
+  # =  存货 zcb22  /  总资产 zcb54
+  def inventory_ratio
+    # 数据源
+    years = self.quarter_years
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 存货
+    col_zcb_main_1 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_1 << m[22]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main_2 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_2 << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回存货占总资产比率
+    return result
+  end
+
+  # --- A2-4、流动资产占总资产比率 ---
+  # =  流动资产 zcb27  /  总资产 zcb54
+  def current_assets_ratio
+    # 数据源
+    years = self.quarter_years
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 流动资产
+    col_zcb_main_1 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_1 << m[27]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main_2 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_2 << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回流动资产占总资产比率
+    return result
   end
 
 
