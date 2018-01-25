@@ -133,9 +133,9 @@ class Stock < ApplicationRecord
   # =  营业活动现金流量llb27  /  流动负债fzb34
   def operating_cash_flow_ratio
     # 数据源
-    years = self.quarter_years[0..4].reverse
-    col_llb = JSON.parse(self.llb).reverse
-    col_fzb = JSON.parse(self.fzb).reverse
+    years = self.quarter_years
+    col_llb = JSON.parse(self.llb)
+    col_fzb = JSON.parse(self.fzb)
     # 数据提取 - 营业活动现金流量
     col_llb_main = []
     col_llb.each do |i|
@@ -158,7 +158,7 @@ class Stock < ApplicationRecord
       m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
-    # 返回最近5年现金流量比率
+    # 返回现金流量比率
     return result
   end
 
@@ -195,17 +195,61 @@ class Stock < ApplicationRecord
     end
     result = []
     (0..c1.count-1).each do |i|
-      m = c1[i] * 100 / (c2[i] - c3[i] + c4[i])
+      m = c1[i] / (c2[i] - c3[i] + c4[i]) * 100
       result << eval(sprintf("%8.2f",m))
     end
-    # 返回最近5年现金流量比率
+    # 返回最近5年现现金流量允当比率
     return result
   end
 
   # --- A1-3、现金再投资比率（  >10%比较好 ）---
   # =  营业活动现金流量llb27 - 现金股利llb50  /  固定资产毛额  + 长期投资 + 其他资产 + 营运资金 ==> 分母等同于 资产总额zcb54 - 流动负债fzb34
   def cash_re_investment_ratio
-    #code
+    # 数据源
+    years = self.quarter_years
+    col_llb = JSON.parse(self.llb)
+    col_zcb = JSON.parse(self.zcb)
+    col_fzb = JSON.parse(self.fzb)
+    # 数据提取 - 营业活动现金流量 和 现金股利
+    col_llb_main_1 = []
+    col_llb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_llb_main_1 << m[27]
+      end
+    end
+    # 数据提取 - 现金股利
+    col_llb_main_2 = []
+    col_llb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_llb_main_2 << m[50]
+      end
+    end
+    # 数据提取 - 资产总额
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[54]
+      end
+    end
+    # 数据提取 - 流动负债
+    col_fzb_main = []
+    col_fzb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_fzb_main << m[34]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = (col_llb_main_1[i].to_f - col_llb_main_2[i].to_f) / (col_zcb_main[i].to_f - col_fzb_main[i].to_f) * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回现金再投资比率
+    return result
   end
 
 
