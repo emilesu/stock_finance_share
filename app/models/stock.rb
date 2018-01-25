@@ -654,6 +654,41 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- A3-4、总资产周转率 ---
+  # =  营业收入  lrb3  /  总资产 zcb54
+  def total_asset_turnover_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 营业收入
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[3]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[54]
+      end
+    end
+    # 运算 判断分母不能为0
+    result = []
+    (0..4).each do |i|
+      if col_zcb_main[i].to_i != 0
+        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+        result << eval(sprintf("%8.2f",m))
+      end
+    end
+    # 返回总资产周转率
+    return result
+  end
+
 
 
 end

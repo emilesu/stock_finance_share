@@ -235,14 +235,38 @@
         <% end %>
       <% end %>
     </tr>
+
     <tr>
       <td>总资产周转率(次)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.total_asset_turnover_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.total_asset_turnover_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.total_asset_turnover_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.total_asset_turnover_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.total_asset_turnover_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.total_asset_turnover_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.total_asset_turnover_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.total_asset_turnover_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.total_asset_turnover_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.total_asset_turnover_ratio.reverse.count == 5 %>
+        <% @stock.total_asset_turnover_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <th rowspan="9">获利能力</th>
       <td>资产报酬率(%) RoA</td>
