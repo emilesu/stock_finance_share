@@ -154,7 +154,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       if col_fzb_main[i].to_i != 0
         m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
         result << eval(sprintf("%8.2f",m))
@@ -246,7 +246,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = (col_llb_main_1[i].to_f - col_llb_main_2[i].to_f) / (col_zcb_main[i].to_f - col_fzb_main[i].to_f) * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -310,7 +310,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = (col_zcb_main_1[i].to_f + col_zcb_main_2[i].to_f + col_zcb_main_3[i].to_f + col_zcb_main_4[i].to_f + col_zcb_main_5[i].to_f ) / (col_zcb_main_6[i].to_f) * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -343,7 +343,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -375,7 +375,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -407,7 +407,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -440,7 +440,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -473,7 +473,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -506,7 +506,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -539,7 +539,7 @@ class Stock < ApplicationRecord
     end
     # 运算
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       m = col_gdb_main[i].to_f / col_zcb_main[i].to_f * 100
       result << eval(sprintf("%8.2f",m))
     end
@@ -548,7 +548,7 @@ class Stock < ApplicationRecord
   end
 
   # --- A3-1、应收账款周转率 ---
-  # =  营业收入  lrb4  /  应收账款 zcb9
+  # =  营业收入  lrb3  /  应收账款 zcb9
   def accounts_receivable_turnover_ratio
     # 数据源
     years = self.quarter_years
@@ -559,7 +559,7 @@ class Stock < ApplicationRecord
     col_lrb.each do |i|
       m = i.split(",")
       if years.include?(m[2])
-        col_lrb_main << m[4]
+        col_lrb_main << m[3]
       end
     end
     # 数据提取 - 应收账款
@@ -572,7 +572,7 @@ class Stock < ApplicationRecord
     end
     # 运算 判断分母不能为0
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
         result << eval(sprintf("%8.2f",m))
@@ -609,13 +609,48 @@ class Stock < ApplicationRecord
     end
     # 运算 判断分母不能为0
     result = []
-    (0..years.count-1).each do |i|
+    (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
         result << eval(sprintf("%8.2f",m))
       end
     end
     # 返回存货周转率
+    return result
+  end
+
+  # --- A3-3、固定资产周转率(不动产/厂房及设备周转率) ---
+  # =  营业收入  lrb3  /  固定资产 zcb39
+  def fixed_asset_turnover_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 营业收入
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[3]
+      end
+    end
+    # 数据提取 - 固定资产周转率
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[39]
+      end
+    end
+    # 运算 判断分母不能为0
+    result = []
+    (0..4).each do |i|
+      if col_zcb_main[i].to_i != 0
+        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+        result << eval(sprintf("%8.2f",m))
+      end
+    end
+    # 返回固定资产周转率
     return result
   end
 
