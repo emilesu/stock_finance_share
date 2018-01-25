@@ -239,14 +239,38 @@
         <% end %>
       <% end %>
     </tr>
+
     <tr>
       <td>流动负债(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.current_liabilities_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.current_liabilities_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.current_liabilities_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_liabilities_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.current_liabilities_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_liabilities_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.current_liabilities_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_liabilities_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.current_liabilities_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_liabilities_ratio[0..4].reverse.count == 5 %>
+        <% @stock.current_liabilities_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>长期负债(%)</td>
       <td></td>

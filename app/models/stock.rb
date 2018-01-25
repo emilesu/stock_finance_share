@@ -446,6 +446,39 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- A2-6、流动负债占总资产比率 ---
+  # =  流动负债 fzb34  /  总资产 zcb54
+  def current_liabilities_ratio
+    # 数据源
+    years = self.quarter_years
+    col_fzb = JSON.parse(self.fzb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 流动负债
+    col_fzb_main = []
+    col_fzb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_fzb_main << m[34]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回流动负债占总资产比率
+    return result
+  end
+
 
 
 end
