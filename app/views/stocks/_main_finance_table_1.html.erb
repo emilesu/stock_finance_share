@@ -46,12 +46,35 @@
 
     <tr>
       <td>现金与约当现金</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 0 %>
+        <td colspan=5 align=center>无财报</td>
+      <% elsif @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 1 %>
+        <td colspan=4 align=center>无财报</td>
+        <% @stock.cash_and_cash_equivalents_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 2 %>
+        <td colspan=3 align=center>无财报</td>
+        <% @stock.cash_and_cash_equivalents_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 3 %>
+        <td colspan=2 align=center>无财报</td>
+        <% @stock.cash_and_cash_equivalents_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 4 %>
+        <td colspan=1 align=center>无财报</td>
+        <% @stock.cash_and_cash_equivalents_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.cash_and_cash_equivalents_ratio[0..4].reverse.count == 5 %>
+        <% @stock.cash_and_cash_equivalents_ratio[0..4].reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>应收账款</td>
       <td></td>
@@ -117,7 +140,7 @@
       <td></td>
     </tr>
     <tr>
-      <td>总负责+股东权益</td>
+      <td>总负债+股东权益</td>
       <td></td>
       <td></td>
       <td></td>
