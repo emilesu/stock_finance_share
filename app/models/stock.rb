@@ -252,7 +252,7 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- A2、现金与约当现金占总资产比率 ( 10% - 25% 较好 ) ---
+  # --- A2-1、现金与约当现金占总资产比率 ( 10% - 25% 较好 ) ---
   # =  现金与约当现金 zcb3+zcb4+zcb5+zcb6+zcb7  /  总资产 zcb54
   def cash_and_cash_equivalents_ratio
     # 数据源
@@ -312,7 +312,40 @@ class Stock < ApplicationRecord
       m = (col_zcb_main_1[i].to_f + col_zcb_main_2[i].to_f + col_zcb_main_3[i].to_f + col_zcb_main_4[i].to_f + col_zcb_main_5[i].to_f ) / (col_zcb_main_6[i].to_f) * 100
       result << eval(sprintf("%8.2f",m))
     end
-    # 返回现金再投资比率
+    # 返回现金与约当现金占总资产比率
+    return result
+
+  end
+
+  # --- A2-2、应收账款占总资产比率 ---
+  # =  应收账款 zcb9  /  总资产 zcb54
+  def receivables_ratio
+    # 数据源
+    years = self.quarter_years
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 应收账款
+    col_zcb_main_1 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_1 << m[9]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main_2 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_2 << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回应收账款占总资产比率
     return result
 
   end
