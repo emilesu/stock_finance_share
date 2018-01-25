@@ -512,6 +512,39 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- A2-8、股东权益占总资产比率 ---
+  # =  股东权益 gdb15  /  总资产 zcb54
+  def shareholders_equity_ratio
+    # 数据源
+    years = self.quarter_years
+    col_gdb = JSON.parse(self.gdb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 股东权益
+    col_gdb_main = []
+    col_gdb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_gdb_main << m[15]
+      end
+    end
+    # 数据提取 - 总资产
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..years.count-1).each do |i|
+      m = col_gdb_main[i].to_f / col_zcb_main[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回股东权益占总资产比率
+    return result
+  end
+
 
 
 end
