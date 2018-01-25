@@ -202,6 +202,11 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- A1-3、现金再投资比率（  >10%比较好 ）---
+  # =  营业活动现金流量llb27 - 现金股利llb50  /  固定资产毛额  + 长期投资 + 其他资产 + 营运资金 ==> 分母等同于 资产总额zcb54 - 流动负债fzb34
+  def cash_re_investment_ratio
+    #code
+  end
 
 
 end
