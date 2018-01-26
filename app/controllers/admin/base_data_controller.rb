@@ -84,4 +84,23 @@ class Admin::BaseDataController < AdminController
   end
 
 
+  #全局扫描更新 股票主营业务
+  def update_stock_main_business
+    @stocks = Stock.all
+    @stocks.each do |s|
+
+      if s.main_business = nil
+      response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
+      doc = Nokogiri::HTML.parse(response.body)
+      main = doc.css(".table_bg001[3] tr[11]").map{ |x| x.text }[0].split(" ")
+        s.update!(
+          :main_business => main[1],
+        )
+      end
+    end
+
+    flash[:notice] = "主营业务 更新完毕"
+  end
+
+
 end
