@@ -157,7 +157,7 @@ class Stock < ApplicationRecord
     (0..4).each do |i|
       if col_fzb_main[i].to_i != 0
         m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回现金流量比率
@@ -198,7 +198,7 @@ class Stock < ApplicationRecord
     result = []
     (0..c1.count-1).each do |i|
       m = c1[i] / (c2[i] - c3[i] + c4[i]) * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回最近5年现现金流量允当比率
     return result
@@ -248,7 +248,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = (col_llb_main_1[i].to_f - col_llb_main_2[i].to_f) / (col_zcb_main[i].to_f - col_fzb_main[i].to_f) * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回现金再投资比率
     return result
@@ -312,7 +312,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = (col_zcb_main_1[i].to_f + col_zcb_main_2[i].to_f + col_zcb_main_3[i].to_f + col_zcb_main_4[i].to_f + col_zcb_main_5[i].to_f ) / (col_zcb_main_6[i].to_f) * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回现金与约当现金占总资产比率
     return result
@@ -345,7 +345,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回应收账款占总资产比率
     return result
@@ -377,7 +377,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回存货占总资产比率
     return result
@@ -409,7 +409,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回流动资产占总资产比率
     return result
@@ -442,7 +442,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回应付账款占总资产比率
     return result
@@ -475,7 +475,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回流动负债占总资产比率
     return result
@@ -508,7 +508,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回长期负债占总资产比率
     return result
@@ -541,7 +541,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_gdb_main[i].to_f / col_zcb_main[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回股东权益占总资产比率
     return result
@@ -575,7 +575,7 @@ class Stock < ApplicationRecord
     (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回应收账款周转率
@@ -612,7 +612,7 @@ class Stock < ApplicationRecord
     (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回存货周转率
@@ -647,7 +647,7 @@ class Stock < ApplicationRecord
     (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回固定资产周转率
@@ -682,7 +682,7 @@ class Stock < ApplicationRecord
     (0..4).each do |i|
       if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回总资产周转率
@@ -715,7 +715,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回营业毛利率
     return result
@@ -763,7 +763,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = ( col_lrb_main_1[i].to_f - col_lrb_main_2[i].to_f + col_lrb_main_3[i].to_f ) / col_lrb_main_4[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回营业利益率
     return result
@@ -808,7 +808,7 @@ class Stock < ApplicationRecord
         result << "严重亏损"
       else
         m = x1 / x2 * 100
-        result << eval(sprintf("%8.2f",m))
+        result << m.round(2)
       end
     end
     # 返回经营安全边际率
@@ -841,7 +841,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回净利率
     return result
@@ -874,7 +874,7 @@ class Stock < ApplicationRecord
     result = []
     (0..4).each do |i|
       m = col_lrb_main[i].to_f / col_gdb_main[i].to_f
-      result << eval(sprintf("%8.2f",m))
+      result << m.round(2)
     end
     # 返回每股盈余
     return result
