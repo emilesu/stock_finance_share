@@ -327,12 +327,35 @@
 
     <tr>
       <td>营业利益率(%) ②</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.business_profitability_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.business_profitability_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.business_profitability_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.business_profitability_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.business_profitability_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.business_profitability_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.business_profitability_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.business_profitability_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.business_profitability_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.business_profitability_ratio.reverse.count == 5 %>
+        <% @stock.business_profitability_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>经营安全边际率(%) = ② / ①</td>
       <td></td>

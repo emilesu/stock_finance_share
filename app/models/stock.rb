@@ -711,7 +711,7 @@ class Stock < ApplicationRecord
         col_lrb_main_2 << m[3]
       end
     end
-    # 运算 判断分母不能为0
+    # 运算
     result = []
     (0..4).each do |i|
       m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
@@ -720,6 +720,55 @@ class Stock < ApplicationRecord
     # 返回营业毛利率
     return result
   end
+
+  # --- C1-2、营业利益率 ---
+  # =  营业费用  lrb35 - lrb10 - lrb11 / 营业收入 lrb3
+  def business_profitability_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    # 数据提取 - 营业利润
+    col_lrb_main_1 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_1 << m[35]
+      end
+    end
+    # 数据提取 - 营业总成本
+    col_lrb_main_2 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_2 << m[10]
+      end
+    end
+    # 数据提取 - 营业成本
+    col_lrb_main_3 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_3 << m[11]
+      end
+    end
+    # 数据提取 - 营业收入
+    col_lrb_main_4 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_4 << m[3]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = ( col_lrb_main_1[i].to_f - col_lrb_main_2[i].to_f + col_lrb_main_3[i].to_f ) / col_lrb_main_4[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回营业利益率
+    return result
+  end
+
 
 
 
