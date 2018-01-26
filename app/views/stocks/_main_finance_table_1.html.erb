@@ -3,49 +3,49 @@
 <div>
   <table class="table table-striped table-bordered">
 
-    <tr>
-      <th width = "35%">资产负债比率(占总资产%)</th>
+    <tr class="theader-style">
+      <td align=left width = "35%">资产负债比率(占总资产%)</td>
       <% if @stock.quarter_years[0..4].count == 0 %>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       <% elsif @stock.quarter_years[0..4].count == 1 %>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <th width = "13%"><%= i[0..3] %></th>
+          <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif  @stock.quarter_years[0..4].count == 2 %>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td></td>
+        <td></td>
+        <td></td>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <th width = "13%"><%= i[0..3] %></th>
+          <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif @stock.quarter_years[0..4].count == 3 %>
-        <th></th>
-        <th></th>
+        <td></td>
+        <td></td>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <th width = "13%"><%= i[0..3] %></th>
+          <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif @stock.quarter_years[0..4].count == 4 %>
-        <th></th>
+        <td></td>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <th width = "13%"><%= i[0..3] %></th>
+          <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif %>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <th width = "13%"><%= i[0..3] %></th>
+          <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% end %>
     </tr>
 
     <tr>
-      <td>现金与约当现金(%)</td>
+      <td align=left>现金与约当现金(%)</td>
       <% if @stock.cash_and_cash_equivalents_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 1 %>
@@ -76,7 +76,7 @@
     </tr>
 
     <tr>
-      <td>应收账款(%)</td>
+      <td align=left>应收账款(%)</td>
       <% if @stock.receivables_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.receivables_ratio.reverse.count == 1 %>
@@ -107,7 +107,7 @@
     </tr>
 
     <tr>
-      <td>存货(%)</td>
+      <td align=left>存货(%)</td>
       <% if @stock.inventory_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.inventory_ratio.reverse.count == 1 %>
@@ -138,7 +138,7 @@
     </tr>
 
     <tr>
-      <td>流动资产(%)</td>
+      <td align=left>流动资产(%)</td>
       <% if @stock.current_assets_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.current_assets_ratio.reverse.count == 1 %>
@@ -169,7 +169,7 @@
     </tr>
 
     <tr>
-      <td>总资产(%)</td>
+      <td align=left>总资产(%)</td>
       <% if @stock.quarter_years[0..4].count == 0 %>
         <td></td>
         <td></td>
@@ -210,7 +210,7 @@
     </tr>
 
     <tr>
-      <td>应付账款(%)</td>
+      <td align=left>应付账款(%)</td>
       <% if @stock.accounts_payable_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.accounts_payable_ratio.reverse.count == 1 %>
@@ -241,7 +241,7 @@
     </tr>
 
     <tr>
-      <td>流动负债(%)</td>
+      <td align=left>流动负债(%)</td>
       <% if @stock.current_liabilities_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.current_liabilities_ratio.reverse.count == 1 %>
@@ -272,7 +272,7 @@
     </tr>
 
     <tr>
-      <td>长期负债(%)</td>
+      <td align=left>长期负债(%)</td>
       <% if @stock.long_term_liability_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.long_term_liability_ratio.reverse.count == 1 %>
@@ -303,7 +303,7 @@
     </tr>
 
     <tr>
-      <td>股东权益(%)</td>
+      <td align=left>股东权益(%)</td>
       <% if @stock.shareholders_equity_ratio.reverse.count == 0 %>
         <td colspan=5 align=center>无统计</td>
       <% elsif @stock.shareholders_equity_ratio.reverse.count == 1 %>
@@ -334,7 +334,7 @@
     </tr>
 
     <tr>
-      <td>总负债+股东权益(%)</td>
+      <td align=left>总负债+股东权益(%)</td>
       <% if @stock.quarter_years[0..4].count == 0 %>
         <td></td>
         <td></td>

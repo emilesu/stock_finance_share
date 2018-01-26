@@ -44,4 +44,12 @@
       margin: 20px 0 86px;
     }
   }
+  table {
+    text-align: right;
+    .theader-style {
+      font-weight: bolder;
+      vertical-align: middle;
+      text-align: center; 
+    }
+  }
 }

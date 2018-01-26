@@ -22,37 +22,40 @@
   </div>
 
   <!-- 左表：股票信息+资产负债信息 分析 -->
-  <div class="col-lg-5 col-md-6 stock-info">
+  <div class="stock-info">
 
-    <!-- 股票信息 -->
-    <div class="stock-title">
-      <h1>
-        <%= @stock.name %>
-        <span> (<%= @stock.easy_symbol %>)</span>
-      </h1>
-      <h5>
-        <%= @stock.industry %>
-      </h5>
-      <div class="to-finance-btn">
-        <%= link_to("详细财报 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>
+    <div class="col-lg-5 col-md-6">
+      <!-- 股票信息 -->
+      <div class="stock-title">
+        <h1>
+          <%= @stock.name %>
+          <span> (<%= @stock.easy_symbol %>)</span>
+        </h1>
+        <h5>
+          <%= @stock.industry %>
+        </h5>
+        <div class="to-finance-btn">
+          <%= link_to("详细财报 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>
+        </div>
       </div>
+
+      <!-- 资产负债信息 -->
+      <% if @stock.zcb != "" %>
+        <%= render "main_finance_table_1" %>
+        <%= render "main_finance_table_3" %>
+      <% else %>
+        <p>暂无数据</p>
+      <% end %>
     </div>
 
-    <!-- 资产负债信息 -->
-    <% if @stock.zcb != "" %>
-      <%= render "main_finance_table_1" %>
-      <%= render "main_finance_table_3" %>
-    <% else %>
-      <p>暂无数据</p>
-    <% end %>
+    <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
+    <div class="col-lg-5 col-md-6">
+      <% if @stock.zcb != "" %>
+        <%= render "main_finance_table_2" %>
+      <% end %>
+    </div>
 
   </div>
 
-  <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
-  <div class="col-lg-5 col-md-6">
-    <% if @stock.zcb != "" %>
-      <%= render "main_finance_table_2" %>
-    <% end %>
-  </div>
 
 </div>

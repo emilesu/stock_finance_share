@@ -1092,6 +1092,78 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- F1、经营活动现金流量(百万元) ---
+  # =  经营活动产生现金流量净额(万元) lrb83
+  def net_cash_flow_of_business_activities
+    # 数据源
+    years = self.quarter_years
+    col_llb = JSON.parse(self.llb)
+    # 数据提取 - 净利润
+    col_llb_main = []
+    col_llb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_llb_main << m[83]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_llb_main[i].to_f / 100
+      result << m.round(0)
+    end
+    # 返回经营活动现金流量
+    return result
+  end
+
+  # --- F2、投资活动现金流量(百万元) ---
+  # =  投资活动产生现金流量净额(万元) lrb42
+  def net_investment_activities_generated_cash_flow
+    # 数据源
+    years = self.quarter_years
+    col_llb = JSON.parse(self.llb)
+    # 数据提取 - 净利润
+    col_llb_main = []
+    col_llb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_llb_main << m[42]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_llb_main[i].to_f / 100
+      result << m.round(0)
+    end
+    # 返回投资活动现金流量
+    return result
+  end
+
+  # --- F2、筹资活动现金流量(百万元) ---
+  # =  筹资活动产生的现金流量净额(万元) lrb54
+  def net_financing_activities_generated_cash_flow
+    # 数据源
+    years = self.quarter_years
+    col_llb = JSON.parse(self.llb)
+    # 数据提取 - 净利润
+    col_llb_main = []
+    col_llb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_llb_main << m[54]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_llb_main[i].to_f / 100
+      result << m.round(0)
+    end
+    # 返回筹资活动现金流量
+    return result
+  end
+
 
 
 
