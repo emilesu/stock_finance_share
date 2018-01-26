@@ -111,12 +111,35 @@
     <tr>
       <th rowspan="2">偿债能力</th>
       <td>流动比率(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.current_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.current_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.current_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.current_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.current_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.current_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.current_ratio.reverse.count == 5 %>
+        <% @stock.current_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>速动比率(%)</td>
       <td></td>

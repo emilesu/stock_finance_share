@@ -610,10 +610,8 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..4).each do |i|
-      if col_zcb_main[i].to_i != 0
         m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
         result << m.round(2)
-      end
     end
     # 返回存货周转率
     return result
@@ -1009,6 +1007,39 @@ class Stock < ApplicationRecord
       result << m.round(2)
     end
     # 长期资金占不动产/厂房及设备比率
+    return result
+  end
+
+  # --- E1、流动比率 ---
+  # =  流动资产 zcb27 / 流动负债 fzb34
+  def current_ratio
+    # 数据源
+    years = self.quarter_years
+    col_zcb = JSON.parse(self.zcb)
+    col_fzb = JSON.parse(self.fzb)
+    # 数据提取 - 营业收入
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[27]
+      end
+    end
+    # 数据提取 - 净利润
+    col_fzb_main = []
+    col_fzb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_fzb_main << m[34]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_zcb_main[i].to_f / col_fzb_main[i].to_f * 100
+      result << m.round(2)
+    end
+    # 流动比率
     return result
   end
 
