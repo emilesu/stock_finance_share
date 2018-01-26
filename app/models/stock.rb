@@ -942,31 +942,73 @@ class Stock < ApplicationRecord
   def debt_asset_ratio
     # 数据源
     years = self.quarter_years
-    col_lrb = JSON.parse(self.fzb)
-    col_gdb = JSON.parse(self.zcb)
+    col_fzb = JSON.parse(self.fzb)
+    col_zcb = JSON.parse(self.zcb)
     # 数据提取 - 净利润
-    col_lrb_main = []
-    col_lrb.each do |i|
+    col_fzb_main = []
+    col_fzb.each do |i|
       m = i.split(",")
       if years.include?(m[2])
-        col_lrb_main << m[44]
+        col_fzb_main << m[44]
       end
     end
     # 数据提取 - 营业收入
-    col_gdb_main = []
-    col_gdb.each do |i|
+    col_zcb_main = []
+    col_zcb.each do |i|
       m = i.split(",")
       if years.include?(m[2])
-        col_gdb_main << m[54]
+        col_zcb_main << m[54]
       end
     end
     # 运算
     result = []
     (0..4).each do |i|
-      m = col_lrb_main[i].to_f / col_gdb_main[i].to_f * 100
+      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
       result << m.round(2)
     end
     # 返回负债占资产比率
+    return result
+  end
+
+  # --- D2、长期资金占不动产/厂房及设备比率 ---
+  # =  (长期负债 fzb43 + 股东权益 gdb15) / 固定资产 zcb39
+  def long_term_funds_for_fixed_assets_ratio
+    # 数据源
+    years = self.quarter_years
+    col_fzb = JSON.parse(self.fzb)
+    col_gdb = JSON.parse(self.gdb)
+    col_zcb = JSON.parse(self.zcb)
+    # 数据提取 - 长期负债
+    col_fzb_main = []
+    col_fzb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_fzb_main << m[43]
+      end
+    end
+    # 数据提取 - 股东权益
+    col_gdb_main = []
+    col_gdb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_gdb_main << m[15]
+      end
+    end
+    # 数据提取 - 固定资产
+    col_zcb_main = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main << m[39]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = ( col_fzb_main[i].to_f + col_gdb_main[i].to_f ) / col_zcb_main[i].to_f * 100
+      result << m.round(2)
+    end
+    # 长期资金占不动产/厂房及设备比率
     return result
   end
 
