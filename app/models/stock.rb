@@ -689,6 +689,38 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- C1-1、营业毛利率 ---
+  # =  营业利润  lrb35  /  营业收入 lrb3
+  def operating_margin_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    # 数据提取 - 营业利润
+    col_lrb_main_1 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_1 << m[35]
+      end
+    end
+    # 数据提取 - 营业收入
+    col_lrb_main_2 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_2 << m[3]
+      end
+    end
+    # 运算 判断分母不能为0
+    result = []
+    (0..4).each do |i|
+      m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回营业毛利率
+    return result
+  end
+
 
 
 end
