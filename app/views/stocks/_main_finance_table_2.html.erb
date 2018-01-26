@@ -48,12 +48,35 @@
     <tr>
       <th rowspan="2">财务结构</th>
       <td>负债占资产比率(%)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.debt_asset_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.debt_asset_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.debt_asset_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.debt_asset_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.debt_asset_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.debt_asset_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.debt_asset_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.debt_asset_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.debt_asset_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.debt_asset_ratio.reverse.count == 5 %>
+        <% @stock.debt_asset_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>长期资金占不动产/厂房及设备比率(%)</td>
       <td></td>
