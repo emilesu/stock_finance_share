@@ -358,36 +358,128 @@
 
     <tr>
       <td>经营安全边际率(%) = ② / ①</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.operating_margin_of_safety_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.operating_margin_of_safety_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.operating_margin_of_safety_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_margin_of_safety_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.operating_margin_of_safety_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_margin_of_safety_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.operating_margin_of_safety_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_margin_of_safety_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.operating_margin_of_safety_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.operating_margin_of_safety_ratio.reverse.count == 5 %>
+        <% @stock.operating_margin_of_safety_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>纯益率(%) = 净利率</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.net_profit_margin_ratio.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.net_profit_margin_ratio.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.net_profit_margin_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.net_profit_margin_ratio.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.net_profit_margin_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.net_profit_margin_ratio.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.net_profit_margin_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.net_profit_margin_ratio.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.net_profit_margin_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.net_profit_margin_ratio.reverse.count == 5 %>
+        <% @stock.net_profit_margin_ratio.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>每股盈余(元)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.earnings_per_share.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.earnings_per_share.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.earnings_per_share.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.earnings_per_share.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.earnings_per_share.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.earnings_per_share.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.earnings_per_share.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.earnings_per_share.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.earnings_per_share.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.earnings_per_share.reverse.count == 5 %>
+        <% @stock.earnings_per_share.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <td>税后净利(百万元)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <% if @stock.after_tax_profit.reverse.count == 0 %>
+        <td colspan=5 align=center>无统计</td>
+      <% elsif @stock.after_tax_profit.reverse.count == 1 %>
+        <td colspan=4 align=center>无统计</td>
+        <% @stock.after_tax_profit.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.after_tax_profit.reverse.count == 2 %>
+        <td colspan=3 align=center>无统计</td>
+        <% @stock.after_tax_profit.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.after_tax_profit.reverse.count == 3 %>
+        <td colspan=2 align=center>无统计</td>
+        <% @stock.after_tax_profit.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.after_tax_profit.reverse.count == 4 %>
+        <td colspan=1 align=center>无统计</td>
+        <% @stock.after_tax_profit.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% elsif @stock.after_tax_profit.reverse.count == 5 %>
+        <% @stock.after_tax_profit.reverse.each do |i| %>
+          <td><%= i %></td>
+        <% end %>
+      <% end %>
     </tr>
+
     <tr>
       <th rowspan="3">现金流量</th>
       <td>现金流量比率(%)</td>

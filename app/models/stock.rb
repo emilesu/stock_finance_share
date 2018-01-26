@@ -689,7 +689,7 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- C1-1、营业毛利率 ---
+  # --- C1、营业毛利率 ---
   # =  营业利润  lrb35  /  营业收入 lrb3
   def operating_margin_ratio
     # 数据源
@@ -721,8 +721,8 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- C1-2、营业利益率 ---
-  # =  营业费用  lrb35 - lrb10 - lrb11 / 营业收入 lrb3
+  # --- C2、营业利益率 ---
+  # =  营业利益  lrb35 - lrb10 + lrb11 / 营业收入 lrb3
   def business_profitability_ratio
     # 数据源
     years = self.quarter_years
@@ -766,6 +766,141 @@ class Stock < ApplicationRecord
       result << eval(sprintf("%8.2f",m))
     end
     # 返回营业利益率
+    return result
+  end
+
+  # --- C3、经营安全边际率 ---
+  # =  营业利益  lrb35 - lrb10 + lrb11 / 营业利润 lrb35
+  def operating_margin_of_safety_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    # 数据提取 - 营业利润
+    col_lrb_main_1 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_1 << m[35]
+      end
+    end
+    # 数据提取 - 营业总成本
+    col_lrb_main_2 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_2 << m[10]
+      end
+    end
+    # 数据提取 - 营业成本
+    col_lrb_main_3 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_3 << m[11]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      x1 = col_lrb_main_1[i].to_f - col_lrb_main_2[i].to_f + col_lrb_main_3[i].to_f
+      x2 = col_lrb_main_1[i].to_f
+      if x1 < 0 && x2 < 0
+        result << "严重亏损"
+      else
+        m = x1 / x2 * 100
+        result << eval(sprintf("%8.2f",m))
+      end
+    end
+    # 返回经营安全边际率
+    return result
+  end
+
+  # --- C4、净利率 ---
+  # =  净利润 lrb42 / 营业收入 lrb3
+  def net_profit_margin_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    # 数据提取 - 净利润
+    col_lrb_main_1 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_1 << m[42]
+      end
+    end
+    # 数据提取 - 营业收入
+    col_lrb_main_2 = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main_2 << m[3]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回净利率
+    return result
+  end
+
+  # --- C5、每股盈余 ---
+  # =  净利润 lrb42 / 总股本 gdb4
+  def earnings_per_share
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_gdb = JSON.parse(self.gdb)
+    # 数据提取 - 净利润
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[42]
+      end
+    end
+    # 数据提取 - 营业收入
+    col_gdb_main = []
+    col_gdb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_gdb_main << m[3]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_lrb_main[i].to_f / col_gdb_main[i].to_f
+      result << eval(sprintf("%8.2f",m))
+    end
+    # 返回每股盈余
+    return result
+  end
+
+  # --- C5-1、税后净利(百万元) ---
+  # =  净利润 lrb42
+  def after_tax_profit
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    # 数据提取 - 净利润
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[42]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_lrb_main[i].to_f / 100
+      result << m.round(0)
+    end
+    # 返回每股盈余
     return result
   end
 
