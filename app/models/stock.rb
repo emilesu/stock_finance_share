@@ -1017,12 +1017,61 @@ class Stock < ApplicationRecord
     years = self.quarter_years
     col_zcb = JSON.parse(self.zcb)
     col_fzb = JSON.parse(self.fzb)
-    # 数据提取 - 营业收入
+    # 数据提取 - 流动资产
     col_zcb_main = []
     col_zcb.each do |i|
       m = i.split(",")
       if years.include?(m[2])
         col_zcb_main << m[27]
+      end
+    end
+    # 数据提取 - 流动负债
+    col_fzb_main = []
+    col_fzb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_fzb_main << m[34]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_zcb_main[i].to_f / col_fzb_main[i].to_f * 100
+      result << m.round(2)
+    end
+    # 流动比率
+    return result
+  end
+
+  # --- E2、速动比率 ---
+  # =  流动资产 zcb27 - 存货 zcb22 - 预付款项 zcb10 / 流动负债 fzb34
+  def quick_ratio
+    # 数据源
+    years = self.quarter_years
+    col_zcb = JSON.parse(self.zcb)
+    col_fzb = JSON.parse(self.fzb)
+    # 数据提取 - 流动资产
+    col_zcb_main_1 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_1 << m[27]
+      end
+    end
+    # 数据提取 - 存货
+    col_zcb_main_2 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_2 << m[22]
+      end
+    end
+    # 数据提取 - 预付款项
+    col_zcb_main_3 = []
+    col_zcb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_zcb_main_3 << m[10]
       end
     end
     # 数据提取 - 净利润
@@ -1036,7 +1085,7 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..4).each do |i|
-      m = col_zcb_main[i].to_f / col_fzb_main[i].to_f * 100
+      m = ( col_zcb_main_1[i].to_f - col_zcb_main_2[i].to_f - col_zcb_main_3[i].to_f ) / col_fzb_main[i].to_f * 100
       result << m.round(2)
     end
     # 流动比率
