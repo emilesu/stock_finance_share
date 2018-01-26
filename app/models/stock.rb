@@ -968,7 +968,7 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- D2、长期资金占不动产/厂房及设备比率 ---
+  # --- D2、长期负债占不动产/厂房及设备比率 ---
   # =  (长期负债 fzb43 + 股东权益 gdb15) / 固定资产 zcb39
   def long_term_funds_for_fixed_assets_ratio
     # 数据源

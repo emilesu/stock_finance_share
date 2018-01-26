@@ -21,9 +21,9 @@
       color: #666;
     }
     li:hover {
-      background-color: #666;
+      background-color: #1f1f1f;
       text-decoration: none;
-      color: #fff;
+      color: #f9f9f9;
       // filter:alpha(Opacity=100);
       // -moz-opacity:0.8;
       // transition: 0.4s;
@@ -49,7 +49,8 @@
     .theader-style {
       font-weight: bolder;
       vertical-align: middle;
-      text-align: center; 
+      text-align: center;
+      background-color: #f9f9f9;
     }
   }
 }
