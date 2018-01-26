@@ -904,6 +904,38 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- C6、股东权益报酬率 ---
+  # =  净利润 lrb42 / 股东权益 gdb15
+  def roe_ratio
+    # 数据源
+    years = self.quarter_years
+    col_lrb = JSON.parse(self.lrb)
+    col_gdb = JSON.parse(self.gdb)
+    # 数据提取 - 净利润
+    col_lrb_main = []
+    col_lrb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_lrb_main << m[42]
+      end
+    end
+    # 数据提取 - 营业收入
+    col_gdb_main = []
+    col_gdb.each do |i|
+      m = i.split(",")
+      if years.include?(m[2])
+        col_gdb_main << m[15]
+      end
+    end
+    # 运算
+    result = []
+    (0..4).each do |i|
+      m = col_lrb_main[i].to_f / col_gdb_main[i].to_f * 100
+      result << m.round(2)
+    end
+    # 返回每股盈余
+    return result
+  end
 
 
 
