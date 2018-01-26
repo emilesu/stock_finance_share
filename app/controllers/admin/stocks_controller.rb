@@ -47,7 +47,7 @@ class Admin::StocksController < AdminController
   private
 
   def stock_params
-    params.require(:stock).permit(:symbol, :easy_symbol, :name, :lrb, :llb, :zcb, :fzb, :gdb, :industry)
+    params.require(:stock).permit(:symbol, :easy_symbol, :name, :lrb, :llb, :zcb, :fzb, :gdb, :industry, :main_business)
   end
 
 end

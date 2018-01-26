@@ -1,6 +1,23 @@
+// http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$         flex 布局参考
+
 .wrapper {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+
+
   margin-top: 50px;
   color: #666;
+
+  table {
+    text-align: right;
+    .theader-style {
+      font-weight: bolder;
+      vertical-align: middle;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+  }
 }
 
 .industry-list {
@@ -33,7 +50,18 @@
 }
 
 .stock-info {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  .table-left {
+    flex-grow: 1;
+    align-self: flex-end;
+  }
   .stock-title {
+    flex-grow: 1;
+    align-self: flex-start;
+    height: 200px;
     h1 {
       margin-top: 0;
     }
@@ -41,16 +69,23 @@
       font-size: 20px;
     }
     .to-finance-btn {
-      margin: 20px 0 86px;
+      margin: 20px 0;
+    }
+    .main_business {
+      height:40px;
+      overflow:hidden;                  //超出40px高度时隐藏
+      span {
+        font-weight: bolder;
+        font-size: 12px;
+      }
+      p {
+        line-height: 20px;
+        text-align: justify;
+      }
     }
   }
-  table {
-    text-align: right;
-    .theader-style {
-      font-weight: bolder;
-      vertical-align: middle;
-      text-align: center;
-      background-color: #f9f9f9;
-    }
-  }
+}
+
+.table-right {
+  flex-grow: 1;
 }
