@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
+//= require jquery_ujs
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-sprockets
 //= require bootstrap/collapse
 //= require bootstrap/button
-//= require turbolinks
+//= require typeahead.bundle.min
 //= require_tree .

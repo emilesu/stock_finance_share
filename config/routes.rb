@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :stocks
+  resources :stocks do
+    collection do
+      get :search                   #搜索并打开 功能
+    end
+  end
 
   namespace :admin do
     resources :stocks
