@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126165633) do
+ActiveRecord::Schema.define(version: 20180128191331) do
 
   create_table "stocks", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "lrb"
-    t.string "llb"
-    t.string "zcb"
-    t.string "fzb"
-    t.string "gdb"
+    t.text "lrb"
+    t.text "llb"
+    t.text "zcb"
+    t.text "fzb"
+    t.text "gdb"
     t.string "industry"
     t.string "easy_symbol"
     t.string "main_business"
