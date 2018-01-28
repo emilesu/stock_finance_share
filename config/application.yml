@@ -1,0 +1,7 @@
+development:
+  juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
+  liangyee_api_key: 7B9AA4E6AFBA4A98970B98494C6195B9
+
+production:
+  juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
+  liangyee_api_key: 7B9AA4E6AFBA4A98970B98494C6195B9
