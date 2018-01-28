@@ -61,35 +61,35 @@ class Admin::BaseDataController < AdminController
       response_zcb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getBalanceSheet", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => true }
       data_zcb = JSON.parse(response_zcb.body)
       s.update!(
-        :zcb => data_zcb["result"],
+        :zcb => JSON.parse(data_zcb["result"]),
       )
 
       # lrb 利润表更新
       response_lrb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockProfit", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => true }
       data_lrb = JSON.parse(response_lrb.body)
       s.update!(
-        :lrb => data_lrb["result"],
+        :lrb => JSON.parse(data_lrb["result"]),
       )
 
       # llb 流量表更新
       response_llb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockCashFlow", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => true }
       data_llb = JSON.parse(response_llb.body)
       s.update!(
-        :llb => data_llb["result"],
+        :llb => JSON.parse(data_llb["result"]),
       )
 
       # fzb 负债表更新
       response_fzb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetLiabilities", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => true }
       data_fzb = JSON.parse(response_fzb.body)
       s.update!(
-        :fzb => data_fzb["result"],
+        :fzb => JSON.parse(data_fzb["result"]),
       )
 
       # gdb 股东权益表更新
       response_gdb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetShareholder", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => true }
       data_gdb = JSON.parse(response_gdb.body)
       s.update!(
-        :gdb => data_gdb["result"],
+        :gdb => JSON.parse(data_gdb["result"]),
       )
 
       # industry 行业分类更新
