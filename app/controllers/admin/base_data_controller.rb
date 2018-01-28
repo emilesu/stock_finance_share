@@ -5,23 +5,50 @@ class Admin::BaseDataController < AdminController
   end
 
   # 全局扫描更新 沪股 股票代码和名称
-  def update_stock_symbol
+  def update_sh_stock_symbol
 
-    response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => "1", :type => "1" }
-    data = JSON.parse(response.body)
+    (1..18).each do |i|
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
+      data = JSON.parse(response.body)
 
-    data["result"]["data"].each do |s|
-      existing_stock = Stock.find_by_symbol( s["symbol"] )
-      if existing_stock.nil?
-        Stock.create!(
-          :symbol => s["symbol"],
-          :name => s["name"],
-          :easy_symbol => s["symbol"][2..7]
-        )
+      data["result"]["data"].each do |s|
+        existing_stock = Stock.find_by_symbol( s["symbol"] )
+        if existing_stock.nil?
+          Stock.create!(
+            :symbol => s["symbol"],
+            :name => s["name"],
+            :easy_symbol => s["symbol"][2..7]
+          )
+        end
       end
     end
     puts "更新完毕*******"
+    redirect_to admin_base_data_path
     flash[:notice] = "沪股 股票代码和名称 更新完毕"
+
+  end
+
+  # 全局扫描更新 沪股 股票代码和名称
+  def update_sz_stock_symbol
+
+    (1..27).each do |i|
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
+      data = JSON.parse(response.body)
+
+      data["result"]["data"].each do |s|
+        existing_stock = Stock.find_by_symbol( s["symbol"] )
+        if existing_stock.nil?
+          Stock.create!(
+            :symbol => s["symbol"],
+            :name => s["name"],
+            :easy_symbol => s["symbol"][2..7]
+          )
+        end
+      end
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_path
+    flash[:notice] = "深股 股票代码和名称 更新完毕"
 
   end
 
@@ -80,6 +107,7 @@ class Admin::BaseDataController < AdminController
 
     end
     puts "更新完毕*******"
+    redirect_to admin_base_data_path
     flash[:notice] = "三表数据 股票行业 更新完毕"
   end
 
@@ -99,6 +127,7 @@ class Admin::BaseDataController < AdminController
       end
     end
     puts "更新完毕*******"
+    redirect_to admin_base_data_path
     flash[:notice] = "主营业务 更新完毕"
   end
 
