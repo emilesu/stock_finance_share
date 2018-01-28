@@ -41,6 +41,8 @@ gem 'font-awesome-rails'
 
 gem 'rest-client'
 gem 'nokogiri'
+# 异步处理
+gem 'sidekiq'
 
 gem 'figaro'
 

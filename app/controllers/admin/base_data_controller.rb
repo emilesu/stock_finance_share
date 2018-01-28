@@ -7,7 +7,7 @@ class Admin::BaseDataController < AdminController
   # 全局扫描更新 沪股 股票代码和名称
   def update_sh_stock_symbol
 
-    (1..18).each do |i|
+    (1..2).each do |i|        #最终上线要改为18
       response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
       data = JSON.parse(response.body)
 
@@ -23,15 +23,15 @@ class Admin::BaseDataController < AdminController
       end
     end
     puts "更新完毕*******"
-    redirect_to admin_base_data_path
-    flash[:notice] = "沪股 股票代码和名称 更新完毕"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "沪股 股票代码和名称 已在更新"
 
   end
 
   # 全局扫描更新 沪股 股票代码和名称
   def update_sz_stock_symbol
 
-    (1..27).each do |i|
+    (1..2).each do |i|        #最终上线要改为27
       response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
       data = JSON.parse(response.body)
 
@@ -47,8 +47,8 @@ class Admin::BaseDataController < AdminController
       end
     end
     puts "更新完毕*******"
-    redirect_to admin_base_data_path
-    flash[:notice] = "深股 股票代码和名称 更新完毕"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "深股 股票代码和名称 已在更新"
 
   end
 
@@ -107,7 +107,7 @@ class Admin::BaseDataController < AdminController
 
     end
     puts "更新完毕*******"
-    redirect_to admin_base_data_path
+    redirect_to admin_base_data_index_path
     flash[:notice] = "三表数据 股票行业 更新完毕"
   end
 
@@ -117,7 +117,7 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.main_business = nil
+      if s.main_business.nil?
       response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
       doc = Nokogiri::HTML.parse(response.body)
       main = doc.css(".table_bg001[3] tr[11]").map{ |x| x.text }[0].split(" ")
@@ -127,7 +127,7 @@ class Admin::BaseDataController < AdminController
       end
     end
     puts "更新完毕*******"
-    redirect_to admin_base_data_path
+    redirect_to admin_base_data_index_path
     flash[:notice] = "主营业务 更新完毕"
   end
 

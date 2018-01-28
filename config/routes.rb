@@ -18,5 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
+  #异步管理 UI
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.role == "admin" } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root "welcome#index"
 end
