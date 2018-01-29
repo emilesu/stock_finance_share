@@ -33,3 +33,9 @@ body {
     flex: 1;                                          // footer固定底部
     }
   }
+
+  .navbar-brand {
+    img {
+      height: 125%;
+    }
+  }
