@@ -1165,7 +1165,31 @@ class Stock < ApplicationRecord
   end
 
 
+# -----------------------------------数据排序算法脚本-----------------------------------
 
+  # 最新年度现金流量排序
+  def cash_order
+    self.cash_and_cash_equivalents_ratio[0]
+  end
 
+  # 最新年度毛利率排序
+  def operating_margin_order
+   self.operating_margin_ratio[0]
+  end
+
+  # 最新年度净利率排序
+  def net_profit_margin_order
+   self.net_profit_margin_ratio[0]
+  end
+
+  #股东权益报酬率 RoE 排序
+  def roe_order
+    self.roe_ratio[0]
+  end
+
+  #负债占资本利率排序
+  def debt_asset_order
+    self.debt_asset_ratio[0]
+  end
 
 end

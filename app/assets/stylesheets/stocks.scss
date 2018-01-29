@@ -23,10 +23,43 @@
   .industry-title {
     font-size: 20px;
     font-weight: bold;
+    min-width: 210px;
+    .btn-group {
+      margin-right: 40px;
+      .dropdown-menu {
+        background-color: #333;
+        line-height: 1.8;
+        color: #f9f9f9;
+        padding: 5px 0;
+        margin: 2px 0 0;
+        list-style: none;
+        font-size: 12px;
+        text-align: left;
+        background-color: #333;
+        li {
+          a {
+            background-color: #333;
+            color: #fff;
+            font-weight: normal;
+            line-height: 1.8;
+            padding: 3px 12px;
+          }
+          a:hover {
+            background-color: #1f1f1f;
+          }
+        }
+      }
+    }
   }
   .industry-li {
     white-space: nowrap;     //压缩后不换行
     margin-top: 20px;
+    min-width: 210px;
+    .industry-li-title {
+      padding: 7px 10px;
+      margin-right: 35px;
+      font-weight: bold;
+    }
     li {
       margin-right: 35px;
       padding: 7px 10px;

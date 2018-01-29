@@ -2,24 +2,9 @@
 
   <!-- 同类行业列表栏 -->
   <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
-
-    <!-- 所属行业 -->
-    <div class="industry-title">
-      <%= @stock.industry %>
-    </div>
-
-    <!-- 所属行业股票列表 -->
-    <div class="industry-li">
-      <ul class="list-unstyled">
-        <% @industrys.each do |stock| %>
-          <%= link_to stock_path(stock) do %>
-            <li><%= stock.easy_symbol %> - <%= stock.name %></li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-
+    <%= render "industry_order" %>
   </div>
+
 
   <!-- 左表：股票信息+资产负债信息 分析 -->
   <div class="stock-info col-lg-5 col-md-12">
@@ -62,9 +47,6 @@
         <%= render "main_finance_table_2" %>
       <% end %>
     </div>
-
-
-
 
 
 </div>
