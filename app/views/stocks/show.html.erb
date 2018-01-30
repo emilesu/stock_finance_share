@@ -1,4 +1,4 @@
-<div class="row wrapper">
+<div class="wrapper">
 
   <!-- 同类行业列表栏 -->
   <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
@@ -24,7 +24,7 @@
           <p title="<%= @stock.main_business %>"><span>主营业务: </span><%= @stock.main_business %></p>
         </div>
         <div class="to-finance-btn">
-          <%= link_to("详细财报 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>
+          <%= link_to("近10年财报分析 >>", analyza_stocks_path(@stock), :class => "btn btn-sm btn-default") %>
         </div>
       </div>
 
@@ -32,8 +32,8 @@
       <!-- <div class="table-left"> -->                                 <!-- 在 md 以下时左右布局 -->
       <div class="table-left col-md-12 col-sm-12 row">          <!-- 在 md 以下时展开布局 -->
         <% if @stock.zcb != "" %>
-          <%= render "main_finance_table_1" %>
-          <%= render "main_finance_table_3" %>
+          <%= render :partial => "main_finance_table_1", :locals => { :time => @time } %>
+          <%= render :partial => "main_finance_table_3", :locals => { :time => @time } %>
         <% else %>
           <p>暂无数据</p>
         <% end %>
@@ -44,7 +44,7 @@
     <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
     <div class="table-right col-lg-5 col-md-12">
       <% if @stock.zcb != "" %>
-        <%= render "main_finance_table_2" %>
+        <%= render :partial => "main_finance_table_2", :locals => { :time => @time } %>
       <% end %>
     </div>
 

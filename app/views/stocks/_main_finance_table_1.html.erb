@@ -2,374 +2,123 @@
 
 <div>
   <table class="table table-striped table-bordered">
-
     <tr class="theader-style">
-      <td align=left width = "35%">资产负债比率(占总资产%)</td>
-      <% if @stock.quarter_years[0..4].count == 0 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      <% elsif @stock.quarter_years[0..4].count == 1 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <% if time == 5 %>
+        <td align=left width = "35%">资产负债比率(占总资产%)</td>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
           <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
-      <% elsif  @stock.quarter_years[0..4].count == 2 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <td align=center width = "13%"><%= i[0..3] %></td>
+      <% elsif time == 10 %>
+        <td align=left width = "30%">资产负债比率(占总资产%)</td>
+        <% @stock.quarter_years[0..9].reverse.each do |i| %>
+          <td align=center width = "7%"><%= i[0..3] %></td>
         <% end %>
-      <% elsif @stock.quarter_years[0..4].count == 3 %>
-        <td></td>
-        <td></td>
-        <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <td align=center width = "13%"><%= i[0..3] %></td>
-        <% end %>
-      <% elsif @stock.quarter_years[0..4].count == 4 %>
-        <td></td>
-        <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <td align=center width = "13%"><%= i[0..3] %></td>
-        <% end %>
-      <% elsif %>
-        <% @stock.quarter_years[0..4].reverse.each do |i| %>
-          <td align=center width = "13%"><%= i[0..3] %></td>
+      <% elsif time == 2 %>
+        <td align=left width = "50%">资产负债比率(占总资产%)</td>
+        <% @stock.quarter_recent.reverse.each do |i| %>
+          <td align=center width = "25%"><%= i %></td>
         <% end %>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>现金与约当现金(%)</td>
-      <% if @stock.cash_and_cash_equivalents_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.cash_and_cash_equivalents_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.cash_and_cash_equivalents_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.cash_and_cash_equivalents_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.cash_and_cash_equivalents_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.cash_and_cash_equivalents_ratio.reverse.count == 5 %>
-        <% @stock.cash_and_cash_equivalents_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.cash_and_cash_equivalents_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.cash_and_cash_equivalents_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>应收账款(%)</td>
-      <% if @stock.receivables_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.receivables_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.receivables_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.receivables_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.receivables_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.receivables_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.receivables_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.receivables_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.receivables_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.receivables_ratio.reverse.count == 5 %>
-        <% @stock.receivables_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.receivables_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.receivables_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>存货(%)</td>
-      <% if @stock.inventory_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.inventory_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.inventory_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.inventory_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.inventory_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.inventory_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.inventory_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.inventory_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.inventory_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.inventory_ratio.reverse.count == 5 %>
-        <% @stock.inventory_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.inventory_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.inventory_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>流动资产(%)</td>
-      <% if @stock.current_assets_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.current_assets_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.current_assets_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_assets_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.current_assets_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_assets_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.current_assets_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_assets_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.current_assets_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_assets_ratio.reverse.count == 5 %>
-        <% @stock.current_assets_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.current_assets_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.current_assets_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>总资产(%)</td>
-      <% if @stock.quarter_years[0..4].count == 0 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      <% elsif @stock.quarter_years[0..4].count == 1 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>100</td>
-      <% elsif  @stock.quarter_years[0..4].count == 2 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif @stock.quarter_years[0..4].count == 3 %>
-        <td></td>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif @stock.quarter_years[0..4].count == 4 %>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif %>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
+      <% (1..m).each do |i| %>
         <td>100</td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>应付账款(%)</td>
-      <% if @stock.accounts_payable_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.accounts_payable_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.accounts_payable_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.accounts_payable_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.accounts_payable_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.accounts_payable_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.accounts_payable_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.accounts_payable_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.accounts_payable_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.accounts_payable_ratio.reverse.count == 5 %>
-        <% @stock.accounts_payable_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.accounts_payable_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.accounts_payable_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>流动负债(%)</td>
-      <% if @stock.current_liabilities_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.current_liabilities_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.current_liabilities_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_liabilities_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.current_liabilities_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_liabilities_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.current_liabilities_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_liabilities_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.current_liabilities_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.current_liabilities_ratio.reverse.count == 5 %>
-        <% @stock.current_liabilities_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.current_liabilities_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.current_liabilities_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>长期负债(%)</td>
-      <% if @stock.long_term_liability_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.long_term_liability_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.long_term_liability_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.long_term_liability_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.long_term_liability_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.long_term_liability_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.long_term_liability_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.long_term_liability_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.long_term_liability_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.long_term_liability_ratio.reverse.count == 5 %>
-        <% @stock.long_term_liability_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.long_term_liability_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.long_term_liability_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>股东权益(%)</td>
-      <% if @stock.shareholders_equity_ratio.reverse.count == 0 %>
-        <td colspan=5 align=center>无统计</td>
-      <% elsif @stock.shareholders_equity_ratio.reverse.count == 1 %>
-        <td colspan=4 align=center>无统计</td>
-        <% @stock.shareholders_equity_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.shareholders_equity_ratio.reverse.count == 2 %>
-        <td colspan=3 align=center>无统计</td>
-        <% @stock.shareholders_equity_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.shareholders_equity_ratio.reverse.count == 3 %>
-        <td colspan=2 align=center>无统计</td>
-        <% @stock.shareholders_equity_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.shareholders_equity_ratio.reverse.count == 4 %>
-        <td colspan=1 align=center>无统计</td>
-        <% @stock.shareholders_equity_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
-      <% elsif @stock.shareholders_equity_ratio.reverse.count == 5 %>
-        <% @stock.shareholders_equity_ratio.reverse.each do |i| %>
-          <td><%= i %></td>
-        <% end %>
+      <% m = @stock.shareholders_equity_ratio(time).reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>无统计</td>
+      <% end %>
+      <% @stock.shareholders_equity_ratio(time).reverse.each do |i| %>
+        <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr>
       <td align=left>总负债+股东权益(%)</td>
-      <% if @stock.quarter_years[0..4].count == 0 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      <% elsif @stock.quarter_years[0..4].count == 1 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>100</td>
-      <% elsif  @stock.quarter_years[0..4].count == 2 %>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif @stock.quarter_years[0..4].count == 3 %>
-        <td></td>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif @stock.quarter_years[0..4].count == 4 %>
-        <td></td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-      <% elsif %>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
-        <td>100</td>
+      <% (1..m).each do |i| %>
         <td>100</td>
       <% end %>
     </tr>

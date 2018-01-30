@@ -42,7 +42,7 @@
     <ul class="list-unstyled">
       <% @industrys_cash_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.cash_and_cash_equivalents_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.cash_and_cash_equivalents_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -53,7 +53,7 @@
     <ul class="list-unstyled">
       <% @industrys_cash_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.cash_and_cash_equivalents_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.cash_and_cash_equivalents_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -64,7 +64,7 @@
     <ul class="list-unstyled">
       <% @industrys_operating_margin_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.operating_margin_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.operating_margin_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -75,7 +75,7 @@
     <ul class="list-unstyled">
       <% @industrys_net_profit_margin_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.net_profit_margin_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.net_profit_margin_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -86,7 +86,7 @@
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.roe_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.roe_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -97,7 +97,7 @@
     <ul class="list-unstyled">
       <% @industrys_debt_asset_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.debt_asset_ratio[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.debt_asset_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>

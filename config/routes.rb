@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :stocks do
+    # get "/industry/" => "stocks#industry", :as => :industry        #行业关键指标排名分析
     collection do
+      get "/analyza/:id" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报    get "/analyza/" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报
+      get "/statements/:id" => "stocks#statements", :as => :statements        #近十年财报原报
       get :search                   #搜索并打开 功能
     end
   end

@@ -9,6 +9,7 @@ class StocksController < ApplicationController
     @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.net_profit_margin_order <=> x.net_profit_margin_order }     #净利率排序
     @industrys_roe_order = all_industrys.sort{ |x,y| y.roe_order <=> x.roe_order }       #股东权益报酬率 RoE 排序
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }       #负债占资本利率排序
+    @time = 5
   end
 
 
@@ -19,6 +20,13 @@ class StocksController < ApplicationController
       @stock = Stock.find_by_easy_symbol!(@query_string.split(" - ")[0])            # 返回的是这样的结果:"600000,浦发银行,PFYX", 进行列表选择
       redirect_to stock_path(@stock)
     end
+  end
+
+  # --- 近十年财报 + 最新季报 VS 去年同期季报 ---  analyza_stocks_path
+  def analyza
+    @stock = Stock.find_by_easy_symbol!(params[:id])
+    @time_years = 10
+    @time_recent = 2
   end
 
 
