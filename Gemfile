@@ -38,6 +38,7 @@ gem "devise-i18n"
 gem 'devise'
 gem 'simple_form'
 gem 'font-awesome-rails'
+gem 'kaminari'
 
 gem 'rest-client'
 gem 'nokogiri'

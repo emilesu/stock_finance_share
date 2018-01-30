@@ -2,7 +2,7 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
-    all_industrys = Stock.where(:industry => @stock.industry).all      # 捞出所属行业列表
+    all_industrys = Stock.where(:industry => @stock.industry).all     # 捞出所属行业列表
     @industrys = all_industrys      #全部所属行业列表
     @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }       #所属行业现金量排序
     @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }     #毛利率排序
