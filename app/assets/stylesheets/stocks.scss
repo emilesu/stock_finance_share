@@ -11,6 +11,7 @@
 
   table {
     text-align: right;
+    white-space: nowrap;     //压缩后不换行
     .theader-style {
       font-weight: bolder;
       vertical-align: middle;

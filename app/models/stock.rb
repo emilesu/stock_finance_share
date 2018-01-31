@@ -1378,6 +1378,11 @@ class Stock < ApplicationRecord
    self.net_profit_margin_ratio(5)[0]
   end
 
+  # 最新年度经营安全边际率排序
+  def operating_margin_of_safety_order
+   self.operating_margin_of_safety_ratio(5)[0]
+  end
+
   #股东权益报酬率 RoE 排序
   def roe_order
     self.roe_ratio(5)[0]

@@ -22,10 +22,13 @@
             <a href="#tab_default_3" data-toggle="tab">纯益率/净利率(%)</a>
           </li>
           <li>
-            <a href="#tab_default_4" data-toggle="tab">股东权益报酬率(%) RoE</a>
+            <a href="#tab_default_4" data-toggle="tab">经营安全边际率排序(%)</a>
           </li>
           <li>
-            <a href="#tab_default_5" data-toggle="tab">负债占资产利率(%)</a>
+            <a href="#tab_default_5" data-toggle="tab">股东权益报酬率(%) RoE</a>
+          </li>
+          <li>
+            <a href="#tab_default_6" data-toggle="tab">负债占资产利率(%)</a>
           </li>
         </ul>
       </li>
@@ -82,6 +85,17 @@
   </div>
 
   <div class="tab-pane" id="tab_default_4">
+    <div class="industry-li-title">经营安全边际率排序(%)</div>
+    <ul class="list-unstyled">
+      <% @industrys_operating_margin_of_safety_order.each do |stock| %>
+        <%= link_to stock_path(stock) do %>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.operating_margin_of_safety_ratio(@time)[0] %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_5">
     <div class="industry-li-title">股东权益报酬率(%) RoE</div>
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |stock| %>
@@ -92,7 +106,7 @@
     </ul>
   </div>
 
-  <div class="tab-pane" id="tab_default_5">
+  <div class="tab-pane" id="tab_default_6">
     <div class="industry-li-title">负债占资产利率(%)</div>
     <ul class="list-unstyled">
       <% @industrys_debt_asset_order.each do |stock| %>
