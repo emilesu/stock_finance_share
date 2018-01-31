@@ -15,7 +15,7 @@ class StocksController < ApplicationController
 
   # --- search 股票搜索 ---
   def search
-    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?       #拿到搜索框的 value 值
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?       # 拿到搜索框的 value 值
     if @query_string.present?
       @stock = Stock.find_by_easy_symbol!(@query_string.split(" - ")[0])            # 返回的是这样的结果:"600000,浦发银行,PFYX", 进行列表选择
       redirect_to stock_path(@stock)
@@ -29,5 +29,20 @@ class StocksController < ApplicationController
     @time_recent = 2
   end
 
+  # --- 行业对比页面, 在页面中显示该行业中, 指标排名靠前的股票排名 ---
+  def industry
+    @industry = params[:order]                                                      # 参数来源之show 页面的传入
+    @industrys = Stock.where(:industry => @industry).all
+    @all_industrys = Stock.all_industrys_li                                         # scope :all_industrys_li
+
+
+
+
+    # @query_industry = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+    # if @query_industry.present?
+    #   @industry = Stock.where(:industry => @query_industry).all            # 返回的是这样的结果:"600000,浦发银行,PFYX", 进行列表选择
+    #   redirect_to industry_stocks_path(@industry)
+    # end
+  end
 
 end

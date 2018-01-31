@@ -39,6 +39,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'kaminari'
+gem 'ransack'
 
 gem 'rest-client'
 gem 'nokogiri'

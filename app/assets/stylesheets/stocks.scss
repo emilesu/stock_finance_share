@@ -65,6 +65,7 @@
       margin-right: 35px;
       padding: 7px 10px;
       border-radius:5px;
+      list-style:none;
     }
     a {
       text-decoration: none;
@@ -105,7 +106,7 @@
       margin: 20px 0;
     }
     .main_business {
-      height:40px;
+      height:60px;
       overflow:hidden;                  //超出40px高度时隐藏
       span {
         font-weight: bolder;

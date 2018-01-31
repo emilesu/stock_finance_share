@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "/analyza/:id" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报    get "/analyza/" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报
       get "/statements/:id" => "stocks#statements", :as => :statements        #近十年财报原报
       get :search                   #搜索并打开 功能
+      get "/industry/" => "stocks#industry", :as =>:industry                 #行业对比页面
     end
   end
 
