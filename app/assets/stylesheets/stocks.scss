@@ -11,7 +11,6 @@
 
   table {
     text-align: right;
-    white-space: nowrap;     //压缩后不换行
     .theader-style {
       font-weight: bolder;
       vertical-align: middle;
@@ -66,7 +65,6 @@
       margin-right: 35px;
       padding: 7px 10px;
       border-radius:5px;
-      list-style:none;
     }
     a {
       text-decoration: none;
@@ -107,7 +105,7 @@
       margin: 20px 0;
     }
     .main_business {
-      height:60px;
+      height:40px;
       overflow:hidden;                  //超出40px高度时隐藏
       span {
         font-weight: bolder;

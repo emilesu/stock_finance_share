@@ -29,12 +29,12 @@
 <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
   <table class="table table-bordered">
     <tr class="theader-style">
-      <td colspan="2">纯益率 / 净利率(%)</td>
+      <td colspan="2">营业利益率(%)</td>
     </tr>
-    <% @industrys_net_profit_margin_order.each do |stock| %>
+    <% @industrys_business_profitability_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.net_profit_margin_ratio(5)[0] %></td>
+        <td><%= stock.business_profitability_ratio(5)[0] %></td>
       </tr>
     <% end %>
   </table>
@@ -43,12 +43,12 @@
 <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
   <table class="table table-bordered">
     <tr class="theader-style">
-      <td colspan="2">经营安全边际率排序(%)</td>
+      <td colspan="2">纯益率 / 净利率(%)</td>
     </tr>
-    <% @industrys_operating_margin_of_safety_order.each do |stock| %>
+    <% @industrys_net_profit_margin_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.operating_margin_of_safety_ratio(5)[0] %></td>
+        <td><%= stock.net_profit_margin_ratio(5)[0] %></td>
       </tr>
     <% end %>
   </table>
