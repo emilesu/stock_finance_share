@@ -84,6 +84,7 @@
 
 
 
+<!-- 表格点击跳转到对应的股票 -->
 <script>
   $("tr[data-link]").click(function() {
     window.location = $(this).data("link")
@@ -91,6 +92,7 @@
   });
 </script>
 
+<!-- 实现不同表格相同股票的关联变化 -->
 <script>
   $(document).ready(function() {
     $('tr').each(function(){
