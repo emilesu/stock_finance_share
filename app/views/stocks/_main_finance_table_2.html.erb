@@ -7,17 +7,29 @@
       <% if time == 5 %>
         <td class="theader-style" width = "10%">类别</td>
         <td align=left width = "25%">财务比率</td>
+        <% m = @stock.quarter_years.reverse.size %>
+        <% (1..time - m).each do |i| %>
+          <td align=center>无统计</td>
+        <% end %>
         <% @stock.quarter_years[0..4].reverse.each do |i| %>
           <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif time == 10 %>
         <td class="theader-style" width = "8%">类别</td>
         <td align=left width = "22%">财务比率</td>
+        <% m = @stock.quarter_years.reverse.size %>
+        <% (1..time - m).each do |i| %>
+          <td align=center>无统计</td>
+        <% end %>
         <% @stock.quarter_years[0..9].reverse.each do |i| %>
           <td align=center width = "7%"><%= i[0..3] %></td>
         <% end %>
       <% elsif time == 2 %>
         <td align=left width = "55%">财务比率</td>
+        <% m = @stock.quarter_years.reverse.size %>
+        <% (1..time - m).each do |i| %>
+          <td align=center>无统计</td>
+        <% end %>
         <% @stock.quarter_recent.reverse.each do |i| %>
           <td align=center width = "20%"><%= i %></td>
         <% end %>
