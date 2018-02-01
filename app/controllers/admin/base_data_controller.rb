@@ -113,18 +113,38 @@ class Admin::BaseDataController < AdminController
 
 
   #全局扫描更新 股票主营业务
-  def update_stock_main_business
+  def update_stock_company_info
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.main_business.nil?
+
       response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
       doc = Nokogiri::HTML.parse(response.body)
+
+      # 更新主营业务
+      if s.main_business.nil?
       main = doc.css(".table_bg001[3] tr[11]").map{ |x| x.text }[0].split(" ")
         s.update!(
           :main_business => main[1],
         )
       end
+
+      # 更新公司地域
+      if s.regional.nil?
+      main = doc.css(".table_bg001[3] tr[1]").map{ |x| x.text }[0].split(" ")
+        s.update!(
+          :regional => main[-1],
+        )
+      end
+
+      # 更新公司网址
+      if s.company_url.nil?
+      main = doc.css(".table_bg001[3] tr[9]").map{ |x| x.text }[0].split(" ")
+        s.update!(
+          :company_url => main[1],
+        )
+      end
+
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path

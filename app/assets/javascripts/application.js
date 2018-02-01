@@ -17,5 +17,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap/collapse
 //= require bootstrap/button
+//= require bootstrap/modal
 //= require typeahead.bundle.min
 //= require_tree .
