@@ -14,9 +14,9 @@
           <td align=center width = "7%"><%= i[0..3] %></td>
         <% end %>
       <% elsif time == 2 %>
-        <td align=left width = "50%">资产负债比率(占总资产%)</td>
+        <td align=left width = "55%">资产负债比率(占总资产%)</td>
         <% @stock.quarter_recent.reverse.each do |i| %>
-          <td align=center width = "25%"><%= i %></td>
+          <td align=center width = "20%"><%= i %></td>
         <% end %>
       <% end %>
     </tr>
