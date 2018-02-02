@@ -1,7 +1,7 @@
 class Admin::StocksController < AdminController
 
   def index
-    @stocks = Stock.all.order("symbol")
+    @stocks = Stock.order("symbol").page(params[:page]).per(25)
   end
 
   def show
