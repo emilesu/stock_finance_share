@@ -105,17 +105,14 @@ class Admin::BaseDataController < AdminController
     @stocks.each do |s|
 
       # industry 行业分类更新
-      existing_stock_industry = s.industry
-      if existing_stock_industry.nil?
-        response_industry = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetStockIndustryClassification", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol }
-        data_industry = JSON.parse(response_industry.body)["result"]
-        main_data = data_industry[0]
-        if !main_data.nil?
-          s.update!(
-            :industry => main_data.split(",")[2],
-          )
-        end
-      end
+      response = RestClient.get "http://quotes.money.163.com/f10/hydb_#{s.easy_symbol}.html#01g02"
+      doc = Nokogiri::HTML.parse(response.body)
+      # if s.industry.nil?
+      main = doc.css(".inner_box a").map{ |x| x.text }[0].split(" ")
+        s.update!(
+          :industry => main[0],
+        )
+      # end
 
     end
     puts "更新完毕*******"

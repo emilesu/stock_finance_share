@@ -1,5 +1,5 @@
-<%= link_to("全局更新 沪股 列表", admin_base_data_update_sh_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block") %>
-<%= link_to("全局更新 深股 列表", admin_base_data_update_sz_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block") %>
-<%= link_to("全局更新 财务报表数据", admin_base_data_update_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block") %>
-<%= link_to("全局更新 行业", admin_base_data_update_industry_info_path, method: :post, :class => "btn btn-sm btn-default btn-block") %>
-<%= link_to("全局更新 公司信息", admin_base_data_update_stock_company_info_path, method: :post, :class => "btn btn-sm btn-default btn-block") %>
+<%= link_to("全局更新 沪股 列表", admin_base_data_update_sh_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:沪股 列表 ?" }) %>
+<%= link_to("全局更新 深股 列表", admin_base_data_update_sz_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:深股 列表 ?" }) %>
+<%= link_to("全局更新 财务报表数据", admin_base_data_update_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:财务报表数据 ?" }) %>
+<%= link_to("全局更新 行业", admin_base_data_update_industry_info_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:行业 ?" }) %>
+<%= link_to("全局更新 公司信息", admin_base_data_update_stock_company_info_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:公司信息 ?" }) %>
