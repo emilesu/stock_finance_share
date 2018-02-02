@@ -8,7 +8,7 @@ class Admin::BaseDataController < AdminController
   def update_sh_stock_symbol
 
     (1..18).each do |i|        #最终上线要改为18
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
       data = JSON.parse(response.body)
 
       data["result"]["data"].each do |s|
@@ -32,7 +32,7 @@ class Admin::BaseDataController < AdminController
   def update_sz_stock_symbol
 
     (1..27).each do |i|        #最终上线要改为27
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
       data = JSON.parse(response.body)
 
       data["result"]["data"].each do |s|
