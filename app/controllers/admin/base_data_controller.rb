@@ -92,6 +92,18 @@ class Admin::BaseDataController < AdminController
         :gdb => data_gdb["result"],
       )
 
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "三表数据 股票行业 更新完毕"
+  end
+
+
+  # 全局烧苗更新 行业更新
+  def update_industry_info
+    @stocks = Stock.all
+    @stocks.each do |s|
+
       # industry 行业分类更新
       existing_stock_industry = s.industry
       if existing_stock_industry.nil?
@@ -108,7 +120,7 @@ class Admin::BaseDataController < AdminController
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "三表数据 股票行业 更新完毕"
+    flash[:notice] = "三表数据 行业 更新完毕"
   end
 
 
