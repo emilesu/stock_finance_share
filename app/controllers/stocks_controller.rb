@@ -2,7 +2,7 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
-    all_industrys = Stock.where(:industry => @stock.industry).all     # 捞出所属行业列表
+    all_industrys = Stock.where(:industry => @stock.industry).where.not(:zcb => nil).where.not(:zcb => "")   # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
     @industrys = all_industrys      #全部所属行业列表
     @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }       #所属行业现金量排序
     @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }     #毛利率排序
@@ -33,7 +33,7 @@ class StocksController < ApplicationController
   # --- 行业对比页面, 在页面中显示该行业中, 指标排名靠前的股票排名 ---
   def industry
     @industry = params[:order]                                                      # 参数来源之show 页面的传入
-    all_industrys = Stock.where(:industry => @industry).all
+    all_industrys = Stock.where(:industry => @industry).where.not(:zcb => nil).where.not(:zcb => "")      # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
     @industrys = all_industrys      #全部所属行业列表
     @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }       #所属行业现金量排序
     @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }     #毛利率排序

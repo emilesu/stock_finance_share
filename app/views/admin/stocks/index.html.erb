@@ -44,31 +44,31 @@
             <td><%= stock.industry %></td>
           <% end %>
           <!--  -->
-          <% if stock.lrb.nil? %>
+          <% if stock.lrb.nil? || stock.lrb == "" %>
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
           <% end %>
           <!--  -->
-          <% if stock.llb.nil? %>
+          <% if stock.llb.nil? || stock.llb == ""  %>
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
           <% end %>
           <!--  -->
-          <% if stock.zcb.nil? %>
+          <% if stock.zcb.nil? || stock.zcb == ""  %>
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
           <% end %>
           <!--  -->
-          <% if stock.fzb.nil? %>
+          <% if stock.fzb.nil? || stock.fzb == ""  %>
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
           <% end %>
           <!--  -->
-          <% if stock.gdb.nil? %>
+          <% if stock.gdb.nil? || stock.gdb == ""  %>
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>

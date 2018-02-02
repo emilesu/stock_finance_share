@@ -22,7 +22,7 @@
       <!-- 10年信息数据 -->
       <!-- <div class="table-left"> -->
       <div class="col-lg-9 col-md-12">
-        <% if @stock.zcb != "" %>
+        <% if @stock.zcb && @stock.zcb != "" %>
           <%= render :partial => "main_finance_table_1", :locals => { :time => @time_years } %>
           <%= render :partial => "main_finance_table_3", :locals => { :time => @time_years } %>
           <%= render :partial => "main_finance_table_2", :locals => { :time => @time_years } %>
@@ -34,7 +34,7 @@
       <!-- 最近季度与去年同季度 -->
       <!-- <div class="table-left"> -->
       <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
-        <% if @stock.zcb != "" %>
+        <% if @stock.zcb && @stock.zcb != "" %>
           <%= render :partial => "main_finance_table_1", :locals => { :time => @time_recent } %>
           <%= render :partial => "main_finance_table_3", :locals => { :time => @time_recent } %>
           <%= render :partial => "main_finance_table_2", :locals => { :time => @time_recent } %>
