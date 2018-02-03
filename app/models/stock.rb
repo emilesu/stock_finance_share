@@ -49,7 +49,7 @@ class Stock < ApplicationRecord
       quarter_all << i
     end
     year_key = []
-    (0..40).each do |i|
+    (0..quarter_all.size-1).each do |i|
       if quarter_all[i][6] == "2"
         year_key << i
       end
@@ -101,20 +101,20 @@ class Stock < ApplicationRecord
   def operating_cash_flow_ratio(time)
     # 数据源
     if time == 10
-      col_llb = self.quarter_years(3, 25)[0..9]
-      col_zcb = self.quarter_years(1, 84)[0..9]
+      llb25 = self.quarter_years(3, 25)[0..9]
+      zcb84 = self.quarter_years(1, 84)[0..9]
     elsif time == 5
-      col_llb = self.quarter_years(3, 25)[0..4]
-      col_zcb = self.quarter_years(1, 84)[0..4]
+      llb25 = self.quarter_years(3, 25)[0..4]
+      zcb84 = self.quarter_years(1, 84)[0..4]
     elsif time == 2
-      col_llb = self.quarter_recent(3, 25)
-      col_zcb = self.quarter_recent(1, 84)
+      llb25 = self.quarter_recent(3, 25)
+      zcb84 = self.quarter_recent(1, 84)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      if col_zcb[i].to_i != 0
-        m = col_llb[i].to_f / col_zcb[i].to_f * 100
+      if zcb84[i].to_i != 0
+        m = llb25[i].to_f / zcb84[i].to_f * 100
         result << m.round(2)
       end
     end
@@ -125,21 +125,21 @@ class Stock < ApplicationRecord
   # --- A1-2、现金流量允当比率（  >100%比较好 ）---
   # =  最近5年营业活动现金流量llb25  /  最近5年  (  资本支出llb33  + 存货减少额-llb75 + 现金股利llb48   )
   def cash_flow_adequancy_ratio(time)
-    # 数据提取 - col_llb_main_1(营业活动现金流量)\col_llb_main_2(资本支出)\col_llb_main_3(存货增加额)\col_llb_main_4(现金股利)
-    col_llb_main_1 = self.quarter_years(3, 25)
-    col_llb_main_2 = self.quarter_years(3, 33)
-    col_llb_main_3 = self.quarter_years(3, 75)
-    col_llb_main_4 = self.quarter_years(3, 48)
+    # 数据提取 - llb25(营业活动现金流量)\llb33(资本支出)\llb75(存货增加额)\llb48(现金股利)
+    llb25 = self.quarter_years(3, 25)
+    llb33 = self.quarter_years(3, 33)
+    llb75 = self.quarter_years(3, 75)
+    llb48 = self.quarter_years(3, 48)
     # 运算
     c1 = []
     c2 = []
     c3 = []
     c4 = []
-    (1..col_llb_main_1.size-4).each do |i|
-      c1 << col_llb_main_1[-i].to_f + col_llb_main_1[-i-1].to_f + col_llb_main_1[-i-2].to_f + col_llb_main_1[-i-3].to_f + col_llb_main_1[-i-4].to_f
-      c2 << col_llb_main_2[-i].to_f + col_llb_main_2[-i-1].to_f + col_llb_main_2[-i-2].to_f + col_llb_main_2[-i-3].to_f + col_llb_main_2[-i-4].to_f
-      c3 << col_llb_main_3[-i].to_f + col_llb_main_3[-i-1].to_f + col_llb_main_3[-i-2].to_f + col_llb_main_3[-i-3].to_f + col_llb_main_3[-i-4].to_f
-      c4 << col_llb_main_4[-i].to_f + col_llb_main_4[-i-1].to_f + col_llb_main_4[-i-2].to_f + col_llb_main_4[-i-3].to_f + col_llb_main_4[-i-4].to_f
+    (1..llb25.size-4).each do |i|
+      c1 << llb25[-i].to_f + llb25[-i-1].to_f + llb25[-i-2].to_f + llb25[-i-3].to_f + llb25[-i-4].to_f
+      c2 << llb33[-i].to_f + llb33[-i-1].to_f + llb33[-i-2].to_f + llb33[-i-3].to_f + llb33[-i-4].to_f
+      c3 << llb75[-i].to_f + llb75[-i-1].to_f + llb75[-i-2].to_f + llb75[-i-3].to_f + llb75[-i-4].to_f
+      c4 << llb48[-i].to_f + llb48[-i-1].to_f + llb48[-i-2].to_f + llb48[-i-3].to_f + llb48[-i-4].to_f
     end
     result = []
     (0..c1.size-1).each do |i|
@@ -152,60 +152,34 @@ class Stock < ApplicationRecord
     elsif time == 5
       return result.reverse[0..4]
     elsif time == 2
-      return "NO"
+      return [nil, nil]
     end
   end
 
   # --- A1-3、现金再投资比率（  >10%比较好 ）---
-  # =  营业活动现金流量llb27 - 现金股利llb50  /  固定资产毛额  + 长期投资 + 其他资产 + 营运资金 ==> 分母等同于 资产总额zcb54 - 流动负债fzb34
+  # =  营业活动现金流量llb25 - 现金股利llb48  /  固定资产毛额  + 长期投资 + 其他资产 + 营运资金 ==> 分母等同于 资产总额zcb52 - 流动负债zcb84
   def cash_re_investment_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      llb25 = self.quarter_years(3, 25)[0..9]
+      llb48 = self.quarter_years(3, 48)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
+      zcb84 = self.quarter_years(1, 84)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      llb25 = self.quarter_years(3, 25)[0..4]
+      llb48 = self.quarter_years(3, 48)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
+      zcb84 = self.quarter_years(1, 84)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_llb = JSON.parse(self.llb)
-    col_zcb = JSON.parse(self.zcb)
-    col_fzb = JSON.parse(self.fzb)
-    # 数据提取 - 营业活动现金流量 和 现金股利
-    col_llb_main_1 = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main_1 << m[27]
-      end
-    end
-    # 数据提取 - 现金股利
-    col_llb_main_2 = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main_2 << m[50]
-      end
-    end
-    # 数据提取 - 资产总额
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
-    end
-    # 数据提取 - 流动负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[34]
-      end
+      llb25 = self.quarter_recent(3, 25)
+      llb48 = self.quarter_recent(3, 48)
+      zcb52 = self.quarter_recent(1, 52)
+      zcb84 = self.quarter_recent(1, 84)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = (col_llb_main_1[i].to_f - col_llb_main_2[i].to_f) / (col_zcb_main[i].to_f - col_fzb_main[i].to_f) * 100
+      m = (llb25[i].to_f - llb48[i].to_f) / (zcb52[i].to_f - zcb84[i].to_f) * 100
       result << m.round(2)
     end
     # 返回现金再投资比率
@@ -213,69 +187,35 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-1、现金与约当现金占总资产比率 ( 10% - 25% 较好 ) ---
-  # =  现金与约当现金 zcb3+zcb4+zcb5+zcb6+zcb7  /  总资产 zcb54
+  # =  现金与约当现金 zcb1+zcb2+zcb3+zcb4+zcb5  /  总资产 zcb52
   def cash_and_cash_equivalents_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb1 = self.quarter_years(1, 1)[0..9]
+      zcb2 = self.quarter_years(1, 2)[0..9]
+      zcb3 = self.quarter_years(1, 3)[0..9]
+      zcb4 = self.quarter_years(1, 4)[0..9]
+      zcb5 = self.quarter_years(1, 5)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb1 = self.quarter_years(1, 1)[0..4]
+      zcb2 = self.quarter_years(1, 2)[0..4]
+      zcb3 = self.quarter_years(1, 3)[0..4]
+      zcb4 = self.quarter_years(1, 4)[0..4]
+      zcb5 = self.quarter_years(1, 5)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 货币资金
-    col_zcb_main_1 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_1 << m[3]
-      end
-    end
-    # 数据提取 - 结算备付金
-    col_zcb_main_2 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_2 << m[4]
-      end
-    end
-    # 数据提取 - 拆出资金
-    col_zcb_main_3 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_3 << m[5]
-      end
-    end
-    # 数据提取 - 交易性金融资产
-    col_zcb_main_4 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_4 << m[6]
-      end
-    end
-    # 数据提取 - 衍生金融资产
-    col_zcb_main_5 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_5 << m[7]
-      end
-    end
-    # 数据提取 - 衍生金融资产
-    col_zcb_main_6 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_6 << m[54]
-      end
+      zcb1 = self.quarter_recent(1, 1)
+      zcb2 = self.quarter_recent(1, 2)
+      zcb3 = self.quarter_recent(1, 3)
+      zcb4 = self.quarter_recent(1, 4)
+      zcb5 = self.quarter_recent(1, 5)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = (col_zcb_main_1[i].to_f + col_zcb_main_2[i].to_f + col_zcb_main_3[i].to_f + col_zcb_main_4[i].to_f + col_zcb_main_5[i].to_f ) / (col_zcb_main_6[i].to_f) * 100
+      m = (zcb1[i].to_f + zcb2[i].to_f + zcb3[i].to_f + zcb4[i].to_f + zcb5[i].to_f ) / (zcb52[i].to_f) * 100
       result << m.round(2)
     end
     # 返回现金与约当现金占总资产比率
@@ -284,37 +224,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-2、应收账款占总资产比率 ---
-  # =  应收账款 zcb9  /  总资产 zcb54
+  # =  应收账款 zcb7  /  总资产 zcb52
   def receivables_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb7 = self.quarter_years(1, 7)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb7 = self.quarter_years(1, 7)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 应收账款
-    col_zcb_main_1 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_1 << m[9]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main_2 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_2 << m[54]
-      end
+      zcb7 = self.quarter_recent(1, 7)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      m = zcb7[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回应收账款占总资产比率
@@ -322,37 +248,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-3、存货占总资产比率 ---
-  # =  存货 zcb22  /  总资产 zcb54
+  # =  存货 zcb20  /  总资产 zcb52
   def inventory_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb20 = self.quarter_years(1, 20)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb20 = self.quarter_years(1, 20)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 存货
-    col_zcb_main_1 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_1 << m[22]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main_2 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_2 << m[54]
-      end
+      zcb20 = self.quarter_recent(1, 20)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      m = zcb20[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回存货占总资产比率
@@ -360,37 +272,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-4、流动资产占总资产比率 ---
-  # =  流动资产 zcb27  /  总资产 zcb54
+  # =  流动资产 zcb25  /  总资产 zcb52
   def current_assets_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb25 = self.quarter_years(1, 25)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb25 = self.quarter_years(1, 25)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 流动资产
-    col_zcb_main_1 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_1 << m[27]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main_2 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_2 << m[54]
-      end
+      zcb25 = self.quarter_recent(1, 25)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_zcb_main_1[i].to_f / col_zcb_main_2[i].to_f * 100
+      m = zcb25[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回流动资产占总资产比率
@@ -398,38 +296,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-5、应付账款占总资产比率 ---
-  # =  应付账款 fzb10  /  总资产 zcb54
+  # =  应付账款 zcb60  /  总资产 zcb52
   def accounts_payable_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb60 = self.quarter_years(1, 60)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb60 = self.quarter_years(1, 60)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_fzb = JSON.parse(self.fzb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 应付账款
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[10]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      zcb60 = self.quarter_recent(1, 60)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
+      m = zcb60[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回应付账款占总资产比率
@@ -437,38 +320,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-6、流动负债占总资产比率 ---
-  # =  流动负债 fzb34  /  总资产 zcb54
+  # =  流动负债 zcb84  /  总资产 zcb52
   def current_liabilities_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb84 = self.quarter_years(1, 84)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb84 = self.quarter_years(1, 84)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_fzb = JSON.parse(self.fzb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 流动负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[34]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      zcb84 = self.quarter_recent(1, 84)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
+      m = zcb84[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回流动负债占总资产比率
@@ -476,38 +344,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-7、长期负债占总资产比率 ---
-  # =  长期负债 fzb43  /  总资产 zcb54
+  # =  非流动负债 zcb93  /  总资产 zcb52
   def long_term_liability_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb93 = self.quarter_years(1, 93)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb93 = self.quarter_years(1, 93)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_fzb = JSON.parse(self.fzb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 长期负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[43]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      zcb93 = self.quarter_recent(1, 93)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
+      m = zcb93[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回长期负债占总资产比率
@@ -515,38 +368,23 @@ class Stock < ApplicationRecord
   end
 
   # --- A2-8、股东权益占总资产比率 ---
-  # =  股东权益 gdb15  /  总资产 zcb54
+  # =  股东权益 zcb107  /  总资产 zcb52
   def shareholders_equity_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb107 = self.quarter_years(1, 107)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb107 = self.quarter_years(1, 107)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_gdb = JSON.parse(self.gdb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 股东权益
-    col_gdb_main = []
-    col_gdb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_gdb_main << m[15]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      zcb107 = self.quarter_recent(1, 107)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_gdb_main[i].to_f / col_zcb_main[i].to_f * 100
+      m = zcb107[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回股东权益占总资产比率
@@ -554,39 +392,24 @@ class Stock < ApplicationRecord
   end
 
   # --- A3-1、应收账款周转率 ---
-  # =  营业收入  lrb3  /  应收账款 zcb9
+  # =  营业收入  lrb1  /  应收账款 zcb7
   def accounts_receivable_turnover_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
+      zcb7 = self.quarter_years(1, 7)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
+      zcb7 = self.quarter_years(1, 7)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 营业收入
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[3]
-      end
-    end
-    # 数据提取 - 应收账款
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[9]
-      end
+      lrb1 = self.quarter_recent(2, 1)
+      zcb7 = self.quarter_recent(1, 7)
     end
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if col_zcb_main[i].to_i != 0
-        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+      if zcb7[i].to_i != 0
+        m = lrb1[i].to_f / zcb7[i].to_f
         result << m.round(2)
       end
     end
@@ -597,38 +420,23 @@ class Stock < ApplicationRecord
 
 
   # --- A3-2、存货周转率 ---
-  # =  营业成本  lrb11  /  存货 zcb22
+  # =  营业成本  lrb9  /  存货 zcb20
   def inventory_turnover_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb9 = self.quarter_years(2, 9)[0..9]
+      zcb20 = self.quarter_years(1, 20)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb9 = self.quarter_years(2, 9)[0..4]
+      zcb20 = self.quarter_years(1, 20)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 营业成本
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[11]
-      end
-    end
-    # 数据提取 - 存货
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[22]
-      end
+      lrb9 = self.quarter_recent(2, 9)
+      zcb20 = self.quarter_recent(1, 20)
     end
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+        m = lrb9[i].to_f / zcb20[i].to_f
         result << m.round(2)
     end
     # 返回存货周转率
@@ -636,39 +444,24 @@ class Stock < ApplicationRecord
   end
 
   # --- A3-3、固定资产周转率(不动产/厂房及设备周转率) ---
-  # =  营业收入  lrb3  /  固定资产 zcb39
+  # =  营业收入  lrb1  /  固定资产 zcb37
   def fixed_asset_turnover_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
+      zcb37 = self.quarter_years(1, 37)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
+      zcb37 = self.quarter_years(1, 37)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 营业收入
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[3]
-      end
-    end
-    # 数据提取 - 固定资产周转率
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[39]
-      end
+      lrb1 = self.quarter_recent(2, 1)
+      zcb37 = self.quarter_recent(1, 37)
     end
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if col_zcb_main[i].to_i != 0
-        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+      if zcb37[i].to_i != 0
+        m = lrb1[i].to_f / zcb37[i].to_f
         result << m.round(2)
       end
     end
@@ -677,39 +470,24 @@ class Stock < ApplicationRecord
   end
 
   # --- A3-4、总资产周转率 ---
-  # =  营业收入  lrb3  /  总资产 zcb54
+  # =  营业收入  lrb1  /  总资产 zcb52
   def total_asset_turnover_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 营业收入
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[3]
-      end
-    end
-    # 数据提取 - 总资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      lrb1 = self.quarter_recent(2, 1)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if col_zcb_main[i].to_i != 0
-        m = col_lrb_main[i].to_f / col_zcb_main[i].to_f
+      if zcb52[i].to_i != 0
+        m = lrb1[i].to_f / zcb52[i].to_f
         result << m.round(2)
       end
     end
@@ -718,37 +496,23 @@ class Stock < ApplicationRecord
   end
 
   # --- C1、营业毛利率 ---
-  # =  营业利润  lrb35  /  营业收入 lrb3
+  # =  营业利润  lrb33  /  营业收入 lrb1
   def operating_margin_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb33 = self.quarter_years(2, 33)[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb33 = self.quarter_years(2, 33)[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    # 数据提取 - 营业利润
-    col_lrb_main_1 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_1 << m[35]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_lrb_main_2 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_2 << m[3]
-      end
+      lrb33 = self.quarter_recent(2, 33)
+      lrb1 = self.quarter_recent(2, 1)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
+      m = lrb33[i].to_f / lrb1[i].to_f * 100
       result << m.round(2)
     end
     # 返回营业毛利率
@@ -756,53 +520,29 @@ class Stock < ApplicationRecord
   end
 
   # --- C2、营业利益率 ---
-  # =  营业利益  lrb35 - lrb10 + lrb11 / 营业收入 lrb3
+  # =  营业利益  lrb33 - lrb8 + lrb9 / 营业收入 lrb1
   def business_profitability_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb33 = self.quarter_years(2, 33)[0..9]
+      lrb8 = self.quarter_years(2, 8)[0..9]
+      lrb9 = self.quarter_years(2, 9)[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb33 = self.quarter_years(2, 33)[0..4]
+      lrb8 = self.quarter_years(2, 8)[0..4]
+      lrb9 = self.quarter_years(2, 9)[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    # 数据提取 - 营业利润
-    col_lrb_main_1 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_1 << m[35]
-      end
-    end
-    # 数据提取 - 营业总成本
-    col_lrb_main_2 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_2 << m[10]
-      end
-    end
-    # 数据提取 - 营业成本
-    col_lrb_main_3 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_3 << m[11]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_lrb_main_4 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_4 << m[3]
-      end
+      lrb33 = self.quarter_recent(2, 33)
+      lrb8 = self.quarter_recent(2, 8)
+      lrb9 = self.quarter_recent(2, 9)
+      lrb1 = self.quarter_recent(2, 1)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( col_lrb_main_1[i].to_f - col_lrb_main_2[i].to_f + col_lrb_main_3[i].to_f ) / col_lrb_main_4[i].to_f * 100
+      m = ( lrb33[i].to_f - lrb8[i].to_f + lrb9[i].to_f ) / lrb1[i].to_f * 100
       result << m.round(2)
     end
     # 返回营业利益率
@@ -810,46 +550,30 @@ class Stock < ApplicationRecord
   end
 
   # --- C3、经营安全边际率 ---
-  # =  营业利益  lrb35 - lrb10 + lrb11 / 营业利润 lrb35
+  # =  营业利益  lrb33 - lrb8 + lrb9 / 营业利润 lrb33
   def operating_margin_of_safety_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb33 = self.quarter_years(2, 33)[0..9]
+      lrb8 = self.quarter_years(2, 8)[0..9]
+      lrb9 = self.quarter_years(2, 9)[0..9]
+      lrb33 = self.quarter_years(2, 33)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb33 = self.quarter_years(2, 33)[0..4]
+      lrb8 = self.quarter_years(2, 8)[0..4]
+      lrb9 = self.quarter_years(2, 9)[0..4]
+      lrb33 = self.quarter_years(2, 33)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    # 数据提取 - 营业利润
-    col_lrb_main_1 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_1 << m[35]
-      end
-    end
-    # 数据提取 - 营业总成本
-    col_lrb_main_2 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_2 << m[10]
-      end
-    end
-    # 数据提取 - 营业成本
-    col_lrb_main_3 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_3 << m[11]
-      end
+      lrb33 = self.quarter_recent(2, 33)
+      lrb8 = self.quarter_recent(2, 8)
+      lrb9 = self.quarter_recent(2, 9)
+      lrb33 = self.quarter_recent(2, 33)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      x1 = col_lrb_main_1[i].to_f - col_lrb_main_2[i].to_f + col_lrb_main_3[i].to_f
-      x2 = col_lrb_main_1[i].to_f
+      x1 = lrb33[i].to_f - lrb8[i].to_f + lrb9[i].to_f
+      x2 = lrb33[i].to_f
       if x1 < 0 && x2 < 0
         result << "严重风险"
       else
@@ -862,37 +586,23 @@ class Stock < ApplicationRecord
   end
 
   # --- C4、净利率 ---
-  # =  净利润 lrb42 / 营业收入 lrb3
+  # =  净利润 lrb40 / 营业收入 lrb1
   def net_profit_margin_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb40 = self.quarter_years(2, 40)[0..9]
+      lrb1 = self.quarter_years(2, 1)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb40 = self.quarter_years(2, 40)[0..4]
+      lrb1 = self.quarter_years(2, 1)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    # 数据提取 - 净利润
-    col_lrb_main_1 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_1 << m[42]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_lrb_main_2 = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main_2 << m[3]
-      end
+      lrb40 = self.quarter_recent(2, 40)
+      lrb1 = self.quarter_recent(2, 1)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_lrb_main_1[i].to_f / col_lrb_main_2[i].to_f * 100
+      m = lrb40[i].to_f / lrb1[i].to_f * 100
       result << m.round(2)
     end
     # 返回净利率
@@ -900,38 +610,23 @@ class Stock < ApplicationRecord
   end
 
   # --- C5、每股盈余 ---
-  # =  净利润 lrb42 / 总股本 gdb4
+  # =  净利润 lrb40 / 总股本 zcb95
   def earnings_per_share(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb40 = self.quarter_years(2, 40)[0..9]
+      zcb95 = self.quarter_years(1, 95)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb40 = self.quarter_years(2, 40)[0..4]
+      zcb95 = self.quarter_years(1, 95)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_gdb = JSON.parse(self.gdb)
-    # 数据提取 - 净利润
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[42]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_gdb_main = []
-    col_gdb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_gdb_main << m[3]
-      end
+      lrb40 = self.quarter_recent(2, 40)
+      zcb95 = self.quarter_recent(1, 95)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_lrb_main[i].to_f / col_gdb_main[i].to_f
+      m = lrb40[i].to_f / zcb95[i].to_f
       result << m.round(2)
     end
     # 返回每股盈余
@@ -939,29 +634,20 @@ class Stock < ApplicationRecord
   end
 
   # --- C5-1、税后净利(百万元) ---
-  # =  净利润 lrb42
+  # =  净利润 lrb40
   def after_tax_profit(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb40 = self.quarter_years(2, 40)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb40 = self.quarter_years(2, 40)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    # 数据提取 - 净利润
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[42]
-      end
+      lrb40 = self.quarter_recent(2, 40)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_lrb_main[i].to_f / 100
+      m = lrb40[i].to_f / 100
       result << m.round(0)
     end
     # 返回每股盈余
@@ -969,38 +655,23 @@ class Stock < ApplicationRecord
   end
 
   # --- C6、股东权益报酬率 ---
-  # =  净利润 lrb42 / 股东权益 gdb15
+  # =  净利润 lrb40 / 股东权益 zcb107
   def roe_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      lrb40 = self.quarter_years(2, 40)[0..9]
+      zcb107 = self.quarter_years(1, 107)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      lrb40 = self.quarter_years(2, 40)[0..4]
+      zcb107 = self.quarter_years(1, 107)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_lrb = JSON.parse(self.lrb)
-    col_gdb = JSON.parse(self.gdb)
-    # 数据提取 - 净利润
-    col_lrb_main = []
-    col_lrb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_lrb_main << m[42]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_gdb_main = []
-    col_gdb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_gdb_main << m[15]
-      end
+      lrb40 = self.quarter_recent(2, 40)
+      zcb107 = self.quarter_recent(1, 107)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_lrb_main[i].to_f / col_gdb_main[i].to_f * 100
+      m = lrb40[i].to_f / zcb107[i].to_f * 100
       result << m.round(2)
     end
     # 返回每股盈余
@@ -1008,38 +679,23 @@ class Stock < ApplicationRecord
   end
 
   # --- D1、负债占资产比率 ---
-  # =  总负责 fzb44 / 总资产 zcb54
+  # =  总负责 zcb94 / 总资产 zcb52
   def debt_asset_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb94 = self.quarter_years(1, 94)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb94 = self.quarter_years(1, 94)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_fzb = JSON.parse(self.fzb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 净利润
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[44]
-      end
-    end
-    # 数据提取 - 营业收入
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[54]
-      end
+      zcb94 = self.quarter_recent(1, 94)
+      zcb52 = self.quarter_recent(1, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_fzb_main[i].to_f / col_zcb_main[i].to_f * 100
+      m = zcb94[i].to_f / zcb52[i].to_f * 100
       result << m.round(2)
     end
     # 返回负债占资产比率
@@ -1047,47 +703,26 @@ class Stock < ApplicationRecord
   end
 
   # --- D2、长期负债占不动产/厂房及设备比率 ---
-  # =  (长期负债 fzb43 + 股东权益 gdb15) / 固定资产 zcb39
+  # =  (长期负债 zcb93 + 股东权益 zcb107) / 固定资产 zcb37
   def long_term_funds_for_fixed_assets_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb93 = self.quarter_years(1, 93)[0..9]
+      zcb107 = self.quarter_years(1, 107)[0..9]
+      zcb37 = self.quarter_years(1, 37)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb93 = self.quarter_years(1, 93)[0..4]
+      zcb107 = self.quarter_years(1, 107)[0..4]
+      zcb37 = self.quarter_years(1, 37)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_fzb = JSON.parse(self.fzb)
-    col_gdb = JSON.parse(self.gdb)
-    col_zcb = JSON.parse(self.zcb)
-    # 数据提取 - 长期负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[43]
-      end
-    end
-    # 数据提取 - 股东权益
-    col_gdb_main = []
-    col_gdb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_gdb_main << m[15]
-      end
-    end
-    # 数据提取 - 固定资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[39]
-      end
+      zcb93 = self.quarter_recent(1, 93)
+      zcb107 = self.quarter_recent(1, 107)
+      zcb37 = self.quarter_recent(1, 37)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( col_fzb_main[i].to_f + col_gdb_main[i].to_f ) / col_zcb_main[i].to_f * 100
+      m = ( zcb93[i].to_f + zcb107[i].to_f ) / zcb37[i].to_f * 100
       result << m.round(2)
     end
     # 长期资金占不动产/厂房及设备比率
@@ -1095,38 +730,23 @@ class Stock < ApplicationRecord
   end
 
   # --- E1、流动比率 ---
-  # =  流动资产 zcb27 / 流动负债 fzb34
+  # =  流动资产 zcb25 / 流动负债 zcb84
   def current_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb25 = self.quarter_years(1, 25)[0..9]
+      zcb84 = self.quarter_years(1, 84)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb25 = self.quarter_years(1, 25)[0..4]
+      zcb84 = self.quarter_years(1, 84)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    col_fzb = JSON.parse(self.fzb)
-    # 数据提取 - 流动资产
-    col_zcb_main = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main << m[27]
-      end
-    end
-    # 数据提取 - 流动负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[34]
-      end
+      zcb25 = self.quarter_recent(1, 25)
+      zcb84 = self.quarter_recent(1, 84)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_zcb_main[i].to_f / col_fzb_main[i].to_f * 100
+      m = zcb25[i].to_f / zcb84[i].to_f * 100
       result << m.round(2)
     end
     # 流动比率
@@ -1134,54 +754,29 @@ class Stock < ApplicationRecord
   end
 
   # --- E2、速动比率 ---
-  # =  流动资产 zcb27 - 存货 zcb22 - 预付款项 zcb10 / 流动负债 fzb34
+  # =  流动资产 zcb25 - 存货 zcb20 - 预付款项 zcb8 / 流动负债 zcb84
   def quick_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      zcb25 = self.quarter_years(1, 25)[0..9]
+      zcb20 = self.quarter_years(1, 20)[0..9]
+      zcb8 = self.quarter_years(1, 8)[0..9]
+      zcb84 = self.quarter_years(1, 84)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      zcb25 = self.quarter_years(1, 25)[0..4]
+      zcb20 = self.quarter_years(1, 20)[0..4]
+      zcb8 = self.quarter_years(1, 8)[0..4]
+      zcb84 = self.quarter_years(1, 84)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_zcb = JSON.parse(self.zcb)
-    col_fzb = JSON.parse(self.fzb)
-    # 数据提取 - 流动资产
-    col_zcb_main_1 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_1 << m[27]
-      end
-    end
-    # 数据提取 - 存货
-    col_zcb_main_2 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_2 << m[22]
-      end
-    end
-    # 数据提取 - 预付款项
-    col_zcb_main_3 = []
-    col_zcb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_zcb_main_3 << m[10]
-      end
-    end
-    # 数据提取 - 净利润
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[34]
-      end
+      zcb25 = self.quarter_recent(1, 25)
+      zcb20 = self.quarter_recent(1, 20)
+      zcb8 = self.quarter_recent(1, 8)
+      zcb84 = self.quarter_recent(1, 84)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( col_zcb_main_1[i].to_f - col_zcb_main_2[i].to_f - col_zcb_main_3[i].to_f ) / col_fzb_main[i].to_f * 100
+      m = ( zcb25[i].to_f - zcb20[i].to_f - zcb8[i].to_f ) / zcb84[i].to_f * 100
       result << m.round(2)
     end
     # 流动比率
@@ -1189,29 +784,20 @@ class Stock < ApplicationRecord
   end
 
   # --- F1、经营活动现金流量(百万元) ---
-  # =  经营活动产生现金流量净额(万元) lrb83
+  # =  经营活动产生现金流量净额(万元) llb81
   def net_cash_flow_of_business_activities(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      llb81 = self.quarter_years(3, 81)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      llb81 = self.quarter_years(3, 81)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_llb = JSON.parse(self.llb)
-    # 数据提取 - 净利润
-    col_llb_main = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main << m[83]
-      end
+      llb81 = self.quarter_recent(3, 81)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_llb_main[i].to_f / 100
+      m = llb81[i].to_f / 100
       result << m.round(0)
     end
     # 返回经营活动现金流量
@@ -1219,29 +805,20 @@ class Stock < ApplicationRecord
   end
 
   # --- F2、投资活动现金流量(百万元) ---
-  # =  投资活动产生现金流量净额(万元) lrb42
+  # =  投资活动产生现金流量净额(万元) llb40
   def net_investment_activities_generated_cash_flow(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      llb40 = self.quarter_years(3, 40)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      llb40 = self.quarter_years(3, 40)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_llb = JSON.parse(self.llb)
-    # 数据提取 - 净利润
-    col_llb_main = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main << m[42]
-      end
+      llb40 = self.quarter_recent(3, 40)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_llb_main[i].to_f / 100
+      m = llb40[i].to_f / 100
       result << m.round(0)
     end
     # 返回投资活动现金流量
@@ -1249,29 +826,20 @@ class Stock < ApplicationRecord
   end
 
   # --- F2、筹资活动现金流量(百万元) ---
-  # =  筹资活动产生的现金流量净额(万元) lrb54
+  # =  筹资活动产生的现金流量净额(万元) llb52
   def net_financing_activities_generated_cash_flow(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      llb52 = self.quarter_years(3, 52)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      llb52 = self.quarter_years(3, 52)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_llb = JSON.parse(self.llb)
-    # 数据提取 - 净利润
-    col_llb_main = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main << m[54]
-      end
+      llb52 = self.quarter_recent(3, 52)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = col_llb_main[i].to_f / 100
+      m = llb52[i].to_f / 100
       result << m.round(0)
     end
     # 返回筹资活动现金流量
