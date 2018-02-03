@@ -104,7 +104,7 @@ class Admin::BaseDataController < AdminController
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "三表数据 行业 更新完毕"
+    flash[:notice] = "行业 更新完毕"
   end
 
 
