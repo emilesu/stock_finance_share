@@ -9,185 +9,112 @@ class Stock < ApplicationRecord
   scope :all_industrys_li, -> { pluck(:industry).uniq }       # pluck 方法捞出指定字段的资料
 
 
+
+
   # -----------------------------------财报季度数据整理脚本-----------------------------------
-
-  # ---当前 利润表/lrb 财报季度，用于修正数据读取和表格的显示。安装最新财报发布季度来进行设置---
-  # ---第一季度：1   第二季度：2    第三季度：3    年报季度：0---
-  def quarter_lrb
-    col = JSON.parse(self.lrb)[0]
-    data = col.split(",")[2]
-    if data[6] == "3"
-      return 1
-    end
-    if data[6] == "6"
-      return 2
-    end
-    if data[6] == "9"
-      return 3
-    end
-    if data[6] == "2"
-      return 0
-    end
-  end
-
-  # ---当前 利润表/lrb 财报季度，用于修正数据读取和表格的显示。安装最新财报发布季度来进行设置---
-  # ---第一季度：1   第二季度：2    第三季度：3    年报季度：0---
-  def quarter_llb
-    col = JSON.parse(self.llb)[0]
-    data = col.split(",")[2]
-    if data[6] == "3"
-      return 1
-    end
-    if data[6] == "6"
-      return 2
-    end
-    if data[6] == "9"
-      return 3
-    end
-    if data[6] == "2"
-      return 0
-    end
-  end
-
-  # ---当前 利润表/lrb 财报季度，用于修正数据读取和表格的显示。安装最新财报发布季度来进行设置---
-  # ---第一季度：1   第二季度：2    第三季度：3    年报季度：0---
-  def quarter_zcb
-    col = JSON.parse(self.zcb)[0]
-    data = col.split(",")[2]
-    if data[6] == "3"
-      return 1
-    end
-    if data[6] == "6"
-      return 2
-    end
-    if data[6] == "9"
-      return 3
-    end
-    if data[6] == "2"
-      return 0
-    end
-  end
-
-  # ---当前 利润表/lrb 财报季度，用于修正数据读取和表格的显示。安装最新财报发布季度来进行设置---
-  # ---第一季度：1   第二季度：2    第三季度：3    年报季度：0---
-  def quarter_fzb
-    col = JSON.parse(self.fzb)[0]
-    data = col.split(",")[2]
-    if data[6] == "3"
-      return 1
-    end
-    if data[6] == "6"
-      return 2
-    end
-    if data[6] == "9"
-      return 3
-    end
-    if data[6] == "2"
-      return 0
-    end
-  end
-
-  # ---当前 利润表/lrb 财报季度，用于修正数据读取和表格的显示。安装最新财报发布季度来进行设置---
-  # ---第一季度：1   第二季度：2    第三季度：3    年报季度：0---
-  def quarter_gdb
-    col = JSON.parse(self.gdb)[0]
-    data = col.split(",")[2]
-    if data[6] == "3"
-      return 1
-    end
-    if data[6] == "6"
-      return 2
-    end
-    if data[6] == "9"
-      return 3
-    end
-    if data[6] == "2"
-      return 0
-    end
-  end
-
-
 
 
   # -----------------------------------报表数据算法脚本-----------------------------------
+  # ---------- 原数据解析成(行) -----------
+
+  def zcb_r
+    self.zcb.split("\n")
+  end
+
+  def lrb_r
+    self.lrb.split("\n")
+  end
+
+  def llb_r
+    self.llb.split("\n")
+  end
 
 
-  # 十年度 年报年份
-  def quarter_years
-    # 数据源
-    col = JSON.parse(self.lrb)
-    # 提取所有报表的季度
-    quarter_all = []
-    col.each do |i|
-      quarter_all << i.split(",")[2]
+  # 以 "表 行"为参数,输出最近10年的某个科目数据集合:
+  #1 = zcb
+  #2 = lrb
+  #3 = llb
+  def quarter_years(table_r, row)
+    #确定使用哪个表, 并切行
+    if table_r == 1
+      table = self.zcb_r
+    elsif table_r == 2
+      table = self.lrb_r
+    elsif table_r == 3
+      table = self.llb_r
     end
-    # 提取属于年报的年度
-    year_all = []
-    quarter_all.each do |i|
-      if i[6] == "2"
-        year_all << i
+    # 提取所属年报位置的 KEY
+    quarter_all = []
+    table[0].split(",").each do |i|
+      quarter_all << i
+    end
+    year_key = []
+    (0..40).each do |i|
+      if quarter_all[i][6] == "2"
+        year_key << i
       end
     end
+    #确定行row位,并提取数据
+    year_data_array =[]
+    r = table[row].split(",")
+    year_key.each do |i|
+      year_data_array << r[i]
+    end
     # 返回最近所有年的年份
-    return year_all
+    return year_data_array
   end
 
   # 最近季度与去年同季度
-  def quarter_recent
-    # 数据源
-    col = JSON.parse(self.lrb)
-    # 提取所有报表的季度
-    quarter_all = []
-    col.each do |i|
-      quarter_all << i.split(",")[2]
+  # 以 "表 行"为参数,输出最近两个季度的某个科目数据集合:
+  #1 = zcb
+  #2 = lrb
+  #3 = llb
+  def quarter_recent(table_r, row)
+    #确定使用哪个表, 并切行
+    if table_r == 1
+      table = self.zcb_r
+    elsif table_r == 2
+      table = self.lrb_r
+    elsif table_r == 3
+      table = self.llb_r
     end
-    # 提取属于年报的年度
-    recent_all = []
-    recent_all << quarter_all[0]
-    recent_all << quarter_all[4]
-    # 返回最近季度与去年同季度
-    return recent_all
+    # 提取所属季报位置的 KEY
+    quarter_key = [1, 5]
+    #确定行row位,并提取数据
+    recent_data_array =[]
+    r = table[row].split(",")
+    quarter_key.each do |i|
+      recent_data_array << r[i]
+    end
+    return recent_data_array
   end
 
+
+# -----------------------------------单项数据算法脚本-----------------------------------
   # --- 函数参数说明 ---
   # time = "10", 回传最近10年年报数据
   # time = "5", 回传最近5年年报数据
   # time = "2", 回传最近季度与去年同季度数据
 
   # --- A1-1、现金流量比率（  >100%比较好 ）---
-  # =  营业活动现金流量llb27  /  流动负债fzb34
+  # =  营业活动现金流量llb25  /  流动负债zcb84
   def operating_cash_flow_ratio(time)
     # 数据源
     if time == 10
-      years = self.quarter_years[0..9]
+      col_llb = self.quarter_years(3, 25)[0..9]
+      col_zcb = self.quarter_years(1, 84)[0..9]
     elsif time == 5
-      years = self.quarter_years[0..4]
+      col_llb = self.quarter_years(3, 25)[0..4]
+      col_zcb = self.quarter_years(1, 84)[0..4]
     elsif time == 2
-      years = self.quarter_recent
-    end
-    col_llb = JSON.parse(self.llb)
-    col_fzb = JSON.parse(self.fzb)
-    # 数据提取 - 营业活动现金流量
-    col_llb_main = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_llb_main << m[27]
-      end
-    end
-    # 数据提取 - 流动负债
-    col_fzb_main = []
-    col_fzb.each do |i|
-      m = i.split(",")
-      if years.include?(m[2])
-        col_fzb_main << m[34]
-      end
+      col_llb = self.quarter_recent(3, 25)
+      col_zcb = self.quarter_recent(1, 84)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      if col_fzb_main[i].to_i != 0
-        m = col_llb_main[i].to_f / col_fzb_main[i].to_f * 100
+      if col_zcb[i].to_i != 0
+        m = col_llb[i].to_f / col_zcb[i].to_f * 100
         result << m.round(2)
       end
     end
@@ -196,46 +123,37 @@ class Stock < ApplicationRecord
   end
 
   # --- A1-2、现金流量允当比率（  >100%比较好 ）---
-  # =  最近5年营业活动现金流量llb27  /  最近5年  (  资本支出llb35  + 存货增加额-llb77 + 现金股利llb50   )
+  # =  最近5年营业活动现金流量llb25  /  最近5年  (  资本支出llb33  + 存货减少额-llb75 + 现金股利llb48   )
   def cash_flow_adequancy_ratio(time)
-    # 数据源
-    if time == 2
-      result = nil
-    end
-    all_years = self.quarter_years
-    col_llb = JSON.parse(self.llb).reverse
     # 数据提取 - col_llb_main_1(营业活动现金流量)\col_llb_main_2(资本支出)\col_llb_main_3(存货增加额)\col_llb_main_4(现金股利)
-    col_llb_main_1 = []
-    col_llb_main_2 = []
-    col_llb_main_3 = []
-    col_llb_main_4 = []
-    col_llb.each do |i|
-      m = i.split(",")
-      if all_years.include?(m[2])
-        col_llb_main_1 << m[27]
-        col_llb_main_2 << m[35]
-        col_llb_main_3 << m[77]
-        col_llb_main_4 << m[50]
-      end
-    end
+    col_llb_main_1 = self.quarter_years(3, 25)
+    col_llb_main_2 = self.quarter_years(3, 33)
+    col_llb_main_3 = self.quarter_years(3, 75)
+    col_llb_main_4 = self.quarter_years(3, 48)
     # 运算
     c1 = []
     c2 = []
     c3 = []
     c4 = []
-    (1..all_years.count-4).each do |i|
+    (1..col_llb_main_1.size-4).each do |i|
       c1 << col_llb_main_1[-i].to_f + col_llb_main_1[-i-1].to_f + col_llb_main_1[-i-2].to_f + col_llb_main_1[-i-3].to_f + col_llb_main_1[-i-4].to_f
       c2 << col_llb_main_2[-i].to_f + col_llb_main_2[-i-1].to_f + col_llb_main_2[-i-2].to_f + col_llb_main_2[-i-3].to_f + col_llb_main_2[-i-4].to_f
       c3 << col_llb_main_3[-i].to_f + col_llb_main_3[-i-1].to_f + col_llb_main_3[-i-2].to_f + col_llb_main_3[-i-3].to_f + col_llb_main_3[-i-4].to_f
       c4 << col_llb_main_4[-i].to_f + col_llb_main_4[-i-1].to_f + col_llb_main_4[-i-2].to_f + col_llb_main_4[-i-3].to_f + col_llb_main_4[-i-4].to_f
     end
     result = []
-    (0..c1.count-1).each do |i|
+    (0..c1.size-1).each do |i|
       m = c1[i] / (c2[i] - c3[i] + c4[i]) * 100
       result << m.round(2)
     end
     # 返回最近5年现现金流量允当比率
-    return result[0..time-1]
+    if time == 10
+      return result.reverse[0..9]
+    elsif time == 5
+      return result.reverse[0..4]
+    elsif time == 2
+      return "NO"
+    end
   end
 
   # --- A1-3、现金再投资比率（  >10%比较好 ）---

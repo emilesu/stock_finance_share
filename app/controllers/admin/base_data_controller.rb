@@ -7,8 +7,8 @@ class Admin::BaseDataController < AdminController
   # 全局扫描更新 沪股 股票代码和名称
   def update_sh_stock_symbol
 
-    (1..18).each do |i|        #最终上线要改为18
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
+    (1..2).each do |i|        #最终上线要改为18
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/shall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
       data = JSON.parse(response.body)
 
       data["result"]["data"].each do |s|
@@ -31,8 +31,8 @@ class Admin::BaseDataController < AdminController
   # 全局扫描更新 沪股 股票代码和名称
   def update_sz_stock_symbol
 
-    (1..27).each do |i|        #最终上线要改为27
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "4" }
+    (1..2).each do |i|        #最终上线要改为27
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/szall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
       data = JSON.parse(response.body)
 
       data["result"]["data"].each do |s|
@@ -54,42 +54,29 @@ class Admin::BaseDataController < AdminController
 
   #全局扫描更新 三表数据 股票行业
   def update_stock_finance_table
+    require 'csv'                       #引入 csv 库
     @stocks = Stock.all
     @stocks.each do |s|
 
       # zcb 资产表更新
-      response_zcb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getBalanceSheet", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
-      data_zcb = JSON.parse(response_zcb.body)
+      response_zcb = RestClient.get "http://quotes.money.163.com/service/zcfzb_#{s.easy_symbol}.html"
+      data_zcb = CSV.parse(response_zcb, :headers => true)
       s.update!(
-        :zcb => data_zcb["result"],
+        :zcb => data_zcb,
       )
 
       # lrb 利润表更新
-      response_lrb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockProfit", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
-      data_lrb = JSON.parse(response_lrb.body)
+      response_lrb = RestClient.get "http://quotes.money.163.com/service/lrb_#{s.easy_symbol}.html"
+      data_lrb = CSV.parse(response_lrb, :headers => true)
       s.update!(
-        :lrb => data_lrb["result"],
+        :lrb => data_lrb,
       )
 
       # llb 流量表更新
-      response_llb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/getStockCashFlow", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
-      data_llb = JSON.parse(response_llb.body)
+      response_llb = RestClient.get "http://quotes.money.163.com/service/xjllb_#{s.easy_symbol}.html"
+      data_llb = CSV.parse(response_llb, :headers => true)
       s.update!(
-        :llb => data_llb["result"],
-      )
-
-      # fzb 负债表更新
-      response_fzb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetLiabilities", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
-      data_fzb = JSON.parse(response_fzb.body)
-      s.update!(
-        :fzb => data_fzb["result"],
-      )
-
-      # gdb 股东权益表更新
-      response_gdb = RestClient.get "http://future.liangyee.com/bus-api/corporateFinance/MainStockFinance/GetBalanceSheetShareholder", :params => { :userKey => KEY_CONFIG["liangyee_api_key"], :symbol => s.easy_symbol, :yearly => false }
-      data_gdb = JSON.parse(response_gdb.body)
-      s.update!(
-        :gdb => data_gdb["result"],
+        :llb => data_llb,
       )
 
     end
@@ -99,7 +86,7 @@ class Admin::BaseDataController < AdminController
   end
 
 
-  # 全局烧苗更新 行业更新
+  # 全局扫描更新 行业更新
   def update_industry_info
     @stocks = Stock.all
     @stocks.each do |s|
