@@ -9,8 +9,12 @@
         <span> (<%= @stock.easy_symbol %>)</span>
       </h1>
       <h5>
-        <%= @stock.industry %>
+        <%= @stock.industry %> - <%= @stock.regional %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
       </h5>
+
+      <div class="main_business">
+        <p title="<%= @stock.main_business %>"><span>主营业务: </span><%= @stock.main_business %></p>
+      </div>
 
       <div class="to-finance-btn">
         <%= link_to("返回 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>

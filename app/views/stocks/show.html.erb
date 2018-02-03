@@ -17,7 +17,7 @@
           <span> (<%= @stock.easy_symbol %>)</span>
         </h1>
         <h5>
-          <%= @stock.industry %>
+          <%= @stock.industry %> - <%= @stock.regional %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
         </h5>
 
         <div class="main_business">
