@@ -22,6 +22,7 @@
           <li><%= link_to("注册", new_user_registration_path) %></li>
           <li><%= link_to("登入", new_user_session_path) %></li>
         <% else %>
+          <li><%= link_to("系统设置", admin_settings_path) %></li>
           <li><%= link_to("数据更新", admin_base_data_index_path) %></li>
           <li><%= link_to("股票列表", admin_stocks_path) %></li>
           <li><%= link_to("会员中心", ) %></li>

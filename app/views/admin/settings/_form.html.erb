@@ -1,0 +1,8 @@
+<%= simple_form_for [:admin, @setting] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :industry, :label => "当前所有行业", input_html: { class: "form-control"} %>
+    <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>

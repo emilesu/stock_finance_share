@@ -147,5 +147,19 @@ class Admin::BaseDataController < AdminController
     flash[:notice] = "主营业务 更新完毕"
   end
 
+  #更新行业设置
+   def update_industry_setting
+     @all_industrys = Stock.all_industrys_li
+     x = []
+     @all_industrys.each do |i|
+       x << i
+     end
+     Setting.first.update!(
+       :industry => x
+     )
+     puts "更新完毕*******"
+     redirect_to admin_base_data_index_path
+     flash[:notice] = "行业设置 设置完毕"
+   end
 
 end

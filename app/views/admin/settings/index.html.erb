@@ -1,0 +1,20 @@
+<div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
+
+  <table class="table table table-striped">
+    <td></td>
+    <td>
+      <%= link_to("新建系统设置", new_admin_setting_path, :class => "btn btn-xs btn-default pull-right" ) %>
+    </td>
+    <% @settings.each do |setting| %>
+      <tr>
+        <td><%= setting.id %> 号系统设置</td>
+        <td>
+          <%= link_to("删除", admin_setting_path(setting), method: :delete, :class => "btn btn-xs btn-default pull-right", data: { confirm: "确定删除" }) %>
+          <%= link_to("编辑", edit_admin_setting_path(setting), :class => "btn btn-xs btn-default pull-right") %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+
+</div>

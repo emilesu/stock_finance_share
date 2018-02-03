@@ -41,7 +41,7 @@ class StocksController < ApplicationController
     @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.net_profit_margin_order <=> x.net_profit_margin_order }[0..30]     #净利率排序
     @industrys_roe_order = all_industrys.sort{ |x,y| y.roe_order <=> x.roe_order }[0..30]       #股东权益报酬率 RoE 排序
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..30]       #负债占资本利率排序
-    @all_industrys = Stock.all_industrys_li                                         # scope :all_industrys_li
+    @all_industrys = JSON.parse(Setting.first.industry)        # 所有行业信息        # scope :all_industrys_li
 
 
 
