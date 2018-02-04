@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203195449) do
+ActiveRecord::Schema.define(version: 20180204093324) do
 
   create_table "settings", force: :cascade do |t|
     t.text "industry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "version"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180203195449) do
     t.string "main_business"
     t.string "company_url"
     t.string "regional"
+    t.integer "version"
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true

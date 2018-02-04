@@ -47,7 +47,7 @@ class Admin::SettingsController < AdminController
   private
 
   def setting_params
-    params.require(:setting).permit(:industry)
+    params.require(:setting).permit(:industry, :version)
   end
 
 end

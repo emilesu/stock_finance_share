@@ -1,4 +1,4 @@
-<div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
+<div class="" style="max-width: 1200px; margin-left: auto; margin-right: auto; margin-top: 20px">
 
   <table class="table table table-striped">
     <td></td>
@@ -12,6 +12,14 @@
           <%= link_to("删除", admin_setting_path(setting), method: :delete, :class => "btn btn-xs btn-default pull-right", data: { confirm: "确定删除" }) %>
           <%= link_to("编辑", edit_admin_setting_path(setting), :class => "btn btn-xs btn-default pull-right") %>
         </td>
+      </tr>
+      <tr>
+        <td>行业信息</td>
+        <td><%= setting.industry %></td>
+      </tr>
+      <tr>
+        <td>数据版本</td>
+        <td><%= setting.version %></td>
       </tr>
     <% end %>
   </table>

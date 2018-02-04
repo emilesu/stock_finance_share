@@ -58,25 +58,31 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      # zcb 资产表更新
-      response_zcb = RestClient.get "http://quotes.money.163.com/service/zcfzb_#{s.easy_symbol}.html"
-      data_zcb = CSV.parse(response_zcb, :headers => true)
-      s.update!(
-        :zcb => data_zcb,
-      )
+      if s.version != Setting.first.version
+        # zcb 资产表更新
+        response_zcb = RestClient.get "http://quotes.money.163.com/service/zcfzb_#{s.easy_symbol}.html"
+        data_zcb = CSV.parse(response_zcb, :headers => true)
+        s.update!(
+          :zcb => data_zcb,
+        )
 
-      # lrb 利润表更新
-      response_lrb = RestClient.get "http://quotes.money.163.com/service/lrb_#{s.easy_symbol}.html"
-      data_lrb = CSV.parse(response_lrb, :headers => true)
-      s.update!(
-        :lrb => data_lrb,
-      )
+        # lrb 利润表更新
+        response_lrb = RestClient.get "http://quotes.money.163.com/service/lrb_#{s.easy_symbol}.html"
+        data_lrb = CSV.parse(response_lrb, :headers => true)
+        s.update!(
+          :lrb => data_lrb,
+        )
 
-      # llb 流量表更新
-      response_llb = RestClient.get "http://quotes.money.163.com/service/xjllb_#{s.easy_symbol}.html"
-      data_llb = CSV.parse(response_llb, :headers => true)
+        # llb 流量表更新
+        response_llb = RestClient.get "http://quotes.money.163.com/service/xjllb_#{s.easy_symbol}.html"
+        data_llb = CSV.parse(response_llb, :headers => true)
+        s.update!(
+          :llb => data_llb,
+        )
+      end
+
       s.update!(
-        :llb => data_llb,
+        :version => Setting.first.version
       )
 
     end

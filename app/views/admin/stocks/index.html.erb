@@ -11,6 +11,7 @@
         <th>名称/name</th>
         <th>地域/regional</th>
         <th>网址/company_url</th>
+        <th>version</th>
         <th>行业/industry</th>
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
@@ -34,6 +35,12 @@
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
+          <% end %>
+          <!--  -->
+          <% if stock.version.nil? %>
+            <td style="color: red">空</td>
+          <% else %>
+            <td><%= stock.version %></td>
           <% end %>
           <!--  -->
           <% if stock.industry.nil? %>
