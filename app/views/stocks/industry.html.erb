@@ -9,13 +9,16 @@
     </div>
 
     <!-- 其他行业 - 可点击选择 -->
-    <div class="industry-li">
+    <div class="industry-li-all">
       <ul class="list-unstyled">
-        <% @all_industrys.each do |i| %>
-          <% if i != nil %>
-            <%= link_to industry_stocks_path(:order => i) do %>
-              <li><%= i %><span class="pull-right"><%= Stock.where(:industry => i).size %></span></li>
-            <% end %>
+        <% @all_industrys[0..14].each do |i| %>
+          <%= link_to industry_stocks_path(:order => i) do %>
+            <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= Stock.where(:industry => i).size %></span></li>
+          <% end %>
+        <% end %>
+        <% @all_industrys[15..-1].each do |i| %>
+          <%= link_to industry_stocks_path(:order => i) do %>
+            <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= Stock.where(:industry => i).size %></span></li>
           <% end %>
         <% end %>
       </ul>

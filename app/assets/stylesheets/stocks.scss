@@ -83,6 +83,30 @@
       // border-radius:5px;
     }
   }
+  .industry-li-all {
+    white-space: nowrap;     //压缩后不换行
+    margin-top: 20px;
+    min-width: 210px;
+    li {
+      min-width: 120px;
+      margin-right: 10px;
+      padding: 7px 12px 7px 10px;
+      border-radius:5px;
+    }
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+    li:hover {
+      background-color: #1f1f1f;
+      text-decoration: none;
+      color: #f9f9f9;
+      // filter:alpha(Opacity=100);
+      // -moz-opacity:0.8;
+      // transition: 0.4s;
+      // border-radius:5px;
+    }
+  }
 }
 
 .stock-info {
