@@ -98,12 +98,12 @@ class Admin::BaseDataController < AdminController
     @stocks.each do |s|
 
       # industry 行业分类更新
-      response = RestClient.get "http://quotes.money.163.com/f10/hydb_#{s.easy_symbol}.html#01g02"
+      response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/field/#fieldstatus"
       doc = Nokogiri::HTML.parse(response.body)
       # if s.industry.nil?
-      main = doc.css(".inner_box a").map{ |x| x.text }[0].split(" ")
+      main = doc.css(".threecate").map{ |x| x.text }[0].split("--")[1].strip
         s.update!(
-          :industry => main[0],
+          :industry => main,
         )
       # end
 
