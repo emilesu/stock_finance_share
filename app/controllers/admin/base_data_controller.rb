@@ -101,10 +101,16 @@ class Admin::BaseDataController < AdminController
       response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/field/#fieldstatus"
       doc = Nokogiri::HTML.parse(response.body)
       # if s.industry.nil?
-      main = doc.css(".threecate").map{ |x| x.text }[0].split("--")[1].strip
+      main = doc.css(".threecate").map{ |x| x.text }[0]
+      if !main.nil?
         s.update!(
-          :industry => main,
+          :industry => main.split("--")[1].strip,
         )
+      else
+        s.update!(
+          :industry => "暂无",
+        )
+      end
       # end
 
     end

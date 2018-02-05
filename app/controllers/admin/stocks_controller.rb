@@ -13,7 +13,7 @@ class Admin::StocksController < AdminController
   end
 
   def create
-    @stock = Stcok.new(stock_params)
+    @stock = Stock.new(stock_params)
 
     if @stock.save
       redirect_to admin_stocks_path
