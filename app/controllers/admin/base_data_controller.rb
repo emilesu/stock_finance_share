@@ -163,7 +163,7 @@ class Admin::BaseDataController < AdminController
   #全局扫描更新 股票上市时间
   def update_stock_time_to_market
     @stocks = Stock.all
-    @stocks.all.each do |s|
+    @stocks.each do |s|
 
       if s.time_to_market.nil?
         response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/"
