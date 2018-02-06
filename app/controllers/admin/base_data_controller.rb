@@ -165,14 +165,14 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.time_to_market.nil?
+      # if s.time_to_market.nil?
         response = RestClient.get "http://app.finance.ifeng.com/data/stock/gpjk.php?symbol=#{s.easy_symbol}"
         doc = Nokogiri::HTML.parse(response.body)
-          main = doc.css("table tr[5] td").map{ |x| x.text }[1].split(" ")[0]
+          main = doc.css("table tr[5] td").map{ |x| x.text }[1].split(" ")[-8]
           s.update!(
             :time_to_market => main
           )
-      end
+      # end
 
     end
     puts "更新完毕*******"
