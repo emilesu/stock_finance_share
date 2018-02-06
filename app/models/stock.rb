@@ -496,8 +496,82 @@ class Stock < ApplicationRecord
   end
 
   # --- C1、营业毛利率 ---
-  # =  营业利润  lrb33  /  营业收入 lrb1
+  # =  ( 营业收入  lrb2+3+4+5+6+7 - 营业成本 lrb9+10+11+12+13+14+15+16+17+18+19+20 ) /  营业收入  lrb2+3+4+5+6+7
   def operating_margin_ratio(time)
+    # 数据源
+    if time == 10
+      lrb2 = self.quarter_years(2, 2)[0..9]
+      lrb3 = self.quarter_years(2, 3)[0..9]
+      lrb4 = self.quarter_years(2, 4)[0..9]
+      lrb5 = self.quarter_years(2, 5)[0..9]
+      lrb6 = self.quarter_years(2, 6)[0..9]
+      lrb7 = self.quarter_years(2, 7)[0..9]
+      lrb9 = self.quarter_years(2, 9)[0..9]
+      lrb10 = self.quarter_years(2, 10)[0..9]
+      lrb11 = self.quarter_years(2, 11)[0..9]
+      lrb12 = self.quarter_years(2, 12)[0..9]
+      lrb13 = self.quarter_years(2, 13)[0..9]
+      lrb14 = self.quarter_years(2, 14)[0..9]
+      lrb15 = self.quarter_years(2, 15)[0..9]
+      lrb16 = self.quarter_years(2, 16)[0..9]
+      lrb17 = self.quarter_years(2, 17)[0..9]
+      lrb18 = self.quarter_years(2, 18)[0..9]
+      lrb19 = self.quarter_years(2, 19)[0..9]
+      lrb20 = self.quarter_years(2, 20)[0..9]
+    elsif time == 5
+      lrb2 = self.quarter_years(2, 2)[0..4]
+      lrb3 = self.quarter_years(2, 3)[0..4]
+      lrb4 = self.quarter_years(2, 4)[0..4]
+      lrb5 = self.quarter_years(2, 5)[0..4]
+      lrb6 = self.quarter_years(2, 6)[0..4]
+      lrb7 = self.quarter_years(2, 7)[0..4]
+      lrb9 = self.quarter_years(2, 9)[0..4]
+      lrb10 = self.quarter_years(2, 10)[0..4]
+      lrb11 = self.quarter_years(2, 11)[0..4]
+      lrb12 = self.quarter_years(2, 12)[0..4]
+      lrb13 = self.quarter_years(2, 13)[0..4]
+      lrb14 = self.quarter_years(2, 14)[0..4]
+      lrb15 = self.quarter_years(2, 15)[0..4]
+      lrb16 = self.quarter_years(2, 16)[0..4]
+      lrb17 = self.quarter_years(2, 17)[0..4]
+      lrb18 = self.quarter_years(2, 18)[0..4]
+      lrb19 = self.quarter_years(2, 19)[0..4]
+      lrb20 = self.quarter_years(2, 20)[0..4]
+    elsif time == 2
+      lrb2 = self.quarter_recent(2, 2)
+      lrb3 = self.quarter_recent(2, 3)
+      lrb4 = self.quarter_recent(2, 4)
+      lrb5 = self.quarter_recent(2, 5)
+      lrb6 = self.quarter_recent(2, 6)
+      lrb7 = self.quarter_recent(2, 7)
+      lrb9 = self.quarter_recent(2, 9)
+      lrb10 = self.quarter_recent(2, 10)
+      lrb11 = self.quarter_recent(2, 11)
+      lrb12 = self.quarter_recent(2, 12)
+      lrb13 = self.quarter_recent(2, 13)
+      lrb14 = self.quarter_recent(2, 14)
+      lrb15 = self.quarter_recent(2, 15)
+      lrb16 = self.quarter_recent(2, 16)
+      lrb17 = self.quarter_recent(2, 17)
+      lrb18 = self.quarter_recent(2, 18)
+      lrb19 = self.quarter_recent(2, 19)
+      lrb20 = self.quarter_recent(2, 20)
+    end
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      sr = lrb2[i].to_f + lrb3[i].to_f + lrb4[i].to_f + lrb5[i].to_f + lrb6[i].to_f + lrb7[i].to_f
+      cb = lrb9[i].to_f + lrb10[i].to_f + lrb11[i].to_f + lrb12[i].to_f + lrb13[i].to_f + lrb14[i].to_f + lrb15[i].to_f + lrb16[i].to_f + lrb17[i].to_f + lrb18[i].to_f + lrb19[i].to_f + lrb20[i].to_f
+      m = ( sr - cb ) / sr * 100
+      result << m.round(2)
+    end
+    # 返回营业毛利率
+    return result
+  end
+
+  # --- C2、营业利益率 ---
+  # =  营业利润  lrb33  /  营业收入 lrb1
+  def business_profitability_ratio(time)
     # 数据源
     if time == 10
       lrb33 = self.quarter_years(2, 33)[0..9]
@@ -519,65 +593,19 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- C2、营业利益率 ---
-  # =  营业利益  lrb33 - lrb8 + lrb9 / 营业收入 lrb1
-  def business_profitability_ratio(time)
-    # 数据源
-    if time == 10
-      lrb33 = self.quarter_years(2, 33)[0..9]
-      lrb8 = self.quarter_years(2, 8)[0..9]
-      lrb9 = self.quarter_years(2, 9)[0..9]
-      lrb1 = self.quarter_years(2, 1)[0..9]
-    elsif time == 5
-      lrb33 = self.quarter_years(2, 33)[0..4]
-      lrb8 = self.quarter_years(2, 8)[0..4]
-      lrb9 = self.quarter_years(2, 9)[0..4]
-      lrb1 = self.quarter_years(2, 1)[0..4]
-    elsif time == 2
-      lrb33 = self.quarter_recent(2, 33)
-      lrb8 = self.quarter_recent(2, 8)
-      lrb9 = self.quarter_recent(2, 9)
-      lrb1 = self.quarter_recent(2, 1)
-    end
-    # 运算
-    result = []
-    (0..time-1).each do |i|
-      m = ( lrb33[i].to_f - lrb8[i].to_f + lrb9[i].to_f ) / lrb1[i].to_f * 100
-      result << m.round(2)
-    end
-    # 返回营业利益率
-    return result
-  end
-
   # --- C3、经营安全边际率 ---
-  # =  营业利益  lrb33 - lrb8 + lrb9 / 营业利润 lrb33
+  # =  营业利益率 / 营业毛利率
   def operating_margin_of_safety_ratio(time)
     # 数据源
-    if time == 10
-      lrb33 = self.quarter_years(2, 33)[0..9]
-      lrb8 = self.quarter_years(2, 8)[0..9]
-      lrb9 = self.quarter_years(2, 9)[0..9]
-      lrb33 = self.quarter_years(2, 33)[0..9]
-    elsif time == 5
-      lrb33 = self.quarter_years(2, 33)[0..4]
-      lrb8 = self.quarter_years(2, 8)[0..4]
-      lrb9 = self.quarter_years(2, 9)[0..4]
-      lrb33 = self.quarter_years(2, 33)[0..4]
-    elsif time == 2
-      lrb33 = self.quarter_recent(2, 33)
-      lrb8 = self.quarter_recent(2, 8)
-      lrb9 = self.quarter_recent(2, 9)
-      lrb33 = self.quarter_recent(2, 33)
-    end
+    lyl = self.business_profitability_ratio(time)
+    mll = self.operating_margin_ratio(time)
     # 运算
     result = []
     (0..time-1).each do |i|
-      x1 = lrb33[i].to_f - lrb8[i].to_f + lrb9[i].to_f
-      x2 = lrb33[i].to_f
-      if x1 < 0 && x2 < 0
+      if lyl[i] < 0 && mll[i] < 0
         result << "严重风险"
       else
-        m = x1 / x2 * 100
+        m = lyl[i] / mll[i] * 100
         result << m.round(2)
       end
     end
