@@ -166,9 +166,9 @@ class Admin::BaseDataController < AdminController
     @stocks.each do |s|
 
       if s.time_to_market.nil?
-        response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#01f01"
+        response = RestClient.get "http://app.finance.ifeng.com/data/stock/gpjk.php?symbol=#{s.easy_symbol}"
         doc = Nokogiri::HTML.parse(response.body)
-          main = doc.css(".table_bg001[3] tr[2] td").map{ |x| x.text }[5].split(",")[0]
+          main = doc.css("table tr[5] td").map{ |x| x.text }[1].split(" ")[0]
           s.update!(
             :time_to_market => main
           )
