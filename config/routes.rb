@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post :update_stock_finance_table    #更新财务表表数据
       post :update_industry_info    #更新财务表表数据
       post :update_stock_company_info    #更新股票主营业务
+      post :update_stock_time_to_market    #更新股票主营业务
       post :update_industry_setting    #更新行业设置
     end
   end

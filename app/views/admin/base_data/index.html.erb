@@ -19,7 +19,7 @@
 <!-- ____________ -->
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-    <%= link_to("全局更新 行业", admin_base_data_update_industry_info_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:行业 ?" }) %>
+    <%= link_to("全局更新 行业信息", admin_base_data_update_industry_info_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:行业 ?" }) %>
   </div>
 
 <!-- ____________ -->
@@ -31,7 +31,14 @@
 <!-- ____________ -->
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-    <%= link_to("更新 行业设置", admin_base_data_update_industry_setting_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:行业设置 ?" }) %>
+    <%= link_to("全局更新 上市时间", admin_base_data_update_stock_time_to_market_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:上市时间 ?" }) %>
+  </div>
+
+<hr>
+<!-- ____________ -->
+
+  <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
+    <%= link_to("更新 设置-行业", admin_base_data_update_industry_setting_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:设置-行业 ?" }) %>
   </div>
 
 </div>

@@ -159,6 +159,28 @@ class Admin::BaseDataController < AdminController
     flash[:notice] = "主营业务 更新完毕"
   end
 
+
+  #全局扫描更新 股票上市时间
+  def update_stock_time_to_market
+    @stocks = Stock.all
+    @stocks.each do |s|
+
+      if s.time_to_market.nil?
+        response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/"
+        doc = Nokogiri::HTML.parse(response.body)
+          main = doc.css(".company_details dd").map{ |x| x.text }
+          s.update!(
+            :time_to_market => main[4]
+          )
+      end
+
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "股票上市时间 更新完毕"
+  end
+
+
   #更新行业设置
    def update_industry_setting
      @all_industrys = Stock.all_industrys_li

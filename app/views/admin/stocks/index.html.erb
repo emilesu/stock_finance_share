@@ -9,14 +9,15 @@
       <tr>
         <th>代码/symbol</th>
         <th>名称/name</th>
+        <th>上市时间/time_to_market</th>
         <th>地域/regional</th>
         <th>网址/company_url</th>
-        <th>version</th>
         <th>行业/industry</th>
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
         <th>操作</th>
+        <th>数据版本version</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,12 @@
         <tr>
           <td><%=link_to(stock.easy_symbol, admin_stock_path(stock)) %></td>
           <td><%= stock.name %></td>
+          <!--  -->
+          <% if stock.time_to_market.nil? %>
+            <td style="color: red">空</td>
+          <% else %>
+            <td><%= stock.time_to_market %></td>
+          <% end %>
           <!--  -->
           <% if stock.regional.nil? %>
             <td style="color: red">空</td>
@@ -35,12 +42,6 @@
             <td style="color: red">空</td>
           <% else %>
             <td>是</td>
-          <% end %>
-          <!--  -->
-          <% if stock.version.nil? %>
-            <td style="color: red">空</td>
-          <% else %>
-            <td><%= stock.version %></td>
           <% end %>
           <!--  -->
           <% if stock.industry.nil? %>
@@ -66,11 +67,16 @@
           <% else %>
             <td>是</td>
           <% end %>
-
           <td>
             <%= link_to("编辑", edit_admin_stock_path(stock), :class => "btn btn-xs btn-default") %>
             <%= link_to("删除", admin_stock_path(stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
           </td>
+          <!--  -->
+          <% if stock.version.nil? %>
+            <td style="color: red">空</td>
+          <% else %>
+            <td><%= stock.version %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
