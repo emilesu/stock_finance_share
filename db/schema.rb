@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206080910) do
+ActiveRecord::Schema.define(version: 20180206101725) do
 
   create_table "settings", force: :cascade do |t|
     t.text "industry"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180206080910) do
     t.string "company_url"
     t.string "regional"
     t.integer "version"
-    t.datetime "time_to_market"
+    t.string "time_to_market"
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
