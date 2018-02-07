@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  before_action :authenticate_user!, only: [:analyza, :industry, :all_years, :three_years, :five_years]
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
@@ -32,8 +33,9 @@ class StocksController < ApplicationController
 
   # --- 行业对比页面, 在页面中显示该行业中, 指标排名靠前的股票排名 ---
   def industry
+    @all_user_choose_time_range_stocks = Stock.where(["time_to_market < ? ", user_choose_time_range_stocks ])     #所有符合用户选择股票的上市年限的股票
     @industry = params[:order]                                                      # 参数来源之show 页面的传入
-    all_industrys = Stock.where(:industry => @industry).where.not(:zcb => nil).where.not(:zcb => "")      # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
+    all_industrys = Stock.where(["time_to_market < ? ", user_choose_time_range_stocks ]).where(:industry => @industry).where.not(:zcb => nil).where.not(:zcb => "")      # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
     @industrys = all_industrys      #全部所属行业列表
     @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }[0..30]       #所属行业现金量排序
     @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }[0..30]     #毛利率排序
@@ -43,7 +45,45 @@ class StocksController < ApplicationController
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..30]       #负债占资本利率排序
 
     # 从"系统设置 - 行业"中提取行业列表
-    @all_industrys = JSON.parse(Setting.first.industry)        # 所有行业信息        # scope :all_industrys_li
+    @all_industrys = JSON.parse(Setting.first.industry)        # 所有行业信息
   end
+
+  # --- 用户选择股票的上市年限 ---
+  def all_years
+    current_user.update!(
+      :time_range => "all_years"
+    )
+    redirect_back fallback_location: industry_stocks_path
+  end
+
+  def three_years
+    current_user.update!(
+      :time_range => "three_years"
+    )
+    redirect_back fallback_location: industry_stocks_path
+  end
+
+  def five_years
+    current_user.update!(
+      :time_range => "five_years"
+    )
+    redirect_back fallback_location: industry_stocks_path
+  end
+
+  def user_choose_time_range_stocks
+    if current_user.time_range == "all_years"
+      range = Time.now
+      return range
+    elsif current_user.time_range == "three_years"
+      range = Time.now - 1095.days
+      return range
+    elsif current_user.time_range == "five_years"
+      range = Time.now - 1825.days
+      return range
+    end
+  end
+  # -------------------------------
+
+
 
 end

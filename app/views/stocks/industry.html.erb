@@ -7,6 +7,7 @@
     <div class="industry-title">
       <%= @industry %>-分析
 
+      <!-- 选择股票的上市年限 -->
       <div class="btn-group pull-right">
         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           近三年 <span class="caret"></span>
@@ -26,12 +27,12 @@
       <ul class="list-unstyled">
         <% @all_industrys[0..14].each do |i| %>
           <%= link_to industry_stocks_path(:order => i) do %>
-            <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= Stock.where(:industry => i).size %></span></li>
+            <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
           <% end %>
         <% end %>
         <% @all_industrys[15..-1].each do |i| %>
           <%= link_to industry_stocks_path(:order => i) do %>
-            <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= Stock.where(:industry => i).size %></span></li>
+            <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
           <% end %>
         <% end %>
       </ul>

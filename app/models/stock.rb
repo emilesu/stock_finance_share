@@ -5,9 +5,8 @@ class Stock < ApplicationRecord
     self.easy_symbol
   end
 
-  # ---捞出所有的行业, 并且去重---
+  # ---捞出 所有的行业, 并且去重---
   scope :all_industrys_li, -> { pluck(:industry).uniq }       # pluck 方法捞出指定字段的资料
-
 
 
 

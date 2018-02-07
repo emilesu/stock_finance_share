@@ -183,7 +183,7 @@ class Admin::BaseDataController < AdminController
 
   #更新行业设置
    def update_industry_setting
-     @all_industrys = Stock.all_industrys_li
+     @all_industrys = Stock.all_industrys_li           # scope :all_industrys_li
      x = []
      @all_industrys.each do |i|
        x << i
