@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       get "/statements/:id" => "stocks#statements", :as => :statements        #近十年财报原报
       get :search                   #搜索并打开 功能
       get "/industry/" => "stocks#industry", :as =>:industry                 #行业对比页面
+
+      # 用户点击选择股票上市年限 按钮
+      post :all_years
+      post :three_years
+      post :five_years
     end
   end
 
