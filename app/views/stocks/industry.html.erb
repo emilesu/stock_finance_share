@@ -10,7 +10,14 @@
       <!-- 选择股票的上市年限 -->
       <div class="btn-group pull-right">
         <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          近三年 <span class="caret"></span>
+          <% if current_user.time_range == "all_years" %>
+            全部
+          <% elsif current_user.time_range == "three_years" %>
+            近3年
+          <% elsif current_user.time_range == "five_years" %>
+            近5年
+          <% end %>
+          <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <li><%= link_to("全部", all_years_stocks_path, method: :post) %></li>
