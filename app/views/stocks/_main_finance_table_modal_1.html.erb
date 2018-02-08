@@ -1,0 +1,207 @@
+<!-- 现金与约当现金(%) -->
+<div class="modal fade" id="momal-cash-and-cash-equivalents-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">现金与约当现金(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.cash_and_cash_equivalents_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-1、现金与约当现金占总资产比率 ( 至少10%, 最好大于25% )</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 应收账款(%) -->
+<div class="modal fade" id="momal-receivables-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">应收账款(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.receivables_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-2、应收账款占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 存货(%) -->
+<div class="modal fade" id="momal-inventory-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">存货(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.inventory_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-3、存货占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 流动资产(%) -->
+<div class="modal fade" id="momal-current-assets-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">流动资产(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.current_assets_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-4、流动资产占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 应付账款(%) -->
+<div class="modal fade" id="momal-accounts-payable-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">应付账款(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.accounts_payable_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-5、应付账款占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 流动负债(%) -->
+<div class="modal fade" id="momal-current-liabilities-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">流动负债(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.current_liabilities_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-6、流动负债占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 长期负债(%) -->
+<div class="modal fade" id="momal-long-term-liability-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">长期负债(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.long_term_liability_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-7、长期负债占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 股东权益(%) -->
+<div class="modal fade" id="momal-shareholders-equity-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">股东权益(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.shareholders_equity_ratio(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-8、股东权益占总资产比率</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    #code
+    @stock = Stock.last
   end
 end

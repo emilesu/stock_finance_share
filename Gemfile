@@ -40,6 +40,8 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
+# 数据图表
+gem "chartkick"
 
 gem 'rest-client'
 gem 'nokogiri'

@@ -33,7 +33,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-cash-and-cash-equivalents-ratio">
       <td align=left>现金与约当现金(%)</td>
       <% m = @stock.cash_and_cash_equivalents_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -44,7 +44,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-receivables-ratio">
       <td align=left>应收账款(%)</td>
       <% m = @stock.receivables_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -55,7 +55,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-inventory-ratio">
       <td align=left>存货(%)</td>
       <% m = @stock.inventory_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -66,7 +66,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-current-assets-ratio">
       <td align=left>流动资产(%)</td>
       <% m = @stock.current_assets_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -84,7 +84,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-accounts-payable-ratio">
       <td align=left>应付账款(%)</td>
       <% m = @stock.accounts_payable_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -95,7 +95,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-current-liabilities-ratio">
       <td align=left>流动负债(%)</td>
       <% m = @stock.current_liabilities_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -106,7 +106,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-long-term-liability-ratio">
       <td align=left>长期负债(%)</td>
       <% m = @stock.long_term_liability_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -117,7 +117,7 @@
       <% end %>
     </tr>
 
-    <tr>
+    <tr data-toggle="modal" data-target="#momal-shareholders-equity-ratio">
       <td align=left>股东权益(%)</td>
       <% m = @stock.shareholders_equity_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
@@ -137,3 +137,5 @@
 
   </table>
 </div>
+
+<%= render :partial => "main_finance_table_modal_1", :locals => { :time => time } %>

@@ -906,4 +906,30 @@ class Stock < ApplicationRecord
     self.debt_asset_ratio(5)[0]
   end
 
+
+
+  # -----------------modal 弹窗数据脚本, 将输出[时间+数据]的格式用于生成图表-----------------
+
+  def modal_data(time, data)
+    #判断时间,以确定生成的数据长度
+    if time == 10
+      y = self.quarter_years(1, 0)[0..9]
+    elsif time == 5
+      y = self.quarter_years(1, 0)[0..4]
+    elsif time == 2
+      y = self.quarter_recent(1, 0)
+    end
+    #与日期对应的数据,生成具体的数据
+    m = data
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      data = [y[i][0..3], m[i]]
+      result << data
+    end
+    # 返回 modal 数据
+    return result
+  end
+
+
 end

@@ -1,0 +1,77 @@
+<!-- 营业活动现金流量 -->
+<div class="modal fade" id="momal-net-cash-flow-of-business-activities" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">营业活动现金流量</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.net_cash_flow_of_business_activities(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A3-1、营业活动现金流量</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 投资活动现金流量 -->
+<div class="modal fade" id="momal-net-investment-activities-generated-cash-flow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">投资活动现金流量</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.net_investment_activities_generated_cash_flow(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A3-2、投资活动现金流量</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 筹资活动现金流量 -->
+<div class="modal fade" id="momal-net-financing-activities-generated-cash-flow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">筹资活动现金流量</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.net_financing_activities_generated_cash_flow(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A3-3、筹资活动现金流量</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
