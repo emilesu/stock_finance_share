@@ -1,0 +1,43 @@
+<!-- 现金与约当现金(%) -->
+<div class="modal fade" id="momal-note" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">创建-<%= @stock.name %>(<%= @stock.easy_symbol %>)-笔记</h5>
+      </div>
+      <%= simple_form_for ([@stock, @stock_note_new]) do |f| %>
+      <div class="modal-body">
+        <%= f.input :title, :label => "标题", input_html: { class: "form-control"} %>
+        <%= f.input :description, :label => "关注理由", input_html: { class: "form-control", :rows => 10, :style=> 'width: 100%;'} %>
+        <label for="note-level-button">关注级别</label><br>
+        <div id="note-level-button" class="btn-group" data-toggle="buttons">
+          <% Note::LEVEL.each do |level| %>
+            <label class="btn btn-sm btn-default <%= (level == f.object.level)? 'active' : '' %>">
+              <%= f.radio_button :level, level %>
+              <%= t(level, :scope => "note.level") %>
+            </label>
+          <% end %>
+        </div>
+        <br><br>
+        <label for="note-level-button">是否公开</label><br>
+        <div id="note-status-button" class="btn-group" data-toggle="buttons">
+          <% Note::STATUS.each do |status| %>
+            <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
+              <%= f.radio_button :status, status %>
+              <%= t(status, :scope => "note.status") %>
+            </label>
+          <% end %>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "发布", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

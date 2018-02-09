@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207085309) do
+ActiveRecord::Schema.define(version: 20180208193701) do
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "stock_id"
+    t.integer "user_id"
+    t.string "status"
+    t.string "level"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_notes_on_status"
+    t.index ["stock_id"], name: "index_notes_on_stock_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
+  end
 
   create_table "settings", force: :cascade do |t|
     t.text "industry"

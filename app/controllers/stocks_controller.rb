@@ -12,6 +12,9 @@ class StocksController < ApplicationController
     @industrys_roe_order = all_industrys.sort{ |x,y| y.roe_order <=> x.roe_order }[0..20]       #股东权益报酬率 RoE 排序
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..20]       #负债占资本利率排序
     @time = 5
+
+    # 新建笔记 note
+    @stock_note_new = Note.new
   end
 
 

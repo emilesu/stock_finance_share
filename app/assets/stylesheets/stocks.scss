@@ -1,6 +1,6 @@
 // http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$         flex 布局参考
 
-// ------ stock show页面 ------
+// ------ stock show 数据部分 ------
 .wrapper {
   display: -webkit-flex; /* Safari */
   display: flex;
@@ -88,7 +88,7 @@
     margin-top: 20px;
     min-width: 210px;
     li {
-      min-width: 120px;
+      min-width: 110px;
       margin-right: 10px;
       padding: 7px 12px 7px 10px;
       border-radius:5px;
@@ -144,8 +144,41 @@
       }
     }
   }
+  .star-stock:hover {
+    cursor: pointer;
+  }
 }
 
 .table-right {
   flex-grow: 1;
+}
+
+
+// ------ stock show post部分 ------
+.post-box {
+  text-align: justify;
+
+  .post-box-side {
+    color: #fff;
+    height: 50px;
+    background-color: #333;
+    display:flex;/*Flex布局*/
+    display: -webkit-flex; /* Safari */
+    align-items:center;/*指定垂直居中*/
+    a, span {
+      padding-left: 10px;
+    }
+    .level {
+      background-color: #666;
+      margin-left: 30px;
+      padding: 17px 16px 16px 16px;
+    }
+  }
+
+  .post-box-content {
+    padding: 10px 0 60px;
+    color: #333;
+    line-height: 20px;
+  }
+
 }
