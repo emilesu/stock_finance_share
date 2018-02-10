@@ -1,64 +1,48 @@
 <br><br><br>
 
-<div class="post-box">
+<% @stock_notes.each do |note| %>
+<div class="note-box">
+  <!-- 消息栏标头 -->
+  <div class="note-box-side">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-<%= note.id %>" aria-expanded="false">
+            <!-- <span class="sr-only">Toggle navigation</span> -->
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img class="img-circle" src="http://placehold.it/45x45&text=No 40x40" alt="..."></a>
+          <a class="navbar-brand" href="#"><%= note.user.email %></a>
+        </div>
 
-  <!-- 左边消息栏 -->
-  <div class="post-box-side">
-
-    <!-- 头像 avatar -->
-    <a href="#">
-      <img class="media-object img-circle" src="http://placehold.it/36x36&text=No 40x40" alt="...">
-    </a>
-    <span><h5 class="media-heading">Emilesu.VIP</h5></span>
-    <span class="level">近期关注</span>
+        <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-<%= note.id %>" >
+          <ul class="nav navbar-nav">
+            <li class="active"><a><%= note.level %><span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a class="modal-note-edit" data-toggle="modal" data-target="#momal-note-edit-<%= note.id %>">
+                编辑
+              </a>
+            </li>
+            <li>
+              <a href="">
+                赞(120)
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 
-  <!-- 右边信息栏 -->
-  <div class="post-box-content">
-    <h3>标题标题标题题标题题标题</h3>
-    内容. 主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。
+  <!-- 信息栏内容 -->
+  <div class="note-box-content">
+    <h3><%= note.title %></h3>
+    <%= note.description %>
   </div>
-
 </div>
-
-<div class="post-box">
-
-  <!-- 左边消息栏 -->
-  <div class="post-box-side">
-
-    <!-- 头像 avatar -->
-    <a href="#">
-      <img class="media-object img-circle" src="http://placehold.it/36x36&text=No 40x40" alt="...">
-    </a>
-    <span><h5 class="media-heading">Emilesu.VIP</h5></span>
-    <span class="level">近期关注</span>
-  </div>
-
-  <!-- 右边信息栏 -->
-  <div class="post-box-content">
-    <h3>标题标题标题题标题题标题</h3>
-    内容. 主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写。
-  </div>
-
-</div>
-
-<div class="post-box">
-
-  <!-- 左边消息栏 -->
-  <div class="post-box-side">
-
-    <!-- 头像 avatar -->
-    <a href="#">
-      <img class="media-object img-circle" src="http://placehold.it/36x36&text=No 40x40" alt="...">
-    </a>
-    <span><h5 class="media-heading">Emilesu.VIP</h5></span>
-    <span class="level">近期关注</span>
-  </div>
-
-  <!-- 右边信息栏 -->
-  <div class="post-box-content">
-    <h3>标题标题标题题标题题标题</h3>
-    内容. 主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施服务等。高档酒店经营业务。主营业务: 商务服务设施的投资、经营和管理,包括高档甲级写字楼、商城、公寓等设施的出租及管理,大型展览及配套服务及停车设施服务等。高档酒店经营业务。
-  </div>
-
-</div>
+<%= render :partial => "note_modal_edit", :locals => { :note => note } %>
+<% end %>

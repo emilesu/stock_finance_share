@@ -155,28 +155,24 @@
 
 
 // ------ stock show post部分 ------
-.post-box {
+.note-box {
   text-align: justify;
 
-  .post-box-side {
-    color: #fff;
-    height: 50px;
-    background-color: #333;
-    display:flex;/*Flex布局*/
-    display: -webkit-flex; /* Safari */
-    align-items:center;/*指定垂直居中*/
-    a, span {
-      padding-left: 10px;
-    }
-    .level {
-      background-color: #666;
-      margin-left: 30px;
-      padding: 17px 16px 16px 16px;
+  .note-box-side {
+    nav {
+      // border-radius: 5px;
+      background-color: #333;
+      .navbar-brand {
+        font-size: 14px;
+      }
+      a:hover {
+        cursor: pointer;
+      }
     }
   }
 
-  .post-box-content {
-    padding: 10px 0 60px;
+  .note-box-content {
+    padding: 0 0 60px;
     color: #333;
     line-height: 20px;
   }
