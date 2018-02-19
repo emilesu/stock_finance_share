@@ -15,7 +15,7 @@ class StocksController < ApplicationController
 
     # 笔记 note
     @stock_note_new = Note.new
-    @stock_notes = Note.where(:stock_id == @stock.id).order("created_at DESC")
+    @stock_notes = @stock.notes.order("created_at DESC")
   end
 
 
