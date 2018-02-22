@@ -42,17 +42,16 @@ class NotesController < ApplicationController
   # 赞/收藏功能
   def like
     @note = Note.find(params[:id])
-    unless @note.find_like(current_user)
+    unless @note.find_like(current_user)    # 如果已经按讚过了，就略过不再新增
       Like.create( :user => current_user, :note => @note )
     end
-    redirect_back fallback_location: stock_path(@stock)
   end
 
   def unlike
     @note = Note.find(params[:id])
     like = @note.find_like(current_user)
     like.destroy
-    redirect_back fallback_location: stock_path(@stock)
+    render "like"
   end
 
   private

@@ -27,14 +27,8 @@
                 编辑
               </a>
             </li>
-            <li>
-              <% if current_user %>
-                <% if note.find_like(current_user) %>
-                  <%= link_to "赞 (#{note.likes.size})", unlike_stock_note_path(@stock, note), :method => :post %>
-                <% else %>
-                  <%= link_to "赞 (#{note.likes.size})", like_stock_note_path(@stock, note), :method => :post %>
-                <% end %>
-              <% end %>
+            <li id="note-like-<%= note.id %>">
+              <%= render :partial => "//notes/like", :locals => { :note => note } %>
             </li>
           </ul>
         </div>
@@ -48,5 +42,5 @@
     <%= note.description %>
   </div>
 </div>
-<%= render :partial => "note_modal_edit", :locals => { :note => note } %>
+<%= render :partial => "//notes/note_modal_edit", :locals => { :note => note } %>
 <% end %>

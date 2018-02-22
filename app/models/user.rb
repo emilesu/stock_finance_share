@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   # 与 like 关系
   has_many :likes, :dependent => :destroy
-  has_many :liked_votes, :through => :like, :source => :vote
+  has_many :liked_notes, :through => :likes, :source => :note
 
 
 end

@@ -1,0 +1,11 @@
+<% if current_user %>
+  <% if note.find_like(current_user) %>
+    <%= link_to(unlike_stock_note_path(@stock, note), :method => :post, :remote => true) do %>
+      <span>赞 (<%= note.likes.size %>)</span>
+    <% end %>
+  <% else %>
+    <%= link_to(like_stock_note_path(@stock, note), :method => :post, :remote => true) do %>
+      <span>赞 (<%= note.likes.size %>)</span>
+    <% end %>
+  <% end %>
+<% end %>
