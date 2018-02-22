@@ -13,4 +13,12 @@ class Note < ApplicationRecord
   STATUS = ["公开", "对会员公开", "私密"]
   validates_inclusion_of :status, :in => STATUS
 
+  # 与 like 关系
+  has_many :likes, :dependent => :destroy
+  has_many :liked_users, :through => :like, :source => :user
+
+  def find_like(user)
+    self.likes.where( :user_id => user.id ).first
+  end
+
 end

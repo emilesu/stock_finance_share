@@ -28,9 +28,13 @@
               </a>
             </li>
             <li>
-              <a href="">
-                赞(120)
-              </a>
+              <% if current_user %>
+                <% if note.find_like(current_user) %>
+                  <%= link_to "赞 (#{note.likes.size})", unlike_stock_note_path(@stock, note), :method => :post %>
+                <% else %>
+                  <%= link_to "赞 (#{note.likes.size})", like_stock_note_path(@stock, note), :method => :post %>
+                <% end %>
+              <% end %>
             </li>
           </ul>
         </div>

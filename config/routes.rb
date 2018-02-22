@@ -16,7 +16,12 @@ Rails.application.routes.draw do
     end
 
     # 股票笔记功能
-    resources :notes
+    resources :notes do
+      member do
+        post "like" => "notes#like"             #增加 赞/收藏
+        post "unlike" => "notes#unlike"         #取消 赞/收藏
+      end
+    end
   end
 
   namespace :admin do
