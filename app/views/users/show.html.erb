@@ -1,0 +1,20 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-12 user-center">
+  <div class="row">
+
+  <!-- 左侧信息栏, 头像\用户名\简介\修改\收藏股票 -->
+  <div class="col-md-2">
+    <%= render :partial => "left_info", :locals => { :user => @user } %>
+  </div>
+
+  <!-- 中间信息栏, 个人站内微博\笔记 -->
+  <div class="col-md-8">
+    <%= render :partial => "mid_info", :locals => { :user => @user } %>
+  </div>
+
+  <!-- 右侧信息栏, 关注者\被关注者\邀请者信息 -->
+  <div class="col-md-2">
+    <%= render :partial => "right_info", :locals => { :user => @user } %>
+  </div>
+
+  </div>
+</div>

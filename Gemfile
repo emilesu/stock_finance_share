@@ -44,6 +44,8 @@ gem 'ransack'
 # 图片处理
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'carrierwave-qiniu'
+gem 'qiniu-rs'
 
 # 数据图表
 gem "chartkick"
