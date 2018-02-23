@@ -20,5 +20,7 @@ class User < ApplicationRecord
     self.username
   end
 
+  # avatar 头像上传
+  mount_uploader :avatar, AvatarUploader
 
 end

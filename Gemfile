@@ -40,16 +40,25 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
+
+# 图片处理
+gem 'carrierwave'
+gem 'mini_magick'
+
 # 数据图表
 gem "chartkick"
 
+# 信息数据爬取
 gem 'rest-client'
 gem 'nokogiri'
+
 # 异步处理
 gem 'sidekiq'
 
+# 密匙管理
 gem 'figaro'
 
+#数据库
 gem 'mysql2'
 
 # Use Capistrano for deployment
