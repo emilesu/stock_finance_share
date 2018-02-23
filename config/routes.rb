@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users
+
   namespace :admin do
     resources :stocks
     resources :settings

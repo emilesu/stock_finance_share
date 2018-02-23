@@ -15,5 +15,10 @@ class User < ApplicationRecord
   has_many :likes, :dependent => :destroy
   has_many :liked_notes, :through => :likes, :source => :note
 
+  # ---把网址改成用户名---
+  def to_param
+    self.username
+  end
+
 
 end

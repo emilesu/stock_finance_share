@@ -13,8 +13,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><img class="img-circle" src="http://placehold.it/45x45&text=No 40x40" alt="..."></a>
-          <a class="navbar-brand" href="#"><%= note.user.email %></a>
+          <a class="navbar-brand" href="#"><%= image_tag(note.user.avatar, :class => "img-circle") %></a>
+          <a class="navbar-brand" href="#"><%= note.user.username %></a>
         </div>
 
         <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-<%= note.id %>" >
