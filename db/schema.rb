@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223054615) do
+ActiveRecord::Schema.define(version: 20180224180950) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20180223054615) do
   create_table "notes", force: :cascade do |t|
     t.integer "stock_id"
     t.integer "user_id"
-    t.string "status"
-    t.string "level"
+    t.string "status", default: "公开"
+    t.string "level", default: "近期关注"
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20180223054615) do
     t.index ["status"], name: "index_notes_on_status"
     t.index ["stock_id"], name: "index_notes_on_stock_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_id"
+    t.string "twitter_id"
+    t.index ["twitter_id"], name: "index_reviews_on_twitter_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -60,6 +70,16 @@ ActiveRecord::Schema.define(version: 20180223054615) do
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
+  end
+
+  create_table "twitters", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", default: "公开"
+    t.string "user_id"
+    t.index ["status"], name: "index_twitters_on_status"
+    t.index ["user_id"], name: "index_twitters_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

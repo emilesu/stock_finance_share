@@ -22,6 +22,10 @@ class User < ApplicationRecord
   has_many :likes, :dependent => :destroy
   has_many :liked_notes, :through => :likes, :source => :note
 
+  # 与 twitter 和 review 关系
+  has_many :twitters, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
+
   # ---把网址改成用户名---
   def to_param
     self.username

@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    resources :twitters do
+      resources :reviews
+    end
+  end
 
   namespace :admin do
     resources :users

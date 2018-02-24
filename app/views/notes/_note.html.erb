@@ -45,7 +45,7 @@
   <!-- 信息栏内容 -->
   <div class="note-box-content">
     <h3><%= note.title %></h3>
-    <%= note.description %>
+    <%= sanitize note.description %>
   </div>
 </div>
 <%= render :partial => "//notes/note_modal_edit", :locals => { :note => note } %>
