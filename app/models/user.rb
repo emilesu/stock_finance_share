@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   # avatar 头像上传
-  mount_uploader :avatar, AvatarUploader
+  # mount_uploader :avatar, AvatarUploader
 
   # :level去重函数, 在 user/show页面用到
   def level_uniq(level)

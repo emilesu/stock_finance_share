@@ -27,7 +27,7 @@
           <td class="admin-user-avatar">
             <%= link_to user_path(user) do %>
               <% if user.avatar.present? %>
-                <%= image_tag(user.avatar.thumb.url, :class => "img-circle") %>
+                <%= image_tag(user.avatar, :class => "img-circle") %>
               <% else %>
                 <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "img-circle") %>
               <% end %>

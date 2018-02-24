@@ -2,7 +2,11 @@
 
   <!-- 头像 avatar -->
   <div class="user-avatar">
-    <%= image_tag(user.avatar.medium.url, class: "thumbnail img-responsive") %>
+    <% if user.avatar.present? %>
+      <%= image_tag(user.avatar, :class => "thumbnail img-responsive") %>
+    <% else %>
+      <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
+    <% end %>
   </div>
 
   <!-- 用户名 username -->

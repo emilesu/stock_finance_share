@@ -10,12 +10,13 @@
       <div>
         <br>
         <% if @user.avatar.present? %>
-          <%= image_tag(@user.avatar.thumb.url, :class => "thumbnail img-responsive") %>
+          <%= image_tag(@user.avatar, :class => "thumbnail img-responsive") %>
         <% else %>
           <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
         <% end %>
-        <%= f.input :avatar, as: :file, :label => "修改头像" %>
-      </div><hr>
+      </div>
+      <%= f.input :avatar, :label => "修改头像/avatar", input_html: { class: "form-control"} %>
+      <hr>
       <label for="note-level-button">会员级别</label><br>
       <div id="note-status-button" class="btn-group" data-toggle="buttons">
         <% User::ROLE.each do |role| %>
