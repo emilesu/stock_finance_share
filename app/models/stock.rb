@@ -1,5 +1,8 @@
 class Stock < ApplicationRecord
 
+  # 资料验证
+  validates_presence_of :symbol, :name, :easy_symbol
+
   # 与 note 关系
   has_many :notes
 

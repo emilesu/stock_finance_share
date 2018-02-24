@@ -1,0 +1,40 @@
+<!-- 在 User.new 中,由于回滚机制的存在, 必须要键入 登入点( email )和密码确认 -->
+
+<div>
+
+  <h2>新建 会员数据</h2>
+
+  <%= simple_form_for [:admin, @user] do |f| %>
+
+    <div class="form-group">
+      <div>
+        <br>
+        <% if @user.avatar.present? %>
+          <%= image_tag(@user.avatar.thumb.url, :class => "thumbnail img-responsive") %>
+        <% else %>
+          <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
+        <% end %>
+        <%= f.input :avatar, as: :file, :label => "修改头像" %>
+      </div><hr>
+      <label for="note-level-button">会员级别</label><br>
+      <div id="note-status-button" class="btn-group" data-toggle="buttons">
+        <% User::ROLE.each do |role| %>
+          <label class="btn btn-sm btn-default <%= (role == f.object.role)? 'active' : '' %>">
+            <%= f.radio_button :role, role %>
+            <%= t(role, :scope => "user.role") %>
+          </label>
+        <% end %>
+      </div><hr>
+      <%= f.input :username, :label => "用户名/username", input_html: { class: "form-control"} %>
+      <%= f.input :motto, :label => "简介/motto", input_html: { class: "form-control"} %>
+      <%= f.input :email, :label => "邮箱/email", input_html: { class: "form-control"} %>
+      <%= f.input :password, :label => "密码/password", input_html: { class: "form-control"} %>
+      <%= f.input :password_confirmation, :label => "确认密码/password", input_html: { class: "form-control"} %>
+      <hr>
+      <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+    </div>
+
+  <% end %>
+
+
+</div>

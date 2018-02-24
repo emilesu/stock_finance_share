@@ -11,7 +11,7 @@
       <div class="modal-body">
         <div>
           <br>
-          <%= image_tag(user.avatar.thumb.url, class: "thumbnail img-responsive center-block") %>
+          <%= image_tag(user.avatar.thumb.url, :class => "thumbnail img-responsive center-block") %>
           <%= f.input :avatar, as: :file, :label => "修改头像" %>
         </div>
         <div>

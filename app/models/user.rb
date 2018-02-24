@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # 资料验证
+  validates_presence_of :username, :role
+
+  # 用户权限等级
+  ROLE = ["admin", "member", "nonmember"]
+  validates_inclusion_of :role, :in => ROLE
+
   # 用户点击选择股票上市年限按钮 time_range的时间范围
   TIME_RANGE = ["all_years", "three_years", "five_years"]
   validates_inclusion_of :time_range, :in => TIME_RANGE
