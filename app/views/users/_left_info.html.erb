@@ -1,3 +1,61 @@
-<div class="user-avatar">
-  <%= image_tag(user.avatar.medium.url, class: "thumbnail img-responsive") %>
+<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
+
+  <!-- 头像 avatar -->
+  <div class="user-avatar">
+    <%= image_tag(user.avatar.medium.url, class: "thumbnail img-responsive") %>
+  </div>
+
+  <!-- 用户名 username -->
+  <div>
+    <h3>
+      <%= user.username %>
+    </h3>
+  </div>
+
+</a>
+<%= render :partial => "user_modal_edit", :locals => { :user => user } %>
+
+<!-- 简介 motto -->
+<br>
+<div>
+  <%= user.motto %>
 </div>
+<hr>
+
+<!-- 收藏笔记 -->
+<% if !user.level_uniq("等待入场").blank? %>
+  <h4>等待入场</h4>
+  <ul class="list-unstyled">
+    <% user.level_uniq("等待入场").each do |stock| %>
+      <%= link_to stock_path(stock) do %>
+        <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+
+<% if !user.level_uniq("近期关注").blank? %>
+  <h4>近期关注</h4>
+  <ul class="list-unstyled">
+    <% user.level_uniq("近期关注").each do |stock| %>
+      <%= link_to stock_path(stock) do %>
+        <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+
+<% if !user.level_uniq("长期关注").blank? %>
+  <h4>长期关注</h4>
+  <ul class="list-unstyled">
+    <% user.level_uniq("长期关注").each do |stock| %>
+      <%= link_to stock_path(stock) do %>
+        <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+
+<hr>

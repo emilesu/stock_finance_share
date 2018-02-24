@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_username!(params[:id])
     if @user.update(user_params)
-      redirect_back fallback_location: user_path(@user)
+      redirect_to user_path(@user)
     else
       redirect_back fallback_location: user_path(@user)
     end

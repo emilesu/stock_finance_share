@@ -1,4 +1,31 @@
 .user-center {
   margin-top: 50px;
   color: #333;
+  line-height: 20px;
+  text-align: justify;
+  a {
+    text-decoration: none;
+    color: #666;
+  }
+  a:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .list-unstyled {
+    li {
+      padding: 7px 12px;
+      border-radius:5px;
+      // float:left;
+    }
+    li:hover {
+      background-color: #1f1f1f;
+      text-decoration: none;
+      color: #f9f9f9;
+      // filter:alpha(Opacity=100);
+      // -moz-opacity:0.8;
+      // transition: 0.4s;
+      // border-radius:5px;
+    }
+  }
 }

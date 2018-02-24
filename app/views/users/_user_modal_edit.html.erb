@@ -1,0 +1,30 @@
+<div class="modal fade" id="momal-user-edit-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">修改个人信息</h5>
+      </div>
+      <%= simple_form_for user, :url => user_path(user)  do |f| %>
+      <div class="modal-body">
+        <div>
+          <br>
+          <%= image_tag(user.avatar.thumb.url, class: "thumbnail img-responsive center-block") %>
+          <%= f.input :avatar, as: :file, :label => "修改头像" %>
+        </div>
+        <div>
+          <%= f.input :username, :label => "用户名", input_html: { class: "form-control"} %>
+          <%= f.input :motto, :label => "简介", input_html: { class: "form-control"} %>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "保存修改", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

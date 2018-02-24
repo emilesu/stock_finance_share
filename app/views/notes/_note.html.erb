@@ -13,7 +13,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><%= image_tag(note.user.avatar, :class => "img-circle") %></a>
+          <a class="navbar-brand" href="#"><%= image_tag(note.user.avatar.thumb.url, :class => "img-circle") %></a>
           <a class="navbar-brand" href="#"><%= note.user.username %></a>
         </div>
 
