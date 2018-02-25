@@ -1,3 +1,4 @@
+
 <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
 
   <!-- 头像 avatar -->
@@ -17,7 +18,11 @@
   </div>
 
 </a>
-<%= render :partial => "user_modal_edit", :locals => { :user => user } %>
+
+<!-- 判断是否是用户本人, ture 则课编辑修改 -->
+<% if current_user && user.id == current_user.id %>
+  <%= render :partial => "user_modal_edit", :locals => { :user => user } %>
+<% end %>
 
 <!-- 简介 motto -->
 <br>

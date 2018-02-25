@@ -1,0 +1,69 @@
+<!-- user参数来自 users_controller#show @user -->
+
+<% if current_user && user.id == current_user.id %>
+  <%= simple_form_for ([user, @user_twitter_new]) do |f| %>
+    <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 5, :style=> 'width: 100%;'} %>
+    <div id="note-status-button" class="btn-group" data-toggle="buttons">
+      <% Twitter::TWITTER_STATUS.each do |status| %>
+        <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
+          <%= f.radio_button :status, status %>
+          <%= t(status, :scope => "note.status") %>
+        </label>
+      <% end %>
+    </div>
+    <%= f.submit "发布", class: "btn btn-default pull-right", data: {disable_with: "Submiting"} %>
+  <% end %>
+  <br>
+<% end %>
+
+<!-- twitter 列表与展示 -->
+
+<% user.twitters.where( :status => "公开" ).order("created_at DESC").each do |twitter| %>
+  <div class="twitters-li">
+    <a data-toggle="collapse" data-target="#twitter-<%= twitter.id %>" aria-expanded="false" aria-controls="collapseExample">
+      <div class="twitter-box">
+        <div class="twitter-content">
+          <%= sanitize twitter.content %>
+        </div>
+        <span> <%= time_ago_in_words(twitter.created_at) %>前 </span>
+        <span class="pull-right">( <%= twitter.reviews.size %> )</span>
+      </div>
+    </a>
+    <div class="collapse" id="twitter-<%= twitter.id %>">
+      <div class="twitter-edit-destroy">
+        <% if current_user && user.id == current_user.id %>
+        <span>
+          <%= link_to("编辑", edit_user_twitter_path(user, twitter)) %> -
+          <%= link_to("删除", user_twitter_path(user, twitter), method: :delete, data: { confirm: "真的要删除吗?" }) %>
+        </span>
+        <% end %>
+      </div>
+      <div class="card card-body">
+        <div class="form-group">
+          <%= simple_form_for ([user, twitter, @user_twitter_review_new]) do |f| %>
+            <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 2, :style=> 'width: 100%;'} %>
+            <%= f.submit "评论", class: "btn btn-xs pull-right", data: {disable_with: "Submiting"} %>
+          <% end %>
+          <br>
+        </div>
+        <% if twitter.reviews.blank? %>
+          <span> 暂时没有评论哦! </span>
+        <% else %>
+          <% twitter.reviews.order("created_at DESC").each do |review| %>
+            <div class="review-box">
+              <div class="media">
+                <div class="media-left">
+                  <%= image_tag(review.user.avatar, :class => "img-circle") %>
+                </div>
+                <div class="media-body">
+                  <h5 class="media-heading"><%= review.user.username %></h5>
+                  <%= sanitize review.content %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

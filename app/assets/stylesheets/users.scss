@@ -28,4 +28,67 @@
       // border-radius:5px;
     }
   }
+
+  .twitters-li {
+    margin-bottom: 20px;
+    .twitter-box {
+      padding: 15px 15px 10px;
+      background-color: #f8f8f8;
+      .twitter-content {
+        margin-bottom: 10px;
+      }
+      span {
+        color: #999
+      }
+    }
+
+    // collapse 和 collapsing 会是一个连贯的动画效果, 样式保持一致
+    .collapse {
+      .twitter-edit-destroy {
+        padding: 0 15px 10px;
+        background-color: #f8f8f8;
+        a {
+          color: #999
+        }
+        a:hover {
+          color: #333
+        }
+      }
+      .card-body {
+        padding: 15px 15px 10px;
+        background-color: #f0f0f0;
+        .review-box {
+          padding: 15px 0 10px;
+          img {
+            width: 40px;
+            height: auto;
+          }
+        }
+      }
+    }
+    .collapsing {
+      .twitter-edit-destroy {
+        padding: 0 15px 10px;
+        background-color: #f8f8f8;
+        a {
+          color: #999
+        }
+        a:hover {
+          color: #333
+        }
+      }
+      .card-body {
+        padding: 15px 15px 10px;
+        background-color: #f0f0f0;
+        .review-box {
+          padding: 15px 0 10px;
+          img {
+            width: 40px;
+            height: auto;
+          }
+        }
+      }
+    }
+
+  }
 }

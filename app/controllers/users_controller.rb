@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username!(params[:id])
+    @user_twitter_new = Twitter.new
+    @user_twitter_review_new = Review.new
   end
 
   def edit

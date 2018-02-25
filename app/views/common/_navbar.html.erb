@@ -39,8 +39,8 @@
             <ul class="dropdown-menu">
               <% if current_user.role == "admin" %>
                 <li><%= link_to("管理员后台", admin_base_data_index_path) %></li>
+                <li class="divider"> </li>
               <% end %>
-              <li class="divider"> </li>
               <li><%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
             </ul>
           </li>
