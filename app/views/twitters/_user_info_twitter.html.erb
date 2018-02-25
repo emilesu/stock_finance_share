@@ -56,7 +56,10 @@
                   <%= image_tag(review.user.avatar, :class => "img-circle") %>
                 </div>
                 <div class="media-body">
-                  <h5 class="media-heading"><%= review.user.username %></h5>
+                  <div class="media-heading">
+                    <%= review.user.username %>
+                    <span> - <%= time_ago_in_words(review.created_at) %> </span>
+                  </div>
                   <%= sanitize review.content %>
                 </div>
               </div>

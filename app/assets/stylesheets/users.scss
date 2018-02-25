@@ -63,6 +63,13 @@
             width: 40px;
             height: auto;
           }
+          .media-heading {
+            font-weight: bold;
+            span {
+              font-weight: normal;
+              color: #999;
+            }
+          }
         }
       }
     }
@@ -85,6 +92,13 @@
           img {
             width: 40px;
             height: auto;
+          }
+          .media-heading {
+            font-weight: bold;
+            span {
+              font-weight: normal;
+              color: #999;
+            }
           }
         }
       }
