@@ -1,18 +1,16 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :fan, :un_fan]
 
   def show
-    @user = User.find_by_username!(params[:id])
     @user_twitter_new = Twitter.new
     @user_twitter_review_new = Review.new
   end
 
   def edit
-    @user = User.find_by_username!(params[:id])
   end
 
   def update
-    @user = User.find_by_username!(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -22,7 +20,6 @@ class UsersController < ApplicationController
 
   # --- fan 和 attention 粉丝和关注 逻辑处理 start ---
   def fan
-    @user = User.find_by_username!(params[:id])
     # 我关注了这会员
     Attention.create!(
       :user_id => current_user.id,
@@ -37,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def un_fan
-    @user = User.find_by_username!(params[:id])
     # 我取消关注了这会员
     Attention.where(
       :user_id => current_user.id,
@@ -54,6 +50,11 @@ class UsersController < ApplicationController
 
 
   private
+
+  def set_user
+    @user = User.find_by_username!(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:avatar, :username, :motto)
   end
