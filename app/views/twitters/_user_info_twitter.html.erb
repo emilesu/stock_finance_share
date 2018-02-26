@@ -48,6 +48,7 @@
         </div>
         <div id="review-list-<%= twitter.id %>">
           <% twitter.reviews.order("created_at DESC").each do |review| %>
+            <!-- 对新增的 review 进行 Ajax 处理 -->
             <%= render :partial => "/reviews/review", :locals => { :review => review, :twitter => twitter } %>
           <% end %>
         </div>
