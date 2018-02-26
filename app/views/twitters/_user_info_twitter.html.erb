@@ -17,8 +17,12 @@
 <% end %>
 
 <!-- twitter 列表与展示 -->
-
-<% user.twitters.where( :status => "公开" ).order("created_at DESC").each do |twitter| %>
+<% if current_user && user == current_user %>
+  <% twitters = user.twitters.order("created_at DESC") %>
+<% else %>
+  <% twitters = user.twitters.where( :status => "公开" ).order("created_at DESC") %>
+<% end %>
+<% twitters.order("created_at DESC").each do |twitter| %>
   <div class="twitters-li">
     <a data-toggle="collapse" data-target="#twitter-<%= twitter.id %>" aria-expanded="false" aria-controls="collapseExample">
       <div class="twitter-box">
@@ -33,7 +37,9 @@
       <div class="twitter-edit-destroy">
         <% if current_user && user.id == current_user.id %>
         <span>
-          <%= link_to("编辑", edit_user_twitter_path(user, twitter)) %> -
+          <a href="twitter-modal-edit" data-toggle="modal" data-target="#twitter-modal-edit-<%= twitter.id %>">
+            编辑
+          </a>
           <%= link_to("删除", user_twitter_path(user, twitter), method: :delete, data: { confirm: "真的要删除吗?" }) %>
         </span>
         <% end %>
@@ -55,4 +61,5 @@
       </div>
     </div>
   </div>
+  <%= render :partial => "//twitters/twitter_modal_edit", :locals => { :twitter => twitter, :user => @user } %>
 <% end %>
