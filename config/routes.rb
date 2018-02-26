@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     resources :twitters do
       resources :reviews
     end
+    member do
+      post "fan" => "users#fan"
+      delete "un_fan" => "users#un_fan"
+    end
   end
 
   namespace :admin do

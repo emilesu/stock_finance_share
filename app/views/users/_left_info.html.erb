@@ -1,6 +1,4 @@
-
 <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
-
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
@@ -9,18 +7,29 @@
       <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
     <% end %>
   </div>
+</a>
 
+<!-- 关注 / 取消关注  当前用户界面是用户本人时不可见 -->
+<% if current_user != user %>
+  <% if current_user.attentions.where( :my_attention => user.id ).blank? %>
+    <%= link_to("关注", fan_user_path, :method => :post, :class => "btn btn-block bg-success btn-xs") %>
+  <% else %>
+    <%= link_to("取消关注", un_fan_user_path, :method => :delete, :class => "btn btn-block bg-danger btn-xs") %>
+  <% end %>
+<% end %>
+
+<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
   <!-- 用户名 username -->
   <div>
     <h3>
       <%= user.username %>
     </h3>
   </div>
-
 </a>
 
+
 <!-- 判断是否是用户本人, ture 则课编辑修改 -->
-<% if current_user && user.id == current_user.id %>
+<% if current_user && user == current_user %>
   <%= render :partial => "user_modal_edit", :locals => { :user => user } %>
 <% end %>
 

@@ -26,6 +26,10 @@ class User < ApplicationRecord
   has_many :twitters, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
 
+  # 与 fan 和 attention 关系
+  has_many :fans, :dependent => :destroy
+  has_many :attentions, :dependent => :destroy
+
   # ---把网址改成用户名---
   def to_param
     self.username

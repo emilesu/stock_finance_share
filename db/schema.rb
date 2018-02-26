@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224180950) do
+ActiveRecord::Schema.define(version: 20180226183106) do
+
+  create_table "attentions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "my_attention"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["my_attention"], name: "index_attentions_on_my_attention"
+    t.index ["user_id"], name: "index_attentions_on_user_id"
+  end
+
+  create_table "fans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "my_fans"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["my_fans"], name: "index_fans_on_my_fans"
+    t.index ["user_id"], name: "index_fans_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
