@@ -11,11 +11,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.twitter_id = @twitter.id
-    if @review.save
-      redirect_back fallback_location: user_path(@user)
-    else
-      redirect_back fallback_location: user_path(@user)
-    end
+    @review.save
   end
 
   private

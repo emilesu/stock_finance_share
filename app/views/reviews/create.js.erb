@@ -1,0 +1,2 @@
+$("#review-list-<%= @twitter.id %>").prepend("<%=j render :partial => "review", :locals => { :review => @review } %>");
+$("#review_content").val("");

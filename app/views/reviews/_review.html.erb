@@ -1,0 +1,14 @@
+<div class="review-box">
+  <div class="media">
+    <div class="media-left">
+      <%= image_tag(review.user.avatar, :class => "img-circle") %>
+    </div>
+    <div class="media-body">
+      <div class="media-heading">
+        <%= review.user.username %>
+        <span> - <%= time_ago_in_words(review.created_at) %>前 </span>
+      </div>
+      <%= sanitize review.content %>
+    </div>
+  </div>
+</div>

@@ -40,32 +40,17 @@
       </div>
       <div class="card card-body">
         <div class="form-group">
-          <%= simple_form_for ([user, twitter, @user_twitter_review_new]) do |f| %>
+          <%= simple_form_for [user, twitter, @user_twitter_review_new], :remote => true do |f| %>
             <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 2, :style=> 'width: 100%;'} %>
             <%= f.submit "评论", class: "btn btn-xs pull-right", data: {disable_with: "Submiting"} %>
           <% end %>
           <br>
         </div>
-        <% if twitter.reviews.blank? %>
-          <span> 暂时没有评论哦! </span>
-        <% else %>
+        <div id="review-list-<%= twitter.id %>">
           <% twitter.reviews.order("created_at DESC").each do |review| %>
-            <div class="review-box">
-              <div class="media">
-                <div class="media-left">
-                  <%= image_tag(review.user.avatar, :class => "img-circle") %>
-                </div>
-                <div class="media-body">
-                  <div class="media-heading">
-                    <%= review.user.username %>
-                    <span> - <%= time_ago_in_words(review.created_at) %> </span>
-                  </div>
-                  <%= sanitize review.content %>
-                </div>
-              </div>
-            </div>
+            <%= render :partial => "/reviews/review", :locals => { :review => review, :twitter => twitter } %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
