@@ -1,2 +1,6 @@
-$("#review-list-<%= @twitter.id %>").prepend("<%=j render :partial => "review", :locals => { :review => @review } %>");
-$("#review_content").val("");
+<% if @review.valid? %>
+  $("#review-list-<%= @twitter.id %>").prepend("<%=j render :partial => "review", :locals => { :review => @review } %>");
+  $("#review_content").val("");
+<% else %>
+  alert("内容不能为空哦!");
+<% end %>
