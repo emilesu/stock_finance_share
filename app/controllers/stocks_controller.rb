@@ -15,7 +15,10 @@ class StocksController < ApplicationController
 
     # 笔记 note
     @stock_note_new = Note.new
-    @stock_notes = @stock.notes.order("created_at DESC")
+    if current_user
+      @stock_current_user_notes = @stock.notes.where( :user_id => current_user.id ).order("created_at DESC")
+    end
+    @stock_notes = @stock.notes.where( :status => "公开" ).order("created_at DESC")
   end
 
 
