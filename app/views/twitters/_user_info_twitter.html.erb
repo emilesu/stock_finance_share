@@ -1,6 +1,6 @@
 <!-- user参数来自 users_controller#show @user -->
 
-<% if current_user && user.id == current_user.id %>
+<% if current_user && user == current_user %>
   <%= simple_form_for ([user, @user_twitter_new]) do |f| %>
     <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 5, :style=> 'width: 100%;'} %>
     <div id="note-status-button" class="btn-group" data-toggle="buttons">
@@ -63,3 +63,5 @@
   </div>
   <%= render :partial => "//twitters/twitter_modal_edit", :locals => { :twitter => twitter, :user => @user } %>
 <% end %>
+
+<br><hr>

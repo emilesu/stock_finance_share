@@ -1,4 +1,4 @@
-// ------ stock show post部分 ------
+// ------ stock show note部分 ------
 .note-box {
   margin-bottom: 25px;
   line-height: 20px;
@@ -68,6 +68,78 @@
     .note-content {
       background-color: #f0f0f0;
       padding: 0px 65px 20px;
+    }
+  }
+
+}
+
+// ------ user show note部分 ------
+.user-note-box {
+  margin-bottom: 25px;
+  line-height: 20px;
+  text-align: justify;
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #6E7B8B;
+  }
+
+  .note-box-side {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    height: 40px;
+
+    .note-left {
+      display: -webkit-flex; /* Safari */
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .note-left-side {
+        padding: 20px 15px;
+        font-weight: bolder;
+        color: #000;
+      }
+
+      .note-mid-side {
+        background-color: #f4f4f4;
+        padding: 10px 20px;
+        margin-left: 10px;
+      }
+    }
+
+    .note-right {
+      color: #999;                //发布时间
+      padding: 10px 15px;
+    }
+  }
+
+  .note-info {
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+    }
+    a:hover {
+      text-decoration: none;
+      color: #6E7B8B;
+    }
+    .note-title {
+      background-color: #f0f0f0;
+      padding: 25px 15px 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .note-content {
+      background-color: #f0f0f0;
+      padding: 0px 15px 20px;
     }
   }
 
