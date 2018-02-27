@@ -41,6 +41,10 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
 
+# markdown
+gem 'redcarpet'
+gem 'simditor'
+
 # 图片处理
 gem 'carrierwave'
 gem 'mini_magick'

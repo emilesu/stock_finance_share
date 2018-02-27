@@ -27,7 +27,7 @@
     <a data-toggle="collapse" data-target="#twitter-<%= twitter.id %>" aria-expanded="false" aria-controls="collapseExample">
       <div class="twitter-box">
         <div class="twitter-content">
-          <%= sanitize twitter.content %>
+          <%= sanitize markdown twitter.content %>
         </div>
         <span> <%= time_ago_in_words(twitter.created_at) %>前 </span>
         <span class="pull-right">( <%= twitter.reviews.size %> )</span>
@@ -65,3 +65,17 @@
 <% end %>
 
 <br><hr>
+
+
+
+<!-- <script type="text/javascript">
+  var editor = new Simditor({
+          textarea: $('#editor'),
+          placeholder: '想问的问题...',
+          cleanPaste: true,
+          pasteImage: true,
+          defaultImage: '<%= image_path "upload-loading.png" %>',
+          upload: false,
+          toolbar: ['title', 'bold', 'italic', 'underline','strikethrough','color', '|','ol','ul','blockquote','code','table','link','image','|', 'fullscreen']
+      });
+</script> -->

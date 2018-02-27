@@ -21,4 +21,5 @@
 //= require typeahead.bundle.min
 //= require Chart.bundle
 //= require chartkick
+//= require simditor
 //= require_tree .
