@@ -1,0 +1,59 @@
+<!-- 我关注的 -->
+<div class="relation-box">
+
+  <div class="relation-title">
+    <h4>我关注的<span class="badge pull-right"><%= @attentions.size %></span></h4>
+  </div>
+  <hr>
+
+  <!-- 关注列表 -->
+  <div class="relation-list">
+    <% @attentions.each do |atention| %>
+      <% u = User.find(atention.my_attention) %>
+      <%= link_to user_path(u) do %>
+      <div class="media">
+        <div class="media-left">
+          <%= image_tag(u.avatar, :class => "img-circle") %>
+        </div>
+        <div class="media-body">
+          <h5 class="media-heading"><%= u.username %></h5>
+          <div class="media-motto">
+            <%= u.motto %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div><br><br>
+
+<!-- 我的粉丝 -->
+<div class="relation-box">
+
+  <div class="relation-title">
+    <h4>Fans<span class="badge pull-right"><%= @fans.size %></span></h4>
+  </div>
+  <hr>
+
+  <!-- 关注列表 -->
+  <div class="relation-list">
+    <% @fans.each do |fan| %>
+      <% u = User.find(fan.my_fans) %>
+      <%= link_to user_path(u) do %>
+      <div class="media">
+        <div class="media-left">
+          <%= image_tag(u.avatar, :class => "img-circle") %>
+        </div>
+        <div class="media-body">
+          <h5 class="media-heading"><%= u.username %></h5>
+          <div class="media-motto">
+            <%= u.motto %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div><br><br>

@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def show
     @user_twitter_new = Twitter.new
     @user_twitter_review_new = Review.new
+    @attentions = @user.attentions.order("created_at DESC")
+    @fans = @user.fans.order("created_at DESC")
   end
 
   def edit
