@@ -27,7 +27,8 @@
     <a data-toggle="collapse" data-target="#twitter-<%= twitter.id %>" aria-expanded="false" aria-controls="collapseExample">
       <div class="twitter-box">
         <div class="twitter-content">
-          <%= sanitize markdown twitter.content %>
+          <%= sanitize twitter.content %>
+          <!-- <%= sanitize markdown twitter.content %> -->
         </div>
         <span> <%= time_ago_in_words(twitter.created_at) %>前 </span>
         <span class="pull-right">( <%= twitter.reviews.size %> )</span>
