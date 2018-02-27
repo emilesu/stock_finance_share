@@ -152,29 +152,3 @@
 .table-right {
   flex-grow: 1;
 }
-
-
-// ------ stock show post部分 ------
-.note-box {
-  text-align: justify;
-
-  .note-box-side {
-    nav {
-      // border-radius: 5px;
-      background-color: #333;
-      .navbar-brand {
-        font-size: 14px;
-      }
-      a:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .note-box-content {
-    padding: 0 0 60px;
-    color: #333;
-    line-height: 20px;
-  }
-
-}

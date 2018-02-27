@@ -1,3 +1,74 @@
-// Place all the styles related to the notes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// ------ stock show post部分 ------
+.note-box {
+  margin-bottom: 25px;
+  line-height: 20px;
+  text-align: justify;
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #6E7B8B;
+  }
+
+  .note-box-side {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f8f8;
+    height: 50px;
+
+    .note-left {
+      display: -webkit-flex; /* Safari */
+      display: flex;
+      justify-content: flex-start;
+
+      .note-left-side {
+        max-width: 160px;
+        padding: 6px 15px;
+        img {
+          width: 38px;
+          height: auto;
+        }
+        t {
+          color: #999;                //发布时间
+        }
+      }
+
+      .note-mid-side {
+        background-color: #f4f4f4;
+        padding: 15px 20px;
+      }
+    }
+
+    .note-right {
+      padding: 10px 15px;
+    }
+  }
+
+  .note-info {
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+    }
+    a:hover {
+      text-decoration: none;
+      color: #6E7B8B;
+    }
+    .note-title {
+      background-color: #f0f0f0;
+      padding: 25px 55px 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .note-content {
+      background-color: #f0f0f0;
+      padding: 0px 55px 20px;
+    }
+  }
+
+}
