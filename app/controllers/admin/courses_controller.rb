@@ -4,6 +4,10 @@ class Admin::CoursesController < AdminController
     @courses = Course.all.order("created_at DESC")
   end
 
+  def show
+    @course = Course.find_by_friendly_id!(params[:id])
+  end
+
   def new
     @course = Course.new
   end
@@ -38,7 +42,7 @@ class Admin::CoursesController < AdminController
 
   private
   def course_params
-    params.require(:course).permit(:title, :description, :friendly_id)
+    params.require(:course).permit(:title, :description, :friendly_id, :surface_img)
   end
 
 end

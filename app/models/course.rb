@@ -3,7 +3,7 @@ class Course < ApplicationRecord
   has_many :posts, :dependent => :destroy
 
   # 资料验证
-  validates_presence_of :title, :desctiption, :friendly_id
+  validates_presence_of :title, :description, :friendly_id, :surface_img
   validates_uniqueness_of :friendly_id
   validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
 

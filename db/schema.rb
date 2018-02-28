@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228122836) do
+ActiveRecord::Schema.define(version: 20180228143831) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180228122836) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "friendly_id"
+    t.string "surface_img"
     t.index ["friendly_id"], name: "index_courses_on_friendly_id", unique: true
   end
 
