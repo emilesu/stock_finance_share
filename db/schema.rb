@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226183106) do
+ActiveRecord::Schema.define(version: 20180228120053) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20180226183106) do
     t.datetime "updated_at", null: false
     t.index ["my_attention"], name: "index_attentions_on_my_attention"
     t.index ["user_id"], name: "index_attentions_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fans", force: :cascade do |t|
@@ -51,6 +58,17 @@ ActiveRecord::Schema.define(version: 20180226183106) do
     t.index ["status"], name: "index_notes_on_status"
     t.index ["stock_id"], name: "index_notes_on_stock_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "course_id"
+    t.string "title"
+    t.text "description"
+    t.string "catalog"
+    t.string "section"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_posts_on_course_id"
   end
 
   create_table "reviews", force: :cascade do |t|

@@ -34,10 +34,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :courses do             #课程展示
+    resources :posts
+  end
+
   namespace :admin do
     resources :users
     resources :stocks
     resources :settings
+    resources :courses do           #课程后台编辑
+      resources :posts
+    end
     namespace :base_data do
       get :index                    #首台数据更新主页
       post :update_sh_stock_symbol     #更新 沪市 股票代码和股票名称
