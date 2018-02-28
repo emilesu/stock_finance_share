@@ -13,32 +13,32 @@ class Admin::CoursesController < AdminController
     if @course.save
       redirect_to admin_courses_path
     else
-      rendew :new
-    else
+      render :new
+    end
   end
 
   def edit
-    @course = Course.find(params[:id])
+    @course = Course.find_by_friendly_id!(params[:id])
   end
 
   def update
-    @course = Course.find(params[:id])
+    @course = Course.find_by_friendly_id!(params[:id])
     if @course.update(course_params)
       redirect_to admin_courses_path
     else
-      rendew :edit
-    else
+      render :edit
+    end
   end
 
   def destroy
-    @course = Course.find(params[:id])
+    @course = Course.find_by_friendly_id!(params[:id])
     @course.destroy
     redirect_to admin_courses_path
   end
 
   private
   def course_params
-    params.require(:course).permit(:title, :description)
+    params.require(:course).permit(:title, :description, :friendly_id)
   end
 
 end
