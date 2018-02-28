@@ -36,4 +36,9 @@ class Admin::CoursesController < AdminController
     redirect_to admin_courses_path
   end
 
+  private
+  def course_params
+    params.require(:course).permit(:title, :description)
+  end
+
 end
