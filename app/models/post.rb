@@ -3,5 +3,6 @@ class Post < ApplicationRecord
   belongs_to :course
 
   # 资料验证
-  validates_presence_of :title, :desctiption, :catalog, :section
+  validates_presence_of :title, :description, :catalog, :section
+
 end

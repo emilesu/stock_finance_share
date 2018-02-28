@@ -1,0 +1,49 @@
+<div>
+
+  <h2>课程: <%= @course.title %></h2>
+
+  <div>
+    <%= link_to("新建课程章节", new_admin_course_post_path(@course), :class => "btn btn-default pull-right" ) %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>标题/username</th>
+        <th>简介/role</th>
+        <th>添加时间/created_at</th>
+        <th>post数量/posts_count</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= post.id %>
+          </td>
+          <td>
+            <%= link_to admin_course_post_path(@course, post) do %>
+              <%= post.title %>
+            <% end %>
+          </td>
+          <td>
+            <%= post.section %>
+          </td>
+          <td>
+            <%= post.catalog %>
+          </td>
+          <td>
+            <%= post.created_at %>
+          </td>
+          <td>
+            <%= link_to("编辑", edit_admin_course_post_path(@course, post), :class => "btn btn-xs btn-default") %>
+            <%= link_to("删除", admin_course_post_path(@course, post), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

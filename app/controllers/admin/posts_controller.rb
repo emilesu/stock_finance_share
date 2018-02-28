@@ -5,6 +5,10 @@ class Admin::PostsController < AdminController
     @post = Post.new
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post = Post.new(post_params)
     @post.course_id = @course.id
@@ -16,11 +20,11 @@ class Admin::PostsController < AdminController
   end
 
   def edit
-    @post = Post.new(post_params)
+    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.new(post_params)
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to admin_course_path(@course)
     else
@@ -29,7 +33,7 @@ class Admin::PostsController < AdminController
   end
 
   def destroy
-    @post = Post.new(post_params)
+    @post = Post.find(params[:id])
     @post.destroy
     redirect_to admin_course_path(@course)
   end

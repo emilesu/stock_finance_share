@@ -1,0 +1,23 @@
+<%= simple_form_for [:admin, @course, @post] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :title, :label => "标题/title", input_html: { class: "form-control"} %>
+    <%= f.input :catalog, :label => "目录码/catalog", input_html: { class: "form-control"} %>
+    <%= f.input :section, :label => "章节名称/section", input_html: { class: "form-control"} %>
+    <%= f.input :description, :label => "简介/description", input_html: { class: "form-control", :id => "editor"} %>
+    <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  var editor = new Simditor({
+          textarea: $('#editor'),
+          placeholder: '想问的问题...',
+          cleanPaste: true,
+          pasteImage: true,
+          defaultImage: '<%= image_path "upload-loading.png" %>',
+          upload: false,
+          toolbar: ['title', 'bold', 'italic', 'underline','strikethrough','color', '|','ol','ul','blockquote','code','table','link','image','|', 'fullscreen']
+      });
+</script>
