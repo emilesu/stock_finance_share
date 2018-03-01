@@ -1,3 +1,46 @@
-// Place all the styles related to the admin/posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.post-center {
+  margin-top: 50px;
+  color: #333;
+  line-height: 26px;
+  text-align: justify;
+  font-size: 14px;
+  img {
+    max-width:100%;
+    height:auto;
+  }
+
+  .mastheader {
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+    border-bottom: 1px #f0f0f0 solid;
+    .course-title {
+      h1 {
+        font-size: 36px;
+        margin: 0 0 30px;
+      }
+    }
+    .course-surface_img {
+      background-color: #f8f8f8;
+      .col-sm-6 {
+        padding: 25px 10px 5px;
+      }
+    }
+  }
+
+  .post-box {
+    margin-bottom: 50px;
+    li {
+
+    }
+    a {
+      color: #333;
+    }
+    .affix
+    {
+      top:80px;              //设置处于 affix 时候,距离顶部的位置
+      max-width: 220px;
+    }
+
+  }
+
+}
