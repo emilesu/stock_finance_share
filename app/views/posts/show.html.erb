@@ -1,0 +1,53 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-12 post-center">
+
+  <!-- mastheader课程主题 -->
+  <div class="mastheader row">
+    <div class="col-md-7 course-title">
+      <h1><%= @post.course.title %></h1>
+    </div>
+    <div class="col-md-5 course-surface_img">
+      <div class="col-sm-6">
+        <%= image_tag(@course.surface_img, :class => "thumbnail img-responsive") %>
+      </div>
+      <div class="col-sm-6">
+        <%= sanitize @course.description %>
+      </div>
+    </div>
+  </div>
+  <!-- /mastheader -->
+
+  <div class="post-box row">
+    <!-- left章节目录列表 -->
+    <div class="col-md-3 hidden-sm hidden-xs">
+      <ul class="nav nav-stacked affix affix-top" data-spy="affix" data-offset-top="400">
+        <% @course.posts.each do |post| %>
+          <li role="presentation">
+            <%= link_to(post.title, course_post_path(@course, post)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+      <!-- /left -->
+
+    <% if @post.status == "public" %>
+
+    <!-- 会员可见 -->
+      <!-- right章节内容 -->
+      <div class="col-md-9">
+        <%= sanitize markdown @post.description %>
+      </div>
+      <!-- /right -->
+
+    <% else %>
+
+    <!-- 非会员不可见 -->
+      <!-- right章节内容 -->
+      <div class="text-center post-box">
+        你不是会员哦
+      </div>
+      <!-- /right -->
+
+    <% end %>
+  </div>
+
+</div>

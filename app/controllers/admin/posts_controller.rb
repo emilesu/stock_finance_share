@@ -45,7 +45,7 @@ class Admin::PostsController < AdminController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :catalog, :section)
+    params.require(:post).permit(:title, :description, :catalog, :section, :status)
   end
 
 end

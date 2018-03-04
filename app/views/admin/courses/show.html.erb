@@ -11,6 +11,7 @@
       <tr>
         <th>ID</th>
         <th>标题/username</th>
+        <th>发布状态/status</th>
         <th>简介/role</th>
         <th>添加时间/created_at</th>
         <th>post数量/posts_count</th>
@@ -27,6 +28,9 @@
             <%= link_to admin_course_post_path(@course, post) do %>
               <%= post.title %>
             <% end %>
+          </td>
+          <td>
+            <%= post.status %>
           </td>
           <td>
             <%= post.section %>
