@@ -4,6 +4,17 @@
     <%= f.input :title, :label => "标题/title", input_html: { class: "form-control"} %>
     <%= f.input :catalog, :label => "目录码/catalog", input_html: { class: "form-control"} %>
     <%= f.input :section, :label => "章节名称/section", input_html: { class: "form-control"} %>
+
+    <label>是否公开</label><br>
+    <div class="btn-group" data-toggle="buttons">
+      <% Post::STATUS.each do |status| %>
+        <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
+          <%= f.radio_button :status, status %>
+          <%= t(status, :scope => "post.status") %>
+        </label>
+      <% end %>
+    </div><br><br>
+    
     <%= f.input :description, :label => "简介/description", input_html: { class: "form-control", :rows => 42, :id => "editor"} %>
     <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
   </div>

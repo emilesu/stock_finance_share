@@ -5,4 +5,7 @@ class Post < ApplicationRecord
   # 资料验证
   validates_presence_of :title, :description, :catalog, :section
 
+  STATUS = ["draft", "public"]
+  validates_inclusion_of :status, :in => STATUS
+
 end
