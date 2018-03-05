@@ -1,7 +1,7 @@
 class Admin::CoursesController < AdminController
 
   def index
-    @courses = Course.all.order("created_at DESC")
+    @courses = Course.all
   end
 
   def show

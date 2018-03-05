@@ -1,0 +1,15 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+  <% @courses.each do |course|  %>
+
+    <%= link_to course_post_path( course, course.posts[0] ) do %>
+    <div class="col-md-4 col-sm-6">
+      <div class="course-content">
+        <%= image_tag(course.surface_img, :class => "thumbnail img-responsive") %>
+        <h2><%= course.title %></h2><hr>
+        <%= sanitize course.description %>
+      </div>
+    </div>
+    <% end %>
+
+  <% end %>
+</div>
