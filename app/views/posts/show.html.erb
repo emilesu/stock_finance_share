@@ -29,23 +29,30 @@
     </div>
       <!-- /left -->
 
+    <!-- public 所有人可见 -->
     <% if @post.status == "public" %>
-
-    <!-- 会员可见 -->
-      <!-- right章节内容 -->
       <div class="col-md-9">
         <%= sanitize markdown @post.description %>
       </div>
-      <!-- /right -->
+    <!-- /public 所有人可见 -->
 
+    <!-- member 会员可见 -->
+    <% elsif @post.status == "member" %>
+      <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+        <div class="col-md-9">
+          <%= sanitize markdown @post.description %>
+        </div>
+      <% else %>
+        你还不是会员哟
+      <% end %>
+    <!-- /member 会员可见 -->
+
+    <!-- draf 草稿状态时 -->
     <% else %>
-
-    <!-- 非会员不可见 -->
-      <!-- right章节内容 -->
       <div class="text-center post-box">
-        你不是会员哦
+        即将发布
       </div>
-      <!-- /right -->
+    <!-- /draf 草稿状态时 -->
 
     <% end %>
   </div>

@@ -138,4 +138,6 @@
   </table>
 </div>
 
-<%= render :partial => "main_finance_table_modal_1", :locals => { :time => time } %>
+<% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+  <%= render :partial => "main_finance_table_modal_1", :locals => { :time => time } %>
+<% end %>

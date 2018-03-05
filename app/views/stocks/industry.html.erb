@@ -1,56 +1,58 @@
-<div class="wrapper">
+<% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+  <div class="wrapper">
 
-  <!-- 所有行业列表 -->
-  <div class="col-lg-2 col-md-2 hidden-sm hidden-xs industry-list">
+    <!-- 所有行业列表 -->
+    <div class="col-lg-2 col-md-2 hidden-sm hidden-xs industry-list">
 
-    <!-- 需要分析的行业 title -->
-    <div class="industry-title">
-      <%= @industry %>
+      <!-- 需要分析的行业 title -->
+      <div class="industry-title">
+        <%= @industry %>
 
-      <!-- 选择股票的上市年限 -->
-      <div class="btn-group pull-right">
-        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if current_user.time_range == "all_years" %>
-            全部
-          <% elsif current_user.time_range == "three_years" %>
-            近3年
-          <% elsif current_user.time_range == "five_years" %>
-            近5年
+        <!-- 选择股票的上市年限 -->
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if current_user.time_range == "all_years" %>
+              全部
+            <% elsif current_user.time_range == "three_years" %>
+              近3年
+            <% elsif current_user.time_range == "five_years" %>
+              近5年
+            <% end %>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to("全部", all_years_stocks_path, method: :post) %></li>
+            <li><%= link_to("已上市3年", three_years_stocks_path, method: :post) %></li>
+            <li><%= link_to("已上市5年", five_years_stocks_path, method: :post) %></li>
+          </ul>
+        </div>
+
+      </div>
+
+
+      <!-- 其他行业 - 可点击选择 -->
+      <div class="industry-li-all">
+        <ul class="list-unstyled">
+          <% @all_industrys[0..14].each do |i| %>
+            <%= link_to industry_stocks_path(:order => i) do %>
+              <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
+            <% end %>
           <% end %>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><%= link_to("全部", all_years_stocks_path, method: :post) %></li>
-          <li><%= link_to("已上市3年", three_years_stocks_path, method: :post) %></li>
-          <li><%= link_to("已上市5年", five_years_stocks_path, method: :post) %></li>
+          <% @all_industrys[15..-1].each do |i| %>
+            <%= link_to industry_stocks_path(:order => i) do %>
+              <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
+            <% end %>
+          <% end %>
         </ul>
       </div>
 
     </div>
 
 
-    <!-- 其他行业 - 可点击选择 -->
-    <div class="industry-li-all">
-      <ul class="list-unstyled">
-        <% @all_industrys[0..14].each do |i| %>
-          <%= link_to industry_stocks_path(:order => i) do %>
-            <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
-          <% end %>
-        <% end %>
-        <% @all_industrys[15..-1].each do |i| %>
-          <%= link_to industry_stocks_path(:order => i) do %>
-            <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
-          <% end %>
-        <% end %>
-      </ul>
+    <!-- 行业指标排序 -->
+    <div class="col-lg-10 col-md-10 col-ms-12 col-xs-12">
+      <%= render :partial => "industry_table" %>
     </div>
 
   </div>
-
-
-  <!-- 行业指标排序 -->
-  <div class="col-lg-10 col-md-10 col-ms-12 col-xs-12">
-    <%= render :partial => "industry_table" %>
-  </div>
-
-</div>
+<% end %>
