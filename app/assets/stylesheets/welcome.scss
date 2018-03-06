@@ -1,3 +1,66 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.slogan-box {
+  position: relative;
+  height: 1427px;
+
+  .slogan-bg {
+    .slogan {
+      // 禁止选择文本
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      // /禁止选择文本
+      position: absolute;
+      margin: 0 auto 0;
+      top: 25%;
+      left:0; right:0;      //元素居中
+      h1 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  #myCarousel {
+    z-index: 2;
+    background-color: #f0f0f0;
+    position: absolute;
+    left:0; right:0;      //元素居中
+    margin: 0 auto 0;
+    max-height: 550px;
+    max-width: 950px;
+
+    box-shadow: 0px 0px 25px 0px #808080;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    transition: 0.3s;
+
+
+  }
+
+  .slogan-bottom {
+    z-index: 1;
+    position: absolute;
+    height: 27%;
+    width: 100%;
+    bottom: 0px;
+    background-color: #5a5a5a;
+  }
+
+}
+
+
+/*  --- 响应式设置 ---  */
+@media screen and (min-width: 760px){
+    .slogan-box { height: 1427px; }
+    #myCarousel { top: 45%; }
+}
+@media screen and (max-width: 640px){
+    .slogan-box { height: 1000px; }
+    #myCarousel { top: 55%; }
+}
+@media screen and (max-width: 520px){
+    .slogan-box { height: 800px; }
+    #myCarousel { top: 55%; }
+}
