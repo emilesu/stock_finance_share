@@ -1,17 +1,17 @@
 .slogan-box {
   position: relative;
   height: 1427px;
+  // 禁止选择文本
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  // /禁止选择文本
 
   .slogan-bg {
     .slogan {
-      // 禁止选择文本
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      // /禁止选择文本
       position: absolute;
       margin: 0 auto 0;
       top: 25%;
@@ -23,20 +23,28 @@
   }
 
   #myCarousel {
-    z-index: 2;
+    z-index: 3;
     background-color: #f0f0f0;
     position: absolute;
     left:0; right:0;      //元素居中
     margin: 0 auto 0;
     max-height: 550px;
     max-width: 950px;
-
     box-shadow: 0px 0px 25px 0px #808080;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     transition: 0.3s;
+  }
 
-
+  #sloganCarousel {
+    position: absolute;
+    z-index: 2;
+    color: red;
+    font-weight: lighter;
+    left:0; right:0;      //元素居中
+    margin: 0 auto 0;
+    max-height: 550px;
+    max-width: 950px;
   }
 
   .slogan-bottom {
@@ -52,15 +60,18 @@
 
 
 /*  --- 响应式设置 ---  */
-@media screen and (min-width: 760px){
-    .slogan-box { height: 1427px; }
+@media screen and (min-width: 960px){
+    .slogan-box { height: 1350px; }
     #myCarousel { top: 45%; }
+    #sloganCarousel { bottom: 5%; font-size: 25px; }
 }
-@media screen and (max-width: 640px){
-    .slogan-box { height: 1000px; }
-    #myCarousel { top: 55%; }
+@media screen and (max-width: 770px){
+    .slogan-box { height: 1100px; }
+    #myCarousel { top: 45%; }
+    #sloganCarousel { bottom: 1%; font-size: 25px; }
 }
 @media screen and (max-width: 520px){
     .slogan-box { height: 800px; }
     #myCarousel { top: 55%; }
+    #sloganCarousel { bottom: 1%; font-size: 20px;}
 }
