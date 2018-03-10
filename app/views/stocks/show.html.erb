@@ -74,3 +74,8 @@
 </div>
 
 <%= render :partial => "//notes/note_modal_new"%>
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @stock.name %>(<%= @stock.easy_symbol %>)
+<% end %>
