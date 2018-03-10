@@ -19,3 +19,8 @@
 
   </div>
 </div>
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @user.username %> - 个人中心 - 
+<% end %>

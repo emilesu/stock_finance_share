@@ -53,3 +53,8 @@
 
   </div>
 <% end %>
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @stock.name %>(<%= @stock.easy_symbol %>) -
+<% end %>
