@@ -9,7 +9,7 @@
           排序 <span class="caret"></span>
         </button>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li>
+          <li class="active">
             <a href="#tab_default_0" data-toggle="tab"></a>
           </li>
           <li>
@@ -24,7 +24,7 @@
           <li>
             <a href="#tab_default_4" data-toggle="tab">纯益率/净利率(%)</a>
           </li>
-          <li class="active">
+          <li>
             <a href="#tab_default_5" data-toggle="tab">股东权益报酬率(%) RoE</a>
           </li>
           <li>
@@ -41,11 +41,11 @@
 <div class="industry-li tab-content">
 
   <div class="tab-pane active" id="tab_default_0">
-    <div class="industry-li-title">排序:现金与约当现金比率(%)</div>
+    <div class="industry-li-title">股东权益报酬率(%) RoE</div>
     <ul class="list-unstyled">
-      <% @industrys_cash_order.each do |stock| %>
+      <% @industrys_roe_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.cash_and_cash_equivalents_ratio(@time)[0] %></span></li>
+          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.roe_ratio(@time)[0] %></span></li>
         <% end %>
       <% end %>
     </ul>
