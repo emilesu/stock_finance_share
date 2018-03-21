@@ -8,29 +8,6 @@ class User < ApplicationRecord
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
   has_many :identifies, :dependent => :destroy
-
-  # def self.from_wechat(access_token, signed_in_resoruce=nil)
-  #   data = access_token.info
-  #   identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
-  #
-  #   if identify
-  #     return identify.user
-  #   else
-  #     user = User.create(
-  #       username: data.nickname,
-  #       opendid: access_token.extra.raw_info.openid,
-  #       email: access_token.extra.raw_info.openid + "@holdle.com",
-  #       avatar: data.headimgurl,
-  #       password: Devise.friendly_token[0,20]
-  #     )
-  #     identify = Identify.create(
-  #       provider: access_token.provider,
-  #       uid: access_token.uid,
-  #       user: user
-  #     )
-  #     return user
-  #   end
-  # end
   # </---- 微信登入回调数据处理 ---->
 
   # 资料验证
