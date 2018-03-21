@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
-  has_many :identifies
+  has_many :identifies, :dependent => :destroy
 
   # def self.from_wechat(access_token, signed_in_resoruce=nil)
   #   data = access_token.info
