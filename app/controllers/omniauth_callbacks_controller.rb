@@ -9,15 +9,12 @@ class OmniauthCallbacksController < ApplicationController
     if identify
       @user = identify.user
     else
-      i = Devise.friendly_token[0,20]
       user = User.create(
         username: data.nickname,
-        opendid: auth.extra.raw_info.openid,
+        openid: auth.extra.raw_info.openid,
         email: auth.extra.raw_info.openid + "@holdle.com",
         avatar: data.headimgurl,
-        password: i,
-        password_confirmation: i
-
+        password: Devise.friendly_token[0,20]
       )
       identify = Identify.create(
         provider: auth.provider,
