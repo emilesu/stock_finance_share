@@ -40,7 +40,8 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
-gem 'omniauth-wechat-oauth2'
+gem 'omniauth'
+gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
 
 # markdown
 gem 'redcarpet'

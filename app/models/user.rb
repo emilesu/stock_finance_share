@@ -5,6 +5,32 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:wechat]
 
+  # 微信登入回调数据处理
+  def self.from_wechat(access_token, signed_in_resoruce=nil)
+    data = access_token.info
+    identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
+
+    if identify
+      return identify.user
+    else
+      user = User.find_by(:email => data.email)
+      if !user
+        user = User.create(
+          username: access_token.extra.raw_info.name,
+          email: data.email,
+          avatar: data.image,
+          password: Devise.friendly_token[0,20]
+        )
+      end
+      identify = Identify.create(
+        provider: access_token.provider,
+        uid: access_token.uid,
+        user: user
+      )
+      return user
+    end
+  end
+
   # 资料验证
   validates_presence_of :username, :role
 

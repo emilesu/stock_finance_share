@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:yangsr/omniauth-wechat-oauth2.git
+  revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
+  specs:
+    omniauth-wechat-oauth2 (0.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
 GEM
   remote: https://gems.ruby-china.org/
   specs:
@@ -185,9 +193,6 @@ GEM
     omniauth-oauth2 (1.5.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
-    omniauth-wechat-oauth2 (0.1.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     orm_adapter (0.5.0)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
@@ -344,7 +349,8 @@ DEPENDENCIES
   mini_magick
   mysql2
   nokogiri
-  omniauth-wechat-oauth2
+  omniauth
+  omniauth-wechat-oauth2!
   puma (~> 3.7)
   qiniu-rs
   rails (~> 5.1.4)
