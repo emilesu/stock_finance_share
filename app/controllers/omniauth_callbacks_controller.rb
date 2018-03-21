@@ -4,7 +4,7 @@ class OmniauthCallbacksController < ApplicationController
   def wechat
     auth = request.env['omniauth.auth']
     data = auth.info
-    identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
+    identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
 
     if identify
       @user = identify.user
