@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:wechat]
 
-  # 微信登入回调数据处理
+  # <---- 微信登入回调数据处理 ---->
+  # 微信登陆识别表福
+  has_many :identifies
+
   def self.from_wechat(access_token, signed_in_resoruce=nil)
     data = access_token.info
     identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
@@ -30,6 +33,7 @@ class User < ApplicationRecord
       return user
     end
   end
+  # </---- 微信登入回调数据处理 ---->
 
   # 资料验证
   validates_presence_of :username, :role

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321034052) do
+ActiveRecord::Schema.define(version: 20180321081806) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20180321034052) do
     t.datetime "updated_at", null: false
     t.index ["my_fans"], name: "index_fans_on_my_fans"
     t.index ["user_id"], name: "index_fans_on_user_id"
+  end
+
+  create_table "identifies", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
@@ -120,20 +128,6 @@ ActiveRecord::Schema.define(version: 20180321034052) do
     t.string "user_id"
     t.index ["status"], name: "index_twitters_on_status"
     t.index ["user_id"], name: "index_twitters_on_user_id"
-  end
-
-  create_table "user_profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "avatar"
-    t.string "name"
-    t.string "phone"
-    t.string "email"
-    t.string "province"
-    t.string "city"
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
