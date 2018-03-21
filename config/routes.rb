@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "user/registrations",
+    omniauth_callbacks: 'omniauth_callback'
+  }
 
   resources :stocks do
     # get "/industry/" => "stocks#industry", :as => :industry        #行业关键指标排名分析

@@ -40,6 +40,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
+gem 'omniauth-wechat-oauth2'
 
 # markdown
 gem 'redcarpet'

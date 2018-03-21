@@ -1,11 +1,9 @@
 production:
-  qiniu_access_key: O9nvaWGcvD86W7keehXRPhFNOWUXRi_gTQI8PscX  # 你的 qiniu AccessKey
-  qiniu_secret_key: yegEe9Lf-lXuzBCN2owf_S6E7CUItude0dbWwCXC  # 你的 qiniu SecretKey
-  qiniu_bucket: stock-finance-share  # 你的 qiniu bucket
-  qiniu_bucket_domain: p4lebvpw1.bkt.clouddn.com  # 你的 qiniu bucket domain
+  juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
+  open_weixin_app_id: wx51bd19f8a9f4a04c
+  open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
 
 development:
-  qiniu_access_key: O9nvaWGcvD86W7keehXRPhFNOWUXRi_gTQI8PscX  # 你的 qiniu AccessKey
-  qiniu_secret_key: yegEe9Lf-lXuzBCN2owf_S6E7CUItude0dbWwCXC  # 你的 qiniu SecretKey
-  qiniu_bucket: stock-finance-share  # 你的 qiniu bucket
-  qiniu_bucket_domain: p4lebvpw1.bkt.clouddn.com  # 你的 qiniu bucket domain
+  juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
+  open_weixin_app_id: wx51bd19f8a9f4a04c
+  open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
