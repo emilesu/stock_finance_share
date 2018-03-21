@@ -2,20 +2,20 @@ class OmniauthCallbacksController < ApplicationController
 
 
   def wechat
-    auth = request.env['omniauth.auth']
-    data = auth.info
+    auth = request.env['omniauth.auth']       # 引入回调数据 HASH
+    data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
     identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
 
-    if identify
-      @user = identify.user
-    else
+    if identify                               # 判断是否是已经注册的用户
+      @user = identify.user                   # true 则通过 identify直接调去
+    else                                      # false 则注册新用户
       i = Devise.friendly_token[0,20]
       user = User.create!(
         username: data.nickname,
         openid: auth.extra.raw_info.openid,
-        email:  "#{auth.extra.raw_info.openid}@holdle.com",
+        email:  "#{auth.extra.raw_info.openid}@holdle.com",       # 因为devise 的缘故,邮箱暂做成随机
         avatar: data.headimgurl,
-        password: i,
+        password: i,                                              # 密码随机
         password_confirmation: i
       )
       identify = Identify.create(
