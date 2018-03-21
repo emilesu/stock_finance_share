@@ -12,6 +12,7 @@ class OmniauthCallbacksController < ApplicationController
       user = User.create(
         username: data.nickname,
         openid: auth.extra.raw_info.openid,
+        email:  "#{auth.extra.raw_info.openid}@holdle.com",
         avatar: data.headimgurl,
         password: Devise.friendly_token[0,20]
       )
