@@ -9,7 +9,6 @@ class OmniauthCallbacksController < ApplicationController
         session["devise.user_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_path
     end
-    puts "#{request.env["omniauth.auth"]}"
   end
 
 end
