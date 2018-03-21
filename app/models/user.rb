@@ -18,6 +18,8 @@ class User < ApplicationRecord
     else
       user = User.create(
         username: data.nickname,
+        opendid: access_token.extra.raw_info.openid,
+        email: access_token.extra.raw_info.openid + "@holdle.com",
         avatar: data.headimgurl,
         password: Devise.friendly_token[0,20]
       )
