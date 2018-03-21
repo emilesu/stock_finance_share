@@ -25,7 +25,6 @@ class OmniauthCallbacksController < ApplicationController
     end
 
     sign_in_and_redirect @user, :event => :authentication
-    redirect_to user_path(@user)
   end
 
   # def wechat
