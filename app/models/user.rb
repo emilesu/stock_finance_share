@@ -2,9 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :omniauthable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:wechat]
-
 
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
@@ -20,9 +19,8 @@ class User < ApplicationRecord
       user = User.find_by(:email => data.email)
       if !user
         user = User.create(
-          username: access_token.extra.raw_info.name,
-          email: data.email,
-          avatar: data.image,
+          username: data.nickname,
+          avatar: data.headimgurl,
           password: Devise.friendly_token[0,20]
         )
       end
