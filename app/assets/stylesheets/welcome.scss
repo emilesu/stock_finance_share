@@ -1,6 +1,22 @@
+// 滚动背景设置
+#fullpage {
+  background-color: #fff;
+  .section1 {
+    position: relative;
+    height: auto;
+  }
+  .section2{
+
+  }
+  .section3{
+
+  }
+  .section4{
+    
+  }
+}
+
 .slogan-box {
-  position: relative;
-  height: 1427px;
   // 禁止选择文本
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -16,35 +32,23 @@
       margin: 0 auto 0;
       top: 25%;
       left:0; right:0;      //元素居中
-      h1 {
-        margin-bottom: 20px;
-      }
+      color: rgb(31, 31, 31);
     }
   }
 
   #myCarousel {
     z-index: 3;
-    background-color: #f0f0f0;
     position: absolute;
     left:0; right:0;      //元素居中
     margin: 0 auto 0;
-    max-height: 550px;
-    max-width: 950px;
+
     box-shadow: 0px 0px 25px 0px #808080;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     transition: 0.3s;
-  }
+    img {
 
-  #sloganCarousel {
-    position: absolute;
-    z-index: 2;
-    color: red;
-    font-weight: lighter;
-    left:0; right:0;      //元素居中
-    margin: 0 auto 0;
-    max-height: 550px;
-    max-width: 950px;
+    }
   }
 
   .slogan-bottom {
@@ -60,18 +64,71 @@
 
 
 /*  --- 响应式设置 ---  */
-@media screen and (min-width: 960px){
-    .slogan-box { height: 1350px; }
-    #myCarousel { top: 45%; }
-    #sloganCarousel { bottom: 5%; font-size: 25px; }
+@media screen and (min-width: 1400px){
+  .slogan-box {
+    h1 {
+      margin-bottom: 20px;
+      font-family: "Futura";
+      font-size: 88px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  #myCarousel {
+     bottom: 10%;
+     max-height: 550px;
+     max-width: 950px;
+  }
 }
-@media screen and (max-width: 770px){
-    .slogan-box { height: 1100px; }
-    #myCarousel { top: 45%; }
-    #sloganCarousel { bottom: 1%; font-size: 25px; }
+@media screen and (min-width: 960px) and (max-width: 1399px){
+    .slogan-box {
+      h1 {
+        margin-bottom: 20px;
+        font-family: "Futura";
+        font-size: 88px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+    #myCarousel {
+       bottom: 10%;
+       max-height: 434px;
+       max-width: 750px;
+    }
 }
-@media screen and (max-width: 520px){
-    .slogan-box { height: 800px; }
-    #myCarousel { top: 55%; }
-    #sloganCarousel { bottom: 1%; font-size: 20px;}
+@media screen and (min-width: 768px) and (max-width: 959px){
+    .slogan-box {
+      h1 {
+        margin-bottom: 20px;
+        font-family: "Futura";
+        font-size: 88px;
+      }
+      p {
+        font-size: 20px;
+      }
+    }
+    #myCarousel {
+       bottom: 10%;
+       max-height: 376px;
+       max-width: 650px;
+    }
+}
+@media screen and (min-width: 280px) and (max-width: 767px){
+    .slogan-box {
+      h1 {
+        margin-bottom: 20px;
+        font-family: "Futura";
+        font-size: 71px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+    #myCarousel {
+       bottom: 15%;
+       max-height: 191px;
+       max-width: 330px;
+    }
 }

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.fullpage.min
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap-sprockets
