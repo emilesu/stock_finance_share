@@ -46,6 +46,13 @@ body {
     }
   }
 
+  .navbar-collapse {
+    ul a span img {
+      width: 20px;
+      height: auto;
+    }
+  }
+
   .btn-primary {
     background-color: #333
   }
