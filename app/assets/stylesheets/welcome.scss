@@ -6,12 +6,13 @@
     height: auto;
   }
   .section2{
+    position: relative;
     background-image: url("https://i.loli.net/2018/03/22/5ab3774d5273e.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
   }
   .section3{
+    position: relative;
     background-image: url("https://i.loli.net/2018/03/22/5ab378c440270.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -53,7 +54,6 @@
     -webkit-border-radius: 2px;
     transition: 0.3s;
     img {
-
     }
   }
 
@@ -65,11 +65,21 @@
     bottom: 0px;
     background-color: #5a5a5a;
   }
+}
 
+.section-info {
+  z-index: 3;
+  position: absolute;
+  background-color: #fff;
+  left:0; right:0;      //元素居中
+  margin: 0 auto 0;
+  text-align: justify;
+  opacity:0.9;
 }
 
 
 /*  --- 响应式设置 ---  */
+// pc端显示
 @media screen and (min-width: 1400px){
   .slogan-box {
     h1 {
@@ -86,55 +96,143 @@
      max-height: 550px;
      max-width: 950px;
   }
+  .section-info {
+    bottom: 20%;
+    max-height: 550px;
+    max-width: 750px;
+    padding: 15px 30px;
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    font-size: 16px;
+    line-height: 30px;
+  }
 }
+// ipad pro 竖屏优化
 @media screen and (min-width: 960px) and (max-width: 1399px){
-    .slogan-box {
-      h1 {
-        margin-bottom: 20px;
-        font-family: "Futura";
-        font-size: 88px;
-      }
-      p {
-        font-size: 20px;
-      }
+  .slogan-box {
+    h1 {
+      margin-bottom: 10px;
+      font-family: "Futura";
+      font-size: 88px;
     }
-    #myCarousel {
-       bottom: 10%;
-       max-height: 434px;
-       max-width: 750px;
+    p {
+      font-size: 20px;
     }
+  }
+  #myCarousel {
+     bottom: 10%;
+     max-height: 434px;
+     max-width: 750px;
+  }
+  .section-info {
+    bottom: 15%;
+    max-height: 550px;
+    max-width: 750px;
+    padding: 15px 30px;
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    font-size: 16px;
+    line-height: 30px;
+  }
 }
+//针对 ipad air2 优化
 @media screen and (min-width: 768px) and (max-width: 959px){
-    .slogan-box {
-      h1 {
-        margin-bottom: 20px;
-        font-family: "Futura";
-        font-size: 88px;
-      }
-      p {
-        font-size: 20px;
-      }
+  .slogan-box {
+    h1 {
+      margin-bottom: 10px;
+      font-family: "Futura";
+      font-size: 88px;
     }
-    #myCarousel {
-       bottom: 10%;
-       max-height: 376px;
-       max-width: 650px;
+    p {
+      font-size: 20px;
     }
+  }
+  #myCarousel {
+     bottom: 20%;
+     max-height: 376px;
+     max-width: 650px;
+  }
+  .section-info {
+    bottom: 15%;
+    max-height: 550px;
+    max-width: 650px;
+    padding: 15px 30px;
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    font-size: 14px;
+    line-height: 26px;
+  }
 }
+//针对 ipad air2 横屏优化
+@media screen and (min-width: 960px) and (max-width: 1399px) and (orientation : landscape){
+  .slogan-box {
+    h1 {
+      margin-bottom: 10px;
+      font-family: "Futura";
+      font-size: 88px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+  #myCarousel {
+     bottom: 10%;
+     max-height: 318px;
+     max-width: 550px;
+  }
+  .section-info {
+    bottom: 15%;
+    max-height: 550px;
+    max-width: 750px;
+    padding: 15px 30px;
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    font-size: 14px;
+    line-height: 26px;
+  }
+}
+// 手机端
 @media screen and (min-width: 280px) and (max-width: 767px){
-    .slogan-box {
-      h1 {
-        margin-bottom: 20px;
-        font-family: "Futura";
-        font-size: 71px;
-      }
-      p {
-        font-size: 16px;
-      }
+  .slogan-box {
+    h1 {
+      margin-bottom: 10px;
+      font-family: "Futura";
+      font-size: 71px;
     }
-    #myCarousel {
-       bottom: 15%;
-       max-height: 191px;
-       max-width: 330px;
+    p {
+      font-size: 16px;
     }
+  }
+  #myCarousel {
+     bottom: 15%;
+     max-height: 191px;
+     max-width: 330px;
+  }
+  .section-info {
+    bottom: 15%;
+    max-height: 550px;
+    max-width: 330px;
+    padding: 15px 30px;
+    h2 {
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 25px;
+      line-height: 40px;
+    }
+    font-size: 14px;
+    line-height: 26px;
+  }
 }
