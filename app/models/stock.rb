@@ -930,7 +930,8 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      data = [y[i][0..3], m[i]]
+      main_y = y[0][0..3].to_i - i
+      data = [main_y, m[i]]
       result << data
     end
     # 返回 modal 数据
