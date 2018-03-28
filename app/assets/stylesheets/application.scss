@@ -29,10 +29,12 @@ html {
   }
 
 body {
+  max-width: 1920px;
   font-size: 12px;
   margin-top: 50px;
   min-height: 100%;                                   // footer固定底部
   display: flex;                                      // footer固定底部
+  flex-direction: column;                             // footer固定底部
   .content {
     flex: 1;                                          // footer固定底部
     }
@@ -56,4 +58,27 @@ body {
   }
   .btn-primary:hover {
     background-color: #666
+  }
+
+
+  // footer
+  .footer-box {
+    background-color: #f5f5f5;
+    height: 50px;
+    color: #999;
+    span {
+      position: relative;                    // 垂直居中
+      top: 50%;                              // 垂直居中
+      transform: translateY(-50%);           // 垂直居中
+    }
+    a {
+      // text-decoration: none;
+      color: #999;
+      margin: 0 20px;
+    }
+    .icp {
+      margin-left: 20px;
+    }
+    .site-about {
+    }
   }
