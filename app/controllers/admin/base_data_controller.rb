@@ -174,10 +174,19 @@ class Admin::BaseDataController < AdminController
           )
       end
 
+      if s.pinyin.nil?
+        response = RestClient.get "http://app.finance.ifeng.com/data/stock/gpjk.php?symbol=#{s.easy_symbol}"
+        doc = Nokogiri::HTML.parse(response.body)
+          main = doc.css("table tr[3] td").map{ |x| x.text }[1]
+          s.update!(
+            :pinyin => main
+          )
+      end
+
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "股票上市时间 更新完毕"
+    flash[:notice] = "股票上市时间 拼音简称 更新完毕"
   end
 
 
@@ -195,5 +204,6 @@ class Admin::BaseDataController < AdminController
      redirect_to admin_base_data_index_path
      flash[:notice] = "行业设置 设置完毕"
    end
+
 
 end

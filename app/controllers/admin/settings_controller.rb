@@ -2,6 +2,7 @@ class Admin::SettingsController < AdminController
 
   def index
     @settings = Setting.all
+    @stocks = Stock.all
   end
 
   def show

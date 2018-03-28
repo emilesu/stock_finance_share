@@ -9,6 +9,7 @@
       <tr>
         <th>代码/symbol</th>
         <th>名称/name</th>
+        <th>拼音简称/pinyin</th>
         <th>上市时间/time_to_market</th>
         <th>地域/regional</th>
         <th>网址/company_url</th>
@@ -25,6 +26,12 @@
         <tr>
           <td><%=link_to(stock.easy_symbol, admin_stock_path(stock)) %></td>
           <td><%= stock.name %></td>
+          <!--  -->
+          <% if stock.pinyin.nil? %>
+            <td style="color: red">空</td>
+          <% else %>
+            <td><%= stock.pinyin %></td>
+          <% end %>
           <!--  -->
           <% if stock.time_to_market.nil? %>
             <td style="color: red">空</td>
