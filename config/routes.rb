@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       post :update_industry_setting    #更新行业设置
     end
   end
-
+  
 
 
   #异步管理 UI
