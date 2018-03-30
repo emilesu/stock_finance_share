@@ -19,7 +19,6 @@
 //= require bootstrap/collapse
 //= require bootstrap/button
 //= require bootstrap/modal
-//= require bootstrap/popover
 //= require typeahead.bundle.min
 //= require Chart.bundle
 //= require chartkick
