@@ -23,7 +23,13 @@
             <%= t(role, :scope => "user.role") %>
           </label>
         <% end %>
-      </div><hr>
+      </div>
+      <br><br>
+      <%= f.input :join_time, :label => "加入时间/join_time", input_html: { class: "form-control"} %>
+      <%= f.input :end_time, :label => "到期时间/end_time", input_html: { class: "form-control"} %>
+      <%= f.input :nper, :label => "期数/nper", input_html: { class: "form-control"} %>
+
+      <hr>
       <%= f.input :username, :label => "用户名/username", input_html: { class: "form-control"} %>
       <%= f.input :openid, :label => "微信ID/openid", input_html: { class: "form-control"} %>
       <%= f.input :motto, :label => "简介/motto", input_html: { class: "form-control"} %>

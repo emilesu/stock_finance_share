@@ -11,9 +11,13 @@
         <th>头像/avatar</th>
         <th>用户名/username</th>
         <th>权限等级/role</th>
+        <th>加入时间/join_time</th>
+        <th>到期时间/end_time</th>
+        <th>期数/nper</th>
+        <th>入会操作</th>
         <th>注册时间/created_at</th>
         <th>笔记数量/note_count</th>
-        <th>操作</th>
+        <th>编辑用户</th>
       </tr>
     </thead>
     <tbody>
@@ -43,9 +47,39 @@
           <td>
             <%= user.role %>
           </td>
+          <!-- 加入时间/ join_time -->
+          <td>
+            <% if user.join_time.blank? %>
+              无
+            <% else %>
+              <%= user.join_time.strftime("%Y/%m/%d %I:%M %p") %>
+            <% end %>
+          </td>
+          <!-- 到期时间/ end_time -->
+          <td>
+            <% if user.end_time.blank? %>
+              无
+            <% else %>
+              <%= user.end_time.strftime("%Y/%m/%d %I:%M %p") %>
+            <% end %>
+          </td>
+          <!-- 期数/ nper -->
+          <td>
+            <% if user.nper.blank? %>
+              无
+            <% else %>
+              <%= user.nper %>
+            <% end %>
+          </td>
+          <!-- 入会操作 -->
+          <td>
+            <%= link_to("1年会员", nper_1_admin_user_path(user), :method => :post, :class => "btn btn-xs btn-default") %>
+            <%= link_to("永久会员", nper_99_admin_user_path(user), :method => :post, :class => "btn btn-xs btn-default") %>
+            <%= link_to("撤销会员", undo_admin_user_path(user), :method => :post, :class => "btn btn-xs btn-default") %>
+          </td>
           <!-- 注册时间/created_at -->
           <td>
-            <%= user.created_at %>
+            <%= user.created_at.strftime("%Y/%m/%d %I:%M %p") %>
           </td>
           <!-- 笔记数量/note_count -->
           <td>

@@ -1,4 +1,4 @@
-<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
+<!-- <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>"> -->
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
@@ -7,7 +7,7 @@
       <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
     <% end %>
   </div>
-</a>
+<!-- </a> -->
 
 <!-- 关注 / 取消关注  当前用户界面是用户本人时不可见 -->
 <% if current_user && current_user != user %>
@@ -18,14 +18,38 @@
   <% end %>
 <% end %>
 
-<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
+<!-- <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>"> -->
   <!-- 用户名 username -->
   <div>
     <h3>
       <%= user.username %>
+
+      <!-- 会员显示 -->
+      <span class="pull-right">
+        <% if user.role == "member" %>
+          <% if current_user && current_user == user || current_user.role == "admin" %>
+            <% if user.nper == 99 %>
+              <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="永久会员">
+                <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+              </a>
+            <% else %>
+            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
+              <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+            </a>
+            <% end %>
+          <% else %>
+            <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+          <% end %>
+        <% elsif user.role == "admin" %>
+          <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="站长">
+            <img src="https://i.loli.net/2018/03/31/5abe649f3c20a.png">
+          </a>
+        <% end %>
+      </span>
+
     </h3>
   </div>
-</a>
+<!-- </a> -->
 
 
 <!-- 判断是否是用户本人, ture 则课编辑修改 -->
@@ -77,3 +101,11 @@
 <% end %>
 
 <hr>
+
+
+<!-- vip 下拉弹出到期时间 -->
+<script>
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>

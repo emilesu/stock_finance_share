@@ -41,7 +41,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        post "nper_1" => "users#nper_1"         #增加1年会员
+        post "nper_99" => "users#nper_99"       #永久会员
+        post "undo" => "users#undo"             #测校会员
+      end
+    end
     resources :stocks
     resources :settings
     resources :courses do           #课程后台编辑
@@ -58,7 +64,7 @@ Rails.application.routes.draw do
       post :update_industry_setting    #更新行业设置
     end
   end
-  
+
 
 
   #异步管理 UI
