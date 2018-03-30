@@ -2,15 +2,15 @@
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
-      <%= image_tag(user.avatar, :class => "thumbnail img-responsive") %>
+      <%= image_tag(user.avatar, :class => "img-responsive") %>
     <% else %>
-      <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive") %>
+      <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "img-responsive") %>
     <% end %>
   </div>
 <!-- </a> -->
 
 <!-- 关注 / 取消关注  当前用户界面是用户本人时不可见 -->
-<% if current_user && current_user != user %>
+<% if current_user && current_user != user %> <br>
   <% if current_user.attentions.where( :my_attention => user.id ).blank? %>
     <%= link_to("关注", fan_user_path, :method => :post, :class => "btn btn-block bg-success btn-xs") %>
   <% else %>
