@@ -1,9 +1,11 @@
 <div class="wrapper">
 
-  <!-- 同类行业列表栏 -->
-  <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
-    <%= render "industry_order" %>
-  </div>
+  <!-- 同类行业列表栏 会员可见-->
+  <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
+      <%= render "industry_order" %>
+    </div>
+  <% end %>
 
 
   <!-- 左表：股票信息+资产负债信息 分析 -->
@@ -77,5 +79,5 @@
 
 <!-- 自定义 title -->
 <% content_for :title do %>
-  <%= @stock.name %>(<%= @stock.easy_symbol %>) - 
+  <%= @stock.name %>(<%= @stock.easy_symbol %>) -
 <% end %>

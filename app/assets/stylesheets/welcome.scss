@@ -1,5 +1,5 @@
 // 滚动背景设置
-#fullpage {
+#fullpage-landingpage {
   background-color: #fff;
   // 禁止选择文本
   -webkit-touch-callout: none;
@@ -15,19 +15,16 @@
   }
   .section2{
     position: relative;
-    background-image: url("https://i.loli.net/2018/03/22/5ab3774d5273e.jpg");
+    background-image: url("https://i.loli.net/2018/03/31/5abf742d805d5.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
   .section3{
     position: relative;
-    background-image: url("https://i.loli.net/2018/03/22/5ab378c440270.jpg");
+    background-image: url("https://i.loli.net/2018/03/31/5abf742a3a5f1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-  }
-  .section4{
-
   }
 }
 

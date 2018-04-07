@@ -66,12 +66,13 @@ Rails.application.routes.draw do
   end
 
 
-
-  #异步管理 UI
-  require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.role == "admin" } do
-    mount Sidekiq::Web => '/sidekiq'
+  # 加入会员页面
+  namespace :join do
+    get :index                  #加入会员文案页
+    get :pay                    #加入会员付款二维码页
   end
+
+
 
   root "welcome#index"
 end
