@@ -44,6 +44,12 @@
       top:80px;              //设置处于 affix 时候,距离顶部的位置
       max-width: 220px;
     }
+    img {
+      box-shadow: 0px 0px 25px 0px #d9d6d6;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      transition: 0.3s;
+    }
 
   }
 
