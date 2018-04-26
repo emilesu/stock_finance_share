@@ -884,32 +884,32 @@ class Stock < ApplicationRecord
 
   # 最新年度现金流量排序
   def cash_order
-    self.cash_and_cash_equivalents_ratio(5)[0]
+    (self.cash_and_cash_equivalents_ratio(5).sum / 5).round(2)
   end
 
   # 最新年度毛利率排序
   def operating_margin_order
-   self.operating_margin_ratio(5)[0]
+    (self.operating_margin_ratio(5).sum / 5).round(2)
   end
 
   # 最新年度营业利益率排序
   def business_profitability_order
-   self.business_profitability_ratio(5)[0]
+    (self.business_profitability_ratio(5).sum / 5).round(2)
   end
 
   # 最新年度净利率排序
   def net_profit_margin_order
-   self.net_profit_margin_ratio(5)[0]
+    (self.net_profit_margin_ratio(5).sum / 5).round(2)
   end
 
   #股东权益报酬率 RoE 排序
   def roe_order
-    self.roe_ratio(5)[0]
+    (self.roe_ratio(5).sum / 5).round(2)
   end
 
   #负债占资本利率排序
   def debt_asset_order
-    self.debt_asset_ratio(5)[0]
+    (self.debt_asset_ratio(5).sum / 5).round(2)
   end
 
 

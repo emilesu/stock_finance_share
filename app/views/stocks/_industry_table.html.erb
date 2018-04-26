@@ -6,7 +6,7 @@
     <% @industrys_cash_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.cash_and_cash_equivalents_ratio(5)[0] %></td>
+        <td><%= (stock.cash_and_cash_equivalents_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
@@ -20,7 +20,7 @@
     <% @industrys_operating_margin_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.operating_margin_ratio(5)[0] %></td>
+        <td><%= (stock.operating_margin_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
@@ -34,7 +34,7 @@
     <% @industrys_business_profitability_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.business_profitability_ratio(5)[0] %></td>
+        <td><%= (stock.business_profitability_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
@@ -48,7 +48,7 @@
     <% @industrys_net_profit_margin_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.net_profit_margin_ratio(5)[0] %></td>
+        <td><%= (stock.net_profit_margin_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
@@ -62,7 +62,7 @@
     <% @industrys_roe_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.roe_ratio(5)[0] %></td>
+        <td><%= (stock.roe_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
@@ -76,7 +76,7 @@
     <% @industrys_debt_asset_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= stock.debt_asset_ratio(5)[0] %></td>
+        <td><%= (stock.debt_asset_ratio(5).sum / 5).round(2) %></td>
       </tr>
     <% end %>
   </table>
