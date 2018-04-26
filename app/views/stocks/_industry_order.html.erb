@@ -41,7 +41,7 @@
 <div class="industry-li tab-content">
 
   <div class="tab-pane active" id="tab_default_0">
-    <div class="industry-li-title">股东权益报酬率(%) RoE</div>
+    <div class="industry-li-title">股东权益报酬率(%) RoE <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_1">
-    <div class="industry-li-title">排序:现金与约当现金比率(%)</div>
+    <div class="industry-li-title">排序:现金与约当现金比率(%) <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_cash_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -63,7 +63,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_2">
-    <div class="industry-li-title">营业毛利率(%)</div>
+    <div class="industry-li-title">营业毛利率(%) <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_operating_margin_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -74,7 +74,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_3">
-    <div class="industry-li-title">营业利益率排序(%)</div>
+    <div class="industry-li-title">营业利益率排序(%) <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_business_profitability_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -85,7 +85,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_4">
-    <div class="industry-li-title">纯益率 / 净利率(%)</div>
+    <div class="industry-li-title">纯益率 / 净利率(%) <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_net_profit_margin_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -96,7 +96,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_5">
-    <div class="industry-li-title">股东权益报酬率(%) RoE</div>
+    <div class="industry-li-title">股东权益报酬率(%) RoE <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
@@ -107,7 +107,7 @@
   </div>
 
   <div class="tab-pane" id="tab_default_6">
-    <div class="industry-li-title">负债占资产利率(%)</div>
+    <div class="industry-li-title">负债占资产利率(%) <span class="pull-right">5年均值</span></div>
     <ul class="list-unstyled">
       <% @industrys_debt_asset_order.each do |stock| %>
         <%= link_to stock_path(stock) do %>
