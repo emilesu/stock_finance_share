@@ -919,7 +919,7 @@ class Stock < ApplicationRecord
     array = self.business_profitability_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "NaN"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
