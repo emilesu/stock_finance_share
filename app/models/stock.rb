@@ -884,32 +884,74 @@ class Stock < ApplicationRecord
 
   # 最新年度现金流量排序
   def cash_order
-    (self.cash_and_cash_equivalents_ratio(5).sum / 5).round(2)
+    array = self.cash_and_cash_equivalents_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
   # 最新年度毛利率排序
   def operating_margin_order
-    (self.operating_margin_ratio(5).sum / 5).round(2)
+    array = self.operating_margin_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
   # 最新年度营业利益率排序
   def business_profitability_order
-    (self.business_profitability_ratio(5).sum / 5).round(2)
+    array = self.business_profitability_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
   # 最新年度净利率排序
   def net_profit_margin_order
-    (self.net_profit_margin_ratio(5).sum / 5).round(2)
+    array = self.net_profit_margin_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
   #股东权益报酬率 RoE 排序
   def roe_order
-    (self.roe_ratio(5).sum / 5).round(2)
+    array = self.roe_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
   #负债占资本利率排序
   def debt_asset_order
-    (self.debt_asset_ratio(5).sum / 5).round(2)
+    array = self.debt_asset_ratio(5)
+    num_array = []
+    array.each do |i|
+      if i.to_s != "Infinity"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    return (num_array.sum / num_array.size).round(2)
   end
 
 

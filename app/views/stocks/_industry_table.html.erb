@@ -1,12 +1,26 @@
 <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
   <table class="table table-bordered">
     <tr class="theader-style">
+      <td colspan="2">股东权益报酬率(%) RoE</td>
+    </tr>
+    <% @industrys_roe_order.each do |stock| %>
+      <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
+        <td align=left width = "60%"><%= stock.name %></td>
+        <td><%= stock.roe_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
       <td colspan="2">现金与约当现金比率(%)</td>
     </tr>
     <% @industrys_cash_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.cash_and_cash_equivalents_ratio(5).sum / 5).round(2) %></td>
+        <td><%= stock.cash_order %></td>
       </tr>
     <% end %>
   </table>
@@ -20,7 +34,7 @@
     <% @industrys_operating_margin_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.operating_margin_ratio(5).sum / 5).round(2) %></td>
+        <td><%= stock.operating_margin_order %></td>
       </tr>
     <% end %>
   </table>
@@ -34,7 +48,7 @@
     <% @industrys_business_profitability_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.business_profitability_ratio(5).sum / 5).round(2) %></td>
+        <td><%= stock.business_profitability_order %></td>
       </tr>
     <% end %>
   </table>
@@ -48,21 +62,7 @@
     <% @industrys_net_profit_margin_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.net_profit_margin_ratio(5).sum / 5).round(2) %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
-<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
-  <table class="table table-bordered">
-    <tr class="theader-style">
-      <td colspan="2">股东权益报酬率(%) RoE</td>
-    </tr>
-    <% @industrys_roe_order.each do |stock| %>
-      <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
-        <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.roe_ratio(5).sum / 5).round(2) %></td>
+        <td><%= stock.net_profit_margin_order %></td>
       </tr>
     <% end %>
   </table>
@@ -76,7 +76,7 @@
     <% @industrys_debt_asset_order.each do |stock| %>
       <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
         <td align=left width = "60%"><%= stock.name %></td>
-        <td><%= (stock.debt_asset_ratio(5).sum / 5).round(2) %></td>
+        <td><%= stock.debt_asset_order %></td>
       </tr>
     <% end %>
   </table>
