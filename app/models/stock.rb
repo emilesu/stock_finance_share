@@ -887,7 +887,7 @@ class Stock < ApplicationRecord
     array = self.cash_and_cash_equivalents_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                          # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
@@ -903,7 +903,7 @@ class Stock < ApplicationRecord
     array = self.operating_margin_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
@@ -919,7 +919,7 @@ class Stock < ApplicationRecord
     array = self.business_profitability_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
@@ -935,7 +935,7 @@ class Stock < ApplicationRecord
     array = self.net_profit_margin_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
@@ -951,7 +951,7 @@ class Stock < ApplicationRecord
     array = self.roe_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
@@ -967,7 +967,7 @@ class Stock < ApplicationRecord
     array = self.debt_asset_ratio(5)
     num_array = []
     array.each do |i|
-      if i.to_s != "Infinity" && "NaN" && "无统计"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+      if i.to_s != "Infinity" && "NaN" && "无统计" && "-"                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
         num_array << i
       end
     end
