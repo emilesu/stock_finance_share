@@ -891,7 +891,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
   # 最新年度毛利率排序
@@ -903,7 +907,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
   # 最新年度营业利益率排序
@@ -915,7 +923,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
   # 最新年度净利率排序
@@ -927,7 +939,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
   #股东权益报酬率 RoE 排序
@@ -939,7 +955,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
   #负债占资本利率排序
@@ -951,7 +971,11 @@ class Stock < ApplicationRecord
         num_array << i
       end
     end
-    return (num_array.sum / num_array.size).round(2)
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
   end
 
 
