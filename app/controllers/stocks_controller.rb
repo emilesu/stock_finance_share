@@ -5,12 +5,12 @@ class StocksController < ApplicationController
     @stock = Stock.find_by_easy_symbol!(params[:id])
     all_industrys = Stock.where(:industry => @stock.industry).where.not(:zcb => nil).where.not(:zcb => "")   # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
     @industrys = all_industrys      #全部所属行业列表
-    @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }[0..102]       #所属行业现金量排序
-    @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }[0..102]     #毛利率排序
-    # @industrys_business_profitability_order = all_industrys.sort{ |x,y| y.business_profitability_order <=> x.business_profitability_order }[0..102]     #营业利益率排序
-    # @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.net_profit_margin_order <=> x.net_profit_margin_order }[0..102]     #净利率排序
-    @industrys_roe_order = all_industrys.sort{ |x,y| y.roe_order <=> x.roe_order }[0..102]       #股东权益报酬率 RoE 排序
-    @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..102]       #负债占资本利率排序
+    @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }[0..20]       #所属行业现金量排序
+    @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.operating_margin_order <=> x.operating_margin_order }[0..20]     #毛利率排序
+    @industrys_business_profitability_order = all_industrys.sort{ |x,y| y.business_profitability_order <=> x.business_profitability_order }[0..20]     #营业利益率排序
+    @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.net_profit_margin_order <=> x.net_profit_margin_order }[0..20]     #净利率排序
+    @industrys_roe_order = all_industrys.sort{ |x,y| y.roe_order <=> x.roe_order }[0..20]       #股东权益报酬率 RoE 排序
+    @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..20]       #负债占资本利率排序
     @time = 5
 
     # 笔记 note
