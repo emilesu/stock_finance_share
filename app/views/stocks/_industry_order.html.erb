@@ -86,16 +86,6 @@
 
 
 
-  <div class="tab-pane" id="tab_default_5">
-    <div class="industry-li-title">纯益率 / 净利率(%) <span class="pull-right">5年均值</span></div>
-    <ul class="list-unstyled">
-      <% @industrys_net_profit_margin_order.each do |stock| %>
-        <%= link_to stock_path(stock) do %>
-          <li><%= stock.easy_symbol %> - <%= stock.name %>  <span class="pull-right"><%= stock.net_profit_margin_order %></span></li>
-        <% end %>
-      <% end %>
-    </ul>
-  </div>
 
   <div class="tab-pane" id="tab_default_6">
     <div class="industry-li-title">负债占资产利率(%) <span class="pull-right">5年均值</span></div>
