@@ -17,10 +17,17 @@
         <div class="stock-title">
           <span id="stock-name"> <%= @stock.name %> </span>
           <span id="stock-symbol"> (<%= @stock.easy_symbol %>)</span>
-          <span id="stock-price" class="pull-right">
+          <span class="stock-price" price-data="<%= @latest_price[1] %>">
             <em>¥</em>
             <%= @latest_price[0].to_f.round(2) %>
-            <em> (<%= @latest_price[1] %>) </em>
+            <em> (
+              <%= @latest_price[1] %>
+              <% if @latest_price[1].to_f > 0 %>
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+              <% else %>
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <% end %>
+              ) </em>
           </span>
         </div>
         <strong>
@@ -93,3 +100,18 @@
 <% content_for :title do %>
   <%= @stock.name %>(<%= @stock.easy_symbol %>) -
 <% end %>
+
+
+<!-- 股价涨跌时分别显示红色或绿色 -->
+<script>
+  $(document).ready(function(){
+    $(".stock-price").each(function(){
+      var Num = parseFloat($(this).attr("price-data"));
+      if (Num >= 0){
+        $(this).css("color", "red");
+      } else {
+        $(this).css("color", "green");
+      };
+    });
+  });
+</script>
