@@ -414,7 +414,7 @@ class Stock < ApplicationRecord
     result = []
     (0..time-1).each do |i|
       if zcb7[i].to_i != 0
-        m = lrb1[i].to_f / zcb7[i].to_f
+        m = lrb1[i].to_f / (zcb7[i].to_f + zcb7[i-1].to_f) * 2
         result << m.round(2)
       end
     end
@@ -441,7 +441,7 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-        m = lrb9[i].to_f / zcb20[i].to_f
+        m = lrb9[i].to_f / (zcb20[i].to_f + zcb20[i-1].to_f) * 2
         result << m.round(2)
     end
     # 返回存货周转率
@@ -643,23 +643,20 @@ class Stock < ApplicationRecord
   end
 
   # --- C5、每股盈余 ---
-  # =  净利润 lrb40 / 总股本 zcb95
+  # =  基本每股收益 lrb44
   def earnings_per_share(time)
     # 数据源
     if time == 10
-      lrb40 = self.quarter_years(2, 40)[0..9]
-      zcb95 = self.quarter_years(1, 95)[0..9]
+      lrb44 = self.quarter_years(2, 44)[0..9]
     elsif time == 5
-      lrb40 = self.quarter_years(2, 40)[0..4]
-      zcb95 = self.quarter_years(1, 95)[0..4]
+      lrb44 = self.quarter_years(2, 44)[0..4]
     elsif time == 2
-      lrb40 = self.quarter_recent(2, 40)
-      zcb95 = self.quarter_recent(1, 95)
+      lrb44 = self.quarter_recent(2, 44)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = lrb40[i].to_f / zcb95[i].to_f
+      m = lrb44[i].to_f
       result << m.round(2)
     end
     # 返回每股盈余
@@ -688,23 +685,23 @@ class Stock < ApplicationRecord
   end
 
   # --- C6、股东权益报酬率 ---
-  # =  净利润 lrb40 / 股东权益 zcb107
+  # =  归属于母公司所有者的净利润 lrb41 / 归属于母公司股东权益合计 zcb105
   def roe_ratio(time)
     # 数据源
     if time == 10
-      lrb40 = self.quarter_years(2, 40)[0..9]
-      zcb107 = self.quarter_years(1, 107)[0..9]
+      lrb41 = self.quarter_years(2, 41)[0..9]
+      zcb105 = self.quarter_years(1, 105)[0..9]
     elsif time == 5
-      lrb40 = self.quarter_years(2, 40)[0..4]
-      zcb107 = self.quarter_years(1, 107)[0..4]
+      lrb41 = self.quarter_years(2, 41)[0..4]
+      zcb105 = self.quarter_years(1, 105)[0..4]
     elsif time == 2
-      lrb40 = self.quarter_recent(2, 40)
-      zcb107 = self.quarter_recent(1, 107)
+      lrb41 = self.quarter_recent(2, 41)
+      zcb105 = self.quarter_recent(1, 105)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = lrb40[i].to_f / zcb107[i].to_f * 100
+      m = lrb41[i].to_f / zcb105[i].to_f * 100
       result << m.round(2)
     end
     # 返回每股盈余
@@ -712,7 +709,7 @@ class Stock < ApplicationRecord
   end
 
   # --- D1、负债占资产比率 ---
-  # =  总负责 zcb94 / 总资产 zcb52
+  # =  总负债 zcb94 / 总资产 zcb52
   def debt_asset_ratio(time)
     # 数据源
     if time == 10
@@ -736,26 +733,32 @@ class Stock < ApplicationRecord
   end
 
   # --- D2、长期负债占不动产/厂房及设备比率 ---
-  # =  (长期负债 zcb93 + 股东权益 zcb107) / 固定资产 zcb37
+  # =  (长期负债 zcb93 + 股东权益 zcb107) / 固定资产 zcb37 + 在建工程 zcb38 + 工程物资 zcb39
   def long_term_funds_for_fixed_assets_ratio(time)
     # 数据源
     if time == 10
       zcb93 = self.quarter_years(1, 93)[0..9]
       zcb107 = self.quarter_years(1, 107)[0..9]
       zcb37 = self.quarter_years(1, 37)[0..9]
+      zcb38 = self.quarter_years(1, 38)[0..9]
+      zcb39 = self.quarter_years(1, 39)[0..9]
     elsif time == 5
       zcb93 = self.quarter_years(1, 93)[0..4]
       zcb107 = self.quarter_years(1, 107)[0..4]
       zcb37 = self.quarter_years(1, 37)[0..4]
+      zcb38 = self.quarter_years(1, 38)[0..4]
+      zcb39 = self.quarter_years(1, 39)[0..4]
     elsif time == 2
       zcb93 = self.quarter_recent(1, 93)
       zcb107 = self.quarter_recent(1, 107)
       zcb37 = self.quarter_recent(1, 37)
+      zcb38 = self.quarter_recent(1, 38)
+      zcb39 = self.quarter_recent(1, 39)
     end
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( zcb93[i].to_f + zcb107[i].to_f ) / zcb37[i].to_f * 100
+      m = ( zcb93[i].to_f + zcb107[i].to_f ) / ( zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f ) * 100
       result << m.round(2)
     end
     # 长期资金占不动产/厂房及设备比率
