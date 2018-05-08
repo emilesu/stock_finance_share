@@ -642,6 +642,33 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- C4-2、分红率 ---
+  # =  分配股利、利润或偿付利息所支付的现金 llb48 - 其中：子公司支付给少数股东的股利、利润 llb49 / 净利润 lrb40
+  def dividend_rate(time)
+    # 数据源
+    if time == 10
+      llb48 = self.quarter_years(3, 48)[0..9]
+      llb49 = self.quarter_years(3, 49)[0..9]
+      lrb40 = self.quarter_years(2, 40)[0..9]
+    elsif time == 5
+      llb48 = self.quarter_years(3, 48)[0..4]
+      llb49 = self.quarter_years(3, 49)[0..4]
+      lrb40 = self.quarter_years(2, 40)[0..4]
+    elsif time == 2
+      llb48 = self.quarter_years(3, 48)
+      llb49 = self.quarter_years(3, 49)
+      lrb40 = self.quarter_recent(2, 40)
+    end
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      m = ( llb48[i].to_f - llb49[i].to_f ) / lrb40[i].to_f * 100
+      result << m.round(2)
+    end
+    # 返回净利率
+    return result
+  end
+
   # --- C5、每股盈余 ---
   # =  基本每股收益 lrb44
   def earnings_per_share(time)
@@ -1009,14 +1036,26 @@ class Stock < ApplicationRecord
 
 
 
-  # ---------------爬取 股票现价 和 现市盈率----------------
+  # ---------------爬取 股票现价 涨跌幅 和 现市盈率----------------
 
-  def stock_latest_price
-    #code
-  end
+  def stock_latest_price_and_PE
+    response = RestClient.get "https://www.futunn.com/quote/stock?m=#{self.easy_symbol[0..1]}&code=#{self.easy_symbol}"
+    doc = Nokogiri::HTML.parse(response.body)
+    result = []
 
-  def stock_latest_PE_ratio
-    #code
+    # 股票现价
+    price = doc.css(".price01").map{ |x| x.text }[0]
+    result << price
+
+    # 股票涨幅
+    applies = doc.css(".div002 span").map{ |x| x.text }[2]
+    result << applies
+
+    # 市盈率 PE
+    pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0].split("：")[1]
+    result << pe
+
+    return result
   end
 
 

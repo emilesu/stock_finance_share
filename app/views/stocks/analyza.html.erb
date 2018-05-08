@@ -10,7 +10,7 @@
           <span> (<%= @stock.easy_symbol %>)</span>
         </h1>
         <h5>
-          <%= @stock.industry %> - <%= @stock.regional %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
+          <%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
         </h5>
 
         <div class="main_business">

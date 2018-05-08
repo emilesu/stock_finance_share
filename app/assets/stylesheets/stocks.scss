@@ -114,22 +114,34 @@
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-  .table-left {
-    flex-grow: 1;
-    align-self: flex-end;
-  }
-  .stock-title {
+
+  .stock-intro {
     flex-grow: 1;
     align-self: flex-start;
-    height: 200px;
-    h1 {
-      margin-top: 0;
-    }
-    span {
-      font-size: 20px;
+    // height: 200px;
+    .stock-title {
+      margin-bottom: 10px;
+      #stock-name {
+        font-size: 36px;
+        font-weight: 500;
+      }
+      #stock-symbol {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.1;
+      }
+      #stock-price {
+        font-size: 26px;
+        padding: 10px 20px;
+        background-color: #f9f9f9;
+        color: red;
+        em {
+          font-size: 12px;
+        }
+      }
     }
     .to-finance-btn {
-      margin: 20px 0;
+      margin: 75px 0 15px;
     }
     .main_business {
       height:40px;
@@ -147,6 +159,11 @@
   .star-stock:hover {
     cursor: pointer;
   }
+}
+
+.table-left {
+  flex-grow: 1;
+  align-self: flex-end;
 }
 
 .table-right {

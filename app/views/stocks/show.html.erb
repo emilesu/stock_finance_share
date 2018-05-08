@@ -13,16 +13,22 @@
 
       <!-- 股票信息 -->
       <!-- <div class="stock-title"> -->                               <!-- 在 md 以下时左右布局 -->
-      <div class="stock-title col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
-        <h1>
-          <%= @stock.name %>
-          <span> (<%= @stock.easy_symbol %>)</span>
-        </h1>
-        <h5>
-          <%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
-        </h5>
+      <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
+        <div class="stock-title">
+          <span id="stock-name"> <%= @stock.name %> </span>
+          <span id="stock-symbol"> (<%= @stock.easy_symbol %>)</span>
+          <span id="stock-price" class="pull-right">
+            <em>¥</em>
+            <%= @latest_price[0].to_f.round(2) %>
+            <em> (<%= @latest_price[1] %>) </em>
+          </span>
+        </div>
+        <strong>
+          <p><%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
+          <p>滚动市盈率(TTM): <%= @latest_price[2].to_f.round(2) %></p>
+        </strong>
 
-        <div class="main_business">
+        <div class="main_business col-md-12 row">
           <p title="<%= @stock.main_business %>"><strong>主营业务: </strong><%= @stock.main_business %></p>
         </div>
 

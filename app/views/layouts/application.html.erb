@@ -22,7 +22,12 @@
         <!-- <div class="row"> -->
         <%= render "common/navbar" %>
         <%= render "common/flashes" %>
-        <%= yield %>
+        <div class="hidden-lg row">
+         <%= yield %>
+        </div>
+        <div class="hidden-md hidden-sm hidden-xs">
+         <%= yield %>
+        </div>
       </div>
     </div>
     <%= render "common/footer" %>
