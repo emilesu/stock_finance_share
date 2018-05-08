@@ -22,12 +22,7 @@
         <!-- <div class="row"> -->
         <%= render "common/navbar" %>
         <%= render "common/flashes" %>
-        <div class="visible-md-* visible-sm-* visible-xs-* row">
-          <%= yield %>
-        </div>
-        <div class="visible-lg-*">
-          <%= yield %>
-        </div>
+        <%= yield %>
       </div>
     </div>
     <%= render "common/footer" %>
