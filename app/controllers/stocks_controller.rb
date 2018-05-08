@@ -13,6 +13,10 @@ class StocksController < ApplicationController
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..20]       #负债占资本利率排序
     @time = 5
 
+    # 股票现价
+
+    # 市盈率
+
     # 笔记 note
     @stock_note_new = Note.new
     if current_user

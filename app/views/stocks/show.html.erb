@@ -17,17 +17,13 @@
         <h1>
           <%= @stock.name %>
           <span> (<%= @stock.easy_symbol %>)</span>
-          <!-- note 编辑 modal 页面 -->
-          <span class="pull-right star-stock" data-toggle="modal" data-target="#momal-note-new">
-            <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
-          </span>
         </h1>
         <h5>
-          <%= @stock.industry %> - <%= @stock.regional %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
+          <%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
         </h5>
 
         <div class="main_business">
-          <p title="<%= @stock.main_business %>"><span>主营业务: </span><%= @stock.main_business %></p>
+          <p title="<%= @stock.main_business %>"><strong>主营业务: </strong><%= @stock.main_business %></p>
         </div>
 
         <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
@@ -39,6 +35,16 @@
             <span>
               <%= link_to("行业统计分析 >>", industry_stocks_path(:order => @stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
+            <!-- note 编辑 modal 页面 -->
+            <% if current_user %>
+              <span class="pull-right star-stock" data-toggle="modal" data-target="#momal-note-new">
+                <% if current_user.notes.map{ |note| note.stock }.include?(@stock) %>     <!-- 判断用户是否已有该 stock 的 note -->
+                  <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                <% else %>
+                  <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+                <% end %>
+              </span>
+            <% end %>
           </div>
         <% end %>
 

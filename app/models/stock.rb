@@ -1008,4 +1008,16 @@ class Stock < ApplicationRecord
   end
 
 
+
+  # ---------------爬取 股票现价 和 现市盈率----------------
+
+  def stock_latest_price
+    #code
+  end
+
+  def stock_latest_PE_ratio
+    #code
+  end
+
+
 end
