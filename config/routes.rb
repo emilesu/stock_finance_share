@@ -58,6 +58,7 @@ Rails.application.routes.draw do
       post :update_sh_stock_symbol     #更新 沪市 股票代码和股票名称
       post :update_sz_stock_symbol     #更新 沪市 股票代码和股票名称
       post :update_stock_finance_table    #更新财务表表数据
+      post :update_stock_dividends    #更新 分红 数据
       post :update_industry_info    #更新财务表表数据
       post :update_stock_company_info    #更新股票主营业务
       post :update_stock_time_to_market    #更新股票主营业务

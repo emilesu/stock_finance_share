@@ -31,8 +31,10 @@
           </span>
         </div>
         <strong>
-          <p><%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
+          <p><%= @stock.industry %> - <%= @stock.regional %>  - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
+          <p>上市时间: <%= @stock.time_to_market.strftime("%Y-%m-%d") %></p>
           <p>滚动市盈率(TTM): <%= @latest_price[2].to_f.round(2) %></p>
+          <p>股息率: <%= @stock.the_dividend_yield %> %</p>
         </strong>
 
         <div class="main_business col-md-12 row">
@@ -68,7 +70,7 @@
       <div class="table-left col-md-12 col-sm-12 row">          <!-- 在 md 以下时展开布局 -->
         <% if @stock.zcb && @stock.zcb != "" %>                 <!-- 如果存在数据. 并且数据不为空时 -->
           <%= render :partial => "main_finance_table_1", :locals => { :time => @time } %>
-          <%= render :partial => "main_finance_table_3", :locals => { :time => @time } %>
+          <%= render :partial => "main_finance_table_4", :locals => { :time => @time } %>
         <% else %>
           <p>暂无数据</p>
         <% end %>
@@ -80,6 +82,7 @@
     <div class="table-right col-lg-5 col-md-12">
       <% if @stock.zcb && @stock.zcb != "" %>                   <!-- 如果存在数据. 并且数据不为空时 -->
         <%= render :partial => "main_finance_table_2", :locals => { :time => @time } %>
+        <%= render :partial => "main_finance_table_3", :locals => { :time => @time } %>
       <% else %>
         <p>暂无数据</p>
       <% end %>

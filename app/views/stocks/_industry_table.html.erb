@@ -71,6 +71,20 @@
 <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
   <table class="table table-bordered">
     <tr class="theader-style">
+      <td colspan="2">分红率(%)</td>
+    </tr>
+    <% @industrys_dividend_rate_order.each do |stock| %>
+      <tr class="stock-<%= stock.easy_symbol %>" data-link="<%= stock_path(stock) %>">
+        <td align=left width = "60%"><%= stock.name %></td>
+        <td><%= stock.dividend_rate_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<!-- <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
       <td colspan="2">负债占资产利率(%)</td>
     </tr>
     <% @industrys_debt_asset_order.each do |stock| %>
@@ -80,7 +94,7 @@
       </tr>
     <% end %>
   </table>
-</div>
+</div> -->
 
 
 

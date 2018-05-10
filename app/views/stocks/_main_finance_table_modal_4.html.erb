@@ -1,0 +1,71 @@
+<!-- G-1、红利发放日 -->
+<div class="modal fade" id="momal-dividend-date" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">红利发放日</h5>
+      </div>
+      <div class="modal-body">
+        <h4>G-1、红利发放日</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- G-2、分红金额 -->
+<div class="modal fade" id="momal-dividend-amount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">分红金额 / 派息</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.dividend_amount(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>G-2、分红金额 / 派息</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- G-3、分红率 -->
+<div class="modal fade" id="momal-dividend-rate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">分红率(%) / 股利支付率(%)</h5>
+      </div>
+      <div class="modal-body">
+        <% m = @stock.dividend_rate(time) %>
+        <%= line_chart(
+          @stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>G-3、分红率(%)</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>

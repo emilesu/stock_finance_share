@@ -642,33 +642,6 @@ class Stock < ApplicationRecord
     return result
   end
 
-  # --- C4-2、分红率 ---
-  # =  分配股利、利润或偿付利息所支付的现金 llb48 - 其中：子公司支付给少数股东的股利、利润 llb49 / 净利润 lrb40
-  def dividend_rate(time)
-    # 数据源
-    if time == 10
-      llb48 = self.quarter_years(3, 48)[0..9]
-      llb49 = self.quarter_years(3, 49)[0..9]
-      lrb40 = self.quarter_years(2, 40)[0..9]
-    elsif time == 5
-      llb48 = self.quarter_years(3, 48)[0..4]
-      llb49 = self.quarter_years(3, 49)[0..4]
-      lrb40 = self.quarter_years(2, 40)[0..4]
-    elsif time == 2
-      llb48 = self.quarter_years(3, 48)
-      llb49 = self.quarter_years(3, 49)
-      lrb40 = self.quarter_recent(2, 40)
-    end
-    # 运算
-    result = []
-    (0..time-1).each do |i|
-      m = ( llb48[i].to_f - llb49[i].to_f ) / lrb40[i].to_f * 100
-      result << m.round(2)
-    end
-    # 返回净利率
-    return result
-  end
-
   # --- C5、每股盈余 ---
   # =  基本每股收益 lrb44
   def earnings_per_share(time)
@@ -909,6 +882,79 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- G、分红配股 ---
+  # 数据处理 提取格式 [[a.分红年份, b.派息, c.派发日], [a.分红年份, b.派息, c.派发日], ....]
+
+  # --- G-1、红利发放日( c.派发日 ) ---
+  def dividend_date(time)
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      m = JSON.parse(self.dividends)[i][2]
+      result << m
+    end
+    # 红利发放日
+    return result
+  end
+
+  # --- G-2、分红金额( b.派息 ) ---
+  def dividend_amount(time)
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      m = JSON.parse(self.dividends)[i][1]
+      result << m.to_f
+    end
+    # 红利发放日
+    return result
+  end
+
+  # --- G-3、分红率 ---
+  # = 分红总额 / 属总公司净利率  =  ( 分红金额 b * 总股本 zcb95 ) / 10  / (所属年度)归属于母公司所有者的净利润 lrb41
+  def dividend_rate(time)
+    # 数据源
+    place_data = []                                               #因为有可能会出现 分红表数据 和 报表数据 年份不一致的情况(今年的分红要以去年数据为基数 或 某年不分红), 所以在此要定位出分红年份
+    (0..JSON.parse(self.dividends).size - 1).each do |i|
+      target_year = JSON.parse(self.dividends)[i][0]                        #分红年份
+      year_data = self.quarter_years(1, 0).map{ |i| i[0..3] }               #报表数据整理出的数组
+      place = year_data.index(target_year)                                  #返回对应分红表第一个,在报表数组中所处的的位置
+      place_data << place
+    end
+
+    amount = self.dividend_amount(time)
+    zcb95 = []
+    lrb41 = []
+    place_data.each do |i|
+      if i != nil
+        zcb95 << self.quarter_years(1, 95)[i-1]
+        lrb41 << self.quarter_years(2, 41)[i]
+      end
+    end
+
+    # 运算
+    result = []
+    (0..lrb41.size-1).each do |i|
+      m = amount[i].to_f * zcb95[i].to_f / 10 / lrb41[i].to_f * 100
+      result << m.round(2)
+    end
+    # 返回 红利发放日
+    if time == 10
+      return result[0..9]
+    elsif time == 5
+      return result[0..4]
+    end
+  end
+
+  # --- G-4、股息率 ---
+  # = 每股分红金额 / 当前股票价格
+  def the_dividend_yield
+    dividend = JSON.parse(self.dividends)[0][1].to_f / 10
+    price = self.stock_latest_price_and_PE[0].to_f
+    result = (dividend / price * 100).round(2)
+    # 返回 股息率
+    return result
+  end
+
 
 # -----------------------------------数据排序算法脚本(五年平均)-----------------------------------
 
@@ -1006,6 +1052,12 @@ class Stock < ApplicationRecord
     else
       return (num_array.sum / num_array.size).round(2)
     end
+  end
+
+  #分红率排序
+  def dividend_rate_order
+    data = self.dividend_rate(5)[0]
+    return data
   end
 
 

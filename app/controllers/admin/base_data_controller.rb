@@ -92,6 +92,50 @@ class Admin::BaseDataController < AdminController
   end
 
 
+  # 全局扫描更新 分红 数据
+  def update_stock_dividends
+    @stocks = Stock.all
+    @stocks.each do |s|
+
+      if s.version != Setting.first.version
+        # 从网易提取原始数据
+        response = RestClient.get "http://quotes.money.163.com/f10/fhpg_#{s.easy_symbol}.html#10d01"
+        doc = Nokogiri::HTML.parse(response.body)
+        # 数据处理 提取格式 [[a.分红年份, b.派息, c.派发日], [a.分红年份, b.派息, c.派发日], ....]
+        result = []
+        (0..10).each do |i|
+          data = []
+          if doc.css(".table_bg001 tr td[2]").map{ |x| x.text }[i].blank?
+            a = "--"
+          else
+            a = doc.css(".table_bg001 tr td[2]").map{ |x| x.text }[i]
+          end
+          if doc.css(".table_bg001 tr td[5]").map{ |x| x.text }[i].blank?
+            b = "--"
+          else
+            b = doc.css(".table_bg001 tr td[5]").map{ |x| x.text }[i]
+          end
+          if doc.css(".table_bg001 tr td[7]").map{ |x| x.text }[i].blank?
+            c = "--"
+          else
+            c = doc.css(".table_bg001 tr td[7]").map{ |x| x.text }[i]
+          end
+          data << a
+          data << b
+          data << c
+          result << data
+        end
+        s.update!(
+          :dividends => result
+        )
+      end
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "股票分红数据 更新完毕"
+  end
+
+
   # 全局扫描更新 行业更新
   def update_industry_info
     @stocks = Stock.all
