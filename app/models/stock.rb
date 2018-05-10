@@ -1057,7 +1057,11 @@ class Stock < ApplicationRecord
   #分红率排序
   def dividend_rate_order
     data = self.dividend_rate(5)[0]
-    return data
+    if data != "NaN" && data != "Infinity" && data != "-Infinity" && data == Float
+      return data
+    elsif data.blank?
+      return 0
+    end
   end
 
 
