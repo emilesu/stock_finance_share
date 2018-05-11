@@ -1108,7 +1108,7 @@ class Stock < ApplicationRecord
     result << applies
 
     # 市盈率 PE
-    pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0].split("：")[1]
+    pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0][4..-1]
     result << pe
 
     return result
