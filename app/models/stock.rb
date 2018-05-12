@@ -1094,21 +1094,42 @@ class Stock < ApplicationRecord
 
   # ---------------爬取 股票现价 涨跌幅 和 现市盈率----------------
 
+  # 有 bug ，部分股票的市盈率抓不到
+  # def stock_latest_price_and_PE
+  #   response = RestClient.get "https://www.futunn.com/quote/stock?m=#{self.easy_symbol[0..1]}&code=#{self.easy_symbol}"
+  #   doc = Nokogiri::HTML.parse(response.body)
+  #   result = []
+  #
+  #   # 股票现价
+  #   price = doc.css(".price01").map{ |x| x.text }[0]
+  #   result << price
+  #
+  #   # 股票涨幅
+  #   applies = doc.css(".div002 span").map{ |x| x.text }[2]
+  #   result << applies
+  #
+  #   # 市盈率 PE
+  #   pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0][4..-1]
+  #   result << pe
+  #
+  #   return result
+  # end
+
   def stock_latest_price_and_PE
-    response = RestClient.get "https://www.futunn.com/quote/stock?m=#{self.easy_symbol[0..1]}&code=#{self.easy_symbol}"
+    response = RestClient.get "http://gu.qq.com/#{self.symbol}/gp"
     doc = Nokogiri::HTML.parse(response.body)
     result = []
 
     # 股票现价
-    price = doc.css(".price01").map{ |x| x.text }[0]
+    price = doc.css(".data").map{ |x| x.text }[0]
     result << price
 
     # 股票涨幅
-    applies = doc.css(".div002 span").map{ |x| x.text }[2]
+    applies = doc.css(".item-2 .fr").map{ |x| x.text }[0]
     result << applies
 
     # 市盈率 PE
-    pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0][4..-1]
+    pe = doc.css(".clear[2] li[4]").map{ |x| x.text }[2][4..-1]
     result << pe
 
     return result

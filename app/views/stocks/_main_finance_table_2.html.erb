@@ -123,7 +123,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-inventory-turnover-ratio-360">
-      <td align=left>平均销货日数(平均在库天数)</td>
+      <td align=left>平均销货日数(在库天数)</td>
       <% m = @stock.inventory_turnover_ratio(time).reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>

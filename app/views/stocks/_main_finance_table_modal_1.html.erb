@@ -6,7 +6,16 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h5 class="modal-title" id="exampleModalLongTitle">现金与约当现金(%)</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          现金与约当现金比率(%)
+          <!-- <span> --
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </span> -->
+        </h5>
       </div>
       <div class="modal-body">
         <% m = @stock.cash_and_cash_equivalents_ratio(time) %>
@@ -15,7 +24,23 @@
           end
         ) %>
         <br>
-        <h4>A2-1、现金与约当现金占总资产比率 ( 至少10%, 最好大于25% )</h4>
+        <h4>
+          A2-1、现金与约当现金比率（不低于10%，最好达到25%）
+        </h4>
+        <blockquote>
+          <p>现金与约当现金比率 = ( 货币资金 + 约当现金 ) / 总资产</p>
+          <p>现金与约当现金比率 是分析企业企业价值最主要的指标之一</p>
+        </blockquote>
+        <p><strong>现金：</strong>顾名思义，就是企业的货币资金，可以立即投入流通交换。</p>
+        <p><strong>约当现金：</strong>具有高度流动性的短期资产投资，通常指三个月内可到期变现的资产，因为它们变现快，价值损失小，几乎就相当于现金。</p>
+        <br>
+        <p>一家企业有足够的现金，说明它有居安思危的意识，立足稳健以长期经营，而不是赌博般的一挥而空。</p>
+        <ul>
+          <li>如果是资金密集型行业（总资产周转率 > 1），现金与约当现金占比应该大于25%。</li>
+          <li>如果是收现金行业（平均收现日数 < 20天），那么现金与约当现金占比可相对较少，但至少大于10%。</li>
+        </ul>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -41,7 +66,19 @@
           end
         ) %>
         <br>
-        <h4>A2-2、应收账款占总资产比率</h4>
+        <h4>A2-2、应收账款比率</h4>
+        <blockquote>
+          <p>应收账款, 简单理解就是已经发货给对方, 但还没付钱, 应该拿回来的欠款。</p>
+          <p>企业间的交易常会存在延期付款的情况，所以应收账款要及时追回，避免成为呆账烂账。</p>
+          <!-- <p>现金与约当现金、应收账款、存货一般都归为流动资产（一年内可变现的资产）。流动资产的比率越高，有利于保持企业资产结构的流动性，需要用到钱的时候,可以随时拿得出手。</p> -->
+        </blockquote>
+        <p>企业价值分析时，我们会把“应收账款”和“平均收现日数”结合使用，用以推估企业的经营能力。</p>
+        <ul>
+          <li>应收账款应该保持平稳，不应逐年上升。<br>（如”广西广电“的应收账款逐年上升，平均收现日数不断提高，营收下降，可知已出现收不回款的情况，经营状况不佳）</li>
+          <li>如果平均收现日数小于20天，该企业则属于收现金行业，它的应收账款可以认为是约当现金。<br>（如”上汽集团“的应收账款达5%左右，但平均收现日数在20以下，则这5%的应收账款的价值几乎相当于现金。)</li>
+        </ul>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -67,7 +104,21 @@
           end
         ) %>
         <br>
-        <h4>A2-3、存货占总资产比率</h4>
+        <h4>A2-3、存货比率</h4>
+        <blockquote>
+          <p>存货, 可以通俗理解为，在生产或在仓库等待卖出的货物。</p>
+          <p>在企业的生意经营周期中，存货通常还包括半成品，以及待生产加工的材料及消耗品等。</p>
+          <!-- <p>现金与约当现金、应收账款、存货一般都归为流动资产（一年内可变现的资产）。流动资产的比率越高，有利于保持企业资产结构的流动性，需要用到钱的时候,可以随时拿得出手。</p> -->
+        </blockquote>
+        <p> 存货多是好事还是坏事？这要看不同行业而定。</p>
+        <p> 如果是科技公司（如卖手机），存货太多就非常不好，因为产品换代速度快，几个月就不值钱了。同理还有食品业，存货太多太久，超过保鲜期，产品就会贬值。 </p>
+        <p> 但如果是房地产企业，土地存货就越多越好，因为会越来越值钱。或是石油企业，石油是刚需品，保质期长，贬值风险小，存货越多越好。 </p>
+        <ul>
+          <li>总体而言，存货占比应该保持平稳，不大起大落为佳。</li>
+          <li>如果平均销货日数小于30天，存货可以认为是约当现金。<br>(如“上汽集团”的存货占比达7%左右，但平均销货日数只有20多天，则7%的存货的价值几乎相当于现金。)</li>
+        </ul>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -93,7 +144,46 @@
           end
         ) %>
         <br>
-        <h4>A2-4、流动资产占总资产比率</h4>
+        <h4>A2-4、流动资产比率</h4>
+        <blockquote>
+          <p>流动资产, 是指一年内到期可变现的资产。</p>
+        </blockquote>
+        <p>现金与约当现金、应收账款、存货一般都归为流动资产（一年内可变现的资产）。</p>
+        <p>流动资产的比率越高，有利于保持企业资产结构的流动性，需要用到钱的时候，可以随时拿得出手，抵御经济风险的能力就越强。</p>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 总资产(%) -->
+<div class="modal fade" id="momal-total-assets" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">总资产</h5>
+      </div>
+      <div class="modal-body">
+        <br>
+        <h4>A2、总资产</h4>
+        <blockquote>
+          <p>资产：企业的所有资产家当（流动资产和非流动资产）。</p>
+          <p>流动资产，是指一年内到期可变现的资产。</p>
+          <p>非流动资产，超过一年才可以变现，或者变现难度极大的资产。</p>
+        </blockquote>
+        <p>总资产 = 负债 + 股东权益</p>
+        <ul>
+          <li>资产和负债+所有者权益是一直对等的关系，资产增加或减少，负债+股东权益也会增加或减少。</li>
+          <li>资产不变的情况下，负债增加，股东权益会相应减少；负债减少，股东权益会相应增加。</li>
+        </ul>
+        <img src="http://p4lebvpw1.bkt.clouddn.com/%E8%B5%84%E4%BA%A7=%E8%B4%9F%E5%80%BA+%E6%89%80%E6%9C%89%E8%80%85%E6%9D%83%E7%9B%8A.jpg" alt="总资产 = 负债 + 股东权益">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -119,7 +209,14 @@
           end
         ) %>
         <br>
-        <h4>A2-5、应付账款占总资产比率</h4>
+        <h4>A2-5、应付账款比率</h4>
+        <blockquote>
+          <p>应付账款，理解上与应收账款相反，指拿了对方的货，但没付给对方的欠款。</p>
+        </blockquote>
+        <p>如果我们在与其他企业间交易的过程中，能够争取到一个较长的付款期限，是非常有利的。对我们而言，能够减少企业缺钱的时间。</p>
+        <p>如果我们销货的时间比付款期限的时间还要短，相当于不需要任何资金投入，公司也能够维持经营生意。这样的企业，持续生存能力非常强的。</p>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -145,7 +242,18 @@
           end
         ) %>
         <br>
-        <h4>A2-6、流动负债占总资产比率</h4>
+        <h4>A2-6、流动负债比率</h4>
+        <blockquote>
+          <p>流动负债，指的是一年内到期的债务，可能是为了短期周转而借入的债务，也可能是长期负债已经到了最后一年，转为了流动负债。</p>
+          <p>流动负债越大，会加剧企业的还款压力。</p>
+        </blockquote>
+        <p>一家企业面临的最严重偿债压力，无疑来自于流动负债（一年内到期的负债），因为期限近在眉睫，非常迫切。</p>
+        <ul>
+          <li>优秀的企业会合理规划债务资产，特别是对流动负债的控制上，做到保持平稳，不出现过大起伏。</li>
+          <li>流动负债的稳定，能确保企业的偿债压力稳定，保持稳健经营。<br>(很多企业为了平衡财务结构，会使用”借新债换旧债”的手段，如果企业稳健运营，而非入不敷出经营困难，那么这种做法是合理的。)</li>
+        </ul>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -171,7 +279,18 @@
           end
         ) %>
         <br>
-        <h4>A2-7、长期负债占总资产比率</h4>
+        <h4>A2-7、长期负债比率</h4>
+        <blockquote>
+          <p>长期负债，指超过一年到期的债务，往往用于增设厂房、购买生产设备等长期资产。</p>
+          <p>优秀的债务，是在利息成本合理的前提下，借的时间越长越好。</p>
+        </blockquote>
+        <p><strong>正确的财务观念：以长支长:</strong></p>
+        <ul>
+          <li>不要等到缺钱的时候，才去借钱。当我们财务状况良好的时候，就要先向银行借钱，以备不时之需.</li>
+          <li>企业需要借钱增加机械设备或厂房等长期投资时，需要使用长期负债，而一时之快，去借一些短期的高利贷或外债。</li>
+        </ul>
+        <br>
+        <i>* 注: 银行、保险、证券 等金融行业, 由于会计统计的特殊性, 不适用于此方法对资产负债进行分析。</i>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
@@ -197,7 +316,43 @@
           end
         ) %>
         <br>
-        <h4>A2-8、股东权益占总资产比率</h4>
+        <h4>A2-8、股东权益比率</h4>
+        <blockquote>
+          <p>股东权益，指股东投资部分所占的比重。</p>
+        </blockquote>
+        <p><strong>股东权益占比增加或减少，往往能说明一家企业发展前景。</strong></p>
+        <ul>
+          <li>当一个企业的股东权益占比不断上升，保持高比率的时候，说明股东对企业前景持续看好。</li>
+          <li>相反，当股东权益占比不断下降，负债占比不断上升，很可能说明股东对企业前景不太看好。</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 负债+股东权益(%) -->
+<div class="modal fade" id="momal-liabilities-and-owners-equity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">负债+股东权益</h5>
+      </div>
+      <div class="modal-body">
+        <br>
+        <h4>A2、负债+股东权益</h4>
+        <blockquote>
+          <p>负债 = 流动负债 + 非流动负债</p>
+          <p>股东权益，指股东投资部分所占的比重。</p>
+        </blockquote>
+        <p>总资产 = 负债 + 股东权益</p>
+        <p>流动负债、长期负债、股东权益之间的关系，类似于切蛋糕，一部分多了，另一部分就相应少了，通过三个数据的对比，往往可以窥探出企业经营发展的状况。</p>
+        <img src="http://p4lebvpw1.bkt.clouddn.com/%E8%B5%84%E4%BA%A7=%E8%B4%9F%E5%80%BA+%E6%89%80%E6%9C%89%E8%80%85%E6%9D%83%E7%9B%8A.jpg" alt="总资产 = 负债 + 股东权益">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>

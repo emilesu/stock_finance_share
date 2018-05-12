@@ -33,7 +33,7 @@
         <strong>
           <p><%= @stock.industry %> - <%= @stock.regional %>  - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
           <p>上市时间: <%= @stock.time_to_market.strftime("%Y-%m-%d") %></p>
-          <p>滚动市盈率(TTM): <%= @latest_price[2].to_f.round(2) %></p>
+          <p>滚动市盈率(TTM): <%= @latest_price[2].to_f %></p>
           <p>股息率: <%= @stock.the_dividend_yield %> %</p>
         </strong>
 
