@@ -220,7 +220,7 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      if zcb52[i].to_f != 0
+      if zcb52[i].to_i != 0
         m = (zcb1[i].to_f + zcb2[i].to_f + zcb3[i].to_f + zcb4[i].to_f + zcb5[i].to_f ) / zcb52[i].to_f * 100
       else
         m = 0
