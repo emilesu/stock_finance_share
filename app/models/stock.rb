@@ -1076,7 +1076,7 @@ class Stock < ApplicationRecord
   #分红率排序
   def dividend_rate_order
     data = self.dividend_rate(5)[0]
-    if data != nil
+    if data != nil && data != NaN
       return data
     else
       return 0
