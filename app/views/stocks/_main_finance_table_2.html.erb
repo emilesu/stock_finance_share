@@ -9,7 +9,7 @@
         <td align=left width = "25%">财务比率</td>
         <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[0].reverse.each do |i| %>
           <td align=center width = "13%"><%= i[0..3] %></td>
@@ -19,7 +19,7 @@
         <td align=left width = "22%">财务比率</td>
         <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[0].reverse.each do |i| %>
           <td align=center width = "7%"><%= i[0..3] %></td>
@@ -28,7 +28,7 @@
         <td align=left width = "55%">财务比率</td>
         <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[0].reverse.each do |i| %>
           <td align=center width = "20%"><%= i %></td>
@@ -43,7 +43,7 @@
       <td align=left>负债占资产比率(%)</td>
       <% m = static_data[20].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[20].reverse.each do |i| %>
         <td><%= i %></td>
@@ -54,7 +54,7 @@
       <td align=left>长期负债占不动产/厂房及设备比率(%)</td>
       <% m = static_data[21].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[21].reverse.each do |i| %>
         <td><%= i %></td>
@@ -68,7 +68,7 @@
       <td align=left>流动比率(%)</td>
       <% m = static_data[22].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[22].reverse.each do |i| %>
         <td><%= i %></td>
@@ -79,7 +79,7 @@
       <td align=left>速动比率(%)</td>
       <% m = static_data[23].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[23].reverse.each do |i| %>
         <td><%= i %></td>
@@ -93,7 +93,7 @@
       <td align=left>应收账款周转率(次)</td>
       <% m = static_data[9].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[9].reverse.each do |i| %>
         <td><%= i %></td>
@@ -104,7 +104,7 @@
       <td align=left>平均收现日数</td>
       <% m = static_data[9].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[9].reverse.each do |i| %>
         <td><%= (360 / i).round(2) %></td>
@@ -115,7 +115,7 @@
       <td align=left>存货周转率(次)</td>
       <% m = static_data[10].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[10].reverse.each do |i| %>
         <td><%= i %></td>
@@ -126,7 +126,7 @@
       <td align=left>平均销货日数(在库天数)</td>
       <% m = static_data[10].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[10].reverse.each do |i| %>
         <td><%= (360 / i).round(2) %></td>
@@ -137,7 +137,7 @@
       <td align=left>不动产/厂房及设备周转率(次)</td>
       <% m = static_data[11].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[11].reverse.each do |i| %>
         <td><%= i %></td>
@@ -148,7 +148,7 @@
       <td align=left>总资产周转率(次)</td>
       <% m = static_data[12].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[12].reverse.each do |i| %>
         <td><%= i %></td>
@@ -162,7 +162,7 @@
       <td align=left>股东权益报酬率(%) RoE</td>
       <% m = static_data[13].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[13].reverse.each do |i| %>
         <td><%= i %></td>
@@ -173,7 +173,7 @@
       <td align=left>营业毛利率(%) ①</td>
       <% m = static_data[14].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[14].reverse.each do |i| %>
         <td><%= i %></td>
@@ -184,7 +184,7 @@
       <td align=left>营业利益率(%) ②</td>
       <% m = static_data[15].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[15].reverse.each do |i| %>
         <td><%= i %></td>
@@ -195,7 +195,7 @@
       <td align=left>经营安全边际率(%) = ② / ①</td>
       <% m = static_data[16].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[16].reverse.each do |i| %>
         <td><%= i %></td>
@@ -206,7 +206,7 @@
       <td align=left>纯益率(%) = 净利率</td>
       <% m = static_data[17].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[17].reverse.each do |i| %>
         <td><%= i %></td>
@@ -217,7 +217,7 @@
       <td align=left>每股盈余(元)</td>
       <% m = static_data[18].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[18].reverse.each do |i| %>
         <td><%= i %></td>
@@ -228,7 +228,7 @@
       <td align=left>税后净利(百万元)</td>
       <% m = static_data[19].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[19].reverse.each do |i| %>
         <td><%= i %></td>
@@ -242,7 +242,7 @@
       <td align=left>现金流量比率(%)</td>
       <% m = static_data[27].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[27].reverse.each do |i| %>
         <td><%= i %></td>
@@ -253,7 +253,7 @@
       <td align=left>现金流量允当比率(%)</td>
       <% m = static_data[28].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[28].reverse.each do |i| %>
         <td><%= i %></td>
@@ -264,7 +264,7 @@
       <td align=left>现金再投资比率(%)</td>
       <% m = static_data[29].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[29].reverse.each do |i| %>
         <td><%= i %></td>

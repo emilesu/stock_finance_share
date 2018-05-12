@@ -7,7 +7,7 @@
         <td align=left width = "25%">红利发放日</td>
         <% m = static_data[30].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[30].reverse.each do |i| %>
           <td align=center width = "13%"><%= i %></td>
@@ -17,7 +17,7 @@
         <td align=left width = "22%">红利发放日</td>
         <% m = static_data[30].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[30].reverse.each do |i| %>
           <td align=center width = "7%"><%= i %></td>
@@ -32,7 +32,7 @@
       <td align=left>每10股 分红(元)</td>
       <% m = static_data[31].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[31].reverse.each do |i| %>
         <td><%= i %></td>
@@ -43,7 +43,7 @@
       <td align=left>分红率(%)</td>
       <% m = static_data[32].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[32].reverse.each do |i| %>
         <td><%= i %></td>

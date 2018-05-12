@@ -7,7 +7,7 @@
         <td align=left width = "35%">现金流量(百万元)</td>
         <% m = @stock.quarter_years(1, 0).reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% @stock.quarter_years(1, 0)[0..4].reverse.each do |i| %>
           <td align=center width = "13%"><%= i[0..3] %></td>
@@ -16,7 +16,7 @@
         <td align=left width = "30%">现金流量(百万元)</td>
         <% m = @stock.quarter_years(1, 0).reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% @stock.quarter_years(1, 0)[0..9].reverse.each do |i| %>
           <td align=center width = "7%"><%= i[0..3] %></td>
@@ -25,7 +25,7 @@
         <td align=left width = "55%">现金流量(百万元)</td>
         <% m = @stock.quarter_years(1, 0).reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% @stock.quarter_recent(1, 0).reverse.each do |i| %>
           <td align=center width = "20%"><%= i %></td>
@@ -38,7 +38,7 @@
         <td align=left width = "35%">营业活动现金流量(百万元)</td>
         <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[24].reverse.each do |i| %>
           <td width = "13%"><%= i %></td>
@@ -47,7 +47,7 @@
         <td align=left width = "30%">营业活动现金流量(百万元)</td>
         <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[24].reverse.each do |i| %>
           <td width = "7%"><%= i %></td>
@@ -56,7 +56,7 @@
         <td align=left width = "55%">营业活动现金流量(百万元)</td>
         <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
-          <td align=center>无统计</td>
+          <td align=center>--</td>
         <% end %>
         <% static_data[24].reverse.each do |i| %>
           <td width = "20%"><%= i %></td>
@@ -68,7 +68,7 @@
       <td align=left>投资活动现金流量(百万元)</td>
       <% m = static_data[25].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[25].reverse.each do |i| %>
         <td><%= i %></td>
@@ -79,7 +79,7 @@
       <td align=left>筹资活动现金流量(百万元)</td>
       <% m = static_data[26].reverse.size %>
       <% (1..time - m).each do |i| %>
-        <td align=center>无统计</td>
+        <td align=center>--</td>
       <% end %>
       <% static_data[26].reverse.each do |i| %>
         <td><%= i %></td>

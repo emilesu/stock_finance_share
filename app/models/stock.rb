@@ -413,7 +413,7 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if zcb7[i].to_i != 0
+      if (zcb7[i].to_f + zcb7[i-1].to_f) != 0
         m = lrb1[i].to_f / (zcb7[i].to_f + zcb7[i-1].to_f) * 2
         result << m.round(2)
       end
@@ -441,8 +441,13 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
+      if (zcb20[i].to_f + zcb20[i-1].to_f) != 0
         m = lrb9[i].to_f / (zcb20[i].to_f + zcb20[i-1].to_f) * 2
-        result << m.round(2)
+      else
+        m = 0
+      end
+
+      result << m.round(2)
     end
     # 返回存货周转率
     return result
@@ -467,8 +472,10 @@ class Stock < ApplicationRecord
     (0..time-1).each do |i|
       if zcb37[i].to_i != 0
         m = lrb1[i].to_f / zcb37[i].to_f
-        result << m.round(2)
+      else
+        m = 0
       end
+      result << m.round(2)
     end
     # 返回固定资产周转率
     return result
@@ -758,7 +765,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( zcb93[i].to_f + zcb107[i].to_f ) / ( zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f ) * 100
+      if zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f != 0
+        m = ( zcb93[i].to_f + zcb107[i].to_f ) / ( zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f ) * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 长期资金占不动产/厂房及设备比率
@@ -782,7 +793,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb25[i].to_f / zcb84[i].to_f * 100
+      if zcb84[i].to_f != 0
+        m = zcb25[i].to_f / zcb84[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 流动比率
@@ -812,7 +827,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = ( zcb25[i].to_f - zcb20[i].to_f - zcb8[i].to_f ) / zcb84[i].to_f * 100
+      if zcb84[i].to_f != 0
+        m = ( zcb25[i].to_f - zcb20[i].to_f - zcb8[i].to_f ) / zcb84[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 流动比率
@@ -960,7 +979,7 @@ class Stock < ApplicationRecord
 
   # 最新年度现金流量排序
   def cash_order
-    array = self.cash_and_cash_equivalents_ratio(5)
+    array = JSON.parse(self.static_data_5)[1]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
@@ -976,7 +995,7 @@ class Stock < ApplicationRecord
 
   # 最新年度毛利率排序
   def operating_margin_order
-    array = self.operating_margin_ratio(5)
+    array = JSON.parse(self.static_data_5)[14]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
@@ -992,7 +1011,7 @@ class Stock < ApplicationRecord
 
   # 最新年度营业利益率排序
   def business_profitability_order
-    array = self.business_profitability_ratio(5)
+    array = JSON.parse(self.static_data_5)[15]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
@@ -1008,7 +1027,7 @@ class Stock < ApplicationRecord
 
   # 最新年度净利率排序
   def net_profit_margin_order
-    array = self.net_profit_margin_ratio(5)
+    array = JSON.parse(self.static_data_5)[17]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
@@ -1024,7 +1043,7 @@ class Stock < ApplicationRecord
 
   #股东权益报酬率 RoE 排序
   def roe_order
-    array = self.roe_ratio(5)
+    array = JSON.parse(self.static_data_5)[13]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
@@ -1040,7 +1059,7 @@ class Stock < ApplicationRecord
 
   #负债占资本利率排序
   def debt_asset_order
-    array = self.debt_asset_ratio(5)
+    array = JSON.parse(self.static_data_5)[20]
     num_array = []
     array.each do |i|
       if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
