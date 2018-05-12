@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510112323) do
+ActiveRecord::Schema.define(version: 20180512104025) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -117,6 +117,9 @@ ActiveRecord::Schema.define(version: 20180510112323) do
     t.datetime "time_to_market"
     t.string "pinyin"
     t.text "dividends"
+    t.text "static_data_10"
+    t.text "static_data_5"
+    t.text "static_data_2"
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
