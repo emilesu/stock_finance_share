@@ -953,7 +953,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..lrb41.size-1).each do |i|
-      m = amount[i].to_f * zcb95[i].to_f / 10 / lrb41[i].to_f * 100
+      if lrb41[i].to_f != 0
+        m = amount[i].to_f * zcb95[i].to_f / 10 / lrb41[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回 红利发放日
@@ -1076,7 +1080,7 @@ class Stock < ApplicationRecord
   #分红率排序
   def dividend_rate_order
     data = self.dividend_rate(5)[0]
-    if data != nil && data != NaN
+    if data != nil
       return data
     else
       return 0
