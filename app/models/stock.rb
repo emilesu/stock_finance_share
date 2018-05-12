@@ -1094,27 +1094,6 @@ class Stock < ApplicationRecord
 
   # ---------------爬取 股票现价 涨跌幅 和 现市盈率----------------
 
-  # 有 bug ，部分股票的市盈率抓不到
-  # def stock_latest_price_and_PE
-  #   response = RestClient.get "https://www.futunn.com/quote/stock?m=#{self.easy_symbol[0..1]}&code=#{self.easy_symbol}"
-  #   doc = Nokogiri::HTML.parse(response.body)
-  #   result = []
-  #
-  #   # 股票现价
-  #   price = doc.css(".price01").map{ |x| x.text }[0]
-  #   result << price
-  #
-  #   # 股票涨幅
-  #   applies = doc.css(".div002 span").map{ |x| x.text }[2]
-  #   result << applies
-  #
-  #   # 市盈率 PE
-  #   pe = doc.css(".listBar li[4] p").map{ |x| x.text }[0][4..-1]
-  #   result << pe
-  #
-  #   return result
-  # end
-
   def stock_latest_price_and_PE
     response = RestClient.get "http://gu.qq.com/#{self.symbol}/gp"
     doc = Nokogiri::HTML.parse(response.body)
@@ -1135,5 +1114,117 @@ class Stock < ApplicationRecord
     return result
   end
 
+
+
+  # ---------------------- 数据静态会保存 ----------------------
+
+  def static_data
+
+    # static_data_10
+    sd_10 = []
+    sd_10 << self.quarter_years(1, 0)                                     # 0-年报年度
+    sd_10 << self.cash_and_cash_equivalents_ratio(10)                     # 1-现金与约当现金
+    sd_10 << self.receivables_ratio(10)                                   # 2-应收账款
+    sd_10 << self.inventory_ratio(10)                                     # 3-存货
+    sd_10 << self.current_assets_ratio(10)                                # 4-流动资产
+    sd_10 << self.accounts_payable_ratio(10)                              # 5-应付账款
+    sd_10 << self.current_liabilities_ratio(10)                           # 6-流动负债
+    sd_10 << self.long_term_liability_ratio(10)                           # 7-长期负债
+    sd_10 << self.shareholders_equity_ratio(10)                           # 8-股东权益
+    sd_10 << self.accounts_receivable_turnover_ratio(10)                  # 9-应收账款周转率
+    sd_10 << self.inventory_turnover_ratio(10)                            # 10-存货周转率
+    sd_10 << self.fixed_asset_turnover_ratio(10)                          # 11-不动产/厂房及设备周转率
+    sd_10 << self.total_asset_turnover_ratio(10)                          # 12-总资产周转率
+    sd_10 << self.roe_ratio(10)                                           # 13-股东权益报酬率 ROE
+    sd_10 << self.operating_margin_ratio(10)                              # 14-营业毛利率
+    sd_10 << self.business_profitability_ratio(10)                        # 15-营业利益率
+    sd_10 << self.operating_margin_of_safety_ratio(10)                    # 16-经营安全边际率
+    sd_10 << self.net_profit_margin_ratio(10)                             # 17-净利率
+    sd_10 << self.earnings_per_share(10)                                  # 18-每股盈余
+    sd_10 << self.after_tax_profit(10)                                    # 19-税后净利
+    sd_10 << self.debt_asset_ratio(10)                                    # 20-负债占资产比率
+    sd_10 << self.long_term_funds_for_fixed_assets_ratio(10)              # 21-长期负债占不动产/厂房及设备比率
+    sd_10 << self.current_ratio(10)                                       # 22-流动比率
+    sd_10 << self.quick_ratio(10)                                         # 23-速动比率
+    sd_10 << self.net_cash_flow_of_business_activities(10)                # 24-经营活动现金流量(百万元)
+    sd_10 << self.net_investment_activities_generated_cash_flow(10)       # 25-投资活动现金流量(百万元)
+    sd_10 << self.net_financing_activities_generated_cash_flow(10)        # 26-筹资活动现金流量(百万元)
+    sd_10 << self.dividend_date(10)                                       # 27-红利发放日
+    sd_10 << self.dividend_amount(10)                                     # 28-分红金额
+    sd_10 << self.dividend_rate(10)                                       # 29-分红率
+    self.update!(
+      :static_data_10 => sd_10
+    )
+
+    # static_data_5
+    sd_5 = []
+    sd_5 << self.quarter_years(1, 0)[0..4]                              # 0-年报年度
+    sd_5 << self.cash_and_cash_equivalents_ratio(5)                     # 1-现金与约当现金
+    sd_5 << self.receivables_ratio(5)                                   # 2-应收账款
+    sd_5 << self.inventory_ratio(5)                                     # 3-存货
+    sd_5 << self.current_assets_ratio(5)                                # 4-流动资产
+    sd_5 << self.accounts_payable_ratio(5)                              # 5-应付账款
+    sd_5 << self.current_liabilities_ratio(5)                           # 6-流动负债
+    sd_5 << self.long_term_liability_ratio(5)                           # 7-长期负债
+    sd_5 << self.shareholders_equity_ratio(5)                           # 8-股东权益
+    sd_5 << self.accounts_receivable_turnover_ratio(5)                  # 9-应收账款周转率
+    sd_5 << self.inventory_turnover_ratio(5)                            # 5-存货周转率
+    sd_5 << self.fixed_asset_turnover_ratio(5)                          # 11-不动产/厂房及设备周转率
+    sd_5 << self.total_asset_turnover_ratio(5)                          # 12-总资产周转率
+    sd_5 << self.roe_ratio(5)                                           # 13-股东权益报酬率 ROE
+    sd_5 << self.operating_margin_ratio(5)                              # 14-营业毛利率
+    sd_5 << self.business_profitability_ratio(5)                        # 15-营业利益率
+    sd_5 << self.operating_margin_of_safety_ratio(5)                    # 16-经营安全边际率
+    sd_5 << self.net_profit_margin_ratio(5)                             # 17-净利率
+    sd_5 << self.earnings_per_share(5)                                  # 18-每股盈余
+    sd_5 << self.after_tax_profit(5)                                    # 19-税后净利
+    sd_5 << self.debt_asset_ratio(5)                                    # 20-负债占资产比率
+    sd_5 << self.long_term_funds_for_fixed_assets_ratio(5)              # 21-长期负债占不动产/厂房及设备比率
+    sd_5 << self.current_ratio(5)                                       # 22-流动比率
+    sd_5 << self.quick_ratio(5)                                         # 23-速动比率
+    sd_5 << self.net_cash_flow_of_business_activities(5)                # 24-经营活动现金流量(百万元)
+    sd_5 << self.net_investment_activities_generated_cash_flow(5)       # 25-投资活动现金流量(百万元)
+    sd_5 << self.net_financing_activities_generated_cash_flow(5)        # 26-筹资活动现金流量(百万元)
+    sd_5 << self.dividend_date(5)                                       # 27-红利发放日
+    sd_5 << self.dividend_amount(5)                                     # 28-分红金额
+    sd_5 << self.dividend_rate(5)                                       # 29-分红率
+    self.update!(
+      :static_data_5 => sd_5
+    )
+
+    # static_data_2
+    sd_2 = []
+    sd_2 << self.quarter_recent(1, 0)                                   # 0-年报年度
+    sd_2 << self.cash_and_cash_equivalents_ratio(2)                     # 1-现金与约当现金
+    sd_2 << self.receivables_ratio(2)                                   # 2-应收账款
+    sd_2 << self.inventory_ratio(2)                                     # 3-存货
+    sd_2 << self.current_assets_ratio(2)                                # 4-流动资产
+    sd_2 << self.accounts_payable_ratio(2)                              # 5-应付账款
+    sd_2 << self.current_liabilities_ratio(2)                           # 6-流动负债
+    sd_2 << self.long_term_liability_ratio(2)                           # 7-长期负债
+    sd_2 << self.shareholders_equity_ratio(2)                           # 8-股东权益
+    sd_2 << self.accounts_receivable_turnover_ratio(2)                  # 9-应收账款周转率
+    sd_2 << self.inventory_turnover_ratio(2)                            # 5-存货周转率
+    sd_2 << self.fixed_asset_turnover_ratio(2)                          # 11-不动产/厂房及设备周转率
+    sd_2 << self.total_asset_turnover_ratio(2)                          # 12-总资产周转率
+    sd_2 << self.roe_ratio(2)                                           # 13-股东权益报酬率 ROE
+    sd_2 << self.operating_margin_ratio(2)                              # 14-营业毛利率
+    sd_2 << self.business_profitability_ratio(2)                        # 15-营业利益率
+    sd_2 << self.operating_margin_of_safety_ratio(2)                    # 16-经营安全边际率
+    sd_2 << self.net_profit_margin_ratio(2)                             # 17-净利率
+    sd_2 << self.earnings_per_share(2)                                  # 18-每股盈余
+    sd_2 << self.after_tax_profit(2)                                    # 19-税后净利
+    sd_2 << self.debt_asset_ratio(2)                                    # 20-负债占资产比率
+    sd_2 << self.long_term_funds_for_fixed_assets_ratio(2)              # 21-长期负债占不动产/厂房及设备比率
+    sd_2 << self.current_ratio(2)                                       # 22-流动比率
+    sd_2 << self.quick_ratio(2)                                         # 23-速动比率
+    sd_2 << self.net_cash_flow_of_business_activities(2)                # 24-经营活动现金流量(百万元)
+    sd_2 << self.net_investment_activities_generated_cash_flow(2)       # 25-投资活动现金流量(百万元)
+    sd_2 << self.net_financing_activities_generated_cash_flow(2)        # 26-筹资活动现金流量(百万元)
+    self.update!(
+      :static_data_2 => sd_2
+    )
+
+  end
 
 end

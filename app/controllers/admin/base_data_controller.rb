@@ -136,6 +136,20 @@ class Admin::BaseDataController < AdminController
   end
 
 
+  # 数据静态保存
+  def update_static_data
+    @stocks = Stock.all
+    @stocks.each do |s|
+      if s.version != Setting.first.version
+        s.static_data
+      end
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "股票数据静态保存 更新完毕"
+  end
+
+
   # 全局扫描更新 行业更新
   def update_industry_info
     @stocks = Stock.all
