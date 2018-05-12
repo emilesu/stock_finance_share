@@ -220,7 +220,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = (zcb1[i].to_f + zcb2[i].to_f + zcb3[i].to_f + zcb4[i].to_f + zcb5[i].to_f ) / (zcb52[i].to_f) * 100
+      if zcb52[i].to_f != 0
+        m = (zcb1[i].to_f + zcb2[i].to_f + zcb3[i].to_f + zcb4[i].to_f + zcb5[i].to_f ) / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回现金与约当现金占总资产比率
