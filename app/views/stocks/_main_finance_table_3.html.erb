@@ -36,29 +36,29 @@
     <tr data-toggle="modal" data-target="#momal-net-cash-flow-of-business-activities">
       <% if time == 5 %>
         <td align=left width = "35%">营业活动现金流量(百万元)</td>
-        <% m = @stock.net_cash_flow_of_business_activities(time).reverse.size %>
+        <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.net_cash_flow_of_business_activities(time).reverse.each do |i| %>
+        <% static_data[24].reverse.each do |i| %>
           <td width = "13%"><%= i %></td>
         <% end %>
       <% elsif time == 10 %>
         <td align=left width = "30%">营业活动现金流量(百万元)</td>
-        <% m = @stock.net_cash_flow_of_business_activities(time).reverse.size %>
+        <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.net_cash_flow_of_business_activities(time).reverse.each do |i| %>
+        <% static_data[24].reverse.each do |i| %>
           <td width = "7%"><%= i %></td>
         <% end %>
       <% elsif time == 2 %>
         <td align=left width = "55%">营业活动现金流量(百万元)</td>
-        <% m = @stock.net_cash_flow_of_business_activities(time).reverse.size %>
+        <% m = static_data[24].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.net_cash_flow_of_business_activities(time).reverse.each do |i| %>
+        <% static_data[24].reverse.each do |i| %>
           <td width = "20%"><%= i %></td>
         <% end %>
       <% end %>
@@ -66,22 +66,22 @@
 
     <tr data-toggle="modal" data-target="#momal-net-investment-activities-generated-cash-flow">
       <td align=left>投资活动现金流量(百万元)</td>
-      <% m = @stock.net_investment_activities_generated_cash_flow(time).reverse.size %>
+      <% m = static_data[25].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.net_investment_activities_generated_cash_flow(time).reverse.each do |i| %>
+      <% static_data[25].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-net-financing-activities-generated-cash-flow">
       <td align=left>筹资活动现金流量(百万元)</td>
-      <% m = @stock.net_financing_activities_generated_cash_flow(time).reverse.size %>
+      <% m = static_data[26].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.net_financing_activities_generated_cash_flow(time).reverse.each do |i| %>
+      <% static_data[26].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
@@ -90,5 +90,5 @@
 </div>
 
 <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-  <%= render :partial => "main_finance_table_modal_3", :locals => { :time => time } %>
+  <%= render :partial => "main_finance_table_modal_3", :locals => { :static_data => static_data, :time => time } %>
 <% end %>

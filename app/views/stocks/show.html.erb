@@ -69,8 +69,8 @@
       <!-- <div class="table-left"> -->                                 <!-- 在 md 以下时左右布局 -->
       <div class="table-left col-md-12 col-sm-12 row">          <!-- 在 md 以下时展开布局 -->
         <% if @stock.zcb && @stock.zcb != "" %>                 <!-- 如果存在数据. 并且数据不为空时 -->
-          <%= render :partial => "main_finance_table_1", :locals => { :time => @time } %>
-          <%= render :partial => "main_finance_table_4", :locals => { :time => @time } %>
+          <%= render :partial => "main_finance_table_1", :locals => { :static_data => JSON.parse(@stock.static_data_5), :time => @time } %>
+          <%= render :partial => "main_finance_table_4", :locals => { :static_data => JSON.parse(@stock.static_data_5), :time => @time } %>
         <% else %>
           <p>暂无数据</p>
         <% end %>
@@ -81,8 +81,8 @@
     <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
     <div class="table-right col-lg-5 col-md-12">
       <% if @stock.zcb && @stock.zcb != "" %>                   <!-- 如果存在数据. 并且数据不为空时 -->
-        <%= render :partial => "main_finance_table_2", :locals => { :time => @time } %>
-        <%= render :partial => "main_finance_table_3", :locals => { :time => @time } %>
+        <%= render :partial => "main_finance_table_2", :locals => { :static_data => JSON.parse(@stock.static_data_5), :time => @time } %>
+        <%= render :partial => "main_finance_table_3", :locals => { :static_data => JSON.parse(@stock.static_data_5), :time => @time } %>
       <% else %>
         <p>暂无数据</p>
       <% end %>

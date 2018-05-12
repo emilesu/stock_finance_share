@@ -9,7 +9,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">营业活动现金流量</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.net_cash_flow_of_business_activities(time) %>
+        <% m = static_data[24] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -35,7 +35,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">投资活动现金流量</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.net_investment_activities_generated_cash_flow(time) %>
+        <% m = static_data[25] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -61,7 +61,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">筹资活动现金流量</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.net_financing_activities_generated_cash_flow(time) %>
+        <% m = static_data[26] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end

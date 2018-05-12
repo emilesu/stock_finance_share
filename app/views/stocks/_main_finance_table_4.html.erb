@@ -5,21 +5,21 @@
       <% if time == 5 %>
         <td class="theader-style" width = "10%">类别</td>
         <td align=left width = "25%">红利发放日</td>
-        <% m = @stock.dividend_date(time).reverse.size %>
+        <% m = static_data[30].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.dividend_date(time).reverse.each do |i| %>
+        <% static_data[30].reverse.each do |i| %>
           <td align=center width = "13%"><%= i %></td>
         <% end %>
       <% elsif time == 10 %>
         <td class="theader-style" width = "8%">类别</td>
         <td align=left width = "22%">红利发放日</td>
-        <% m = @stock.dividend_date(time).reverse.size %>
+        <% m = static_data[30].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.dividend_date(time).reverse.each do |i| %>
+        <% static_data[30].reverse.each do |i| %>
           <td align=center width = "7%"><%= i %></td>
         <% end %>
       <% end %>
@@ -30,22 +30,22 @@
         <td class="theader-style" rowspan="3">分红水平</td>
       <% end %>
       <td align=left>每10股 分红(元)</td>
-      <% m = @stock.dividend_amount(time).reverse.size %>
+      <% m = static_data[31].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.dividend_amount(time).reverse.each do |i| %>
+      <% static_data[31].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-dividend-rate">
       <td align=left>分红率(%)</td>
-      <% m = @stock.dividend_rate(time).reverse.size %>
+      <% m = static_data[32].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.dividend_rate(time).reverse.each do |i| %>
+      <% static_data[32].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
@@ -54,5 +54,5 @@
 </div>
 
 <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-  <%= render :partial => "main_finance_table_modal_4", :locals => { :time => time } %>
+  <%= render :partial => "main_finance_table_modal_4", :locals => { :static_data => static_data, :time => time } %>
 <% end %>

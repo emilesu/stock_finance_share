@@ -18,7 +18,7 @@
         </h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.cash_and_cash_equivalents_ratio(time) %>
+        <% m = static_data[1] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -60,7 +60,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">应收账款(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.receivables_ratio(time) %>
+        <% m = static_data[2] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -98,7 +98,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">存货(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.inventory_ratio(time) %>
+        <% m = static_data[3] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -138,7 +138,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">流动资产(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.current_assets_ratio(time) %>
+        <% m = static_data[4] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -203,7 +203,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">应付账款(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.accounts_payable_ratio(time) %>
+        <% m = static_data[5] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -236,7 +236,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">流动负债(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.current_liabilities_ratio(time) %>
+        <% m = static_data[6] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -273,7 +273,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">长期负债(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.long_term_liability_ratio(time) %>
+        <% m = static_data[7] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -310,7 +310,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">股东权益(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.shareholders_equity_ratio(time) %>
+        <% m = static_data[8] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end

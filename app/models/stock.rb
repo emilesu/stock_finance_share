@@ -157,7 +157,7 @@ class Stock < ApplicationRecord
     elsif time == 5
       return result.reverse[0..4]
     elsif time == 2
-      return [nil, nil]
+      return ["--", "--"]
     end
   end
 
@@ -1068,21 +1068,43 @@ class Stock < ApplicationRecord
 
   # -----------------modal 弹窗数据脚本, 将输出[时间+数据]的格式用于生成图表-----------------
 
+  # 财报类 时间为按年
   def modal_data(time, data)
     #判断时间,以确定生成的数据长度
     if time == 10
-      y = self.quarter_years(1, 0)[0..9]
+      y = JSON.parse(self.static_data_10)[0][0..9]
     elsif time == 5
-      y = self.quarter_years(1, 0)[0..4]
+      y = JSON.parse(self.static_data_5)[0][0..4]
     elsif time == 2
-      y = self.quarter_recent(1, 0)
+      y = JSON.parse(self.static_data_2)[0]
     end
     #与日期对应的数据,生成具体的数据
     m = data
     # 运算
     result = []
     (0..time-1).each do |i|
-      main_y = y[0][0..3].to_i - i
+      main_y = y[i][0..3].to_i
+      data = [main_y, m[i]]
+      result << data
+    end
+    # 返回 modal 数据
+    return result
+  end
+
+  # 分红类 时间为按红利发放日
+  def modal_dividends_data(time, data)
+    #判断时间,以确定生成的数据长度
+    if time == 10
+      y = JSON.parse(self.static_data_10)[30][0..9]
+    elsif time == 5
+      y = JSON.parse(self.static_data_5)[30][0..4]
+    end
+    #与日期对应的数据,生成具体的数据
+    m = data
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      main_y = y[i].to_i
       data = [main_y, m[i]]
       result << data
     end
@@ -1122,7 +1144,7 @@ class Stock < ApplicationRecord
 
     # static_data_10
     sd_10 = []
-    sd_10 << self.quarter_years(1, 0)                                     # 0-年报年度
+    sd_10 << self.quarter_years(1, 0)[0..9]                               # 0-年报年度
     sd_10 << self.cash_and_cash_equivalents_ratio(10)                     # 1-现金与约当现金
     sd_10 << self.receivables_ratio(10)                                   # 2-应收账款
     sd_10 << self.inventory_ratio(10)                                     # 3-存货
@@ -1149,9 +1171,12 @@ class Stock < ApplicationRecord
     sd_10 << self.net_cash_flow_of_business_activities(10)                # 24-经营活动现金流量(百万元)
     sd_10 << self.net_investment_activities_generated_cash_flow(10)       # 25-投资活动现金流量(百万元)
     sd_10 << self.net_financing_activities_generated_cash_flow(10)        # 26-筹资活动现金流量(百万元)
-    sd_10 << self.dividend_date(10)                                       # 27-红利发放日
-    sd_10 << self.dividend_amount(10)                                     # 28-分红金额
-    sd_10 << self.dividend_rate(10)                                       # 29-分红率
+    sd_10 << self.operating_cash_flow_ratio(10)                           # 27-现金流量比率
+    sd_10 << self.cash_flow_adequancy_ratio(10)                           # 28-现金流量允当比率
+    sd_10 << self.cash_re_investment_ratio(10)                            # 29-现金再投资比率
+    sd_10 << self.dividend_date(10)                                       # 30-红利发放日
+    sd_10 << self.dividend_amount(10)                                     # 31-分红金额
+    sd_10 << self.dividend_rate(10)                                       # 32-分红率
     self.update!(
       :static_data_10 => sd_10
     )
@@ -1168,7 +1193,7 @@ class Stock < ApplicationRecord
     sd_5 << self.long_term_liability_ratio(5)                           # 7-长期负债
     sd_5 << self.shareholders_equity_ratio(5)                           # 8-股东权益
     sd_5 << self.accounts_receivable_turnover_ratio(5)                  # 9-应收账款周转率
-    sd_5 << self.inventory_turnover_ratio(5)                            # 5-存货周转率
+    sd_5 << self.inventory_turnover_ratio(5)                            # 10-存货周转率
     sd_5 << self.fixed_asset_turnover_ratio(5)                          # 11-不动产/厂房及设备周转率
     sd_5 << self.total_asset_turnover_ratio(5)                          # 12-总资产周转率
     sd_5 << self.roe_ratio(5)                                           # 13-股东权益报酬率 ROE
@@ -1185,9 +1210,12 @@ class Stock < ApplicationRecord
     sd_5 << self.net_cash_flow_of_business_activities(5)                # 24-经营活动现金流量(百万元)
     sd_5 << self.net_investment_activities_generated_cash_flow(5)       # 25-投资活动现金流量(百万元)
     sd_5 << self.net_financing_activities_generated_cash_flow(5)        # 26-筹资活动现金流量(百万元)
-    sd_5 << self.dividend_date(5)                                       # 27-红利发放日
-    sd_5 << self.dividend_amount(5)                                     # 28-分红金额
-    sd_5 << self.dividend_rate(5)                                       # 29-分红率
+    sd_5 << self.operating_cash_flow_ratio(5)                           # 27-现金流量比率
+    sd_5 << self.cash_flow_adequancy_ratio(5)                           # 28-现金流量允当比率
+    sd_5 << self.cash_re_investment_ratio(5)                            # 29-现金再投资比率
+    sd_5 << self.dividend_date(5)                                       # 30-红利发放日
+    sd_5 << self.dividend_amount(5)                                     # 31-分红金额
+    sd_5 << self.dividend_rate(5)                                       # 20-分红率
     self.update!(
       :static_data_5 => sd_5
     )
@@ -1204,7 +1232,7 @@ class Stock < ApplicationRecord
     sd_2 << self.long_term_liability_ratio(2)                           # 7-长期负债
     sd_2 << self.shareholders_equity_ratio(2)                           # 8-股东权益
     sd_2 << self.accounts_receivable_turnover_ratio(2)                  # 9-应收账款周转率
-    sd_2 << self.inventory_turnover_ratio(2)                            # 5-存货周转率
+    sd_2 << self.inventory_turnover_ratio(2)                            # 10-存货周转率
     sd_2 << self.fixed_asset_turnover_ratio(2)                          # 11-不动产/厂房及设备周转率
     sd_2 << self.total_asset_turnover_ratio(2)                          # 12-总资产周转率
     sd_2 << self.roe_ratio(2)                                           # 13-股东权益报酬率 ROE
@@ -1221,6 +1249,9 @@ class Stock < ApplicationRecord
     sd_2 << self.net_cash_flow_of_business_activities(2)                # 24-经营活动现金流量(百万元)
     sd_2 << self.net_investment_activities_generated_cash_flow(2)       # 25-投资活动现金流量(百万元)
     sd_2 << self.net_financing_activities_generated_cash_flow(2)        # 26-筹资活动现金流量(百万元)
+    sd_2 << self.operating_cash_flow_ratio(2)                           # 27-现金流量比率
+    sd_2 << self.cash_flow_adequancy_ratio(2)                           # 28-现金流量允当比率
+    sd_2 << self.cash_re_investment_ratio(2)                            # 29-现金再投资比率
     self.update!(
       :static_data_2 => sd_2
     )

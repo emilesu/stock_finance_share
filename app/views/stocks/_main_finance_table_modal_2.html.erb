@@ -9,7 +9,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">负债占资产比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.debt_asset_ratio(time) %>
+        <% m = static_data[20] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -35,7 +35,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">长期负债占不动产/厂房及设备比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.long_term_funds_for_fixed_assets_ratio(time) %>
+        <% m = static_data[21] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -61,7 +61,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">流动比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.current_ratio(time) %>
+        <% m = static_data[22] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -87,7 +87,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">速动比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.quick_ratio(time) %>
+        <% m = static_data[23] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -113,7 +113,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">应收账款周转率(次)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.accounts_receivable_turnover_ratio(time) %>
+        <% m = static_data[9] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -139,7 +139,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">平均收现日数</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.accounts_receivable_turnover_ratio(time).map!{ |x| (360 / x).round(2) } %>
+        <% m = static_data[9].map!{ |x| (360 / x).round(2) } %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -165,7 +165,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">存货周转率(次)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.inventory_turnover_ratio(time) %>
+        <% m = static_data[10] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -191,7 +191,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">平均销货日数(平均在库天数)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.inventory_turnover_ratio(time).map!{ |x| (360 / x).round(2) } %>
+        <% m = static_data[10].map!{ |x| (360 / x).round(2) } %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -217,7 +217,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">不动产/厂房及设备周转率(次)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.fixed_asset_turnover_ratio(time) %>
+        <% m = static_data[11] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -243,7 +243,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">总资产周转率(次)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.total_asset_turnover_ratio(time) %>
+        <% m = static_data[12] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -269,7 +269,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">股东权益报酬率(%) RoE</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.roe_ratio(time) %>
+        <% m = static_data[13] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -295,7 +295,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">营业毛利率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.operating_margin_ratio(time) %>
+        <% m = static_data[14] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -321,7 +321,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">营业利益率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.business_profitability_ratio(time) %>
+        <% m = static_data[15] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -347,7 +347,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">经营安全边际率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.operating_margin_of_safety_ratio(time) %>
+        <% m = static_data[16] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -373,7 +373,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">纯益率(%) = 净利率</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.net_profit_margin_ratio(time) %>
+        <% m = static_data[17] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -399,7 +399,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">每股盈余(元)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.earnings_per_share(time) %>
+        <% m = static_data[18] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -425,7 +425,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">税后净利(百万元)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.after_tax_profit(time) %>
+        <% m = static_data[19] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -451,7 +451,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">现金流量比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.operating_cash_flow_ratio(time) %>
+        <% m = static_data[27] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -477,7 +477,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">现金流量允当比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.cash_flow_adequancy_ratio(time) %>
+        <% m = static_data[28] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end
@@ -503,7 +503,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">现金再投资比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = @stock.cash_re_investment_ratio(time) %>
+        <% m = static_data[29] %>
         <%= line_chart(
           @stock.modal_data(time, m).reverse.each do |i|
           end

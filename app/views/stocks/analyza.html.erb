@@ -28,10 +28,10 @@
         <!-- <div class="table-left"> -->
         <div class="col-lg-9 col-md-12">
           <% if @stock.zcb && @stock.zcb != "" %>
-            <%= render :partial => "main_finance_table_1", :locals => { :time => @time_years } %>
-            <%= render :partial => "main_finance_table_3", :locals => { :time => @time_years } %>
-            <%= render :partial => "main_finance_table_2", :locals => { :time => @time_years } %>
-            <%= render :partial => "main_finance_table_4", :locals => { :time => @time_years } %>
+            <%= render :partial => "main_finance_table_1", :locals => { :static_data => JSON.parse(@stock.static_data_10), :time => @time_years } %>
+            <%= render :partial => "main_finance_table_3", :locals => { :static_data => JSON.parse(@stock.static_data_10), :time => @time_years } %>
+            <%= render :partial => "main_finance_table_2", :locals => { :static_data => JSON.parse(@stock.static_data_10), :time => @time_years } %>
+            <%= render :partial => "main_finance_table_4", :locals => { :static_data => JSON.parse(@stock.static_data_10), :time => @time_years } %>
           <% else %>
             <p>暂无数据</p>
           <% end %>
@@ -41,9 +41,9 @@
         <!-- <div class="table-left"> -->
         <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
           <% if @stock.zcb && @stock.zcb != "" %>
-            <%= render :partial => "main_finance_table_1", :locals => { :time => @time_recent } %>
-            <%= render :partial => "main_finance_table_3", :locals => { :time => @time_recent } %>
-            <%= render :partial => "main_finance_table_2", :locals => { :time => @time_recent } %>
+            <%= render :partial => "main_finance_table_1", :locals => { :static_data => JSON.parse(@stock.static_data_2), :time => @time_recent } %>
+            <%= render :partial => "main_finance_table_3", :locals => { :static_data => JSON.parse(@stock.static_data_2), :time => @time_recent } %>
+            <%= render :partial => "main_finance_table_2", :locals => { :static_data => JSON.parse(@stock.static_data_2), :time => @time_recent } %>
           <% else %>
             <p>暂无数据</p>
           <% end %>

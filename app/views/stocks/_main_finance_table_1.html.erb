@@ -5,29 +5,29 @@
     <tr class="theader-style">
       <% if time == 5 %>
         <td align=left width = "35%">资产负债比率(占总资产%)</td>
-        <% m = @stock.quarter_years(1, 0).reverse.size %>
+        <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.quarter_years(1, 0)[0..4].reverse.each do |i| %>
+        <% static_data[0].reverse.each do |i| %>
           <td align=center width = "13%"><%= i[0..3] %></td>
         <% end %>
       <% elsif time == 10 %>
         <td align=left width = "30%">资产负债比率(占总资产%)</td>
-        <% m = @stock.quarter_years(1, 0).reverse.size %>
+        <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.quarter_years(1, 0)[0..9].reverse.each do |i| %>
+        <% static_data[0].reverse.each do |i| %>
           <td align=center width = "7%"><%= i[0..3] %></td>
         <% end %>
       <% elsif time == 2 %>
         <td align=left width = "55%">资产负债比率(占总资产%)</td>
-        <% m = @stock.quarter_years(1, 0).reverse.size %>
+        <% m = static_data[0].reverse.size %>
         <% (1..time - m).each do |i| %>
           <td align=center>无统计</td>
         <% end %>
-        <% @stock.quarter_recent(1, 0).reverse.each do |i| %>
+        <% static_data[0].reverse.each do |i| %>
           <td align=center width = "20%"><%= i %></td>
         <% end %>
       <% end %>
@@ -35,44 +35,44 @@
 
     <tr data-toggle="modal" data-target="#momal-cash-and-cash-equivalents-ratio">
       <td align=left>现金与约当现金(%)</td>
-      <% m = @stock.cash_and_cash_equivalents_ratio(time).reverse.size %>
+      <% m = static_data[1].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.cash_and_cash_equivalents_ratio(time).reverse.each do |i| %>
+      <% static_data[1].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-receivables-ratio">
       <td align=left>应收账款(%)</td>
-      <% m = @stock.receivables_ratio(time).reverse.size %>
+      <% m = static_data[2].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.receivables_ratio(time).reverse.each do |i| %>
+      <% static_data[2].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-inventory-ratio">
       <td align=left>存货(%)</td>
-      <% m = @stock.inventory_ratio(time).reverse.size %>
+      <% m = static_data[3].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.inventory_ratio(time).reverse.each do |i| %>
+      <% static_data[3].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-current-assets-ratio">
       <td align=left>流动资产(%)</td>
-      <% m = @stock.current_assets_ratio(time).reverse.size %>
+      <% m = static_data[4].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.current_assets_ratio(time).reverse.each do |i| %>
+      <% static_data[4].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
@@ -86,44 +86,44 @@
 
     <tr data-toggle="modal" data-target="#momal-accounts-payable-ratio">
       <td align=left>应付账款(%)</td>
-      <% m = @stock.accounts_payable_ratio(time).reverse.size %>
+      <% m = static_data[5].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.accounts_payable_ratio(time).reverse.each do |i| %>
+      <% static_data[5].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-current-liabilities-ratio">
       <td align=left>流动负债(%)</td>
-      <% m = @stock.current_liabilities_ratio(time).reverse.size %>
+      <% m = static_data[6].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.current_liabilities_ratio(time).reverse.each do |i| %>
+      <% static_data[6].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-long-term-liability-ratio">
       <td align=left>长期负债(%)</td>
-      <% m = @stock.long_term_liability_ratio(time).reverse.size %>
+      <% m = static_data[7].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.long_term_liability_ratio(time).reverse.each do |i| %>
+      <% static_data[7].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-shareholders-equity-ratio">
       <td align=left>股东权益(%)</td>
-      <% m = @stock.shareholders_equity_ratio(time).reverse.size %>
+      <% m = static_data[8].reverse.size %>
       <% (1..time - m).each do |i| %>
         <td align=center>无统计</td>
       <% end %>
-      <% @stock.shareholders_equity_ratio(time).reverse.each do |i| %>
+      <% static_data[8].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
@@ -139,5 +139,5 @@
 </div>
 
 <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-  <%= render :partial => "main_finance_table_modal_1", :locals => { :time => time } %>
+  <%= render :partial => "main_finance_table_modal_1", :locals => { :static_data => static_data, :time => time } %>
 <% end %>
