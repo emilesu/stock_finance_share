@@ -249,7 +249,12 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb7[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb7[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
+
       result << m.round(2)
     end
     # 返回应收账款占总资产比率
@@ -273,7 +278,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb20[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb20[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回存货占总资产比率
@@ -297,7 +306,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb25[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb25[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回流动资产占总资产比率
@@ -321,7 +334,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb60[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb60[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回应付账款占总资产比率
@@ -345,7 +362,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb84[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb84[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回流动负债占总资产比率
@@ -369,7 +390,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb93[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb93[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回长期负债占总资产比率
@@ -393,7 +418,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb107[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb107[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回股东权益占总资产比率
@@ -419,8 +448,10 @@ class Stock < ApplicationRecord
     (0..time-1).each do |i|
       if (zcb7[i].to_f + zcb7[i-1].to_f) != 0
         m = lrb1[i].to_f / (zcb7[i].to_f + zcb7[i-1].to_f) * 2
-        result << m.round(2)
+      else
+        m = 0
       end
+      result << m.round(2)
     end
     # 返回应收账款周转率
     return result
@@ -504,8 +535,10 @@ class Stock < ApplicationRecord
     (0..time-1).each do |i|
       if zcb52[i].to_i != 0
         m = lrb1[i].to_f / zcb52[i].to_f
-        result << m.round(2)
+      else
+        m = 0
       end
+      result << m.round(2)
     end
     # 返回总资产周转率
     return result
@@ -578,7 +611,11 @@ class Stock < ApplicationRecord
     (0..time-1).each do |i|
       sr = lrb2[i].to_f + lrb3[i].to_f + lrb4[i].to_f + lrb5[i].to_f + lrb6[i].to_f + lrb7[i].to_f
       cb = lrb9[i].to_f + lrb10[i].to_f + lrb11[i].to_f + lrb12[i].to_f + lrb13[i].to_f + lrb14[i].to_f + lrb15[i].to_f + lrb16[i].to_f + lrb17[i].to_f + lrb18[i].to_f + lrb19[i].to_f + lrb20[i].to_f
-      m = ( sr - cb ) / sr * 100
+      if sr != 0
+        m = ( sr - cb ) / sr * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回营业毛利率
@@ -602,7 +639,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = lrb33[i].to_f / lrb1[i].to_f * 100
+      if lrb1[i].to_f != 0
+        m = lrb33[i].to_f / lrb1[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回营业毛利率
@@ -618,12 +659,12 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      if lyl[i] < 0 && mll[i] < 0
-        result << "严重风险"
-      else
+      if mll[i] != 0
         m = lyl[i] / mll[i] * 100
-        result << m.round(2)
+      else
+        m = 0
       end
+      result << m.round(2)
     end
     # 返回经营安全边际率
     return result
@@ -646,7 +687,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = lrb40[i].to_f / lrb1[i].to_f * 100
+      if lrb1[i].to_f != 0
+        m = lrb40[i].to_f /  * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回净利率
@@ -712,7 +757,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = lrb41[i].to_f / zcb105[i].to_f * 100
+      if zcb105[i].to_f != 0
+        m = lrb41[i].to_f / zcb105[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回每股盈余
@@ -736,7 +785,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = zcb94[i].to_f / zcb52[i].to_f * 100
+      if zcb52[i].to_f != 0
+        m = zcb94[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回负债占资产比率
