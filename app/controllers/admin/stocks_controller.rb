@@ -1,7 +1,16 @@
 class Admin::StocksController < AdminController
 
   def index
-    @stocks = Stock.order("symbol").page(params[:page]).per(25)
+    # @stocks = Stock.order("symbol").page(params[:page]).per(25)
+    @industry = params[:order]
+    if @industry.nil?
+      @stocks = Stock.order("symbol").page(params[:page]).per(25)                   # 如果参数为空，则显示所有数据
+    else
+      @stocks = Stock.where(:industry => @industry).page(params[:page]).per(25)         #筛选出传入参数所属行业的数据
+    end
+
+    # 行业筛选
+    @industry_list = JSON.parse(Setting.first.industry)
   end
 
   def show

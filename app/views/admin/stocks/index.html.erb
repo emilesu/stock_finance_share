@@ -2,6 +2,21 @@
 
   <div>
     <%= link_to("新建股票数据", new_admin_stock_path, :class => "btn btn-default pull-right" ) %>
+
+    <!-- 行业筛选 -->
+    <div class="dropdown clearfix pull-right">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        行业选择
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+        <% @industry_list.each do |i| %>
+          <li>
+            <%= link_to( i , admin_stocks_path(:order => i)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 
   <table class="table table-striped">
