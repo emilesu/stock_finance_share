@@ -122,14 +122,11 @@
             <%= link_to("删除", admin_stock_path(stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
           </td>
           <!--  -->
-          <!-- <% if stock.version.nil? %>
+          <% if stock.version.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.version %></td>
-          <% end %> -->
-
-          <td><%= JSON.parse(stock.static_data_5)[1] %></td>
-
+          <% end %>
         </tr>
       <% end %>
     </tbody>
