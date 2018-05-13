@@ -688,7 +688,7 @@ class Stock < ApplicationRecord
     result = []
     (0..time-1).each do |i|
       if lrb1[i].to_f != 0
-        m = lrb40[i].to_f /  * 100
+        m = lrb40[i].to_f / lrb1[i].to_f * 100
       else
         m = 0
       end
