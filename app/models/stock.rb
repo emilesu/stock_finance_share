@@ -120,8 +120,10 @@ class Stock < ApplicationRecord
     (0..time-1).each do |i|
       if zcb84[i].to_i != 0
         m = llb25[i].to_f / zcb84[i].to_f * 100
-        result << m.round(2)
+      else
+        m = 0
       end
+      result << m.round(2)
     end
     # 返回现金流量比率
     return result
@@ -148,7 +150,11 @@ class Stock < ApplicationRecord
     end
     result = []
     (0..c1.size-1).each do |i|
-      m = c1[i] / (c2[i] - c3[i] + c4[i]) * 100
+      if (c2[i] - c3[i] + c4[i]) != 0
+        m = c1[i] / (c2[i] - c3[i] + c4[i]) * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回最近5年现现金流量允当比率
@@ -184,7 +190,11 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      m = (llb25[i].to_f - llb48[i].to_f) / (zcb52[i].to_f - zcb84[i].to_f) * 100
+      if (zcb52[i].to_f - zcb84[i].to_f) != 0
+        m = (llb25[i].to_f - llb48[i].to_f) / (zcb52[i].to_f - zcb84[i].to_f) * 100
+      else
+        m = 0
+      end
       result << m.round(2)
     end
     # 返回现金再投资比率
