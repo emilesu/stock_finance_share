@@ -27,22 +27,28 @@
       <!-- 会员显示 -->
       <span class="pull-right">
         <% if user.role == "member" %>
-          <% if current_user && current_user == user || current_user.role == "admin" %>
+          <% if current_user && current_user.role == "admin" %>
             <% if user.nper == 99 %>
               <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="永久会员">
-                <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               </a>
             <% else %>
             <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
-              <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </a>
             <% end %>
-          <% else %>
-            <img src="https://i.loli.net/2018/03/30/5abe5064d2888.png">
+          <% elsif current_user && current_user == user %>
+            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </a>
+          <% elsif %>
+            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </a>
           <% end %>
         <% elsif user.role == "admin" %>
           <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="站长">
-            <img src="https://i.loli.net/2018/03/31/5abe649f3c20a.png">
+            <i class="fa fa-user-secret" aria-hidden="true"></i>
           </a>
         <% end %>
       </span>

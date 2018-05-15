@@ -499,24 +499,30 @@ class Stock < ApplicationRecord
   end
 
   # --- A3-3、固定资产周转率(不动产/厂房及设备周转率) ---
-  # =  营业收入  lrb1  /  固定资产 zcb37
+  # =  营业收入  lrb1  /  固定资产 zcb37 + 在建工程 zcb38 + 工程物资 zcb39
   def fixed_asset_turnover_ratio(time)
     # 数据源
     if time == 10
       lrb1 = self.quarter_years(2, 1)[0..9]
       zcb37 = self.quarter_years(1, 37)[0..9]
+      zcb38 = self.quarter_years(1, 38)[0..9]
+      zcb39 = self.quarter_years(1, 39)[0..9]
     elsif time == 5
       lrb1 = self.quarter_years(2, 1)[0..4]
       zcb37 = self.quarter_years(1, 37)[0..4]
+      zcb38 = self.quarter_years(1, 38)[0..4]
+      zcb39 = self.quarter_years(1, 39)[0..4]
     elsif time == 2
       lrb1 = self.quarter_recent(2, 1)
       zcb37 = self.quarter_recent(1, 37)
+      zcb38 = self.quarter_recent(1, 38)
+      zcb39 = self.quarter_recent(1, 39)
     end
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if zcb37[i].to_i != 0
-        m = lrb1[i].to_f / zcb37[i].to_f
+      if ( zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f ) != 0
+        m = lrb1[i].to_f / ( zcb37[i].to_f + zcb38[i].to_f + zcb38[i].to_f )
       else
         m = 0
       end
