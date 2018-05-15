@@ -9,17 +9,21 @@
           <%= @stock.name %>
           <span> (<%= @stock.easy_symbol %>)</span>
         </h1>
-        <h5>
-          <%= @stock.industry %> - <%= @stock.regional %> - <%= @stock.time_to_market.strftime("%Y-%m-%d") %> - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a>
-        </h5>
+
+        <strong>
+          <p><%= @stock.industry %> - <%= @stock.regional %>  - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
+          <p>上市时间: <%= @stock.time_to_market.strftime("%Y-%m-%d") %></p>
+          <p>滚动市盈率(TTM): <%= @latest_price[2].to_f %></p>
+          <p>股息率: <%= @stock.the_dividend_yield %> %</p>
+        </strong>
 
         <div class="main_business">
-          <p title="<%= @stock.main_business %>"><span>主营业务: </span><%= @stock.main_business %></p>
-        </div>
+          <p title="<%= @stock.main_business %>"><strong>主营业务: </strong><%= @stock.main_business %></p>
+        </div><br>
 
         <div class="to-finance-btn">
           <%= link_to("返回 >>", stock_path(@stock), :class => "btn btn-sm btn-default") %>
-        </div>
+        </div> <br>
       </div>
 
 

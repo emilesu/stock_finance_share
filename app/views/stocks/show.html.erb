@@ -3,7 +3,11 @@
   <!-- 同类行业列表栏 会员可见-->
   <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
     <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
-      <%= render "industry_order" %>
+      <%= render "industry_order_member" %>
+    </div>
+  <% else %>
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
+      <%= render "industry_order_nonmember" %>
     </div>
   <% end %>
 
@@ -15,8 +19,8 @@
       <!-- <div class="stock-title"> -->                               <!-- 在 md 以下时左右布局 -->
       <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
         <div class="stock-title">
-          <span id="stock-name"> <%= @stock.name %> </span>
-          <span id="stock-symbol"> (<%= @stock.easy_symbol %>)</span>
+          <span class="stock-name"> <%= @stock.name %> </span>
+          <span class="stock-symbol"> (<%= @stock.easy_symbol %>)</span>
           <span class="stock-price" price-data="<%= @latest_price[1] %>">
             <em>¥</em>
             <%= @latest_price[0].to_f.round(2) %>
@@ -29,6 +33,16 @@
               <% end %>
               ) </em>
           </span>
+          <!-- note 编辑 modal 页面 -->
+          <% if current_user %>
+            <span class="pull-right star-stock" data-toggle="modal" data-target="#momal-note-new">
+              <% if current_user.notes.map{ |note| note.stock }.include?(@stock) %>     <!-- 判断用户是否已有该 stock 的 note -->
+                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+              <% else %>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+              <% end %>
+            </span>
+          <% end %>
         </div>
         <strong>
           <p><%= @stock.industry %> - <%= @stock.regional %>  - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
@@ -50,16 +64,6 @@
             <span>
               <%= link_to("行业统计分析 >>", industry_stocks_path(:order => @stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
-            <!-- note 编辑 modal 页面 -->
-            <% if current_user %>
-              <span class="pull-right star-stock" data-toggle="modal" data-target="#momal-note-new">
-                <% if current_user.notes.map{ |note| note.stock }.include?(@stock) %>     <!-- 判断用户是否已有该 stock 的 note -->
-                  <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-                <% else %>
-                  <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
-                <% end %>
-              </span>
-            <% end %>
           </div>
         <% end %>
 

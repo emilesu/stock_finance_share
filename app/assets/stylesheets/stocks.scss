@@ -114,18 +114,26 @@
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
-
+  h1 {
+    margin-top: 0;
+    font-size: 36px;
+    font-weight: 500;
+    span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
   .stock-intro {
     flex-grow: 1;
     align-self: flex-start;
     // height: 200px;
     .stock-title {
       margin-bottom: 10px;
-      #stock-name {
+      .stock-name {
         font-size: 36px;
         font-weight: 500;
       }
-      #stock-symbol {
+      .stock-symbol {
         font-size: 20px;
         font-weight: 500;
         line-height: 1.1;
