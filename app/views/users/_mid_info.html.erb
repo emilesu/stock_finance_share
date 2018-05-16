@@ -1,3 +1,7 @@
 <!-- twitter new/show/edit/destroy功能 -->
-<%= render :partial => "//twitters/user_info_twitter", :locals => { :user => @user } %>
+<%= render :partial => "//twitters/user_info_twitter", :locals => { :user => @user } %> <br>
+
+<div class="label-title">
+<h4>我的笔记<span class="badge pull-right"><%= @user.notes.size %></span></h4>
+</div><hr>
 <%= render :partial => "//notes/user_info_note", :locals => { :user => @user } %>

@@ -16,56 +16,26 @@
   <br>
 <% end %>
 
+<div class="label-title">
+  <h4>Twitter<span class="badge pull-right"><%= @user.twitters.size %></span></h4>
+</div>
+<hr>
 <!-- twitter 列表与展示 -->
-<% if current_user && user == current_user %>
-  <% twitters = user.twitters.order("created_at DESC") %>
+<!-- 如果当前用户为登陆者 -->
+<% if current_user && (current_user == @user || current_user.role == "admin") %>
+  <% @twitters.each do |twitter| %>
+    <%= render :partial => "//twitters/user_info_twitter_list", :locals => { :twitter => twitter } %>
+  <% end %>
 <% else %>
-  <% twitters = user.twitters.where( :status => "公开" ).order("created_at DESC") %>
-<% end %>
-<% twitters.order("created_at DESC").each do |twitter| %>
-  <div class="twitters-li">
-    <a data-toggle="collapse" data-target="#twitter-<%= twitter.id %>" aria-expanded="false" aria-controls="collapseExample">
-      <div class="twitter-box">
-        <div class="twitter-content">
-          <%= simple_format(sanitize twitter.content) %>
-          <!-- <%= sanitize markdown twitter.content %> -->
-        </div>
-        <span> <%= time_ago_in_words(twitter.created_at) %>前 </span>
-        <span class="pull-right">( <%= twitter.reviews.size %> )</span>
-      </div>
-    </a>
-    <div class="collapse" id="twitter-<%= twitter.id %>">
-      <div class="twitter-edit-destroy">
-        <% if current_user && user.id == current_user.id %>
-        <span>
-          <a href="twitter-modal-edit" data-toggle="modal" data-target="#twitter-modal-edit-<%= twitter.id %>">
-            编辑
-          </a>
-          <%= link_to("删除", user_twitter_path(user, twitter), method: :delete, data: { confirm: "真的要删除吗?" }) %>
-        </span>
-        <% end %>
-      </div>
-      <div class="card card-body">
-        <div class="form-group">
-          <%= simple_form_for [user, twitter, @user_twitter_review_new], :remote => true do |f| %>
-            <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 2, :style=> 'width: 100%;'} %>
-            <%= f.submit "评论", class: "btn btn-xs pull-right", data: {disable_with: "Submiting"} %>
-          <% end %>
-          <br>
-        </div>
-        <div id="review-list-<%= twitter.id %>">
-          <% twitter.reviews.order("created_at DESC").each do |review| %>
-            <!-- 对新增的 review 进行 Ajax 处理 -->
-            <%= render :partial => "/reviews/review", :locals => { :review => review, :twitter => twitter } %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <%= render :partial => "//twitters/twitter_modal_edit", :locals => { :twitter => twitter, :user => @user } %>
+  <% @twitters.where.not(:status => "私密").each do |twitter| %>
+    <%= render :partial => "//twitters/user_info_twitter_list", :locals => { :twitter => twitter } %>
+  <% end %>
 <% end %>
 
-<br><hr>
+
+<%= paginate @twitters %>
+
+<br>
 
 
 

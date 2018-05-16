@@ -7,11 +7,8 @@ class UsersController < ApplicationController
     @user_twitter_review_new = Review.new
     @attentions = @user.attentions.order("created_at DESC")
     @fans = @user.fans.order("created_at DESC")
-
-    # if current_user
-    #   @stock_current_user_notes = current_user.notes.order("updated_at DESC")
-    # end
     @notes = @user.notes.order("updated_at DESC")
+    @twitters = @user.twitters.order("created_at DESC").page(params[:page]).per(5)
   end
 
   def edit
