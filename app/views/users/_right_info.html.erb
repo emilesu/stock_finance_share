@@ -11,17 +11,7 @@
     <% @attentions.each do |atention| %>
       <% u = User.find(atention.my_attention) %>
       <%= link_to user_path(u) do %>
-      <div class="media">
-        <div class="media-left">
-          <%= image_tag(u.avatar, :class => "img-circle") %>
-        </div>
-        <div class="media-body">
-          <h5 class="media-heading"><%= u.username %></h5>
-          <div class="media-motto">
-            <%= u.motto %>
-          </div>
-        </div>
-      </div>
+        <%= image_tag(u.avatar, :class => "img-circle") %>
       <% end %>
     <% end %>
   </div>
@@ -41,17 +31,7 @@
     <% @fans.each do |fan| %>
       <% u = User.find(fan.my_fans) %>
       <%= link_to user_path(u) do %>
-      <div class="media">
-        <div class="media-left">
-          <%= image_tag(u.avatar, :class => "img-circle") %>
-        </div>
-        <div class="media-body">
-          <h5 class="media-heading"><%= u.username %></h5>
-          <div class="media-motto">
-            <%= u.motto %>
-          </div>
-        </div>
-      </div>
+        <span><%= image_tag(u.avatar, :class => "img-circle") %></span>
       <% end %>
     <% end %>
   </div>

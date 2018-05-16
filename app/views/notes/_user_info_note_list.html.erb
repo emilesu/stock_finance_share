@@ -47,10 +47,10 @@
     <div class="collapse" id="note-content-<%= note.id %>">
       <div class="note-content">
         <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
-          <%= sanitize note.description %> <br>
+          <%= simple_format(sanitize note.description) %> <br>
         <% else %>
           <% if note.status == "公开" %>
-            <%= sanitize note.description %> <br>
+            <%= simple_format(sanitize note.description) %> <br>
           <% else %>
             <br><p class="text-center"> - 对会员公开 - </p>
           <% end %>

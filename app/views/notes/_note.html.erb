@@ -58,7 +58,7 @@
         </a>
         <div class="collapse" id="note-content-<%= note.id %>">
           <div class="note-content">
-            <%= sanitize note.description %> <br>
+            <%= simple_format(sanitize note.description) %> <br>
           </div>
         </div>
       </div>

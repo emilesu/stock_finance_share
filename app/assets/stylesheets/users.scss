@@ -110,12 +110,9 @@
     }
     .relation-list {
       img {
-        width: 38px;
+        margin: 4px 2px;
+        width: 40px;
         height: auto;
-      }
-      .media-motto {
-        height:20px;
-        overflow:hidden;                  //超出40px高度时隐藏
       }
     }
   }
