@@ -2,7 +2,7 @@
 
 <% if current_user && user == current_user %>
   <%= simple_form_for ([user, @user_twitter_new]) do |f| %>
-    <%= f.input :content, :label => false, input_html: { class: "form-control", :rows => 5, :style=> 'width: 100%;'} %>
+    <%= f.input :content, :label => false, :placeholder => "写下你的心得 #Twitter#",input_html: { class: "form-control", :rows => 5, :style=> 'width: 100%;'} %>
     <div id="note-status-button" class="btn-group" data-toggle="buttons">
       <% Twitter::TWITTER_STATUS.each do |status| %>
         <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
