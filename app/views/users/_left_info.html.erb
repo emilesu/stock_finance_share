@@ -1,4 +1,4 @@
-<!-- <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>"> -->
+<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
@@ -7,7 +7,7 @@
       <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "img-responsive") %>
     <% end %>
   </div>
-<!-- </a> -->
+</a>
 
 <!-- 关注 / 取消关注  当前用户界面是用户本人时不可见 -->
 <% if current_user && current_user != user %> <br>
