@@ -64,57 +64,13 @@
 <% end %>
 
 <!-- 公开的笔记 -->
-<% @stock_notes.each do |note| %>
-  <div class="note-box">
-    <!-- 消息栏标头 -->
-    <div class="note-box-side">
-
-      <!-- 发布者头像位置 -->
-      <div class="note-left">
-        <div class="note-left-side">
-          <%= link_to user_path(note.user) do %>
-          <div class="media">
-            <div class="media-left">
-              <%= image_tag(note.user.avatar, :class => "img-circle") %>
-            </div>
-            <div class="media-body">
-              <h5 class="media-heading"><%= note.user.username %></h5>
-              <t><%= time_ago_in_words( note.updated_at ) %>前</t>
-            </div>
-          </div>
-          <% end %>
-        </div>
-
-        <!-- 笔记等级 -->
-        <div class="note-mid-side">
-          <%= note.level %>
-        </div>
-      </div>
-
-      <!-- 点赞收藏 -->
-      <div class="note-right pull-right">
-        <span id="note-like-<%= note.id %>">
-          <%= render :partial => "//notes/like", :locals => { :note => note } %>
-        </span>
-
-      </div>
-    </div>
-
-    <!-- note 笔记内容 -->
-    <div class="note-info">
-      <a data-toggle="collapse" href="#note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <div class="note-title">
-          <%= note.title %>
-        </div>
-      </a>
-      <div class="collapse" id="note-content-<%= note.id %>">
-        <div class="note-content">
-          <%= sanitize note.description %> <br>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <%= render :partial => "//notes/note_modal_edit", :locals => { :note => note } %>
+<% if current_user %>
+  <% @stock_notes.where.not(:user_id => current_user.id, :status => "私密").each do |note| %>
+    <%= render :partial => "//notes/note_list", :locals => { :note => note } %>
+  <% end %>
+<% else %>
+  <% @stock_notes.where.not(:status => "私密").each do |note| %>
+    <%= render :partial => "//notes/note_list", :locals => { :note => note } %>
+  <% end %>
 <% end %>
 <br>
