@@ -1,93 +1,10 @@
-<!-- 我的笔记 -->
-<% if current_user && user == current_user %>
-  <% @stock_current_user_notes.each do |note| %>
-    <div class="user-note-box">
-      <!-- 消息栏标头 -->
-      <div class="note-box-side">
-
-        <!-- 发布者头像位置 -->
-        <div class="note-left">
-          <div class="note-left-side">
-            <%= link_to stock_path(note.stock.easy_symbol) do %>
-              <%= note.stock.name %> -
-              <%= note.stock.easy_symbol %>
-            <% end %>
-          </div>
-
-          <!-- 笔记等级 -->
-          <div class="note-mid-side">
-            <%= note.level %>
-          </div>
-        </div>
-
-        <div class="note-right">
-          <%= time_ago_in_words( note.updated_at ) %>前
-        </div>
-
-      </div>
-
-      <!-- note 笔记内容 -->
-      <div class="note-info">
-        <a data-toggle="collapse" href="#note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-          <div class="note-title">
-            <%= note.title %>
-          </div>
-        </a>
-        <div class="collapse" id="note-content-<%= note.id %>">
-          <div class="note-content">
-            <%= sanitize note.description %> <br>
-          </div>
-        </div>
-      </div>
-
-    </div>
+<!-- 如果当前用户为登陆者 -->
+<% if current_user && (current_user == @user || current_user.role == "admin") %>
+  <% @notes.each do |note| %>
+    <%= render :partial => "//notes/user_info_note_list", :locals => { :note => note } %>
   <% end %>
-  <br>
-  <hr>
-
 <% else %>
-  <!-- 公开的笔记 -->
-  <% @stock_notes.each do |note| %>
-    <div class="user-note-box">
-      <!-- 消息栏标头 -->
-      <div class="note-box-side">
-
-        <!-- 发布者头像位置 -->
-        <div class="note-left">
-          <div class="note-left-side">
-            <%= link_to stock_path(note.stock.easy_symbol) do %>
-              <%= note.stock.name %> -
-              <%= note.stock.easy_symbol %>
-            <% end %>
-          </div>
-
-          <!-- 笔记等级 -->
-          <div class="note-mid-side">
-            <%= note.level %>
-          </div>
-        </div>
-
-        <div class="note-right">
-          <%= time_ago_in_words( note.updated_at ) %>前
-        </div>
-
-      </div>
-
-      <!-- note 笔记内容 -->
-      <div class="note-info">
-        <a data-toggle="collapse" href="#note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-          <div class="note-title">
-            <%= note.title %>
-          </div>
-        </a>
-        <div class="collapse" id="note-content-<%= note.id %>">
-          <div class="note-content">
-            <%= sanitize note.description %> <br>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <% @notes.where.not(:status => "私密").each do |note| %>
+    <%= render :partial => "//notes/user_info_note_list", :locals => { :note => note } %>
   <% end %>
-<br>
 <% end %>

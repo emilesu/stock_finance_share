@@ -50,6 +50,12 @@
   }
 
   .note-info {
+    span {
+      background-color: #f0f0f0;
+      padding: 25px 15px 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
     a {
       cursor: pointer;
       text-decoration: none;
@@ -116,6 +122,12 @@
     }
 
     .note-right {
+      a {
+        color: #999;
+      }
+      a:hover {
+        color: #333
+      }
       color: #999;                //发布时间
       padding: 10px 15px;
     }

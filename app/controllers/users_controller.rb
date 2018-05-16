@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @attentions = @user.attentions.order("created_at DESC")
     @fans = @user.fans.order("created_at DESC")
 
-    if current_user
-      @stock_current_user_notes = current_user.notes.order("updated_at DESC")
-    end
-    @stock_notes = @user.notes.where( :status => "公开" ).order("updated_at DESC")
+    # if current_user
+    #   @stock_current_user_notes = current_user.notes.order("updated_at DESC")
+    # end
+    @notes = @user.notes.order("updated_at DESC")
   end
 
   def edit
