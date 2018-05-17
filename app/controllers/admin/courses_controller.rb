@@ -6,7 +6,7 @@ class Admin::CoursesController < AdminController
 
   def show
     @course = Course.find_by_friendly_id!(params[:id])
-    @posts = @course.posts
+    @posts = @course.posts.order("catalog")
   end
 
   def new
