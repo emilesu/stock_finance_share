@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517144116) do
+ActiveRecord::Schema.define(version: 20180517145116) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 20180517144116) do
     t.string "course_id"
     t.string "title"
     t.text "description"
-    t.string "catalog"
     t.string "section"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
