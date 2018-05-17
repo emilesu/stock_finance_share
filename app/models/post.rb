@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :course
 
   # 资料验证
-  validates_presence_of :title, :description, :catalog, :section
+  # validates_presence_of :title, :description, :catalog, :section
 
   STATUS = ["draft", "member", "public"]
   validates_inclusion_of :status, :in => STATUS
