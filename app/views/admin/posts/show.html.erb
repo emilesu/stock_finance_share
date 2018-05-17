@@ -20,7 +20,7 @@
     <!-- left章节目录列表 -->
     <div class="col-md-3 hidden-sm hidden-xs">
       <ul class="nav nav-stacked affix affix-top" data-spy="affix" data-offset-top="400">
-        <% @course.posts.each do |post| %>
+        <% @course.posts.order("catalog").each do |post| %>
           <li role="presentation">
             <%= link_to(post.title, admin_course_post_path(@course, post)) %>
           </li>
