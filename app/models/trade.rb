@@ -7,5 +7,5 @@ class Trade < ApplicationRecord
   validates_presence_of :stock, :buy_price, :buy_time
 
   TRADE_STATUS = ["公开", "对会员公开", "私密"]
-  validates_inclusion_of :status, :in => STATUS
+  validates_inclusion_of :status, :in => TRADE_STATUS
 end

@@ -1,8 +1,27 @@
+<!-- 我的交易 trade -->
+<div class="relation-box">
+
+  <div class="relation-title">
+    <h4>交易历史
+      <span class="badge pull-right"><%= @trade.size %></span>
+      <!-- 新增按钮 -->
+      <% if current_user && current_user == @user %>
+        <span>+</span>
+      <% end %>
+    </h4>
+  </div>
+  <hr>
+
+  <!-- 交易列表 -->
+
+
+</div><br><br>
+
 <!-- 我关注的 -->
 <div class="relation-box">
 
   <div class="relation-title">
-    <h4>我关注的<span class="badge pull-right"><%= @attentions.size %></span></h4>
+    <h4>我在看Ta<span class="badge pull-right"><%= @attentions.size %></span></h4>
   </div>
   <hr>
 

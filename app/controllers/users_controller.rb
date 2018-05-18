@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @fans = @user.fans.order("created_at DESC")
     @notes = @user.notes.order("updated_at DESC")
     @twitters = @user.twitters.order("created_at DESC").page(params[:page]).per(5)
+    @trade = @user.trades.order("updated_at DESC")
   end
 
   def edit

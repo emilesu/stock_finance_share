@@ -24,6 +24,9 @@ class User < ApplicationRecord
   # 与 note 关系
   has_many :notes
 
+  # 与 trade 关系
+   has_many :trades
+
   # 与 like 关系
   has_many :likes, :dependent => :destroy
   has_many :liked_notes, :through => :likes, :source => :note
