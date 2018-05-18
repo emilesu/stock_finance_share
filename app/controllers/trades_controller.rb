@@ -3,13 +3,13 @@ class TradesController < ApplicationController
   before_action :set_user
 
   def new
-    @trade = Trader.new
+    @trade = Trade.new
   end
 
   def create
     @trade = Trade.new(trade_params)
     @trade.user_id = current_user.id
-    if @trader.save
+    if @trade.save
       redirect_back fallback_location: user_path(@user)
     else
       redirect_back fallback_location: user_path(@user)

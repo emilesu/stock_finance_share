@@ -1,0 +1,36 @@
+<!-- 新建 stock -->
+<div class="modal fade" id="trade-new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">创建-交易记录</h5>
+      </div>
+      <%= simple_form_for ([@user, @user_trade_new]) do |f| %>
+      <div class="modal-body">
+        <%= f.input :stock, :label => "股票代码", input_html: { class: "form-control"} %>
+        <%= f.input :buy_price, :label => "买入价格", input_html: { class: "form-control"} %>
+        <%= f.input :buy_time, :label => "买入时间", input_html: { class: "form-control"} %> <hr>
+        <%= f.input :sell_price, :label => "卖入价格", input_html: { class: "form-control"} %>
+        <%= f.input :sell_time, :label => "卖入时间", input_html: { class: "form-control"} %> <hr>
+        <%= f.input :description, :label => "策略", input_html: { class: "form-control", :rows => 6, :style=> 'width: 100%;'} %>
+        <label for="note-level-button">策略是否公开？</label><br>
+        <div id="note-status-button" class="btn-group" data-toggle="buttons">
+          <% Trade::TRADE_STATUS.each do |status| %>
+            <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
+              <%= f.radio_button :status, status %>
+              <%= t(status, :scope => "trade.status") %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "发布", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

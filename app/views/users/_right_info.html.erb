@@ -6,7 +6,10 @@
       <span class="badge pull-right"><%= @trade.size %></span>
       <!-- 新增按钮 -->
       <% if current_user && current_user == @user %>
-        <span>+</span>
+        <a class="trade-new" data-toggle="modal" data-target="#trade-new">
+          +
+        </a>
+        <%= render :partial => "//trades/trade_new"%>
       <% end %>
     </h4>
   </div>
