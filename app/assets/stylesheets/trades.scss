@@ -1,3 +1,24 @@
-// Place all the styles related to the trades controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.trade-box {
+  .trade-title {
+    margin-bottom: -8px;
+  }
+  .trade-list-box {
+    .trade-list {
+      transition: 0.2s;
+      margin-bottom: 20px;
+      .trade-stock {
+        padding: 10px;
+        background-color: #f8f8f8;
+      }
+      .trade-info {
+        padding: 10px 10px 2px;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+      hr {
+        border: #fff 1px dashed;
+        margin: 4px 0 10px;
+      }
+    }
+  }
+}

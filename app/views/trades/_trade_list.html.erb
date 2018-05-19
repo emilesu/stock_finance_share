@@ -1,0 +1,51 @@
+<div class="trade-list">
+
+  <!-- 股票代码 stock -->
+  <div class="trade-stock">
+    <!-- 判读股票代码是否输入正确 -->
+    <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
+      <strong> <%= trade.stock %> </strong>
+      <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="股票代码错误，请修改！">
+        <i class="fa fa-question-circle" aria-hidden="true"></i>
+      </a>
+    <% else %>
+      <%= link_to stock_path(trade.stock) do %>
+        <strong> <%= Stock.find_by_easy_symbol(trade.stock).name %> - <%= trade.stock %> </strong>
+      <% end %>
+    <% end %>
+
+    <!-- 如果是当前用户，有编辑功能 -->
+    <% if current_user && current_user == @user %>
+      <span class="pull-right">
+        <a class="" data-toggle="modal" data-target="#trade-edit-<%= trade.id %>">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+      </span>
+    <% end %>
+    <%= render :partial => "//trades/trade_edit", :locals => { :trade => trade } %>
+  </div>
+
+  <!-- 股票交易信息 -->
+  <a class="" data-toggle="modal" data-target="#trade-show-<%= trade.id %>">
+    <div class="trade-info">
+      <p>买入时间：<strong><%= trade.buy_time.strftime("%Y-%m-%d") %></strong></p>
+      <p>买入价格：<strong><%= trade.buy_price %></strong> <em>¥</em> </p><hr>
+      <% if trade.sell_price.blank? || trade.sell_time.blank? %>
+        <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
+          <p>当前价格：<strong>0</p>
+          <p>浮动盈亏：<strong>0</strong></p>
+        <% else %>
+          <% latest_price = Stock.find_by_easy_symbol(trade.stock).stock_latest_price_and_PE[0] %>
+          <p>当前价格：<strong><%= latest_price %></strong> <em>¥</em> </p>
+          <p>浮动盈亏：<strong><%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p>
+        <% end %>
+      <% else %>
+        <p>卖出时间：<strong><%= trade.sell_time.strftime("%Y-%m-%d") %></strong></p>
+        <p>卖出价格：<strong><%= trade.sell_price %></strong> <em>¥</em> </p>
+        <p>结算盈亏：<strong><%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p>
+      <% end %>
+    </div>
+  </a>
+  <%= render :partial => "//trades/trade_show", :locals => { :trade => trade } %>
+
+</div>

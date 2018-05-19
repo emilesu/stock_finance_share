@@ -1,0 +1,64 @@
+<!-- 新建 stock -->
+<div class="modal fade" id="trade-show-<%= trade.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">
+          <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
+            <strong> <%= trade.stock %> </strong> - 交易策略
+          <% else %>
+            <%= link_to stock_path(trade.stock) do %>
+              <strong> <%= Stock.find_by_easy_symbol(trade.stock).name %> - <%= trade.stock %> </strong> - 交易策略
+            <% end %>
+          <% end %>
+        </h5>
+      </div>
+      <%= simple_form_for trade, :url => user_trade_path(@user, trade) do |f| %>
+      <div class="modal-body">
+        <div class="trade-show-info"><br>
+
+          <!-- 交易信息栏 -->
+          <p>买入时间：<strong><%= trade.buy_time.strftime("%Y-%m-%d") %></strong></p>
+          <p>买入价格：<strong><%= trade.buy_price %></strong> <em>¥</em> </p><hr>
+          <% if trade.sell_price.blank? || trade.sell_time.blank? %>
+            <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
+              <p>当前价格：<strong>0</p>
+              <p>浮动盈亏：<strong>0</strong></p>
+            <% else %>
+              <% latest_price = Stock.find_by_easy_symbol(trade.stock).stock_latest_price_and_PE[0] %>
+              <p>当前价格：<strong><%= latest_price %></strong> <em>¥</em> </p>
+              <p>浮动盈亏：<strong><%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p><hr>
+            <% end %>
+          <% else %>
+            <p>卖出时间：<strong><%= trade.sell_time.strftime("%Y-%m-%d") %></strong></p>
+            <p>卖出价格：<strong><%= trade.sell_price %></strong> <em>¥</em> </p>
+            <p>结算盈亏：<strong><%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p><hr>
+          <% end %>
+
+          <!-- 用户策略栏 -->
+          <p><strong>交易策略：</strong></p>
+          <!-- 如果当前用户为登陆者 -->
+          <% if current_user && (current_user == @user || current_user.role == "admin") %>
+            <%= trade.description %>
+          <% elsif current_user && current_user.role == "member" && trade.status == "对会员公开"  %>
+            <%= trade.description %>
+          <% elsif (!current_user || current_user.role == "nommember") && trade.status == "对会员公开"  %>
+            <p>该策略只有会员可见...</p>
+          <% elsif trade.status == "私密"  %>
+            <p>私密策略，只有作者可见...</p>
+          <% elsif trade.status == "公开" %>
+            <%= trade.description %>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

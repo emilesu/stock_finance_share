@@ -1,13 +1,13 @@
 <!-- 我的交易 trade -->
-<div class="relation-box">
+<div class="trade-box">
 
-  <div class="relation-title">
+  <div class="trade-title">
     <h4>交易历史
-      <span class="badge pull-right"><%= @trade.size %></span>
+      <span class="badge pull-right"><%= @trades.size %></span>
       <!-- 新增按钮 -->
       <% if current_user && current_user == @user %>
-        <a class="trade-new" data-toggle="modal" data-target="#trade-new">
-          +
+        <a class="" data-toggle="modal" data-target="#trade-new">
+          <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
         </a>
         <%= render :partial => "//trades/trade_new"%>
       <% end %>
@@ -16,6 +16,11 @@
   <hr>
 
   <!-- 交易列表 -->
+  <div class="trade-list-box">
+    <% @trades.each do |trade| %>
+      <%= render :partial => "//trades/trade_list", :locals => { :trade => trade }%>
+    <% end %>
+  </div>
 
 
 </div><br><br>
