@@ -2,7 +2,7 @@
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
-      <%= image_tag(user.avatar, :class => "img-responsive") %>
+      <%= image_tag(user.avatar, :class => "img-responsive thumbnail") %>
     <% else %>
       <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "img-responsive") %>
     <% end %>

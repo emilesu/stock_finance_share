@@ -30,10 +30,6 @@ class OmniauthCallbacksController < ApplicationController
           :user_id => @user.id,
           :my_attention => User.find_by_role("admin").id
         )
-        User.find_by_role("admin").fans.create!(
-          :user_id => User.find_by_role("admin").id,
-          :my_fans => @user.id
-        )
       end
     end
 
