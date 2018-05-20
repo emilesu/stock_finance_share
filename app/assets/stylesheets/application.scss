@@ -82,3 +82,25 @@ body {
     .site-about {
     }
   }
+
+  // 分页按钮
+  .pagination {
+    .active {
+      a {
+        background-color: #333;
+        border-color: #333;
+      }
+      a:hover {
+        background-color: #333;
+        border-color: #333;
+      }
+    }
+    li {
+      a {
+        color: #333;
+      }
+      a:hover {
+        color: #333;
+      }
+    }
+  }
