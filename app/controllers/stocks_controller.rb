@@ -24,7 +24,7 @@ class StocksController < ApplicationController
     if current_user
       @stock_current_user_notes = @stock.notes.where( :user_id => current_user.id ).order("updated_at DESC")
     end
-    @stock_notes = @stock.notes.order("updated_at DESC")
+    @stock_notes = @stock.notes.order("updated_at DESC").page(params[:notes]).per(20)
   end
 
 

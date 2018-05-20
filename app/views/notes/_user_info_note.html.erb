@@ -8,3 +8,7 @@
     <%= render :partial => "//notes/user_info_note_list", :locals => { :note => note } %>
   <% end %>
 <% end %>
+
+<%= paginate @notes, :param_name => :notes %>
+
+<br>

@@ -7,8 +7,12 @@ class UsersController < ApplicationController
     @user_twitter_review_new = Review.new
     @attentions = @user.attentions.order("created_at DESC")
     @fans = @user.fans.order("created_at DESC")
-    @notes = @user.notes.order("updated_at DESC")
-    @twitters = @user.twitters.order("created_at DESC").page(params[:page]).per(5)
+
+    # twitters 记录
+    @twitters = @user.twitters.order("created_at DESC").page(params[:twitters]).per(5)
+
+    # notes 记录
+    @notes = @user.notes.order("updated_at DESC").page(params[:notes]).per(10)
 
     # 交易记录
     @trades = @user.trades.order("created_at DESC")
