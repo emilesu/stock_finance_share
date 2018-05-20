@@ -24,6 +24,17 @@ class OmniauthCallbacksController < ApplicationController
         user_id: user.id
       )
       @user = user
+      if @user.save!
+        # 注册后直接和站长建立关联
+        @user.attentions.create!(
+          :user_id => @user.id,
+          :my_attention => User.find_by_role("admin").id
+        )
+        User.find_by_role("admin").fans.create!(
+          :user_id => User.find_by_role("admin").id,
+          :my_fans => @user.id
+        )
+      end
     end
 
     sign_in_and_redirect @user, :event => :authentication
