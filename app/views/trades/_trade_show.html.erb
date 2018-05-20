@@ -20,23 +20,36 @@
       <div class="modal-body">
         <div class="trade-show-info"><br>
 
-          <!-- 交易信息栏 -->
+          <!-- 买入信息 -->
           <p>买入时间：<strong><%= trade.buy_time.strftime("%Y-%m-%d") %></strong></p>
-          <p>买入价格：<strong><%= trade.buy_price %></strong> <em>¥</em> </p><hr>
+          <p>买入价格：<strong class="buy-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-buy-price="<%= trade.buy_price %>">
+            <%= trade.buy_price %></strong> <em>¥</em>
+          </p><hr>
+
           <% if trade.sell_price.blank? || trade.sell_time.blank? %>
             <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
               <p>当前价格：<strong>0</p>
               <p>浮动盈亏：<strong>0</strong></p>
             <% else %>
+              <!-- 浮动价格信息 -->
               <% latest_price = Stock.find_by_easy_symbol(trade.stock).stock_latest_price_and_PE[0] %>
-              <p>当前价格：<strong><%= latest_price %></strong> <em>¥</em> </p>
-              <p>浮动盈亏：<strong><%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p><hr>
+              <p>当前价格：<strong class="latest-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-latest-price="<%= latest_price %>">
+                <%= latest_price %> <em style="font-weight:normal;">¥</em></strong>
+              </p>
+              <p>浮动盈亏：<strong class="floating-price-<%= trade.id %>" data-floating-price="<%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+                <%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+              </p>
             <% end %>
           <% else %>
+            <!-- 卖出了结价格信息 -->
             <p>卖出时间：<strong><%= trade.sell_time.strftime("%Y-%m-%d") %></strong></p>
-            <p>卖出价格：<strong><%= trade.sell_price %></strong> <em>¥</em> </p>
-            <p>结算盈亏：<strong><%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p><hr>
-          <% end %>
+            <p>卖出价格：<strong class="sell-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-sell-price="<%= trade.sell_price %>">
+              <%= trade.sell_price %> <em style="font-weight:normal;">¥</em></strong>
+            </p>
+            <p>结算盈亏：<strong class="settlement-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-settlement-price="<%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+              <%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+            </p>
+          <% end %> <hr>
 
           <!-- 用户策略栏 -->
           <p><strong>交易策略：</strong></p>

@@ -114,10 +114,10 @@
   $(document).ready(function(){
     $(".stock-price").each(function(){
       var Num = parseFloat($(this).attr("price-data"));
-      if (Num >= 0){
+      if (Num > 0){
         $(this).css("color", "red");
       } else {
-        $(this).css("color", "green");
+        $(this).css("color", "#339933");
       };
     });
   });

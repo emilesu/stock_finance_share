@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @twitters = @user.twitters.order("created_at DESC").page(params[:page]).per(5)
 
     # 交易记录
-    @trades = @user.trades.order("updated_at DESC")
+    @trades = @user.trades.order("created_at DESC")
     @user_trade_new = Trade.new
   end
 

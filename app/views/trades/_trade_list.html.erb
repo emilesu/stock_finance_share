@@ -28,24 +28,86 @@
   <!-- 股票交易信息 -->
   <a class="" data-toggle="modal" data-target="#trade-show-<%= trade.id %>">
     <div class="trade-info">
+
+      <!-- 买入信息 -->
       <p>买入时间：<strong><%= trade.buy_time.strftime("%Y-%m-%d") %></strong></p>
-      <p>买入价格：<strong><%= trade.buy_price %></strong> <em>¥</em> </p><hr>
+      <p>买入价格：<strong class="buy-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-buy-price="<%= trade.buy_price %>">
+        <%= trade.buy_price %></strong> <em>¥</em>
+      </p><hr>
+
       <% if trade.sell_price.blank? || trade.sell_time.blank? %>
         <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
           <p>当前价格：<strong>0</p>
           <p>浮动盈亏：<strong>0</strong></p>
         <% else %>
+          <!-- 浮动价格信息 -->
           <% latest_price = Stock.find_by_easy_symbol(trade.stock).stock_latest_price_and_PE[0] %>
-          <p>当前价格：<strong><%= latest_price %></strong> <em>¥</em> </p>
-          <p>浮动盈亏：<strong><%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p>
+          <p>当前价格：<strong class="latest-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-latest-price="<%= latest_price %>">
+            <%= latest_price %> <em style="font-weight:normal;">¥</em></strong>
+          </p>
+          <p>浮动盈亏：<strong class="floating-price-<%= trade.id %>" data-floating-price="<%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+            <%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+          </p>
         <% end %>
       <% else %>
+        <!-- 卖出了结价格信息 -->
         <p>卖出时间：<strong><%= trade.sell_time.strftime("%Y-%m-%d") %></strong></p>
-        <p>卖出价格：<strong><%= trade.sell_price %></strong> <em>¥</em> </p>
-        <p>结算盈亏：<strong><%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong></p>
+        <p>卖出价格：<strong class="sell-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-sell-price="<%= trade.sell_price %>">
+          <%= trade.sell_price %> <em style="font-weight:normal;">¥</em></strong>
+        </p>
+        <p>结算盈亏：<strong class="settlement-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-settlement-price="<%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+          <%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+        </p>
       <% end %>
     </div>
   </a>
   <%= render :partial => "//trades/trade_show", :locals => { :trade => trade } %>
 
 </div>
+
+<script>
+
+// 当前股价/结算股价 与 买入股价 对比，">"显示红色， "=<"显示绿色。
+// 结算盈亏，">0"显示红色， "=<0"显示绿色。
+$(document).ready(function(){
+  $('strong').each(function(){
+    // 声明传入值
+    var tradeClass = $(this).attr("data-trade-id");
+    var dataBuyPrice = $("." + "buy-price-" + tradeClass).attr("data-buy-price");
+    var dataLatestPrice = $("." + "latest-price-" + tradeClass).attr("data-latest-price");
+    var dataFloatingPrice = $("." + "floating-price-" + tradeClass).attr("data-floating-price");
+    var dataSellPrice = $("." + "sell-price-" + tradeClass).attr("data-sell-price");
+    var dataSettlementPrice = $("." + "settlement-price-" + tradeClass).attr("data-settlement-price");
+
+    // 判断 买入价 VS 当前价
+    if (dataLatestPrice > dataBuyPrice) {
+      $("." + "latest-price-" + tradeClass).css("color", "red");
+    } else {
+      $("." + "latest-price-" + tradeClass).css("color", "#339933");
+    };
+
+    // 判断 买入价 VS 结算价
+    if (dataLatestPrice > dataSellPrice) {
+      $("." + "sell-price-" + tradeClass).css("color", "red");
+    } else {
+      $("." + "sell-price-" + tradeClass).css("color", "#339933");
+    };
+
+    // 判断 浮动盈亏 正负值
+    if (dataFloatingPrice > 0) {
+      $("." + "floating-price-" + tradeClass).css("color", "red");
+    } else {
+      $("." + "floating-price-" + tradeClass).css("color", "#339933");
+    };
+
+    // 判断 结算盈亏 正负值
+    if (dataSettlementPrice > 0) {
+      $("." + "settlement-price-" + tradeClass).css("color", "red");
+    } else {
+      $("." + "settlement-price-" + tradeClass).css("color", "#339933");
+    };
+
+  });
+});
+
+</script>
