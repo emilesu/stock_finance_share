@@ -10,56 +10,64 @@
   user-select: none;
   // /禁止选择文本
   .section1 {
+    background-color: #222;
     position: relative;
     height: auto;
   }
   .section2{
+    // background-color: #333;
     position: relative;
-    background-image: url("https://i.loli.net/2018/03/31/5abf742d805d5.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    // height: auto;
+    // background-image: url("https://i.loli.net/2018/03/31/5abf742d805d5.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
   }
   .section3{
+    background-color: #fff;
     position: relative;
-    background-image: url("https://i.loli.net/2018/03/31/5abf742a3a5f1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    // background-image: url("https://i.loli.net/2018/03/31/5abf742a3a5f1.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
   }
 }
 
+
+// --------- section1  首页第一屏 ---------
 .slogan-box {
   .slogan-bg {
     .slogan {
-      position: absolute;
-      margin: 0 auto 0;
-      top: 20%;
-      left:0; right:0;      //元素居中
-      color: rgb(31, 31, 31);
+      h1 {
+        position: absolute;
+        margin: 0 auto 0;
+        top: 35%;
+        left:0; right:0;      //元素居中
+        color: #fff;
+        margin-bottom: 10px;
+        font-size: 3em;
+        font-weight: 300;
+        letter-spacing: 2px;
+        strong {
+          font-weight: normal;
+          color: #bfb199;
+        }
+      }
     }
   }
-
-  #myCarousel {
-    z-index: 3;
+  .slogan-logo {
     position: absolute;
     left:0; right:0;      //元素居中
-    margin: 0 auto 0;
-
-    box-shadow: 0px 0px 25px 0px #808080;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    transition: 0.3s;
-    img {
-    }
+    color: #999;
+    bottom: 5%;
+    font-size: 18px;
+    font-family: "Futura";
+    font-weight:  300;
+    letter-spacing: 3px;
+    transition: 0.5s;
   }
-
-  .slogan-bottom {
-    z-index: 1;
-    position: absolute;
-    height: 27%;
-    width: 100%;
-    bottom: 0px;
-    background-color: #5a5a5a;
+  .slogan-logo:hover {
+    transition: 0.5s;
+    bottom: 7%;
   }
 }
 
@@ -74,23 +82,227 @@
 }
 
 
+// --------- section2  首页第二屏 ---------
+.section2-info1 {
+  height: 43%;
+  background-color: #f7f7f7;
+  position: relative;
+  .icon-box {
+    p {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.section2-info2 {
+  height: 43%;
+  background-color: #fff;
+  position: relative;
+}
+.section2-info3 {
+  height: 14%;
+  background-color: #222;
+  position: relative;
+}
+
+.section2-info-slogan {
+    position: absolute;
+    text-align: center;
+    left:30%; right:30%;      //元素居中
+    top: 13%;
+  h4 {
+    font-size: 3em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  p {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 1px;
+  }
+}
+
+.icon-box {
+  position: absolute;
+  text-align: center;
+  left:23%; right:23%;      //元素居中
+  bottom: 14%;
+  span {
+    float: left;
+  }
+  img {
+    margin: 10px 50px 0px;
+    width: 40%;
+    height: auto;
+  }
+  p {
+    margin-top: 20px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+}
+
+.slogan-next {
+  text-align: center;
+  position: absolute;
+  left:0; right:0;      //元素居中
+  color: #999;
+  top: 22%;
+  font-size: 18px;
+  font-family: "Futura";
+  font-weight: lighter;
+  letter-spacing: 3px;
+  transition: 0.5s;
+}
+.slogan-next:hover {
+  transition: 0.5s;
+  top: 16%;
+}
+
+
+// --------- section3  首页第三屏 ---------
+.section3-info1 {
+  height: 58%;
+  background-color: #fff;
+  position: relative;
+}
+.section3-info2 {
+  height: 28%;
+  background-color: #f7f7f7;
+  position: relative;
+}
+.section3-info3 {
+  height: 14%;
+  background-color: #222;
+  position: relative;
+}
+
+.section3-info-slogan {
+  text-align: center;
+  position: absolute;
+  left:0; right:0;      //元素居中
+  top: 15%;
+  h4 {
+    font-size: 3em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  p {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 1px;
+  }
+}
+
+.img-box {
+  position: absolute;
+  text-align: center;
+  left:0; right:0;      //元素居中
+  bottom: 30%;
+  img {
+    width: 65%;
+    height: auto;
+    box-shadow: 0px 0px 35px 0px #808080;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    transition: 0.3s;
+  }
+}
+
+
+// --------- section4  首页第四屏 ---------
+.section4-info1 {
+  height: 43%;
+  background-color: #f7f7f7;
+  position: relative;
+}
+.section4-info2 {
+  height: 43%;
+  background-color: #ffff;
+  position: relative;
+}
+.section4-info3 {
+  height: 14%;
+  background-color: #222;
+  position: relative;
+}
+
+.section4-info-slogan {
+  position: absolute;
+  text-align: center;
+  left:30%; right:30%;      //元素居中
+  top: 13%;
+  h4 {
+    font-size: 3em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+  p {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: #444;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 1px;
+  }
+}
+
+.img-box {
+  position: absolute;
+  text-align: center;
+  left:0; right:0;      //元素居中
+  bottom: 30%;
+  img {
+    width: 65%;
+    height: auto;
+    box-shadow: 0px 0px 35px 0px #808080;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    transition: 0.3s;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*  --- 响应式设置 ---  */
 // pc端显示
 @media screen and (min-width: 1400px){
   .slogan-box {
     h1 {
       margin-bottom: 10px;
-      font-family: "Futura";
-      font-size: 88px;
+      font-size: 3em;
+      font-weight: 300;
+      letter-spacing: 3px;
+      strong {
+        font-weight: normal;
+        color: #bfb199;
+      }
     }
-    p {
-      font-size: 20px;
-    }
-  }
-  #myCarousel {
-     bottom: 10%;
-     max-height: 434px;
-     max-width: 750px;
   }
   .section-info {
     bottom: 20%;
@@ -118,11 +330,6 @@
       font-size: 20px;
     }
   }
-  #myCarousel {
-     bottom: 10%;
-     max-height: 434px;
-     max-width: 750px;
-  }
   .section-info {
     bottom: 15%;
     max-height: 550px;
@@ -148,11 +355,6 @@
     p {
       font-size: 20px;
     }
-  }
-  #myCarousel {
-     bottom: 10%;
-     max-height: 376px;
-     max-width: 650px;
   }
   .section-info {
     bottom: 15%;
@@ -180,11 +382,6 @@
       font-size: 20px;
     }
   }
-  #myCarousel {
-     bottom: 10%;
-     max-height: 318px;
-     max-width: 550px;
-  }
   .section-info {
     bottom: 15%;
     max-height: 550px;
@@ -210,11 +407,6 @@
     p {
       font-size: 16px;
     }
-  }
-  #myCarousel {
-     bottom: 15%;
-     max-height: 191px;
-     max-width: 330px;
   }
   .section-info {
     bottom: 15%;

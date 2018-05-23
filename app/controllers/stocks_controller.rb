@@ -3,7 +3,7 @@ class StocksController < ApplicationController
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
-    all_industrys = Stock.where(:industry => @stock.industry).where.not(:zcb => nil).where.not(:zcb => "")   # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
+    all_industrys = Stock.where(["time_to_market < ? ", user_choose_time_range_stocks ]).where(:industry => @stock.industry).where.not(:zcb => nil).where.not(:zcb => "")   # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
     @industrys_nonmember = all_industrys.page(params[:page]).per(25)            # 非会员时无排序
     @industrys = all_industrys      #全部所属行业列表
     @industrys_cash_order = all_industrys.sort{ |x,y| y.cash_order <=> x.cash_order }[0..24]       #所属行业现金量排序
