@@ -47,7 +47,7 @@ class Admin::UsStocksController < AdminController
   private
 
   def us_stock_params
-    params.require(:us_stock).permit(:symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :dividends, :static_data_10, :static_data_5, :static_data_2)
+    params.require(:us_stock).permit(:symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :version, :static_data_10, :static_data_5, :static_data_2)
   end
 
 end

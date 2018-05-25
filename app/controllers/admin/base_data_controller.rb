@@ -307,4 +307,80 @@ class Admin::BaseDataController < AdminController
 
   end
 
+
+  # 全局扫描更新 财务表 数据
+  def update_us_stock_finance_table
+    @us_stocks = UsStock.all
+    @us_stocks.each do |s|
+
+      if s.version != Setting.first.version
+        # -------从网易提取原始数据 cwzb-------
+        cwzb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_indicators.html?type=quarter"
+        cwzb_doc = Nokogiri::HTML.parse(cwzb_response.body)
+        cwzb_result = []
+        # 报告日期放在最前面
+        cwzb_date = cwzb_doc.css(".list_table_wrapper ul li").map{ |x| x.text }
+        cwzb_result << cwzb_date
+        # 具体各行数据
+        (1..28).each do |i|
+          cwzb_result << cwzb_doc.css(".list_table_wrapper tbody tr[#{i}] td").map{ |x| x.text }
+        end
+        s.update!(
+          :cwzb => cwzb_result
+        )
+
+        # -------从网易提取原始数据 zcb-------
+        zcb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_balance.html?type=quarter"
+        zcb_doc = Nokogiri::HTML.parse(zcb_response.body)
+        zcb_result = []
+        # 报告日期放在最前面
+        zcb_date = zcb_doc.css(".list_table_wrapper ul li").map{ |x| x.text }
+        zcb_result << zcb_date
+        # 具体各行数据
+        (1..31).each do |i|
+          zcb_result << zcb_doc.css(".list_table_wrapper tbody tr[#{i}] td").map{ |x| x.text }
+        end
+        s.update!(
+          :zcb => zcb_result
+        )
+
+        # -------从网易提取原始数据 lrb-------
+        lrb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_income.html?type=quarter"
+        lrb_doc = Nokogiri::HTML.parse(lrb_response.body)
+        lrb_result = []
+        # 报告日期放在最前面
+        lrb_date = lrb_doc.css(".list_table_wrapper ul li").map{ |x| x.text }
+        lrb_result << lrb_date
+        # 具体各行数据
+        (1..21).each do |i|
+          lrb_result << lrb_doc.css(".list_table_wrapper tbody tr[#{i}] td").map{ |x| x.text }
+        end
+        s.update!(
+          :lrb => lrb_result
+        )
+
+        # -------从网易提取原始数据 llb-------
+        llb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_cash.html?type=quarter"
+        llb_doc = Nokogiri::HTML.parse(llb_response.body)
+        llb_result = []
+        # 报告日期放在最前面
+        llb_date = llb_doc.css(".list_table_wrapper ul li").map{ |x| x.text }
+        llb_result << llb_date
+        # 具体各行数据
+        (1..26).each do |i|
+          llb_result << llb_doc.css(".list_table_wrapper tbody tr[#{i}] td").map{ |x| x.text }
+        end
+        s.update!(
+          :llb => llb_result
+        )
+      end
+      s.update!(
+        :version => Setting.first.version
+      )
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "财务表 更新完毕"
+  end
+
 end
