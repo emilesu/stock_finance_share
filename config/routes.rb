@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       end
     end
     resources :stocks
+    resources :us_stocks
     resources :settings
     resources :courses do           #课程后台编辑
       resources :posts

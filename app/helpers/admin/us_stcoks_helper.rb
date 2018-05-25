@@ -1,0 +1,2 @@
+module Admin::UsStcoksHelper
+end
