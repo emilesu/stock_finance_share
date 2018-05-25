@@ -315,7 +315,7 @@ class Admin::BaseDataController < AdminController
 
       if s.version != Setting.first.version
         # -------从网易提取原始数据 cwzb-------
-        cwzb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_indicators.html?type=quarter"
+        cwzb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_indicators.html?type=year"
         cwzb_doc = Nokogiri::HTML.parse(cwzb_response.body)
         cwzb_result = []
         # 报告日期放在最前面
@@ -330,7 +330,7 @@ class Admin::BaseDataController < AdminController
         )
 
         # -------从网易提取原始数据 zcb-------
-        zcb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_balance.html?type=quarter"
+        zcb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_balance.html?type=year"
         zcb_doc = Nokogiri::HTML.parse(zcb_response.body)
         zcb_result = []
         # 报告日期放在最前面
@@ -345,7 +345,7 @@ class Admin::BaseDataController < AdminController
         )
 
         # -------从网易提取原始数据 lrb-------
-        lrb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_income.html?type=quarter"
+        lrb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_income.html?type=year"
         lrb_doc = Nokogiri::HTML.parse(lrb_response.body)
         lrb_result = []
         # 报告日期放在最前面
@@ -360,7 +360,7 @@ class Admin::BaseDataController < AdminController
         )
 
         # -------从网易提取原始数据 llb-------
-        llb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_cash.html?type=quarter"
+        llb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_cash.html?type=year"
         llb_doc = Nokogiri::HTML.parse(llb_response.body)
         llb_result = []
         # 报告日期放在最前面
