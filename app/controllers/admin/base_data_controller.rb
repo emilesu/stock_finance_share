@@ -1,8 +1,9 @@
 class Admin::BaseDataController < AdminController
 
   def index
-    #code
   end
+
+# ______________________________________A股部分______________________________________
 
   # 全局扫描更新 沪股 股票代码和名称
   def update_sh_stock_symbol
@@ -24,7 +25,7 @@ class Admin::BaseDataController < AdminController
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "沪股 股票代码和名称 已在更新"
+    flash[:notice] = "沪股 股票代码和名称 更新完毕"
 
   end
 
@@ -48,7 +49,7 @@ class Admin::BaseDataController < AdminController
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "深股 股票代码和名称 已在更新"
+    flash[:notice] = "深股 股票代码和名称 更新完毕"
 
   end
 
@@ -269,5 +270,41 @@ class Admin::BaseDataController < AdminController
      flash[:notice] = "行业设置 设置完毕"
    end
 
+
+
+
+
+
+
+
+
+
+
+# ______________________________________美股部分______________________________________
+
+  # 全局扫描更新 更新 美股 代码、股票名称、行业、上市地
+  def update_us_stock_symbol
+
+    (1..2).each do |i|        #最终上线要"i"改为149+ , "type"改为3
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/usaall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
+      data = JSON.parse(response.body)
+
+      data["result"]["data"].each do |s|
+        existing_stock = UsStock.find_by_symbol( s["symbol"] )
+        if existing_stock.nil?
+          UsStock.create!(
+            :symbol => s["symbol"],
+            :cnname => s["cname"],
+            :industry => s["category"],
+            :market => s["market"]
+          )
+        end
+      end
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "美股 代码、股票名称、行业、上市地 更新完毕"
+
+  end
 
 end

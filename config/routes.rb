@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     end
     namespace :base_data do
       get :index                    #首台数据更新主页
+        # --------------A股部分 --------------
       post :update_sh_stock_symbol     #更新 沪市 股票代码和股票名称
       post :update_sz_stock_symbol     #更新 沪市 股票代码和股票名称
       post :update_stock_finance_table    #更新财务表表数据
@@ -66,6 +67,9 @@ Rails.application.routes.draw do
       post :update_stock_company_info    #更新股票主营业务
       post :update_stock_time_to_market    #更新股票主营业务
       post :update_industry_setting    #更新行业设置
+
+        # --------------美股部分 --------------
+      post :update_us_stock_symbol     #更新 美股 代码、股票名称、行业、上市地
     end
   end
 
