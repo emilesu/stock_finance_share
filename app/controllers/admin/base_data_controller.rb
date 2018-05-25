@@ -126,10 +126,12 @@ class Admin::BaseDataController < AdminController
           result << data
         end
         s.update!(
-          :dividends => result,
-          :version => Setting.first.version
+          :dividends => result
         )
       end
+      s.update!(
+        :version => Setting.first.version
+      )
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
@@ -144,6 +146,9 @@ class Admin::BaseDataController < AdminController
       if s.version != Setting.first.version
         s.static_data
       end
+      s.update!(
+        :version => Setting.first.version
+      )
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
