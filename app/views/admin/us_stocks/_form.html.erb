@@ -1,0 +1,23 @@
+<%= simple_form_for [:admin, @us_stock] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :symbol, :label => "代码/symbol", input_html: { class: "form-control"} %>
+    <%= f.input :cnname, :label => "中文名称/cnname", input_html: { class: "form-control"} %>
+    <%= f.input :market, :label => "上市市场/market", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.input :industry, :label => "行业/industry", input_html: { class: "form-control"} %>
+    <%= f.input :main_business, :label => "主营业务/main_business", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.input :cwzb, :label => "财务指标/cwzb", input_html: { class: "form-control"} %>
+    <%= f.input :lrb, :label => "利润表/lrb", input_html: { class: "form-control"} %>
+    <%= f.input :llb, :label => "流量表/lrb", input_html: { class: "form-control"} %>
+    <%= f.input :zcb, :label => "资产负债表/zcb", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.input :static_data_10, :label => "静态数据10/static_data_10", input_html: { class: "form-control"} %>
+    <%= f.input :static_data_5, :label => "静态数据5/static_data_5", input_html: { class: "form-control"} %>
+    <%= f.input :static_data_2, :label => "静态数据2/static_data_2", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>

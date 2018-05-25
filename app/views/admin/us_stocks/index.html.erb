@@ -1,0 +1,105 @@
+<div>
+
+  <div>
+    <%= link_to("新建股票数据", new_admin_us_stock_path, :class => "btn btn-default pull-right" ) %>
+
+    <!-- 行业筛选 -->
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>代码/symbol</th>
+        <th>中文名称/cnname</th>
+        <th>上市市场/market</th>
+        <th>行业/industry</th>
+        <th>财务指标/cwzb</th>
+        <th>利润表/lrb</th>
+        <th>流量表/llb</th>
+        <th>资产表/zcb</th>
+        <th>静态-10/static_data_10</th>
+        <th>静态-5/static_data_5</th>
+        <th>静态-2/static_data_2</th>
+        <th>操作</th>
+        <th>数据版本version</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @us_stocks.each do |us_stock| %>
+        <tr>
+          <td><%=link_to(us_stock.symbol, admin_us_stock_path(us_stock)) %></td>
+          <td><%= us_stock.cnname %></td>
+          <!--  -->
+          <% if us_stock.market.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.market %></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.industry.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.industry %></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.cwzb.nil? || us_stock.cwzb == "" %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.lrb.nil? || us_stock.lrb == "" %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.llb.nil? || us_stock.llb == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.zcb.nil? || us_stock.zcb == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.static_data_10.nil? || us_stock.static_data_10 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.static_data_5.nil? || us_stock.static_data_5 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.static_data_2.nil? || us_stock.static_data_2 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <td>
+            <%= link_to("编辑", edit_admin_us_stock_path(us_stock), :class => "btn btn-xs btn-default") %>
+            <%= link_to("删除", admin_us_stock_path(us_stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
+          </td>
+          <!--  -->
+          <% if us_stock.version.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.version %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @us_stocks %>
+
+
+
+</div>
