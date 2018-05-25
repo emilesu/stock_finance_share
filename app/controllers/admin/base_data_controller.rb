@@ -126,7 +126,8 @@ class Admin::BaseDataController < AdminController
           result << data
         end
         s.update!(
-          :dividends => result
+          :dividends => result,
+          :version => Setting.first.version
         )
       end
     end
