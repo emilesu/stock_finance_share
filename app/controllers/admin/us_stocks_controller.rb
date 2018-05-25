@@ -1,16 +1,7 @@
-class Admin::UsStcoksController < AdminController
+class Admin::UsStocksController < AdminController
 
   def index
-    # @us_stocks = UsStock.order("symbol").page(params[:page]).per(25)
-    @industry = params[:order]
-    if @industry.nil?
-      @us_stocks = UsStock.order("symbol").page(params[:page]).per(25)                   # 如果参数为空，则显示所有数据
-    else
-      @us_stocks = UsStock.where(:industry => @industry).page(params[:page]).per(25)         #筛选出传入参数所属行业的数据
-    end
-
-    # 行业筛选
-    @industry_list = JSON.parse(Setting.first.industry)
+    @us_stocks = UsStock.order("symbol").page(params[:page]).per(25)
   end
 
   def show
@@ -25,7 +16,7 @@ class Admin::UsStcoksController < AdminController
     @us_stock = UsStock.new(us_stock_params)
 
     if @us_stock.save
-      redirect_to admin_UsStocks_path
+      redirect_to admin_us_stocks_path
     else
       render :new
     end
@@ -39,7 +30,7 @@ class Admin::UsStcoksController < AdminController
     @us_stock = UsStock.find_by_symbol!(params[:id])
 
     if @us_stock.update(us_stock_params)
-      redirect_to admin_UsStocks_path
+      redirect_to admin_us_stocks_path
     else
       render :edit
     end
@@ -49,7 +40,7 @@ class Admin::UsStcoksController < AdminController
     @us_stock = UsStock.find_by_symbol!(params[:id])
 
     @us_stock.destroy
-    redirect_to admin_UsStocks_path
+    redirect_to admin_us_stocks_path
   end
 
 
