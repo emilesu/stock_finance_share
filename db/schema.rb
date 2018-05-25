@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518080651) do
+ActiveRecord::Schema.define(version: 20180525141532) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -147,6 +147,31 @@ ActiveRecord::Schema.define(version: 20180518080651) do
     t.string "user_id"
     t.index ["status"], name: "index_twitters_on_status"
     t.index ["user_id"], name: "index_twitters_on_user_id"
+  end
+
+  create_table "us_stocks", force: :cascade do |t|
+    t.string "symbol"
+    t.string "cnname"
+    t.string "market"
+    t.string "pinyin"
+    t.text "cwzb"
+    t.text "lrb"
+    t.text "llb"
+    t.text "zcb"
+    t.string "industry"
+    t.string "main_business"
+    t.string "company_url"
+    t.integer "version"
+    t.datetime "time_to_market"
+    t.text "dividends"
+    t.text "static_data_10"
+    t.text "static_data_5"
+    t.text "static_data_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cnname"], name: "index_us_stocks_on_cnname"
+    t.index ["market"], name: "index_us_stocks_on_market"
+    t.index ["symbol"], name: "index_us_stocks_on_symbol"
   end
 
   create_table "users", force: :cascade do |t|
