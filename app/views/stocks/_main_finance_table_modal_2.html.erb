@@ -11,7 +11,7 @@
       <div class="modal-body">
         <% m = static_data[20] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -48,7 +48,7 @@
       <div class="modal-body">
         <% m = static_data[21] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -84,7 +84,7 @@
       <div class="modal-body">
         <% m = static_data[22] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -122,7 +122,7 @@
       <div class="modal-body">
         <% m = static_data[23] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -160,7 +160,7 @@
       <div class="modal-body">
         <% m = static_data[9] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -198,7 +198,7 @@
       <div class="modal-body">
         <% m = static_data[9].map!{ |x| (360 / x).round(2) } %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -237,7 +237,7 @@
       <div class="modal-body">
         <% m = static_data[10] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -279,7 +279,7 @@
       <div class="modal-body">
         <% m = static_data[10].map!{ |x| (360 / x).round(2) } %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -317,7 +317,7 @@
       <div class="modal-body">
         <% m = static_data[11] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -349,7 +349,7 @@
       <div class="modal-body">
         <% m = static_data[12] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -387,7 +387,7 @@
       <div class="modal-body">
         <% m = static_data[13] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -425,7 +425,7 @@
       <div class="modal-body">
         <% m = static_data[14] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -464,7 +464,7 @@
       <div class="modal-body">
         <% m = static_data[15] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -501,7 +501,7 @@
       <div class="modal-body">
         <% m = static_data[16] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -538,7 +538,7 @@
       <div class="modal-body">
         <% m = static_data[17] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -574,7 +574,7 @@
       <div class="modal-body">
         <% m = static_data[18] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -608,7 +608,7 @@
       <div class="modal-body">
         <% m = static_data[19] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -643,7 +643,7 @@
       <div class="modal-body">
         <% m = static_data[27] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -678,7 +678,7 @@
       <div class="modal-body">
         <% m = static_data[28] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -710,9 +710,9 @@
         <h5 class="modal-title" id="exampleModalLongTitle">现金再投资比率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = static_data[29] %>
+        <% m = static_data[sd1] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>

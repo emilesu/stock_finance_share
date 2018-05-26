@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     :omniauth_callbacks => "omniauth_callbacks"
   }
 
+  # A股路由设置
   resources :stocks do
     # get "/industry/" => "stocks#industry", :as => :industry        #行业关键指标排名分析
     collection do
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # 美股路由设置
+  resources :us_stocks
 
   resources :users do
     resources :twitters do

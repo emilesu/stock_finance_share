@@ -29,9 +29,9 @@
         <h5 class="modal-title" id="exampleModalLongTitle">分红金额 / 派息</h5>
       </div>
       <div class="modal-body">
-        <% m = static_data[31] %>
+        <% m = static_data[sd1] %>
         <%= line_chart(
-          @stock.modal_dividends_data(time, m).reverse.each do |i|
+          stock.modal_dividends_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -55,9 +55,9 @@
         <h5 class="modal-title" id="exampleModalLongTitle">分红率(%) / 股利支付率(%)</h5>
       </div>
       <div class="modal-body">
-        <% m = static_data[32] %>
+        <% m = static_data[sd2] %>
         <%= line_chart(
-          @stock.modal_dividends_data(time, m).reverse.each do |i|
+          stock.modal_dividends_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>

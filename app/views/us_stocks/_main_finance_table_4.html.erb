@@ -1,0 +1,44 @@
+<div>
+  <table class="table table-striped table-bordered">
+
+    <tr class="theader-style">
+      <td class="theader-style" width = "10%">类别</td>
+      <td align=left width = "25%">红利发放日</td>
+      <% m = static_data[0].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[0].reverse.each do |i| %>
+        <td align=center width = "13%"><%= i %></td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-dividend-amount">
+      <td class="theader-style" rowspan="3">分红水平</td>
+      <td align=left>分红(美元)</td>
+      <% m = static_data[29].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[29].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-dividend-rate">
+      <td align=left>分红率(%)</td>
+      <% m = static_data[30].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[30].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
+    </tr>
+
+  </table>
+</div>
+
+<% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+  <%= render :partial => "//stocks/main_finance_table_modal_4", :locals => { :static_data => static_data, :time => 5, :stock => @us_stock, :sd1 => 29, :sd2 => 30 } %>
+<% end %>

@@ -51,7 +51,11 @@ class UsStock < ApplicationRecord
     # 运算
     result = []
     (0..4).each do |i|
-      m = date[i]
+      if date[i].nil?
+        m = 0
+      else
+        m = date[i]
+      end
       result << m
     end
     return result
@@ -89,7 +93,7 @@ class UsStock < ApplicationRecord
      result = []
      (0..4).each do |i|
        if to_num(zcb15[i]) - to_num(zcb17[i]) != 0
-         m = to_num(llb9[i]) - to_num(llb17[i]) / to_num(zcb15[i]) - to_num(zcb17[i]) * 100
+         m = (to_num(llb9[i]) - to_num(llb17[i])) / (to_num(zcb15[i]) - to_num(zcb17[i])) * 100
        else
          m = 0
        end
@@ -663,6 +667,42 @@ class UsStock < ApplicationRecord
   end
 
 
+
+  # -----------------modal 弹窗数据脚本, 将输出[时间+数据]的格式用于生成图表-----------------
+
+  # 财报类 时间为按年
+  def modal_data(time, data)
+    #判断时间,以确定生成的数据长度
+    y = JSON.parse(self.static_data)[0][0..4]
+    #与日期对应的数据,生成具体的数据
+    m = data
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      main_y = y[i]
+      data = [main_y, m[i]]
+      result << data
+    end
+    # 返回 modal 数据
+    return result
+  end
+
+  # 分红类 时间为按红利发放日
+  def modal_dividends_data(time, data)
+    #判断时间,以确定生成的数据长度
+    y = JSON.parse(self.static_data)[0][0..4]
+    #与日期对应的数据,生成具体的数据
+    m = data
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      main_y = y[i]
+      data = [main_y, m[i]]
+      result << data
+    end
+    # 返回 modal 数据
+    return result
+  end
 
 
 

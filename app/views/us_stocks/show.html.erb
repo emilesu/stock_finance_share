@@ -1,0 +1,68 @@
+<div class="wrapper">
+
+  <!-- 同类行业列表栏 会员可见-->
+  <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
+      <%= render "industry_order_member" %>
+    </div>
+  <% else %>
+    <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
+      <%= render "industry_order_nonmember" %>
+    </div>
+  <% end %>
+
+
+  <!-- 左表：股票信息+资产负债信息 分析 -->
+  <div class="stock-info col-lg-5 col-md-12">
+
+      <!-- 股票信息 -->
+      <!-- <div class="stock-title"> -->                               <!-- 在 md 以下时左右布局 -->
+      <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
+        <div class="stock-title">
+          <span class="stock-name"> <%= @us_stock.cnname %> </span>
+          <span class="stock-symbol"> (<%= @us_stock.symbol %>)</span>
+        </div>
+        <strong>
+          <p><%= @us_stock.industry %> - <%= @us_stock.market %></p>
+        </strong>
+
+        <div class="main_business col-md-12 row">
+          <p title="<%= @us_stock.main_business %>"><strong>主营业务: </strong><%= @us_stock.main_business %></p>
+        </div>
+
+        <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
+        <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+          <div class="to-finance-btn">
+            <span>
+              <%= link_to("行业统计分析 >>", root_path, :class => "btn btn-sm btn-default") %>
+            </span>
+          </div>
+        <% end %>
+
+      </div>
+
+      <!-- 资产负债信息 -->
+      <!-- <div class="table-left"> -->                                 <!-- 在 md 以下时左右布局 -->
+      <div class="table-left col-md-12 col-sm-12 row">          <!-- 在 md 以下时展开布局 -->
+        <% if @us_stock.zcb && @us_stock.zcb != "" %>                 <!-- 如果存在数据. 并且数据不为空时 -->
+          <%= render :partial => "main_finance_table_1", :locals => { :static_data => JSON.parse(@us_stock.static_data) } %>
+          <%= render :partial => "main_finance_table_4", :locals => { :static_data => JSON.parse(@us_stock.static_data) } %>
+        <% else %>
+          <p>暂无数据</p>
+        <% end %>
+      </div>
+
+    </div>
+
+    <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
+    <div class="table-right col-lg-5 col-md-12">
+      <% if @us_stock.zcb && @us_stock.zcb != "" %>                   <!-- 如果存在数据. 并且数据不为空时 -->
+        <%= render :partial => "main_finance_table_2", :locals => { :static_data => JSON.parse(@us_stock.static_data) } %>
+        <%= render :partial => "main_finance_table_3", :locals => { :static_data => JSON.parse(@us_stock.static_data) } %>
+      <% else %>
+        <p>暂无数据</p>
+      <% end %>
+    </div>
+
+
+</div>

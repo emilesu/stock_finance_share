@@ -11,7 +11,7 @@
       <div class="modal-body">
         <% m = static_data[24] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -37,7 +37,7 @@
       <div class="modal-body">
         <% m = static_data[25] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>
@@ -63,7 +63,7 @@
       <div class="modal-body">
         <% m = static_data[26] %>
         <%= line_chart(
-          @stock.modal_data(time, m).reverse.each do |i|
+          stock.modal_data(time, m).reverse.each do |i|
           end
         ) %>
         <br>

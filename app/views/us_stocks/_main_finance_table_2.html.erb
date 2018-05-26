@@ -4,45 +4,22 @@
   <table class="table table-striped table-bordered">
 
     <tr class="theader-style">
-      <% if time == 5 %>
-        <td class="theader-style" width = "10%">类别</td>
-        <td align=left width = "25%">财务比率</td>
-        <% m = static_data[0].reverse.size %>
-        <% (1..time - m).each do |i| %>
-          <td align=center>--</td>
-        <% end %>
-        <% static_data[0].reverse.each do |i| %>
-          <td align=center width = "13%"><%= i[0..3] %></td>
-        <% end %>
-      <% elsif time == 10 %>
-        <td class="theader-style" width = "8%">类别</td>
-        <td align=left width = "22%">财务比率</td>
-        <% m = static_data[0].reverse.size %>
-        <% (1..time - m).each do |i| %>
-          <td align=center>--</td>
-        <% end %>
-        <% static_data[0].reverse.each do |i| %>
-          <td align=center width = "7%"><%= i[0..3] %></td>
-        <% end %>
-      <% elsif time == 2 %>
-        <td align=left width = "55%">财务比率</td>
-        <% m = static_data[0].reverse.size %>
-        <% (1..time - m).each do |i| %>
-          <td align=center>--</td>
-        <% end %>
-        <% static_data[0].reverse.each do |i| %>
-          <td align=center width = "20%"><%= i %></td>
-        <% end %>
+      <td class="theader-style" width = "10%">类别</td>
+      <td align=left width = "25%">财务比率</td>
+      <% m = static_data[0].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[0].reverse.each do |i| %>
+        <td align=center width = "13%"><%= i %></td>
       <% end %>
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-debt-asset-ratio">
-      <% if time != 2 %>
-        <td class="theader-style" rowspan="2">财务结构</td>
-      <% end %>
+      <td class="theader-style" rowspan="2">财务结构</td>
       <td align=left>负债占资产比率(%)</td>
       <% m = static_data[20].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[20].reverse.each do |i| %>
@@ -53,7 +30,7 @@
     <tr data-toggle="modal" data-target="#momal-long-term-funds-for-fixed-assets-ratio">
       <td align=left>长期负债占不动产/厂房及设备比率(%)</td>
       <% m = static_data[21].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[21].reverse.each do |i| %>
@@ -62,12 +39,10 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-current-ratio">
-      <% if time != 2 %>
-        <td class="theader-style" rowspan="2">偿债能力</td>
-      <% end %>
+      <td class="theader-style" rowspan="2">偿债能力</td>
       <td align=left>流动比率(%)</td>
       <% m = static_data[22].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[22].reverse.each do |i| %>
@@ -78,7 +53,7 @@
     <tr data-toggle="modal" data-target="#momal-quick-ratio">
       <td align=left>速动比率(%)</td>
       <% m = static_data[23].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[23].reverse.each do |i| %>
@@ -87,12 +62,10 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-accounts-receivable-turnover-ratio">
-      <% if time != 2 %>
-        <td class="theader-style" rowspan="6">经营能力</td>
-      <% end %>
+      <td class="theader-style" rowspan="6">经营能力</td>
       <td align=left>应收账款周转率(次)</td>
       <% m = static_data[9].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[9].reverse.each do |i| %>
@@ -103,7 +76,7 @@
     <tr data-toggle="modal" data-target="#momal-accounts-receivable-turnover-ratio-360">
       <td align=left>平均收现日数</td>
       <% m = static_data[9].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[9].reverse.each do |i| %>
@@ -114,7 +87,7 @@
     <tr data-toggle="modal" data-target="#momal-inventory-turnover-ratio">
       <td align=left>存货周转率(次)</td>
       <% m = static_data[10].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[10].reverse.each do |i| %>
@@ -125,7 +98,7 @@
     <tr data-toggle="modal" data-target="#momal-inventory-turnover-ratio-360">
       <td align=left>平均销货日数(在库天数)</td>
       <% m = static_data[10].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[10].reverse.each do |i| %>
@@ -136,7 +109,7 @@
     <tr data-toggle="modal" data-target="#momal-fixed-asset-turnover-ratio">
       <td align=left>不动产/厂房及设备周转率(次)</td>
       <% m = static_data[11].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[11].reverse.each do |i| %>
@@ -147,7 +120,7 @@
     <tr data-toggle="modal" data-target="#momal-total-asset-turnover-ratio">
       <td align=left>总资产周转率(次)</td>
       <% m = static_data[12].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[12].reverse.each do |i| %>
@@ -156,12 +129,10 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-roe-ratio">
-      <% if time != 2 %>
         <td class="theader-style" rowspan="7">获利能力</td>
-      <% end %>
       <td align=left>股东权益报酬率(%) RoE</td>
       <% m = static_data[13].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[13].reverse.each do |i| %>
@@ -172,7 +143,7 @@
     <tr data-toggle="modal" data-target="#momal-operating-margin-ratio">
       <td align=left>营业毛利率(%) ①</td>
       <% m = static_data[14].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[14].reverse.each do |i| %>
@@ -183,7 +154,7 @@
     <tr data-toggle="modal" data-target="#momal-business-profitability-ratio">
       <td align=left>营业利益率(%) ②</td>
       <% m = static_data[15].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[15].reverse.each do |i| %>
@@ -194,7 +165,7 @@
     <tr data-toggle="modal" data-target="#momal-operating-margin-of-safety-ratio">
       <td align=left>经营安全边际率(%) = ② / ①</td>
       <% m = static_data[16].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[16].reverse.each do |i| %>
@@ -205,7 +176,7 @@
     <tr data-toggle="modal" data-target="#momal-net-profit-margin-ratio">
       <td align=left>净利率(%) = 纯益率</td>
       <% m = static_data[17].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[17].reverse.each do |i| %>
@@ -216,7 +187,7 @@
     <tr data-toggle="modal" data-target="#momal-earnings-per-share">
       <td align=left>每股盈余(元)</td>
       <% m = static_data[18].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[18].reverse.each do |i| %>
@@ -227,7 +198,7 @@
     <tr data-toggle="modal" data-target="#momal-after-tax-profit">
       <td align=left>税后净利(百万元)</td>
       <% m = static_data[19].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[19].reverse.each do |i| %>
@@ -236,12 +207,10 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-operating-cash-flow-ratio">
-      <% if time != 2 %>
-        <td class="theader-style" rowspan="3">现金流量</td>
-      <% end %>
+      <td class="theader-style" rowspan="3">现金流量</td>
       <td align=left>现金流量比率(%)</td>
       <% m = static_data[27].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[27].reverse.each do |i| %>
@@ -249,24 +218,13 @@
       <% end %>
     </tr>
 
-    <tr data-toggle="modal" data-target="#momal-cash-flow-adequancy-ratio">
-      <td align=left>现金流量允当比率(%)</td>
+    <tr data-toggle="modal" data-target="#momal-cash-re-investment-ratio">
+      <td align=left>现金再投资比率(%)</td>
       <% m = static_data[28].reverse.size %>
-      <% (1..time - m).each do |i| %>
+      <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
       <% static_data[28].reverse.each do |i| %>
-        <td><%= i %></td>
-      <% end %>
-    </tr>
-
-    <tr data-toggle="modal" data-target="#momal-cash-re-investment-ratio">
-      <td align=left>现金再投资比率(%)</td>
-      <% m = static_data[29].reverse.size %>
-      <% (1..time - m).each do |i| %>
-        <td align=center>--</td>
-      <% end %>
-      <% static_data[29].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
@@ -275,5 +233,5 @@
 </div>
 
 <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-  <%= render :partial => "main_finance_table_modal_2", :locals => { :static_data => static_data, :time => time, :stock => @stock, :sd1 => 29 } %>
+  <%= render :partial => "//stocks/main_finance_table_modal_2", :locals => { :static_data => static_data, :time => 5, :stock => @us_stock, :sd1 => 28 } %>
 <% end %>
