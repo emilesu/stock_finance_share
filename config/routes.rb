@@ -71,6 +71,7 @@ Rails.application.routes.draw do
         # --------------美股部分 --------------
       post :update_us_stock_symbol     #更新 美股 代码、股票名称、行业、上市地
       post :update_us_stock_finance_table     #全局扫描更新 财务表 数据
+      post :update_us_stock_static_data       #更新 美股 数据静态保存
     end
   end
 

@@ -383,4 +383,20 @@ class Admin::BaseDataController < AdminController
     flash[:notice] = "财务表 更新完毕"
   end
 
+  # 数据静态保存
+  def update_us_stock_static_data
+    @us_stock = UsStock.all
+    @us_stock.each do |s|
+      if s.version != Setting.first.version
+        s.us_stock_static_data
+      end
+      s.update!(
+        :version => Setting.first.version
+      )
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "美股 数据静态保存 更新完毕"
+  end
+
 end

@@ -31,7 +31,9 @@ class UsStock < ApplicationRecord
 
   # 由于原数据的数字字符串中包含有逗号“,”的分隔，在转成数字的时候会导致缺失不准确，因此做 to_m函数来统一格式化
   def to_num(x)
-    if x.include?(",")
+    if x.nil?
+      return 0
+    elsif x.include?(",")
       sp = x.split(",")
       m = ""
       (0..sp.size - 1).each do |i|
@@ -622,7 +624,7 @@ class UsStock < ApplicationRecord
 
   # ---------------------- 数据静态化保存 ----------------------
 
-  def static_data
+  def us_stock_static_data
     sd = []
     sd << self.us_stock_years                                       # 0-年报年度
     sd << self.us_cash_and_cash_equivalents_ratio                   # 1-现金与约当现金
@@ -648,9 +650,9 @@ class UsStock < ApplicationRecord
     sd << self.us_long_term_funds_for_fixed_assets_ratio            # 21-长期负债占不动产/厂房及设备比率
     sd << self.us_current_ratio                                     # 22-流动比率
     sd << self.us_quick_ratio                                       # 23-速动比率
-    sd << self.us_net_cash_flow_of_business_activities              # 24-经营活动现金流量(百万元)
-    sd << self.us_net_investment_activities_generated_cash_flow     # 25-投资活动现金流量(百万元)
-    sd << self.us_net_financing_activities_generated_cash_flow      # 26-筹资活动现金流量(百万元)
+    sd << self.us_net_cash_flow_of_business_activities              # 24-经营活动现金流量
+    sd << self.us_net_investment_activities_generated_cash_flow     # 25-投资活动现金流量
+    sd << self.us_net_financing_activities_generated_cash_flow      # 26-筹资活动现金流量
     sd << self.us_operating_cash_flow_ratio                         # 27-现金流量比率
     sd << self.us_cash_re_investment_ratio                          # 28-现金再投资比率
     sd << self.us_dividend_amount                                   # 29-分红金额
