@@ -620,6 +620,48 @@ class UsStock < ApplicationRecord
 
 
 
+  # ---------------------- 数据静态化保存 ----------------------
+
+  def static_data
+    sd = []
+    sd << self.us_stock_years                                       # 0-年报年度
+    sd << self.us_cash_and_cash_equivalents_ratio                   # 1-现金与约当现金
+    sd << self.us_receivables_ratio                                 # 2-应收账款
+    sd << self.us_inventory_ratio                                   # 3-存货
+    sd << self.us_current_assets_ratio                              # 4-流动资产
+    sd << self.us_accounts_payable_ratio                            # 5-应付账款
+    sd << self.us_current_liabilities_ratio                         # 6-流动负债
+    sd << self.us_long_term_liability_ratio                         # 7-长期负债
+    sd << self.us_shareholders_equity_ratio                         # 8-股东权益
+    sd << self.us_accounts_receivable_turnover_ratio                # 9-应收账款周转率
+    sd << self.us_inventory_turnover_ratio                          # 10-存货周转率
+    sd << self.us_fixed_asset_turnover_ratio                        # 11-不动产/厂房及设备周转率
+    sd << self.us_total_asset_turnover_ratio                        # 12-总资产周转率
+    sd << self.us_roe_ratio                                         # 13-股东权益报酬率 ROE
+    sd << self.us_operating_margin_ratio                            # 14-营业毛利率
+    sd << self.us_business_profitability_ratio                      # 15-营业利益率
+    sd << self.us_operating_margin_of_safety_ratio                  # 16-经营安全边际率
+    sd << self.us_net_profit_margin_ratio                           # 17-净利率
+    sd << self.us_earnings_per_share                                # 18-每股盈余
+    sd << self.us_after_tax_profit                                  # 19-税后净利
+    sd << self.us_debt_asset_ratio                                  # 20-负债占资产比率
+    sd << self.us_long_term_funds_for_fixed_assets_ratio            # 21-长期负债占不动产/厂房及设备比率
+    sd << self.us_current_ratio                                     # 22-流动比率
+    sd << self.us_quick_ratio                                       # 23-速动比率
+    sd << self.us_net_cash_flow_of_business_activities              # 24-经营活动现金流量(百万元)
+    sd << self.us_net_investment_activities_generated_cash_flow     # 25-投资活动现金流量(百万元)
+    sd << self.us_net_financing_activities_generated_cash_flow      # 26-筹资活动现金流量(百万元)
+    sd << self.us_operating_cash_flow_ratio                         # 27-现金流量比率
+    sd << self.us_cash_re_investment_ratio                          # 28-现金再投资比率
+    sd << self.us_dividend_amount                                   # 29-分红金额
+    sd << self.us_dividend_rate                                     # 30-分红率
+    self.update!(
+      :static_data => sd
+    )
+  end
+
+
+
 
 
 

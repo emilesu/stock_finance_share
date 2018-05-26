@@ -17,9 +17,7 @@
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
-        <th>静态-10/static_data_10</th>
-        <th>静态-5/static_data_5</th>
-        <th>静态-2/static_data_2</th>
+        <th>静态数据/static_data</th>
         <th>操作</th>
         <th>数据版本version</th>
       </tr>
@@ -66,19 +64,7 @@
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if us_stock.static_data_10.nil? || us_stock.static_data_10 == ""  %>
-            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
-          <% else %>
-            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
-          <% end %>
-          <!--  -->
-          <% if us_stock.static_data_5.nil? || us_stock.static_data_5 == ""  %>
-            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
-          <% else %>
-            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
-          <% end %>
-          <!--  -->
-          <% if us_stock.static_data_2.nil? || us_stock.static_data_2 == ""  %>
+          <% if us_stock.static_data.nil? || us_stock.static_data == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
