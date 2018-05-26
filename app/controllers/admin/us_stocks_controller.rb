@@ -5,7 +5,7 @@ class Admin::UsStocksController < AdminController
   end
 
   def show
-    @us_stock = UsStock.find_by_symbol!(params[:id])
+    @us_stock = UsStock.find_by_easy_symbol!(params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class Admin::UsStocksController < AdminController
   end
 
   def edit
-    @us_stock = UsStock.find_by_symbol!(params[:id])
+    @us_stock = UsStock.find_by_easy_symbol!(params[:id])
   end
 
   def update
-    @us_stock = UsStock.find_by_symbol!(params[:id])
+    @us_stock = UsStock.find_by_easy_symbol!(params[:id])
 
     if @us_stock.update(us_stock_params)
       redirect_to admin_us_stocks_path
@@ -37,7 +37,7 @@ class Admin::UsStocksController < AdminController
   end
 
   def destroy
-    @us_stock = UsStock.find_by_symbol!(params[:id])
+    @us_stock = UsStock.find_by_easy_symbol!(params[:id])
 
     @us_stock.destroy
     redirect_to admin_us_stocks_path
@@ -47,7 +47,7 @@ class Admin::UsStocksController < AdminController
   private
 
   def us_stock_params
-    params.require(:us_stock).permit(:symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :version, :static_data_10, :static_data_5, :static_data_2)
+    params.require(:us_stock).permit(:symbol, :easy_symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :version, :static_data_10, :static_data_5, :static_data_2)
   end
 
 end
