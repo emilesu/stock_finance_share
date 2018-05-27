@@ -17,9 +17,10 @@
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
-        <th>静态数据/static_data</th>
+        <th>静态数据/sd</th>
         <th>操作</th>
-        <th>数据版本version</th>
+        <th>数据版本us_version_1</th>
+        <th>数据版本us_version_3</th>
       </tr>
     </thead>
     <tbody>
@@ -74,10 +75,16 @@
             <%= link_to("删除", admin_us_stock_path(us_stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
           </td>
           <!--  -->
-          <% if us_stock.version.nil? %>
+          <% if us_stock.us_version_1.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
-            <td><%= us_stock.version %></td>
+            <td><%= us_stock.us_version_1 %></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.us_version_3.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.us_version_3 %></td>
           <% end %>
         </tr>
       <% end %>

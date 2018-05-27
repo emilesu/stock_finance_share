@@ -1,7 +1,7 @@
 class UsStock < ApplicationRecord
 
   # 资料验证
-  validates_presence_of :symbol, :easy_symbol, :cnname
+  validates_presence_of :symbol, :easy_symbol
 
   # 新增的时候，总统添加 easy_symbole
   # 每股中因为有的 symbol 存在点"."的情况，不能作为 routes 路径，所以必须把“.”转化为"_"。

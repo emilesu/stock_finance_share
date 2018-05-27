@@ -59,7 +59,7 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.version != Setting.first.version
+      if s.version_1 != Setting.first.version_1
         # zcb 资产表更新
         response_zcb = RestClient.get "http://quotes.money.163.com/service/zcfzb_#{s.easy_symbol}.html"
         data_zcb = CSV.parse(response_zcb, :headers => true)
@@ -83,7 +83,7 @@ class Admin::BaseDataController < AdminController
       end
 
       s.update!(
-        :version => Setting.first.version
+        :version_1 => Setting.first.version_1
       )
 
     end
@@ -98,7 +98,7 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.version != Setting.first.version
+      if s.version_2 != Setting.first.version_2
         # 从网易提取原始数据
         response = RestClient.get "http://quotes.money.163.com/f10/fhpg_#{s.easy_symbol}.html#10d01"
         doc = Nokogiri::HTML.parse(response.body)
@@ -131,7 +131,7 @@ class Admin::BaseDataController < AdminController
         )
       end
       s.update!(
-        :version => Setting.first.version
+        :version_2 => Setting.first.version_2
       )
     end
     puts "更新完毕*******"
@@ -144,11 +144,11 @@ class Admin::BaseDataController < AdminController
   def update_static_data
     @stocks = Stock.all
     @stocks.each do |s|
-      if s.version != Setting.first.version
+      if s.version_3 != Setting.first.version_3
         s.static_data
       end
       s.update!(
-        :version => Setting.first.version
+        :version_3 => Setting.first.version_3
       )
     end
     puts "更新完毕*******"
@@ -282,7 +282,7 @@ class Admin::BaseDataController < AdminController
 
 # ______________________________________美股部分______________________________________
 
-  # 全局扫描更新 更新 美股 代码、股票名称、行业、上市地
+  # 全局扫描更新 更新 美股 代码、上市地
   def update_us_stock_symbol
 
     (1..2).each do |i|        #最终上线要"i"改为149+ , "type"改为3
@@ -294,8 +294,6 @@ class Admin::BaseDataController < AdminController
         if existing_stock.nil?
           UsStock.create!(
             :symbol => s["symbol"],
-            :cnname => s["cname"],
-            :industry => s["category"],
             :market => s["market"]
           )
         end
@@ -313,7 +311,7 @@ class Admin::BaseDataController < AdminController
     @us_stocks = UsStock.all
     @us_stocks.each do |s|
 
-      if s.version != Setting.first.version
+      if s.us_version_1 != Setting.first.us_version_1
         # -------从网易提取原始数据 cwzb-------
         cwzb_response = RestClient.get "http://quotes.money.163.com/usstock/#{s.symbol}_indicators.html?type=year"
         cwzb_doc = Nokogiri::HTML.parse(cwzb_response.body)
@@ -375,7 +373,7 @@ class Admin::BaseDataController < AdminController
         )
       end
       s.update!(
-        :version => Setting.first.version
+        :us_version_1 => Setting.first.us_version_1
       )
     end
     puts "更新完毕*******"
@@ -383,20 +381,49 @@ class Admin::BaseDataController < AdminController
     flash[:notice] = "财务表 更新完毕"
   end
 
+
+
   # 数据静态保存
   def update_us_stock_static_data
     @us_stock = UsStock.all
     @us_stock.each do |s|
-      if s.version != Setting.first.version
+      if s.us_version_3 != Setting.first.us_version_3
         s.us_stock_static_data
       end
       s.update!(
-        :version => Setting.first.version
+        :us_version_3 => Setting.first.us_version_3
       )
     end
     puts "更新完毕*******"
     redirect_to admin_base_data_index_path
     flash[:notice] = "美股 数据静态保存 更新完毕"
+  end
+
+
+
+  #全局扫描更新 股票信息 中文名 行业
+  def update_su_stock_company_info
+    @us_stocks = UsStock.all
+    @us_stocks.each do |s|
+
+      if s.cnname.blank? || s.industry.blank?
+        response = RestClient.get "https://www.laohu8.com/hq/s/#{s.easy_symbol}"
+        doc = Nokogiri::HTML.parse(response.body)
+          main1 = doc.css(".quote-main .title").map{ |x| x.text }[0].split(" ")[1..-1].join(" ")
+          if doc.css(".quote-main .belong").map{ |x| x.text }[0].nil?
+            main2 = "其他"        #爬取的数据有时会存在 nil 的情况，独自区分为 “其他”
+          else
+            main2 = doc.css(".quote-main .belong").map{ |x| x.text }[0].split("：")[1]
+          end
+          s.update!(
+            :cnname => main1,
+            :industry => main2
+          )
+      end
+    end
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "股票 中文名 行业 更新完毕"
   end
 
 end

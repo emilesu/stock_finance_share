@@ -73,9 +73,10 @@ Rails.application.routes.draw do
       post :update_industry_setting    #更新行业设置
 
         # --------------美股部分 --------------
-      post :update_us_stock_symbol     #更新 美股 代码、股票名称、行业、上市地
+      post :update_us_stock_symbol     #更新 美股 代码、上市地
       post :update_us_stock_finance_table     #全局扫描更新 财务表 数据
       post :update_us_stock_static_data       #更新 美股 数据静态保存
+      post :update_su_stock_company_info       #更新 美股 中文名 行业
     end
   end
 

@@ -33,11 +33,13 @@
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
         <th>分红数据/dividends</th>
-        <th>静态-10/static_data_10</th>
-        <th>静态-5/static_data_5</th>
-        <th>静态-2/static_data_2</th>
+        <th>静态-10/sd_10</th>
+        <th>静态-5/sd_5</th>
+        <th>静态-2/sd_2</th>
         <th>操作</th>
-        <th>数据版本version</th>
+        <th>数据version_1</th>
+        <th>数据version_2</th>
+        <th>数据version_3</th>
       </tr>
     </thead>
     <tbody>
@@ -122,10 +124,22 @@
             <%= link_to("删除", admin_stock_path(stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
           </td>
           <!--  -->
-          <% if stock.version.nil? %>
+          <% if stock.version_1.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
-            <td><%= stock.version %></td>
+            <td><%= stock.version_1 %></td>
+          <% end %>
+          <!--  -->
+          <% if stock.version_2.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= stock.version_2 %></td>
+          <% end %>
+          <!--  -->
+          <% if stock.version_3.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= stock.version_3 %></td>
           <% end %>
         </tr>
       <% end %>

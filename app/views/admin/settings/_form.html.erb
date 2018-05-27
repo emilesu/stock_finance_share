@@ -2,7 +2,19 @@
 
   <div class="form-group">
     <%= f.input :industry, :label => "当前所有行业", input_html: { class: "form-control"} %>
-    <%= f.input :version, :label => "数据版本", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.input :version_1, :label => "A股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :version_2, :label => "A股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :version_3, :label => "A股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :version_4, :label => "A股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :version_5, :label => "A股 数据版本", input_html: { class: "form-control"} %>
+    <hr>
+    <%= f.input :us_version_1, :label => "美股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :us_version_2, :label => "美股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :us_version_3, :label => "美股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :us_version_4, :label => "美股 数据版本", input_html: { class: "form-control"} %>
+    <%= f.input :us_version_5, :label => "美股 数据版本", input_html: { class: "form-control"} %>
+
     <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
   </div>
 

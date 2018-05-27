@@ -20,7 +20,7 @@
       <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
         <div class="stock-title">
           <span class="stock-name"> <%= @us_stock.cnname %> </span>
-          <span class="stock-symbol"> (<%= @us_stock.symbol %>)</span>
+          <span class="stock-symbol"> - <%= @us_stock.symbol %></span>
         </div>
         <strong>
           <p><%= @us_stock.industry %> - <%= @us_stock.market %></p>

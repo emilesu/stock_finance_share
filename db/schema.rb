@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526181657) do
+ActiveRecord::Schema.define(version: 20180527164229) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -97,7 +97,16 @@ ActiveRecord::Schema.define(version: 20180526181657) do
     t.text "industry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "version"
+    t.integer "version_1"
+    t.integer "version_2"
+    t.integer "version_3"
+    t.integer "version_4"
+    t.integer "version_5"
+    t.integer "us_version_1"
+    t.integer "us_version_2"
+    t.integer "us_version_3"
+    t.integer "us_version_4"
+    t.integer "us_version_5"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -113,13 +122,17 @@ ActiveRecord::Schema.define(version: 20180526181657) do
     t.string "main_business"
     t.string "company_url"
     t.string "regional"
-    t.integer "version"
+    t.integer "version_1"
     t.datetime "time_to_market"
     t.string "pinyin"
     t.text "dividends"
     t.text "static_data_10"
     t.text "static_data_5"
     t.text "static_data_2"
+    t.integer "version_2"
+    t.integer "version_3"
+    t.integer "version_4"
+    t.integer "version_5"
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
@@ -161,13 +174,17 @@ ActiveRecord::Schema.define(version: 20180526181657) do
     t.string "industry"
     t.string "main_business"
     t.string "company_url"
-    t.integer "version"
+    t.integer "us_version_1"
     t.datetime "time_to_market"
     t.text "dividends"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "easy_symbol"
     t.text "static_data"
+    t.integer "us_version_2"
+    t.integer "us_version_3"
+    t.integer "us_version_4"
+    t.integer "us_version_5"
     t.index ["cnname"], name: "index_us_stocks_on_cnname"
     t.index ["easy_symbol"], name: "index_us_stocks_on_easy_symbol", unique: true
     t.index ["market"], name: "index_us_stocks_on_market"

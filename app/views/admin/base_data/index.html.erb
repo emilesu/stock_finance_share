@@ -14,15 +14,15 @@
   <hr>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-      <%= link_to("更新 财务报表 数据", admin_base_data_update_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:财务报表数据 ?" }) %>
+      <%= link_to("更新 财务报表 数据version_1", admin_base_data_update_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:财务报表数据 ?" }) %>
   </div>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-      <%= link_to("更新 股票分红 数据", admin_base_data_update_stock_dividends_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:股票分红 数据 ?" }) %>
+      <%= link_to("更新 股票分红 数据version_2", admin_base_data_update_stock_dividends_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:股票分红 数据 ?" }) %>
   </div>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-      <%= link_to("更新 数据静态保存", admin_base_data_update_static_data_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:数据静态保存 ?" }) %>
+      <%= link_to("更新 数据静态保存 数据version_3", admin_base_data_update_static_data_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:数据静态保存 ?" }) %>
   </div>
 
   <hr>
@@ -58,17 +58,23 @@
   <h1>美 股</h1>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-    <%= link_to("更新 美股 代码、股票名称、行业、上市地", admin_base_data_update_us_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 代码、股票名称、行业、上市地 ?" }) %>
+    <%= link_to("更新 美股 代码、上市地 数据", admin_base_data_update_us_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 代码、上市地 ?" }) %>
   </div>
 
   <hr>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-    <%= link_to("更新 美股 财务表 数据", admin_base_data_update_us_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 财务表 数据 ?" }) %>
+    <%= link_to("更新 美股 财务报表 数据us_version_1", admin_base_data_update_us_stock_finance_table_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 财务表 数据 ?" }) %>
   </div>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-      <%= link_to("更新 美股 数据静态保存", admin_base_data_update_us_stock_static_data_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 数据静态保存 ?" }) %>
+      <%= link_to("更新 美股 数据静态保存 数据us_version_3", admin_base_data_update_us_stock_static_data_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 数据静态保存 ?" }) %>
+  </div>
+
+  <hr>
+
+  <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
+    <%= link_to("更新 美股 中文名 行业 数据", admin_base_data_update_su_stock_company_info_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 中文名 行业 ?" }) %>
   </div>
 
 
