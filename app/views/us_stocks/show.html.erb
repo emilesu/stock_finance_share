@@ -21,14 +21,29 @@
         <div class="stock-title">
           <span class="stock-name"> <%= @us_stock.cnname %> </span>
           <span class="stock-symbol"> - <%= @us_stock.symbol %></span>
+          <span class="stock-price" price-data="<%= @latest_price[1] %>">
+            <em>¥</em>
+            <%= @latest_price[0].to_f.round(2) %>
+            <em> (
+              <%= @latest_price[1] %>
+              <% if @latest_price[1].to_f > 0 %>
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+              <% else %>
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+              <% end %>
+              ) </em>
+          </span>
         </div>
         <strong>
-          <p><%= @us_stock.industry %> - <%= @us_stock.market %></p>
+          <p>行业：<%= @us_stock.industry %></p>
+          <p>市场: <%= @us_stock.market %></p>
+          <p>滚动市盈率(TTM): <%= @latest_price[2] %></p>
+          <p>股息率: <%= @latest_price[3] %></p>
         </strong>
 
-        <div class="main_business col-md-12 row">
+        <!-- <div class="main_business col-md-12 row">
           <p title="<%= @us_stock.main_business %>"><strong>主营业务: </strong><%= @us_stock.main_business %></p>
-        </div>
+        </div> -->
 
         <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
         <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
@@ -66,3 +81,20 @@
 
 
 </div>
+
+
+
+
+<!-- 股价涨跌时分别显示红色或绿色 -->
+<script>
+  $(document).ready(function(){
+    $(".stock-price").each(function(){
+      var Num = parseFloat($(this).attr("price-data"));
+      if (Num > 0){
+        $(this).css("color", "red");
+      } else {
+        $(this).css("color", "#339933");
+      };
+    });
+  });
+</script>

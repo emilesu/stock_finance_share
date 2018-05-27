@@ -3,6 +3,7 @@ class Note < ApplicationRecord
   # 与 user, stock 关系
   belongs_to :user
   belongs_to :stock
+  belongs_to :us_stock
 
   # 资料验证
   validates_presence_of :title, :level, :status

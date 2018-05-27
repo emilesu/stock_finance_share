@@ -707,4 +707,32 @@ class UsStock < ApplicationRecord
 
 
 
+  # ---------------爬取 美股现价 涨跌幅 和 现市盈率----------------
+
+  def us_stock_latest_price_and_PE
+    response = RestClient.get "https://www.laohu8.com/hq/s/#{self.symbol}"
+    doc = Nokogiri::HTML.parse(response.body)
+    result = []
+
+    # 股票现价
+    price = doc.css(".current-quote .num").map{ |x| x.text }[0]
+    result << price
+
+    # 股票涨幅
+    applies = doc.css(".current-quote .num").map{ |x| x.text }[2]
+    result << applies
+
+    # 市盈率 PE
+    pe = doc.css(".detail tr[3] td[2]").map{ |x| x.text }[0].split(":")[1]
+    result << pe
+
+    # 股息率
+    gxl = doc.css(".detail tr[3] td[4]").map{ |x| x.text }[0].split(":")[1]
+    result << gxl
+
+    return result
+  end
+
+
+
 end
