@@ -285,8 +285,8 @@ class Admin::BaseDataController < AdminController
   # 全局扫描更新 更新 美股 代码、上市地
   def update_us_stock_symbol
 
-    (1..2).each do |i|        #最终上线要"i"改为149+ , "type"改为3
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/usaall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "1" }
+    (1..149).each do |i|        #最终上线要"i"改为149+ , "type"改为3
+      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/usaall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "3" }
       data = JSON.parse(response.body)
 
       data["result"]["data"].each do |s|
