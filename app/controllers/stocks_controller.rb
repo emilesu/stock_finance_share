@@ -20,11 +20,11 @@ class StocksController < ApplicationController
     @latest_price = @stock.stock_latest_price_and_PE
 
     # 笔记 note
-    @stock_note_new = Note.new
+    @note_new = Note.new
     if current_user
-      @stock_current_user_notes = @stock.notes.where( :user_id => current_user.id ).order("updated_at DESC")
+      @current_user_notes = @stock.notes.where( :user_id => current_user.id ).order("updated_at DESC")
     end
-    @stock_notes = @stock.notes.order("updated_at DESC").page(params[:notes]).per(20)
+    @notes = @stock.notes.order("updated_at DESC").page(params[:notes]).per(20)
   end
 
 

@@ -43,6 +43,12 @@
               <% end %>
             </span>
           <% end %>
+          <%= render :partial => "//notes/note_modal_new", :locals => {
+            :stock => @stock,
+            :name => @stock.name,
+            :symbol => @stock.easy_symbol,
+            :data => Note
+            } %>
         </div>
         <strong>
           <p><%= @stock.industry %> - <%= @stock.regional %>  - <a class="btn btn-xs btn-default" href= "http://<%= @stock.company_url %>" target="_blank">官网: <%= @stock.company_url %></a></p>
@@ -98,10 +104,12 @@
 
 <!-- 用户分析部分 -->
 <div class="col-lg-8 col-lg-offset-2">
-  <%= render :partial => "//notes/note"%>
+  <%= render :partial => "//notes/note", :locals => {
+    :stock => @stock,
+    } %>
 </div>
 
-<%= render :partial => "//notes/note_modal_new"%>
+
 
 <!-- 自定义 title -->
 <% content_for :title do %>

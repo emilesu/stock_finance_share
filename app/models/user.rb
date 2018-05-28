@@ -24,12 +24,19 @@ class User < ApplicationRecord
   # 与 note 关系
   has_many :notes
 
+  # 与 us_notes 关系
+  has_many :us_notes
+
   # 与 trade 关系
    has_many :trades
 
   # 与 like 关系
   has_many :likes, :dependent => :destroy
   has_many :liked_notes, :through => :likes, :source => :note
+
+  # 与 us_like 关系
+  has_many :us_likes, :dependent => :destroy
+  has_many :liked_su_notes, :through => :us_likes, :source => :us_note
 
   # 与 twitter 和 review 关系
   has_many :twitters, :dependent => :destroy

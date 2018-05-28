@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527164229) do
+ActiveRecord::Schema.define(version: 20180527231630) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -160,6 +160,29 @@ ActiveRecord::Schema.define(version: 20180527164229) do
     t.string "user_id"
     t.index ["status"], name: "index_twitters_on_status"
     t.index ["user_id"], name: "index_twitters_on_user_id"
+  end
+
+  create_table "us_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "us_note_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["us_note_id"], name: "index_us_likes_on_us_note_id"
+    t.index ["user_id"], name: "index_us_likes_on_user_id"
+  end
+
+  create_table "us_notes", force: :cascade do |t|
+    t.integer "us_stock_id"
+    t.integer "user_id"
+    t.string "status", default: "公开"
+    t.string "level", default: "近期关注"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_us_notes_on_status"
+    t.index ["us_stock_id"], name: "index_us_notes_on_us_stock_id"
+    t.index ["user_id"], name: "index_us_notes_on_user_id"
   end
 
   create_table "us_stocks", force: :cascade do |t|

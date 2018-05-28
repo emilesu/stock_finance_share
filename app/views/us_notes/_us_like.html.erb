@@ -1,0 +1,13 @@
+<% if current_user %>
+  <% if note.find_us_like(current_user) %>
+    <%= link_to(unlike_us_stock_us_note_path(@us_stock, note), :method => :post, :remote => true) do %>
+      <span><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> (<%= note.us_likes.size %>)</span>
+    <% end %>
+  <% else %>
+    <%= link_to(like_us_stock_us_note_path(@us_stock, note), :method => :post, :remote => true) do %>
+      <span><i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i> (<%= note.us_likes.size %>)</span>
+    <% end %>
+  <% end %>
+<% else %>
+  <span><i class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></i> (<%= note.us_likes.size %>)</span>
+<% end %>

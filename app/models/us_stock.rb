@@ -22,7 +22,7 @@ class UsStock < ApplicationRecord
 
 
   # 与 note 关系
-  has_many :notes
+  has_many :us_notes
 
 
   # -----------------------------------财报季度数据整理脚本-----------------------------------

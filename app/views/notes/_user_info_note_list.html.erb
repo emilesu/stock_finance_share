@@ -22,7 +22,12 @@
         <span>
           <a class="modal-note-edit" data-toggle="modal" data-target="#momal-note-edit-<%= note.id %>">编辑</a> |
           <%= link_to("删除", stock_note_path(note), :method => :delete, data: { confirm: "确定删除吗?" }) %>
-          <%= render :partial => "//notes/note_modal_edit", :locals => { :note => note, :stock => note.stock } %>
+          <%= render :partial => "//notes/note_modal_edit", :locals => {
+            :note => note,
+            :stock => note.stock,
+            :name => note.stock.name,
+            :symbol => note.stock.easy_symbol,
+            } %>
         </span> &nbsp &nbsp &nbsp
       <% end %>
       <%= time_ago_in_words( note.updated_at ) %>前

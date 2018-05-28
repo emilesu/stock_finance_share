@@ -1,8 +1,8 @@
-class Note < ApplicationRecord
+class UsNote < ApplicationRecord
 
   # 与 user, stock 关系
   belongs_to :user
-  belongs_to :stock
+  belongs_to :us_stock
 
   # 资料验证
   validates_presence_of :title, :level, :status
@@ -13,12 +13,12 @@ class Note < ApplicationRecord
   STATUS = ["公开", "对会员公开", "私密"]
   validates_inclusion_of :status, :in => STATUS
 
-  # 与 like 关系
-  has_many :likes, :dependent => :destroy
-  has_many :liked_users, :through => :likes, :source => :user
+  # 与 us_like 关系
+  has_many :us_likes, :dependent => :destroy
+  has_many :liked_users, :through => :us_likes, :source => :user
 
-  def find_like(user)
-    self.likes.where( :user_id => user.id ).first
+  def find_us_like(user)
+    self.us_likes.where( :user_id => user.id ).first
   end
 
 end

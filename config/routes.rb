@@ -28,7 +28,14 @@ Rails.application.routes.draw do
   end
 
   # 美股路由设置
-  resources :us_stocks
+  resources :us_stocks do
+    resources :us_notes do
+      member do
+        post "like" => "us_notes#like"             #增加 赞/收藏
+        post "unlike" => "us_notes#unlike"         #取消 赞/收藏
+      end
+    end
+  end
 
   resources :users do
     resources :twitters do

@@ -1,0 +1,2 @@
+module UsNotesHelper
+end

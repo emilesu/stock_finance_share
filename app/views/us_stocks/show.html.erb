@@ -33,6 +33,22 @@
               <% end %>
               ) </em>
           </span>
+          <!-- note 编辑 modal 页面 -->
+          <% if current_user %>
+            <span class="pull-right star-stock" data-toggle="modal" data-target="#momal-note-new">
+              <% if current_user.us_notes.map{ |us_note| us_note.us_stock }.include?(@us_stock) %>     <!-- 判断用户是否已有该 stock 的 note -->
+                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+              <% else %>
+                <i class="fa fa-star-o fa-2x" aria-hidden="true"></i>
+              <% end %>
+            </span>
+          <% end %>
+          <%= render :partial => "//notes/note_modal_new", :locals => {
+            :stock => @us_stock,
+            :name => @us_stock.cnname,
+            :symbol => @us_stock.symbol,
+            :data => UsNote
+            } %>
         </div>
         <strong>
           <p>行业：<%= @us_stock.industry %></p>
@@ -83,6 +99,19 @@
 </div>
 
 
+<!-- 用户分析部分 -->
+<div class="col-lg-8 col-lg-offset-2">
+  <%= render :partial => "//us_notes/us_note", :locals => {
+    :stock => @us_stock,
+    } %>
+</div>
+
+
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @us_stock.cnname %>(<%= @us_stock.symbol %>) -
+<% end %>
 
 
 <!-- 股价涨跌时分别显示红色或绿色 -->
