@@ -1,7 +1,8 @@
 <%= simple_form_for [:admin, @setting] do |f| %>
 
   <div class="form-group">
-    <%= f.input :industry, :label => "当前所有行业", input_html: { class: "form-control"} %>
+    <%= f.input :a_industry, :label => "A 股行业", input_html: { class: "form-control"} %>
+    <%= f.input :us_industry, :label => "美股行业", input_html: { class: "form-control"} %>
     <hr>
     <%= f.input :version_1, :label => "A股 数据版本", input_html: { class: "form-control"} %>
     <%= f.input :version_2, :label => "A股 数据版本", input_html: { class: "form-control"} %>
