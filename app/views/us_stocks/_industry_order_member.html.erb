@@ -1,0 +1,134 @@
+<!-- 所属行业 -->
+<div class="industry-title">
+  <%= @us_stock.industry[0..5] %>
+
+  <div class="btn-group pull-right">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="dropdown">
+        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+          排序 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="active">
+            <a href="#tab_default_0" data-toggle="tab"></a>
+          </li>
+          <li>
+            <a href="#tab_default_1" data-toggle="tab">股东权益报酬率(%) RoE</a>
+          </li>
+          <li>
+            <a href="#tab_default_2" data-toggle="tab">现金与约当现金比率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_3" data-toggle="tab">营业毛利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_4" data-toggle="tab">营业利益率排序(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_5" data-toggle="tab">纯益率/净利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_6" data-toggle="tab">负债占资产利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_7" data-toggle="tab">分红率(%)</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- 所属行业股票列表 -->
+<div class="industry-li tab-content">
+
+  <div class="tab-pane active" id="tab_default_0">
+    <div class="industry-li-title">股东权益报酬率(%) RoE <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_roe_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_1">
+    <div class="industry-li-title">股东权益报酬率(%) RoE <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_roe_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_2">
+    <div class="industry-li-title">现金与约当现金比率(%) <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_cash_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_cash_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_3">
+    <div class="industry-li-title">营业毛利率(%) <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_operating_margin_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_operating_margin_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_4">
+    <div class="industry-li-title">营业利益率排序(%) <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_business_profitability_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_business_profitability_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_5">
+    <div class="industry-li-title">纯益率 / 净利率(%) <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_net_profit_margin_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_net_profit_margin_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_6">
+    <div class="industry-li-title">负债占资产利率(%) <span class="pull-right">5年均值</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_debt_asset_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_debt_asset_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="tab-pane" id="tab_default_7">
+    <div class="industry-li-title">分红率(%) <span class="pull-right">最近一次</span></div>
+    <ul class="list-unstyled">
+      <% @industrys_dividend_rate_order.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_dividend_rate_order %></span></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

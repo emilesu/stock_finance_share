@@ -65,7 +65,7 @@
         <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
           <div class="to-finance-btn">
             <span>
-              <%= link_to("行业统计分析 >>", root_path, :class => "btn btn-sm btn-default") %>
+              <%= link_to("行业统计分析 >>", industry_us_stocks_path(:order => @us_stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
           </div>
         <% end %>

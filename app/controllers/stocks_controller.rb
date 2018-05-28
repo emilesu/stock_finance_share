@@ -61,9 +61,8 @@ class StocksController < ApplicationController
     @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.debt_asset_order <=> y.debt_asset_order }[0..30]       #负债占资本利率排序
     @industrys_dividend_rate_order = all_industrys.sort{ |x,y| y.dividend_rate_order <=> x.dividend_rate_order }[0..30]       #分红率排序
 
-
     # 从"系统设置 - 行业"中提取行业列表
-    @all_industrys = JSON.parse(Setting.first.industry)        # 所有行业信息
+    @all_industrys = JSON.parse(Setting.first.a_industry)        # 所有行业信息
   end
 
   # --- 用户选择股票的上市年限 ---

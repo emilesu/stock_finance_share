@@ -263,7 +263,7 @@ class Admin::BaseDataController < AdminController
        x << i
      end
      Setting.first.update!(
-       :industry => x
+       :a_industry => x
      )
      puts "更新完毕*******"
      redirect_to admin_base_data_index_path
@@ -402,7 +402,7 @@ class Admin::BaseDataController < AdminController
 
 
   #全局扫描更新 股票信息 中文名 行业
-  def update_su_stock_company_info
+  def update_us_stock_company_info
     @us_stocks = UsStock.all
     @us_stocks.each do |s|
 
@@ -425,5 +425,22 @@ class Admin::BaseDataController < AdminController
     redirect_to admin_base_data_index_path
     flash[:notice] = "股票 中文名 行业 更新完毕"
   end
+
+
+  #更新行业设置
+   def update_us_industry_setting
+     @all_industrys = UsStock.all_industrys_li           # scope :all_industrys_li
+     x = []
+     @all_industrys.each do |i|
+       x << i
+     end
+     Setting.first.update!(
+       :us_industry => x
+     )
+     puts "更新完毕*******"
+     redirect_to admin_base_data_index_path
+     flash[:notice] = "行业设置 设置完毕"
+   end
+
 
 end

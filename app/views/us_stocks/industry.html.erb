@@ -1,0 +1,38 @@
+<% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+  <div class="wrapper">
+
+    <!-- 所有行业列表 -->
+    <div class="col-lg-2 col-md-2 hidden-sm hidden-xs industry-list">
+
+      <!-- 需要分析的行业 title -->
+      <div class="industry-title">
+        <%= @industry %>
+      </div>
+
+
+      <!-- 其他行业 - 可点击选择 -->
+      <div class="industry-li-all">
+        <ul class="list-unstyled">
+          <% @all_industrys.each do |i| %>
+            <%= link_to industry_us_stocks_path(:order => i) do %>
+              <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i[0..4] %><span class="pull-right"><%= @us_stocks.where(:industry => i).size %></span></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+
+
+    <!-- 行业指标排序 -->
+    <div class="col-lg-10 col-md-10 col-ms-12 col-xs-12">
+      <%= render :partial => "industry_table" %>
+    </div>
+
+  </div>
+<% end %>
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @industry %> -
+<% end %>

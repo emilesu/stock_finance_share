@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   # A股路由设置
   resources :stocks do
-    # get "/industry/" => "stocks#industry", :as => :industry        #行业关键指标排名分析
     collection do
       get "/analyza/:id" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报    get "/analyza/" => "stocks#analyza", :as => :analyza        #近十年财报 + 最新季报 VS 去年同期季报
       get "/statements/:id" => "stocks#statements", :as => :statements        #近十年财报原报
@@ -29,6 +28,9 @@ Rails.application.routes.draw do
 
   # 美股路由设置
   resources :us_stocks do
+    collection do
+      get "/industry/" => "us_stocks#industry", :as =>:industry                 #行业对比页面
+    end
     resources :us_notes do
       member do
         post "like" => "us_notes#like"             #增加 赞/收藏
@@ -57,7 +59,7 @@ Rails.application.routes.draw do
       member do
         post "nper_1" => "users#nper_1"         #增加1年会员
         post "nper_99" => "users#nper_99"       #永久会员
-        post "undo" => "users#undo"             #测校会员
+        post "undo" => "users#undo"             #撤销会员
       end
     end
     resources :stocks
@@ -83,7 +85,8 @@ Rails.application.routes.draw do
       post :update_us_stock_symbol     #更新 美股 代码、上市地
       post :update_us_stock_finance_table     #全局扫描更新 财务表 数据
       post :update_us_stock_static_data       #更新 美股 数据静态保存
-      post :update_su_stock_company_info       #更新 美股 中文名 行业
+      post :update_us_stock_company_info       #更新 美股 中文名 行业
+      post :update_us_industry_setting    #更新行业设置
     end
   end
 

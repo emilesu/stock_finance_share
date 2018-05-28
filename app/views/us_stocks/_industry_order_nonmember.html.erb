@@ -1,0 +1,57 @@
+<!-- 所属行业 -->
+<div class="industry-title">
+  <%= @us_stock.industry[0..6] %>
+
+  <div class="btn-group pull-right">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="dropdown">
+        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+          排序 <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li class="active">
+            <a href="#tab_default_0" data-toggle="tab"></a>
+          </li>
+          <li>
+            <a href="#tab_default_1" data-toggle="tab">股东权益报酬率(%) RoE</a>
+          </li>
+          <li>
+            <a href="#tab_default_2" data-toggle="tab">现金与约当现金比率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_3" data-toggle="tab">营业毛利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_4" data-toggle="tab">营业利益率排序(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_5" data-toggle="tab">纯益率/净利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_6" data-toggle="tab">负债占资产利率(%)</a>
+          </li>
+          <li>
+            <a href="#tab_default_7" data-toggle="tab">分红率(%)</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- 所属行业股票列表 -->
+<div class="industry-li tab-content">
+
+  <div class="industry-li-all">
+    <ul class="list-unstyled">
+      <% @industrys_nonmember.each do |us_stock| %>
+        <%= link_to us_stock_path(us_stock) do %>
+          <li class="col-lg-1 col-md-1"><%= us_stock.cnname[0..10] %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+
+</div>
