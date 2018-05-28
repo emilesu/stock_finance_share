@@ -1054,7 +1054,7 @@ class Stock < ApplicationRecord
 
 # -----------------------------------数据排序算法脚本(五年平均)-----------------------------------
 
-  # 最新年度现金流量排序
+  # 五年平均 现金流量排序
   def cash_order
     array = JSON.parse(self.static_data_5)[1]
     num_array = []
@@ -1070,7 +1070,7 @@ class Stock < ApplicationRecord
     end
   end
 
-  # 最新年度毛利率排序
+  # 五年平均 毛利率排序
   def operating_margin_order
     array = JSON.parse(self.static_data_5)[14]
     num_array = []
@@ -1086,7 +1086,7 @@ class Stock < ApplicationRecord
     end
   end
 
-  # 最新年度营业利益率排序
+  # 五年平均 营业利益率排序
   def business_profitability_order
     array = JSON.parse(self.static_data_5)[15]
     num_array = []
@@ -1102,7 +1102,7 @@ class Stock < ApplicationRecord
     end
   end
 
-  # 最新年度净利率排序
+  # 五年平均 净利率排序
   def net_profit_margin_order
     array = JSON.parse(self.static_data_5)[17]
     num_array = []
@@ -1118,7 +1118,7 @@ class Stock < ApplicationRecord
     end
   end
 
-  #股东权益报酬率 RoE 排序
+  #股五年平均 东权益报酬率 RoE 排序
   def roe_order
     array = JSON.parse(self.static_data_5)[13]
     num_array = []
@@ -1134,7 +1134,7 @@ class Stock < ApplicationRecord
     end
   end
 
-  #负债占资本利率排序
+  #五年平均 负债占资本利率排序
   def debt_asset_order
     array = JSON.parse(self.static_data_5)[20]
     num_array = []

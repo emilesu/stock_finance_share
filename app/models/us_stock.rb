@@ -735,4 +735,118 @@ class UsStock < ApplicationRecord
 
 
 
+
+  # -----------------------------------数据排序算法脚本(五年平均)-----------------------------------
+
+
+  # 五年平均 现金流量排序
+  def us_cash_order
+    array = JSON.parse(self.static_data)[1]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  # 五年平均 毛利率排序
+  def us_operating_margin_order
+    array = JSON.parse(self.static_data)[14]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  # 五年平均 营业利益率排序
+  def us_business_profitability_order
+    array = JSON.parse(self.static_data)[15]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  # 五年平均 净利率排序
+  def us_net_profit_margin_order
+    array = JSON.parse(self.static_data)[17]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  #股五年平均 东权益报酬率 RoE 排序
+  def us_roe_order
+    array = JSON.parse(self.static_data)[13]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  #五年平均 负债占资本利率排序
+  def us_debt_asset_order
+    array = JSON.parse(self.static_data)[20]
+    num_array = []
+    array.each do |i|
+      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
+        num_array << i
+      end
+    end
+    if num_array.blank?
+      return 0
+    else
+      return (num_array.sum / num_array.size).round(2)
+    end
+  end
+
+  #分红率排序
+  def us_dividend_rate_order
+    data = JSON.parse(self.static_data)[30][0]
+    if data != nil
+      return data
+    else
+      return 0
+    end
+  end
+
+
+
+
+
 end
