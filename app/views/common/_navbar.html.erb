@@ -50,37 +50,23 @@
         <% end %>
       </ul>
 
-      <!-- A股搜索输入框 -->
+      <!-- 搜索输入框 -->
       <div class="navbar-form navbar-nav navbar-right search d3">
 
           <div id="form-rearch">
             <%= form_tag search_stocks_path, :method => :get  do %>
               <div class="">
-                <input id="search-v1" type="saerch" class="" name="q" value="<%= params[:q] %>" placeholder="A股 代码\名称..." required="required" autocomplete="off">
+                <input id="search-v1" type="saerch" class="" name="q" value="<%= params[:q] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
                   <button type="submit"></button>
               </div>
             <% end %>
           </div>
 
       </div>
-
-      <!-- 美股搜索输入框 -->
-      <div class="navbar-form navbar-nav navbar-right search d3">
-
-          <div id="form-rearch">
-            <%= form_tag search_us_stocks_path, :method => :get  do %>
-              <div class="">
-                <input id="search-v2" type="saerch" class="" name="q" value="<%= params[:q] %>" placeholder="美股 代码\名称..." required="required" autocomplete="off">
-                  <button type="submit"></button>
-              </div>
-            <% end %>
-          </div>
-
-      </div>
-
-
 
     </div>
+
+
 
   </div>
 </nav>

@@ -5,7 +5,7 @@
     </tr>
     <% @industrys_roe_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_roe_order %></td>
       </tr>
     <% end %>
@@ -19,7 +19,7 @@
     </tr>
     <% @industrys_cash_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_cash_order %></td>
       </tr>
     <% end %>
@@ -33,7 +33,7 @@
     </tr>
     <% @industrys_operating_margin_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_operating_margin_order %></td>
       </tr>
     <% end %>
@@ -47,7 +47,7 @@
     </tr>
     <% @industrys_business_profitability_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_business_profitability_order %></td>
       </tr>
     <% end %>
@@ -61,7 +61,7 @@
     </tr>
     <% @industrys_net_profit_margin_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_net_profit_margin_order %></td>
       </tr>
     <% end %>
@@ -75,7 +75,7 @@
     </tr>
     <% @industrys_debt_asset_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_debt_asset_order %></td>
       </tr>
     <% end %>
@@ -89,7 +89,7 @@
     </tr>
     <% @industrys_dividend_rate_order.each do |us_stock| %>
       <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
-        <td align=left width = "60%"><%= us_stock.cnname[0..8] %></td>
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
         <td><%= us_stock.us_dividend_rate_order %></td>
       </tr>
     <% end %>

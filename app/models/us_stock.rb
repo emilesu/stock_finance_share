@@ -848,6 +848,11 @@ class UsStock < ApplicationRecord
   end
 
 
+  # 筛选出无财务数据的股票，在排序时候忽略掉
+  def nil_stock
+    
+  end
+
 
 
 

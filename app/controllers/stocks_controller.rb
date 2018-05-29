@@ -30,9 +30,12 @@ class StocksController < ApplicationController
 
   # --- search 股票搜索 ---
   def search
-    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?       # 拿到搜索框的 value 值
-    if @query_string.present?
-      @stock = Stock.find_by_easy_symbol!(@query_string.split(" - ")[0])            # 返回的是这样的结果:"600000,浦发银行,PFYX", 进行列表选择
+    query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?       # 拿到搜索框的 value 值
+    if query_string.present? && query_string.split(" - ")[-1] == "US"              # 判断出该搜索是美股时，打开美股对应链接
+      @us_stock = UsStock.find_by_easy_symbol!(query_string.split(" - ")[0])
+      redirect_to us_stock_path(@us_stock)
+    elsif           # 判断出该搜索是不是美股，而是A股时，打开A股对应链接
+      @stock = Stock.find_by_easy_symbol!(query_string.split(" - ")[0])
       redirect_to stock_path(@stock)
     end
   end
