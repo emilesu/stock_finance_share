@@ -1,0 +1,67 @@
+<div class="user-note-box">
+  <!-- 消息栏标头 -->
+  <div class="note-box-side">
+
+    <!-- 发布者头像位置 -->
+    <div class="note-left">
+      <div class="note-left-side">
+        <%= link_to us_stock_path(note.us_stock.easy_symbol) do %>
+          <%= note.us_stock.cnname %> -
+          <%= note.us_stock.symbol %>
+        <% end %>
+      </div>
+
+      <!-- 笔记等级 -->
+      <div class="note-mid-side">
+        <%= note.level %>
+      </div>
+    </div>
+
+    <div class="note-right">
+      <% if current_user == @user %>
+        <span>
+          <a class="modal-note-edit" data-toggle="modal" data-target="#momal-note-edit-<%= note.id %>">编辑</a> |
+          <%= link_to("删除", us_stock_us_note_path(note), :method => :delete, data: { confirm: "确定删除吗?" }) %>
+          <%= render :partial => "//us_notes/us_note_modal_edit", :locals => {
+            :note => note,
+            :stock => note.us_stock,
+            :name => note.us_stock.cnname,
+            :symbol => note.us_stock.symbol,
+            } %>
+        </span> &nbsp &nbsp &nbsp
+      <% end %>
+      <%= time_ago_in_words( note.updated_at ) %>前
+    </div>
+
+  </div>
+
+  <!-- note 笔记内容 -->
+  <div class="note-info">
+    <a data-toggle="collapse" href="#note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <div class="note-title">
+        <%= note.title %>
+        <span class="pull-right">
+          <% if note.status == "私密" %>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          <% elsif note.status == "对会员公开" %>
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          <% end %>
+        </span>
+      </div>
+    </a>
+    <div class="collapse" id="note-content-<%= note.id %>">
+      <div class="note-content">
+        <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
+          <%= simple_format(sanitize note.description) %> <br>
+        <% else %>
+          <% if note.status == "公开" %>
+            <%= simple_format(sanitize note.description) %> <br>
+          <% else %>
+            <br><p class="text-center"> - 对会员公开 - </p> <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

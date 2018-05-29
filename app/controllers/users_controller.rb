@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     # notes 记录
     @notes = @user.notes.order("updated_at DESC").page(params[:notes]).per(10)
 
+    # us_notes 记录
+    @us_notes = @user.us_notes.order("updated_at DESC").page(params[:us_notes]).per(10)
+
     # 交易记录
     @trades = @user.trades.order("created_at DESC")
     @user_trade_new = Trade.new

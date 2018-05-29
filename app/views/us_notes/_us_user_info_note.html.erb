@@ -1,0 +1,14 @@
+<!-- 如果当前用户为登陆者 -->
+<% if current_user && (current_user == @user || current_user.role == "admin") %>
+  <% @us_notes.each do |note| %>
+    <%= render :partial => "//us_notes/us_user_info_note_list", :locals => { :note => note } %>
+  <% end %>
+<% else %>
+  <% @us_notes.where.not(:status => "私密").each do |note| %>
+    <%= render :partial => "//us_notes/us_user_info_note_list", :locals => { :note => note } %>
+  <% end %>
+<% end %>
+
+<%= paginate @us_notes, :param_name => :us_notes %>
+
+<br>

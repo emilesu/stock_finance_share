@@ -1,14 +1,36 @@
 <!-- twitter new/show/edit/destroy功能 -->
-<%= render :partial => "//twitters/user_info_twitter", :locals => { :user => @user } %> <br>
+<%= render :partial => "//twitters/user_info_twitter", :locals => { :user => @user } %> <br><br>
 
 <div class="label-title">
-<h4>我的笔记<span class="badge pull-right"><%= @user.notes.size %></span></h4>
-</div><hr>
-<%= render :partial => "//notes/user_info_note", :locals => { :user => @user } %>
+<h4>我的笔记</h4>
+</div>
 
-<% if @user.notes.empty? %>
+<% if @user.notes.empty? || @user.us_notes.empty? %>
+  <hr><br>
   <div class="note-empty">
     <p class="text-center"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true"></i></p>
     <p class="text-center"><%= @user.username %> 很懒哦，还没写任何东西……</p>
+  </div>
+<% elsif %>
+  <!-- tab标签导航栏 -->
+  <br>
+  <div>
+    <ul class="nav nav-pills nav-justified">
+      <li class="active">
+        <a href="#tab_default_1" data-toggle="tab"><strong>A股</strong><span class="badge pull-right"><%= @user.notes.size %></span></a>
+      </li>
+      <li>
+        <a href="#tab_default_2" data-toggle="tab"><strong>美股</strong><span class="badge pull-right"><%= @user.us_notes.size %></span></a>
+      </li>
+    </ul>
+  </div><br>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab_default_1" style="white-space:nowrap;">
+      <%= render :partial => "//notes/user_info_note", :locals => { :user => @user } %>
+    </div>
+    <div class="tab-pane" id="tab_default_2" style="white-space:nowrap;">
+      <%= render :partial => "//us_notes/us_user_info_note", :locals => { :user => @user } %>
+    </div>
   </div>
 <% end %>

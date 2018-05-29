@@ -54,7 +54,7 @@ class User < ApplicationRecord
   # avatar 头像上传
   # mount_uploader :avatar, AvatarUploader
 
-  # :level去重函数, 在 user/show页面用到
+  # :level去重函数 A股, 在 user/show页面用到
   def level_uniq(level)
     notes = []
     self.notes.where(:level => level).order("created_at DESC").each do |i|
@@ -63,6 +63,19 @@ class User < ApplicationRecord
     stocks = []
     notes.each do |i|
       stocks << i.stock
+    end
+    return stocks.uniq
+  end
+
+  # :level去重函数 美股, 在 user/show页面用到
+  def us_level_uniq(level)
+    notes = []
+    self.us_notes.where(:level => level).order("created_at DESC").each do |i|
+      notes << i
+    end
+    stocks = []
+    notes.each do |i|
+      stocks << i.us_stock
     end
     return stocks.uniq
   end

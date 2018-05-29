@@ -71,36 +71,57 @@
 <hr>
 
 <!-- 收藏笔记 -->
-<% if !user.level_uniq("等待入场").blank? %>
+<% if !user.level_uniq("等待入场").blank? || !user.us_level_uniq("等待入场").blank? %>
   <h4>等待入场</h4>
   <ul class="list-unstyled">
+    <!-- A股部分 -->
     <% user.level_uniq("等待入场").each do |stock| %>
       <%= link_to stock_path(stock) do %>
         <li><%= stock.easy_symbol %> - <%= stock.name %></li>
       <% end %>
     <% end %>
-  </ul>
-<% end %>
-<br>
-
-<% if !user.level_uniq("近期关注").blank? %>
-  <h4>近期关注</h4>
-  <ul class="list-unstyled">
-    <% user.level_uniq("近期关注").each do |stock| %>
-      <%= link_to stock_path(stock) do %>
-        <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+    <!-- 美股部分 -->
+    <% user.us_level_uniq("等待入场").each do |us_stock| %>
+      <%= link_to us_stock_path(us_stock) do %>
+        <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
       <% end %>
     <% end %>
   </ul>
 <% end %>
 <br>
 
-<% if !user.level_uniq("长期关注").blank? %>
+<% if !user.level_uniq("近期关注").blank? || !user.us_level_uniq("近期关注").blank? %>
+  <h4>近期关注</h4>
+  <ul class="list-unstyled">
+    <!-- A股部分 -->
+    <% user.level_uniq("近期关注").each do |stock| %>
+      <%= link_to stock_path(stock) do %>
+        <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+      <% end %>
+    <% end %>
+    <!-- 美股部分 -->
+    <% user.us_level_uniq("近期关注").each do |us_stock| %>
+      <%= link_to us_stock_path(us_stock) do %>
+        <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+<br>
+
+<% if !user.level_uniq("长期关注").blank? || !user.us_level_uniq("长期关注").blank?  %>
   <h4>长期关注</h4>
   <ul class="list-unstyled">
+    <!-- A股部分 -->
     <% user.level_uniq("长期关注").each do |stock| %>
       <%= link_to stock_path(stock) do %>
         <li><%= stock.easy_symbol %> - <%= stock.name %></li>
+      <% end %>
+    <% end %>
+    <!-- 美股部分 -->
+    <% user.us_level_uniq("长期关注").each do |us_stock| %>
+      <%= link_to us_stock_path(us_stock) do %>
+        <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
       <% end %>
     <% end %>
   </ul>
