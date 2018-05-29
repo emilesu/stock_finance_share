@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   # 美股路由设置
   resources :us_stocks do
     collection do
+      get :search                   #搜索并打开 功能
       get "/industry/" => "us_stocks#industry", :as =>:industry                 #行业对比页面
     end
     resources :us_notes do

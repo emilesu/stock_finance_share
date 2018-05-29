@@ -4,15 +4,15 @@ class UsStocksController < ApplicationController
   def show
     @us_stock = UsStock.find_by_easy_symbol!(params[:id])
     all_industrys = UsStock.where(:industry => @us_stock.industry)   # 捞出所属行业列表, 并筛选出资料不为空的数据"".where.not"方法"
-    @industrys_nonmember = all_industrys.page(params[:page]).per(25)            # 非会员时无排序
+    @industrys_nonmember = all_industrys.page(params[:page]).per(35)            # 非会员时无排序
     @industrys = all_industrys      #全部所属行业列表
-    @industrys_cash_order = all_industrys.sort{ |x,y| y.us_cash_order <=> x.us_cash_order }[0..24]       #所属行业现金量排序
-    @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.us_operating_margin_order <=> x.us_operating_margin_order }[0..24]     #毛利率排序
-    @industrys_business_profitability_order = all_industrys.sort{ |x,y| y.us_business_profitability_order <=> x.us_business_profitability_order }[0..24]     #营业利益率排序
-    @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.us_net_profit_margin_order <=> x.us_net_profit_margin_order }[0..24]     #净利率排序
-    @industrys_roe_order = all_industrys.sort{ |x,y| y.us_roe_order <=> x.us_roe_order }[0..24]       #股东权益报酬率 RoE 排序
-    @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.us_debt_asset_order <=> y.us_debt_asset_order }[0..24]       #负债占资本利率排序
-    @industrys_dividend_rate_order = all_industrys.sort{ |x,y| y.us_dividend_rate_order <=> x.us_dividend_rate_order }[0..24]       #分红率排序
+    @industrys_cash_order = all_industrys.sort{ |x,y| y.us_cash_order <=> x.us_cash_order }[0..22]       #所属行业现金量排序
+    @industrys_operating_margin_order = all_industrys.sort{ |x,y| y.us_operating_margin_order <=> x.us_operating_margin_order }[0..22]     #毛利率排序
+    @industrys_business_profitability_order = all_industrys.sort{ |x,y| y.us_business_profitability_order <=> x.us_business_profitability_order }[0..22]     #营业利益率排序
+    @industrys_net_profit_margin_order = all_industrys.sort{ |x,y| y.us_net_profit_margin_order <=> x.us_net_profit_margin_order }[0..22]     #净利率排序
+    @industrys_roe_order = all_industrys.sort{ |x,y| y.us_roe_order <=> x.us_roe_order }[0..22]       #股东权益报酬率 RoE 排序
+    @industrys_debt_asset_order = all_industrys.sort{ |x,y| x.us_debt_asset_order <=> y.us_debt_asset_order }[0..22]       #负债占资本利率排序
+    @industrys_dividend_rate_order = all_industrys.sort{ |x,y| y.us_dividend_rate_order <=> x.us_dividend_rate_order }[0..22]       #分红率排序
 
 
     # 笔记 note
@@ -43,6 +43,16 @@ class UsStocksController < ApplicationController
 
     # 从"系统设置 - 行业"中提取行业列表
     @all_industrys = JSON.parse(Setting.first.us_industry)        # 所有行业信息
+  end
+
+
+  # --- search 股票搜索 ---
+  def search
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?       # 拿到搜索框的 value 值
+    if @query_string.present?
+      @us_stock = UsStock.find_by_symbol!(@query_string.split(" - ")[0])
+      redirect_to us_stock_path(@us_stock)
+    end
   end
 
 end

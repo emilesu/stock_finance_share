@@ -3531,13 +3531,14 @@ jQuery(function () {
      };
 
      $('#search-v1').typeahead({
-         highlight: true,
-         minLength: 1
+        hint: true,
+        highlight: true,
+        minLength: 1
      },
      {
-         name: 'a',
-         displayKey: 'value',
-         source: substringMatcher(stocks)
+        name: 'stocks',
+        displayKey: 'value',
+        source: substringMatcher(stocks)
      });
 
  });

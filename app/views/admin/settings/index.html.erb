@@ -34,10 +34,17 @@
     <% end %>
   </table>
 
-  <% @stocks.each do |stock| %>
+  <!-- A 股搜索列表 -->
+  <!-- <% @stocks.each do |stock| %>
     "<%= stock.easy_symbol %> - <%= stock.name %> - <%= stock.pinyin %>", <br>
   <% end %>
-  <%= paginate @stocks %>
+  <%= paginate @stocks %> -->
+
+  <!-- 美股搜索列表 -->
+  <% @us_stocks.each do |stock| %>
+    "<%= stock.symbol %> - <%= stock.cnname %>", <br>
+  <% end %>
+  <%= paginate @us_stocks %>
 
 
 </div>

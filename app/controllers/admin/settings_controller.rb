@@ -3,6 +3,7 @@ class Admin::SettingsController < AdminController
   def index
     @settings = Setting.all
     @stocks = Stock.all.page(params[:page]).per(100)
+    @us_stocks = UsStock.all.page(params[:page]).per(300)
   end
 
   def show
