@@ -1,0 +1,2 @@
+module UsTradesHelper
+end

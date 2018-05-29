@@ -9,7 +9,7 @@
         <a class="" data-toggle="modal" data-target="#trade-new">
           <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
         </a>
-        <%= render :partial => "//trades/trade_new"%>
+        <%= render :partial => "trade_new_modal"%>
       <% end %>
     </h4>
   </div>
@@ -19,6 +19,9 @@
   <div class="trade-list-box">
     <% @trades.each do |trade| %>
       <%= render :partial => "//trades/trade_list", :locals => { :trade => trade }%>
+    <% end %>
+    <% @us_trades.each do |trade| %>
+      <%= render :partial => "//us_trades/us_trade_list", :locals => { :trade => trade }%>
     <% end %>
   </div>
 

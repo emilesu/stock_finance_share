@@ -1,5 +1,5 @@
 <!-- 新建 stock -->
-<div class="modal fade" id="trade-show-<%= trade.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="us-trade-show-<%= trade.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,36 +12,36 @@
       </div>
 
       <div class="modal-body">
-        <h4> <%= Stock.find_by_easy_symbol(trade.stock).name %> - <%= trade.stock %> </h4>
+        <h4><%= UsStock.find_by_symbol(trade.stock).cnname[0..8] %> - <%= trade.stock %> </h4>
         <div class="trade-show-info"><br>
 
           <!-- 买入信息 -->
           <p>买入时间：<strong><%= trade.buy_time.strftime("%Y-%m-%d") %></strong></p>
-          <p>买入价格：<strong class="buy-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-buy-price="<%= trade.buy_price %>">
+          <p>买入价格：<strong class="us-buy-price-<%= trade.id %>" us-data-trade-id="<%= trade.id %>" us-data-buy-price="<%= trade.buy_price %>">
             <%= trade.buy_price %></strong> <em>¥</em>
           </p><hr>
 
           <% if trade.sell_price.blank? || trade.sell_time.blank? %>
-            <% if Stock.find_by_easy_symbol(trade.stock).blank? %>
+            <% if UsStock.find_by_symbol(trade.stock).blank? %>
               <p>当前价格：<strong>0</p>
               <p>浮动盈亏：<strong>0</strong></p>
             <% else %>
               <!-- 浮动价格信息 -->
-              <% latest_price = Stock.find_by_easy_symbol(trade.stock).stock_latest_price_and_PE[0] %>
-              <p>当前价格：<strong class="latest-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-latest-price="<%= latest_price %>">
+              <% latest_price = UsStock.find_by_symbol(trade.stock).us_stock_latest_price_and_PE[0] %>
+              <p>当前价格：<strong class="us-latest-price-<%= trade.id %>" us-data-trade-id="<%= trade.id %>" us-data-latest-price="<%= latest_price %>">
                 <%= latest_price %> <em style="font-weight:normal;">¥</em></strong>
               </p>
-              <p>浮动盈亏：<strong class="floating-price-<%= trade.id %>" data-floating-price="<%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+              <p>浮动盈亏：<strong class="us-floating-price-<%= trade.id %>" us-data-floating-price="<%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
                 <%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
               </p>
             <% end %>
           <% else %>
             <!-- 卖出了结价格信息 -->
             <p>卖出时间：<strong><%= trade.sell_time.strftime("%Y-%m-%d") %></strong></p>
-            <p>卖出价格：<strong class="sell-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-sell-price="<%= trade.sell_price %>">
+            <p>卖出价格：<strong class="us-sell-price-<%= trade.id %>" us-data-trade-id="<%= trade.id %>" us-data-sell-price="<%= trade.sell_price %>">
               <%= trade.sell_price %> <em style="font-weight:normal;">¥</em></strong>
             </p>
-            <p>结算盈亏：<strong class="settlement-price-<%= trade.id %>" data-trade-id="<%= trade.id %>" data-settlement-price="<%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
+            <p>结算盈亏：<strong class="us-settlement-price-<%= trade.id %>" us-data-trade-id="<%= trade.id %>" us-data-settlement-price="<%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
               <%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
             </p>
           <% end %> <hr>

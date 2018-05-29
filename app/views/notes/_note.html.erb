@@ -82,7 +82,7 @@
   <% end %>
 <% else %>
   <% @notes.where.not(:status => "私密").each do |note| %>
-    <%= render :partial => "//us_notes/us_note_list", :locals => { :note => note } %>
+    <%= render :partial => "//notes/note_list", :locals => { :note => note } %>
   <% end %>
 <% end %>
 

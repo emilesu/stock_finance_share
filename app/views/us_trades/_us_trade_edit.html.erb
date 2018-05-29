@@ -1,15 +1,15 @@
-<div class="modal fade" id="trade-edit-<%= trade.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="us-trade-edit-<%= trade.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h5 class="modal-title" id="exampleModalLongTitle">编辑-交易记录 （ <%= Stock.find_by_easy_symbol(trade.stock).name %> - <%= trade.stock %> ）</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">编辑 - 交易记录 （ <%= UsStock.find_by_symbol(trade.stock).cnname[0..8] %> - <%= trade.stock %> ）</h5>
       </div>
-      <%= simple_form_for trade, :url => user_trade_path(@user, trade) do |f| %>
+      <%= simple_form_for trade, :url => user_us_trade_path(@user, trade) do |f| %>
       <div class="modal-body">
-        <%= f.input :stock, :label => "股票代码", :placeholder => "股票六位数代码， 如”600026“", input_html: { class: "form-control"} %>
+        <%= f.input :stock, :label => "股票代码", :placeholder => "美股代码， 如”AAPL“", input_html: { class: "form-control"} %>
         <%= f.input :buy_price, :label => "买入价格", :placeholder => "购买股票的价格“", input_html: { class: "form-control"} %>
         <%= f.input :buy_time, :label => "买入时间", input_html: { class: "form-control"} %> <hr>
         <%= f.input :sell_price, :label => "卖入价格", :placeholder => "如果持有尚未卖出，不用输入", input_html: { class: "form-control"} %>
@@ -17,17 +17,17 @@
         <%= f.input :description, :label => "策略", :placeholder => "对这笔交易的分析......", input_html: { class: "form-control", :rows => 6, :style=> 'width: 100%;'} %>
         <label for="note-level-button">策略是否公开？</label><br>
         <div id="note-status-button" class="btn-group" data-toggle="buttons">
-          <% Trade::TRADE_STATUS.each do |status| %>
+          <% UsTrade::TRADE_STATUS.each do |status| %>
             <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
               <%= f.radio_button :status, status %>
-              <%= t(status, :scope => "trade.status") %>
+              <%= t(status, :scope => "us_trade.status") %>
             </label>
           <% end %>
         </div>
       </div>
       <div class="modal-footer">
-        <%= f.submit "发布", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
-        <%= link_to user_trade_path(@user, trade), :method => :delete, data: { confirm: "确定删除" } do %>
+        <%= f.submit "更新", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+        <%= link_to user_us_trade_path(@user, trade), :method => :delete, data: { confirm: "确定删除" } do %>
           <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-trash" aria-hidden="true"></i></button>
         <% end %>
         <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>

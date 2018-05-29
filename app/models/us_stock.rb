@@ -15,6 +15,7 @@ class UsStock < ApplicationRecord
     end
   end
 
+
   # ---把网址改成股票代码---
   def to_param
     self.easy_symbol
@@ -850,7 +851,7 @@ class UsStock < ApplicationRecord
 
   # 筛选出无财务数据的股票，在排序时候忽略掉
   def nil_stock
-    
+
   end
 
 

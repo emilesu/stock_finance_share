@@ -22,7 +22,7 @@
           <span class="stock-name"> <%= @us_stock.cnname %> </span>
           <span class="stock-symbol"> - <%= @us_stock.symbol %></span>
           <span class="stock-price" price-data="<%= @latest_price[1] %>">
-            <em>¥</em>
+            <em>$</em>
             <%= @latest_price[0].to_f.round(2) %>
             <em> (
               <%= @latest_price[1] %>

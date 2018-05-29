@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :reviews
     end
     resources :trades
+    resources :us_trades
     member do
       post "fan" => "users#fan"
       delete "un_fan" => "users#un_fan"
