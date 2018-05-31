@@ -3,7 +3,7 @@
 
   <div class="trade-title">
     <h4>交易历史
-      <span class="badge pull-right"><%= @trades.size %></span>
+      <span class="badge pull-right"><%= @trades.size + @us_trades.size %></span>
       <!-- 新增按钮 -->
       <% if current_user && current_user == @user %>
         <a class="" data-toggle="modal" data-target="#trade-new">

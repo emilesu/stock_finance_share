@@ -107,7 +107,13 @@
         <td align=center>--</td>
       <% end %>
       <% static_data[9].reverse.each do |i| %>
-        <td><%= (360 / i).round(2) %></td>
+        <td>
+          <% if i == 0 %>
+            NA
+          <% else %>
+            <%= (360 / i).round(2) %>
+          <% end %>
+        </td>
       <% end %>
     </tr>
 
@@ -129,7 +135,13 @@
         <td align=center>--</td>
       <% end %>
       <% static_data[10].reverse.each do |i| %>
-        <td><%= (360 / i).round(2) %></td>
+        <td>
+          <% if i == 0 %>
+            NA
+          <% else %>
+            <%= (360 / i).round(2) %>
+          <% end %>
+        </td>
       <% end %>
     </tr>
 
