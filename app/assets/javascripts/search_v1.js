@@ -12133,7 +12133,7 @@ jQuery(function () {
          };
      };
 
-     $('#search-v1').typeahead({
+     $('.search-v1').typeahead({
         hint: true,
         highlight: true,
         minLength: 1

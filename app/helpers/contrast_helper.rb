@@ -1,0 +1,2 @@
+module ContrastHelper
+end

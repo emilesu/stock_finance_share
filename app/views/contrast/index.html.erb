@@ -1,0 +1,30 @@
+<div class="wrapper">
+
+
+  <!-- 左表：股票信息+资产负债信息 分析 -->
+  <div class="stock-info col-lg-6 col-md-12">
+
+    <!-- 股票信息 -->
+    <!-- <div class="stock-title"> -->                               <!-- 在 md 以下时左右布局 -->
+    <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
+
+
+    </div>
+
+    <!-- 资产负债信息 -->
+    <!-- <div class="table-left"> -->                                 <!-- 在 md 以下时左右布局 -->
+    <div class="table-left col-md-12 col-sm-12 row">          <!-- 在 md 以下时展开布局 -->
+      <%= render :partial => "main_finance_table_1", :locals => {} %>
+      <%= render :partial => "main_finance_table_4", :locals => {} %>
+    </div>
+
+  </div>
+
+  <!-- 财务结构+偿债能力+经营能力+获利能力+现金流量 分析 -->
+  <div class="table-right col-lg-6 col-md-12">
+    <%= render :partial => "main_finance_table_2", :locals => {} %>
+    <%= render :partial => "main_finance_table_3", :locals => {} %>
+  </div>
+
+
+</div>

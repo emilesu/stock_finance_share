@@ -38,7 +38,7 @@ class StocksController < ApplicationController
     if query_string.present? && query_string.split(" - ")[-1] == "US"              # 判断出该搜索是美股时，打开美股对应链接
       @us_stock = UsStock.find_by_easy_symbol!(query_string.split(" - ")[0])
       redirect_to us_stock_path(@us_stock)
-    elsif           # 判断出该搜索是不是美股，而是A股时，打开A股对应链接
+    else           # 判断出该搜索是不是美股，而是A股时，打开A股对应链接
       @stock = Stock.find_by_easy_symbol!(query_string.split(" - ")[0])
       redirect_to stock_path(@stock)
     end

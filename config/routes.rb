@@ -40,6 +40,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :contrast do            #股票对比
+    get :search
+    get :index
+  end
+
   resources :users do
     resources :twitters do
       resources :reviews
