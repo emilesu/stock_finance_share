@@ -10,7 +10,7 @@ class Admin::StocksController < AdminController
     end
 
     # 行业筛选
-    @industry_list = JSON.parse(Setting.first.industry)
+    @industry_list = JSON.parse(Setting.first.a_industry)
   end
 
   def show

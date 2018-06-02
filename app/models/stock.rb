@@ -1311,7 +1311,7 @@ class Stock < ApplicationRecord
     sd_5 << self.cash_re_investment_ratio(5)                            # 29-现金再投资比率
     sd_5 << self.dividend_date(5)                                       # 30-红利发放日
     sd_5 << self.dividend_amount(5)                                     # 31-分红金额
-    sd_5 << self.dividend_rate(5)                                       # 20-分红率
+    sd_5 << self.dividend_rate(5)                                       # 32-分红率
     self.update!(
       :static_data_5 => sd_5
     )

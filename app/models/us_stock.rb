@@ -661,9 +661,11 @@ class UsStock < ApplicationRecord
     sd << self.us_net_investment_activities_generated_cash_flow     # 25-投资活动现金流量
     sd << self.us_net_financing_activities_generated_cash_flow      # 26-筹资活动现金流量
     sd << self.us_operating_cash_flow_ratio                         # 27-现金流量比率
-    sd << self.us_cash_re_investment_ratio                          # 28-现金再投资比率
-    sd << self.us_dividend_amount                                   # 29-分红金额
-    sd << self.us_dividend_rate                                     # 30-分红率
+    sd << ["--","--","--","--","--"]                                # 28-现金流量允当比率
+    sd << self.us_cash_re_investment_ratio                          # 29-现金再投资比率
+    sd << self.us_stock_years                                       # 30-红利发放期
+    sd << self.us_dividend_amount                                   # 31-分红金额
+    sd << self.us_dividend_rate                                     # 32-分红率
     self.update!(
       :static_data => sd
     )

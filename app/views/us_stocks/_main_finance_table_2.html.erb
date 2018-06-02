@@ -230,8 +230,8 @@
       <% end %>
     </tr>
 
-    <tr data-toggle="modal" data-target="#momal-cash-re-investment-ratio">
-      <td align=left>现金再投资比率(%)</td>
+    <tr data-toggle="modal" data-target="#momal-cash-flow-adequancy-ratio">
+      <td align=left>现金流量允当比率(%)</td>
       <% m = static_data[28].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -241,9 +241,20 @@
       <% end %>
     </tr>
 
+    <tr data-toggle="modal" data-target="#momal-cash-re-investment-ratio">
+      <td align=left>现金再投资比率(%)</td>
+      <% m = static_data[29].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[29].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
+    </tr>
+
   </table>
 </div>
 
 <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-  <%= render :partial => "//stocks/main_finance_table_modal_2", :locals => { :static_data => static_data, :time => 5, :stock => @us_stock, :sd1 => 28 } %>
+  <%= render :partial => "//stocks/main_finance_table_modal_2", :locals => { :static_data => static_data, :time => 5, :stock => @us_stock, :sd1 => 29 } %>
 <% end %>
