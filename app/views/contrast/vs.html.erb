@@ -1,0 +1,26 @@
+<div class="contrast-box">
+
+  <div class="vs-box col-lg-6 col-lg-offset-3">
+    <%= form_tag contrast_search_path, :method => :get  do %>
+      <div class="input-group">
+        <input class="search-v1 form-control" type="saerch1" name="a" value="<%= params[:a] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
+        <span class="input-group-addon" id="basic-addon1">VS</span>
+        <input class="search-v1 form-control" type="saerch2" name="b" value="<%= params[:b] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
+        <span class="input-group-addon" id="basic-addon1">VS</span>
+        <input class="search-v1 form-control" type="saerch3" name="c" value="<%= params[:c] %>" placeholder="股票代码\名称..." autocomplete="off">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">开始对比</button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <br>
+  <div class="contrast-info col-lg-4 col-lg-offset-4">
+    <p>1、股票请选择自动搜索提示的格式填入，如“600050 - 中国联通 - ZGLT”、”AAPL - 苹果 - US”。</p>
+    <p>2、建议选择两个进行对比、当然也可以选择三个（只要你不会头晕）。</p>
+    <p>3、除了”A股 vs A股"、"美股 vs 美股"外，也可以"A 股 vs 美股"。</p>
+  </div>
+
+
+</div>

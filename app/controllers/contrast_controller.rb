@@ -1,5 +1,8 @@
 class ContrastController < ApplicationController
 
+  def vs
+  end
+
   def search
     # -----拿到搜索框的 value 值-----
     query_param_a = params[:a].gsub(/\\|\'|\/|\?/, "") if params[:a].present?

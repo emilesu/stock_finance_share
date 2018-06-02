@@ -55,7 +55,7 @@ class UsStock < ApplicationRecord
     result = []
     (0..4).each do |i|
       if date[i].nil?
-        m = 0
+        m = "0"
       else
         m = date[i]
       end

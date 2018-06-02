@@ -26,8 +26,9 @@
     <div class="navbar-collapse navbar-ex1-collapse collapse" aria-expanded="false">
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to("投资策略", courses_path ) %></li>
-        <li><%= link_to("加入会员", ) %></li>
+
+        <li><%= link_to("对比", contrast_vs_path) %></li>
+        <li><%= link_to("投资学校", courses_path ) %></li>
         <li><%= link_to("讨论区", ) %></li>
         <% if !current_user %>
           <li><%= link_to("注册/登入", user_wechat_omniauth_authorize_path) %></li>

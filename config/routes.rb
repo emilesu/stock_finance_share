@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   namespace :contrast do            #股票对比
     get :search
     get :index
+    get :vs
   end
 
   resources :users do
