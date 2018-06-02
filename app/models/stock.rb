@@ -123,7 +123,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回现金流量比率
     return result
@@ -155,7 +155,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回最近5年现现金流量允当比率
     if time == 10
@@ -195,7 +195,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回现金再投资比率
     return result
@@ -235,7 +235,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回现金与约当现金占总资产比率
     return result
@@ -265,7 +265,7 @@ class Stock < ApplicationRecord
         m = 0
       end
 
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回应收账款占总资产比率
     return result
@@ -293,7 +293,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回存货占总资产比率
     return result
@@ -321,7 +321,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回流动资产占总资产比率
     return result
@@ -349,7 +349,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回应付账款占总资产比率
     return result
@@ -377,7 +377,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回流动负债占总资产比率
     return result
@@ -405,7 +405,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回长期负债占总资产比率
     return result
@@ -433,7 +433,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回股东权益占总资产比率
     return result
@@ -461,7 +461,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回应收账款周转率
     return result
@@ -492,7 +492,7 @@ class Stock < ApplicationRecord
         m = 0
       end
 
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回存货周转率
     return result
@@ -526,7 +526,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回固定资产周转率
     return result
@@ -554,7 +554,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回总资产周转率
     return result
@@ -632,7 +632,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回营业毛利率
     return result
@@ -660,7 +660,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回营业毛利率
     return result
@@ -680,7 +680,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回经营安全边际率
     return result
@@ -708,7 +708,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回净利率
     return result
@@ -729,7 +729,7 @@ class Stock < ApplicationRecord
     result = []
     (0..time-1).each do |i|
       m = lrb44[i].to_f
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回每股盈余
     return result
@@ -778,7 +778,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回每股盈余
     return result
@@ -806,7 +806,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回负债占资产比率
     return result
@@ -843,7 +843,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 长期资金占不动产/厂房及设备比率
     return result
@@ -871,7 +871,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 流动比率
     return result
@@ -905,7 +905,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 流动比率
     return result
@@ -1031,7 +1031,7 @@ class Stock < ApplicationRecord
       else
         m = 0
       end
-      result << m.round(2)
+      result << m.round(1)
     end
     # 返回 红利发放日
     if time == 10
@@ -1046,7 +1046,7 @@ class Stock < ApplicationRecord
   def the_dividend_yield
     dividend = JSON.parse(self.dividends)[0][1].to_f / 10
     price = self.stock_latest_price_and_PE[0].to_f
-    result = (dividend / price * 100).round(2)
+    result = (dividend / price * 100).round(1)
     # 返回 股息率
     return result
   end
@@ -1066,7 +1066,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -1082,7 +1082,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -1098,7 +1098,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -1114,7 +1114,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -1130,7 +1130,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -1146,7 +1146,7 @@ class Stock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 

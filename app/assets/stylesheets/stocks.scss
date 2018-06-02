@@ -126,6 +126,10 @@
   .stock-intro {
     flex-grow: 1;
     align-self: flex-start;
+    a {
+      text-decoration: none;
+      color: #333;
+    }
     // height: 200px;
     .stock-title {
       margin-bottom: 10px;

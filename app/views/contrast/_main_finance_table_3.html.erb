@@ -1,0 +1,44 @@
+<div>
+  <table class="table table-striped table-bordered">
+
+    <tr data-toggle="modal" data-target="#momal-net-cash-flow-of-business-activities">
+      <td align=left width = "23%">营业活动现金流量(百万元)</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[24][i] %>
+          / <%= @stock_b_static_data[24][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[24][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-net-investment-activities-generated-cash-flow">
+      <td align=left>投资活动现金流量(百万元)</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[25][i] %>
+          / <%= @stock_b_static_data[25][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[25][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-net-financing-activities-generated-cash-flow">
+      <td align=left>筹资活动现金流量(百万元)</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[26][i] %>
+          / <%= @stock_b_static_data[26][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[26][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+  </table>
+</div>

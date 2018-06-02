@@ -1,0 +1,46 @@
+<div>
+  <table class="table table-striped table-bordered">
+
+    <tr class="theader-style">
+      <td class="theader-style" width = "8%">类别</td>
+      <td align=left width = "15%">红利发放日</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[30][i][0..3] %>
+          / <%= @stock_b_static_data[30][i][0..3] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[30][i][0..3] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-dividend-amount">
+      <td class="theader-style" rowspan="3">分红水平</td>
+      <td align=left>每股分红</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[31][i] %>
+          / <%= @stock_b_static_data[31][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[31][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-dividend-rate">
+      <td align=left>分红率(%)</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[32][i] %>
+          / <%= @stock_b_static_data[32][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[32][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+  </table>
+</div>

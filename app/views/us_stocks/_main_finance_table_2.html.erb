@@ -5,7 +5,7 @@
 
     <tr class="theader-style">
       <td class="theader-style" width = "10%">类别</td>
-      <td align=left width = "25%">财务比率</td>
+      <td align=left width = "25%">财务比率(%)</td>
       <% m = static_data[0].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -17,7 +17,7 @@
 
     <tr data-toggle="modal" data-target="#momal-debt-asset-ratio">
       <td class="theader-style" rowspan="2">财务结构</td>
-      <td align=left>负债占资产比率(%)</td>
+      <td align=left>负债占资产比率</td>
       <% m = static_data[20].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -28,7 +28,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-long-term-funds-for-fixed-assets-ratio">
-      <td align=left>长期负债占不动产/厂房及设备比率(%)</td>
+      <td align=left>长期负债占不动产/厂房及设备比率</td>
       <% m = static_data[21].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -40,7 +40,7 @@
 
     <tr data-toggle="modal" data-target="#momal-current-ratio">
       <td class="theader-style" rowspan="2">偿债能力</td>
-      <td align=left>流动比率(%)</td>
+      <td align=left>流动比率</td>
       <% m = static_data[22].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -51,7 +51,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-quick-ratio">
-      <td align=left>速动比率(%)</td>
+      <td align=left>速动比率</td>
       <% m = static_data[23].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -141,8 +141,8 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-roe-ratio">
-        <td class="theader-style" rowspan="7">获利能力</td>
-      <td align=left>股东权益报酬率(%) RoE</td>
+      <td class="theader-style" rowspan="7">获利能力</td>
+      <td align=left>股东权益报酬率 RoE</td>
       <% m = static_data[13].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -153,7 +153,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-operating-margin-ratio">
-      <td align=left>营业毛利率(%) ①</td>
+      <td align=left>营业毛利率 ①</td>
       <% m = static_data[14].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -164,7 +164,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-business-profitability-ratio">
-      <td align=left>营业利益率(%) ②</td>
+      <td align=left>营业利益率 ②</td>
       <% m = static_data[15].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -175,7 +175,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-operating-margin-of-safety-ratio">
-      <td align=left>经营安全边际率(%) = ② / ①</td>
+      <td align=left>经营安全边际率 = ② / ①</td>
       <% m = static_data[16].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -186,7 +186,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-net-profit-margin-ratio">
-      <td align=left>净利率(%) = 纯益率</td>
+      <td align=left>净利率 = 纯益率</td>
       <% m = static_data[17].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -220,7 +220,7 @@
 
     <tr data-toggle="modal" data-target="#momal-operating-cash-flow-ratio">
       <td class="theader-style" rowspan="3">现金流量</td>
-      <td align=left>现金流量比率(%)</td>
+      <td align=left>现金流量比率</td>
       <% m = static_data[27].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -231,7 +231,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-cash-flow-adequancy-ratio">
-      <td align=left>现金流量允当比率(%)</td>
+      <td align=left>现金流量允当比率</td>
       <% m = static_data[28].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -242,7 +242,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-cash-re-investment-ratio">
-      <td align=left>现金再投资比率(%)</td>
+      <td align=left>现金再投资比率</td>
       <% m = static_data[29].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>

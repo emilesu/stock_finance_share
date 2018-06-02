@@ -1,0 +1,136 @@
+<div>
+  <table class="table table-striped table-bordered">
+
+    <tr class="theader-style">
+      <td align=left width = "23%">资产负债比率(占总资产%)</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[0][i][0..3] %>
+          / <%= @stock_b_static_data[0][i][0..3] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[0][i][0..3] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-cash-and-cash-equivalents-ratio">
+      <td align=left>现金与约当现金</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[1][i] %>
+          / <%= @stock_b_static_data[1][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[1][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-receivables-ratio">
+      <td align=left>应收账款</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[2][i] %>
+          / <%= @stock_b_static_data[2][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[2][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-inventory-ratio">
+      <td align=left>存货</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[3][i] %>
+          / <%= @stock_b_static_data[3][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[3][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-current-assets-ratio">
+      <td align=left>流动资产</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[4][i] %>
+          / <%= @stock_b_static_data[4][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[4][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-total-assets">
+      <td align=left>总资产</td>
+      <% (1..5).each do |i| %>
+        <td>100</td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-accounts-payable-ratio">
+      <td align=left>应付账款</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[5][i] %>
+          / <%= @stock_b_static_data[5][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[5][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-current-liabilities-ratio">
+      <td align=left>流动负债</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[6][i] %>
+          / <%= @stock_b_static_data[6][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[6][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-long-term-liability-ratio">
+      <td align=left>长期负债</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[7][i] %>
+          / <%= @stock_b_static_data[7][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[7][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-shareholders-equity-ratio">
+      <td align=left>股东权益</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[8][i] %>
+          / <%= @stock_b_static_data[8][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[8][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-liabilities-and-owners-equity">
+      <td align=left>总负债+股东权益</td>
+      <% (1..5).each do |i| %>
+        <td>100</td>
+      <% end %>
+    </tr>
+
+  </table>
+</div>

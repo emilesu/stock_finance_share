@@ -79,7 +79,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -100,7 +100,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -119,7 +119,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -138,7 +138,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -157,7 +157,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -176,7 +176,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -195,7 +195,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -214,7 +214,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -233,7 +233,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -252,7 +252,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -271,7 +271,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -290,7 +290,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -309,7 +309,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -328,7 +328,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -346,7 +346,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -364,7 +364,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -383,7 +383,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -401,7 +401,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -419,7 +419,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -437,7 +437,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(0)
     end
     return result
   end
@@ -456,7 +456,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -475,7 +475,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -495,7 +495,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -622,7 +622,7 @@ class UsStock < ApplicationRecord
        else
          m = 0
        end
-       result << m.round(2)
+       result << m.round(1)
     end
     return result
   end
@@ -756,7 +756,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -772,7 +772,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -788,7 +788,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -804,7 +804,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -820,7 +820,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 
@@ -836,7 +836,7 @@ class UsStock < ApplicationRecord
     if num_array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(2)
+      return (num_array.sum / num_array.size).round(1)
     end
   end
 

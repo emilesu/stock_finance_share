@@ -8,6 +8,68 @@
     <!-- <div class="stock-title"> -->                               <!-- 在 md 以下时左右布局 -->
     <div class="stock-intro col-md-12 col-sm-12 row">        <!-- 在 md 以下时展开布局 -->
 
+      <div class="">
+        <%= form_tag contrast_search_path, :method => :get  do %>
+          <div class="input-group">
+            <input class="search-v1 form-control" type="saerch1" name="a" value="<%= params[:a] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
+            <span class="input-group-addon" id="basic-addon1">VS</span>
+            <input class="search-v1 form-control" type="saerch2" name="b" value="<%= params[:b] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
+            <span class="input-group-addon" id="basic-addon1">VS</span>
+            <input class="search-v1 form-control" type="saerch3" name="c" value="<%= params[:c] %>" placeholder="股票代码\名称..." autocomplete="off">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">开始对比</button>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <hr><br>
+
+      <!-- stock_a -->
+      <div class="stock-intro col-sm-4 row">
+        <div class="stock-title">
+          <%= link_to @stock_a_url do %>
+          <span class="stock-name"> <%= @stcok_a_name %> </span> <br>
+          <span class="stock-symbol"> (<%= @stcok_a_symbol %>)</span> <br>
+          <% end %>
+        </div>
+        <br>
+        <strong>
+          <p>滚动市盈率(TTM): <%= @stock_a_syl %></p>
+          <p>股息率: <%= @stock_a_gxl %> %</p>
+        </strong>
+      </div>
+
+      <!-- stock_b -->
+      <div class="stock-intro col-sm-4 row">
+        <div class="stock-title">
+          <%= link_to @stock_b_url do %>
+          <span class="stock-name"> <%= @stcok_b_name %> </span> <br>
+          <span class="stock-symbol"> (<%= @stcok_b_symbol %>)</span> <br>
+          <% end %>
+        </div>
+        <br>
+        <strong>
+          <p>滚动市盈率(TTM): <%= @stock_b_syl %></p>
+          <p>股息率: <%= @stock_b_gxl %> %</p>
+        </strong>
+      </div>
+
+      <!-- stock_c -->
+      <% if !@stock_c.blank? %>
+        <div class="stock-intro col-sm-4 row">
+          <div class="stock-title">
+            <%= link_to @stock_c_url do %>
+            <span class="stock-name"> <%= @stcok_c_name %> </span> <br>
+            <span class="stock-symbol"> (<%= @stcok_c_symbol %>)</span> <br>
+            <% end %>
+          </div>
+          <br>
+          <strong>
+            <p>滚动市盈率(TTM): <%= @stock_c_syl %></p>
+            <p>股息率: <%= @stock_c_gxl %> %</p>
+          </strong>
+        </div>
+      <% end %>
 
     </div>
 
