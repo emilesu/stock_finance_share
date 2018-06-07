@@ -105,7 +105,9 @@ Rails.application.routes.draw do
     get :pay                    #加入会员付款二维码页
   end
 
-
+  namespace :welcome do
+    get :index2
+  end
 
   root "welcome#index"
 end

@@ -1,3 +1,270 @@
+.jumbotron {
+  background-color: #222;
+  border-radius: 0;
+
+  .text-center {
+    color: #fff;
+    font-size: 2.8em;
+    font-weight: 200;
+    letter-spacing: 2px;
+    line-height: 1.8em;
+    strong {
+      font-weight: normal;
+      color: #bfb199;
+    }
+  }
+  .slogan-logo {
+    text-align: center;
+    color: #999;
+    font-weight:  300;
+    letter-spacing: 3px;
+  }
+}
+
+.how-to-do {
+  position: relative;
+
+  // 四根指示线
+  .y-sidebar {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    height: 60px;
+    width: 1px;
+    border-right: 2px solid #eee;
+  }
+  .x-sidebar {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    margin-top: 30px;
+    height: 1px;
+    width: 50%;
+    border-top: 2px solid #eee;
+  }
+  .y-sidebar-left {
+    position: absolute;
+    left: 25%;
+    margin-top: 30px;
+    height: 60px;
+    width: 1px;
+    border-right: 2px solid #eee;
+  }
+  .y-sidebar-right {
+    position: absolute;
+    right: 25%;
+    margin-top: 30px;
+    height: 60px;
+    width: 1px;
+    border-right: 2px solid #eee;
+  }
+
+  .slogan-info {
+    margin-top: 90px;
+    text-align: center;
+    h2 {
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+    p {
+      color: #777;
+      font-weight: normal;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+  }
+
+  .img-info {
+    margin-top: 100px;
+    img {
+      // width: 28%;
+      height: auto;
+      opacity: 0.5;
+    }
+    h3 {
+      text-align: center;
+      font-size: 20px;
+      font-weight: normal ;
+      letter-spacing: 2px;
+    }
+    p {
+      text-align: center;
+      color: #777;
+      font-weight: normal;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+  }
+}
+
+.the-results-slogan {
+  margin-top: 80px;
+  background-color: #222;
+  h6 {
+    padding: 30px 15px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-weight:  300;
+    letter-spacing: 2px;
+    font-size: 16px;
+    strong {
+      font-weight: normal;
+      color: #bfb199;
+    }
+  }
+}
+
+.the-results {
+  h2 {
+    margin-top: 100px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+  .example {
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    .example-box {
+      transition: 0.3s;
+      padding: 20px 20px;
+      margin-top:30px;
+      background-color: #eee;
+      min-height: 360px;
+      max-height: 420px;
+      h3 {
+        span {
+          font-size: 16px;
+        }
+      }
+      .example-info {
+        margin: 25px 0;
+        font-size: 12px;
+      }
+      .example-description {
+        margin: 25px 0 0;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: justify;
+      }
+    }
+    .example-box:hover {
+      background-color: #222;
+      color: #fff;
+      transition: 0.3s;
+      box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.1);
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      h3 {
+        color: #bfb199;
+      }
+    }
+  }
+}
+
+.about-holdle {
+  h2 {
+    margin-top: 100px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 35px;
+    margin-bottom: 20px;
+  }
+  .you-get-box {
+    margin: 25px 0;
+    strong {
+      font-size: 16px;
+      color: #333;
+    }
+    p {
+      text-align: justify;
+      margin-top: 10px;
+      line-height: 24px;
+      color: #777;
+      font-weight:  normal;
+      letter-spacing: 1px;
+      font-size: 14px;
+      strong {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+    .you-get-left {
+      img {
+        width: 40px;
+        height: auto;
+      }
+    }
+    img {
+      width: 80px;
+      height: auto;
+    }
+    .user-said {
+      margin-bottom: 30px;
+      background-color: #f5f5f5;
+      padding: 3px 15px;
+    }
+  }
+  .auther-avatar {
+    img {
+      width: 400px;
+      height: auto;
+    }
+  }
+  .auther-info {
+    h4 {
+      margin-top: 0;
+    }
+    p {
+      text-align: justify;
+      margin-top: 10px;
+      line-height: 24px;
+      color: #777;
+      font-weight:  normal;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+  }
+  .auther-description {
+    margin-top: 30px;
+    background-color: #222;
+    padding: 25px 20px;
+    p {
+      text-align: justify;
+      line-height: 26px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-size: 14px;
+    }
+    strong {
+      color: #bfb199;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 滚动背景设置
 #fullpage-landingpage {
   background-color: #fff;
