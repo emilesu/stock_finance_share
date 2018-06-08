@@ -69,7 +69,6 @@
     p {
       color: #777;
       font-weight: normal;
-      letter-spacing: 1px;
       font-size: 14px;
     }
   }
@@ -91,7 +90,6 @@
       text-align: center;
       color: #777;
       font-weight: normal;
-      letter-spacing: 1px;
       font-size: 14px;
     }
   }
@@ -184,7 +182,7 @@
       line-height: 24px;
       color: #777;
       font-weight:  normal;
-      letter-spacing: 1px;
+
       font-size: 14px;
       strong {
         font-size: 14px;
@@ -196,10 +194,6 @@
         width: 40px;
         height: auto;
       }
-    }
-    img {
-      width: 80px;
-      height: auto;
     }
     .user-said {
       margin-bottom: 30px;
@@ -223,7 +217,7 @@
       line-height: 24px;
       color: #777;
       font-weight:  normal;
-      letter-spacing: 1px;
+
       font-size: 14px;
     }
   }
@@ -235,7 +229,6 @@
       text-align: justify;
       line-height: 26px;
       color: #fff;
-      letter-spacing: 1px;
       font-size: 14px;
     }
     strong {
@@ -244,304 +237,83 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 滚动背景设置
-#fullpage-landingpage {
-  background-color: #fff;
-  // 禁止选择文本
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  // /禁止选择文本
-  .section1 {
-    background-color: #222;
-    position: relative;
-    height: auto;
-  }
-  .section2{
-    // background-color: #333;
-    position: relative;
-    // height: auto;
-    // background-image: url("https://i.loli.net/2018/03/31/5abf742d805d5.jpg");
-    // background-repeat: no-repeat;
-    // background-size: cover;
-  }
-  .section3{
-    background-color: #fff;
-    position: relative;
-    // background-image: url("https://i.loli.net/2018/03/31/5abf742a3a5f1.jpg");
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // background-position: center;
-  }
-}
-
-
-// --------- section1  首页第一屏 ---------
-.slogan-box {
-  .slogan-bg {
-    .slogan {
-      h1 {
-        position: absolute;
-        margin: 0 auto 0;
-        top: 35%;
-        left:0; right:0;      //元素居中
-        color: #fff;
-        margin-bottom: 10px;
-        font-size: 3em;
-        font-weight: 300;
-        letter-spacing: 2px;
+.qa {
+  .qa-holdle {
+    h2 {
+      margin-top: 100px;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 35px;
+      margin-bottom: 20px;
+    }
+    .you-qa-box {
+      strong {
+        font-size: 16px;
+        color: #333;
+      }
+      p {
+        text-align: justify;
+        margin-top: 10px;
+        line-height: 24px;
+        color: #777;
+        font-weight:  normal;
+        font-size: 14px;
         strong {
-          font-weight: normal;
-          color: #bfb199;
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+    @media screen and (min-width: 1200px){
+      .you-qa-box {
+        padding-right: 35px;
+        margin: 25px 0;
+      }
+    }
+    @media screen and (max-width: 1199px){
+      .you-qa-box {
+        padding: 0;
+        margin: 45px 0;
+      }
+    }
+  }
+  .user-said {
+    margin-top: 60px;
+    .user-said-box {
+      background-color: #f9f9f9;
+      margin: 25px 0;
+      padding: 30px 0 0;
+      img {
+        width: 80px;
+        height: auto;
+      }
+      h6 {
+        text-align: center;
+        font-size: 16px;
+      }
+      i {
+        text-align: center;
+        color: #777;
+      }
+      .user-said-description {
+        padding: 5px 15px;
+        margin-bottom: 80px;
+        p {
+          text-align: justify;
+          margin-top: 10px;
+          line-height: 24px;
+          color: #333;
+          font-weight:  normal;
+          font-size: 14px;
         }
       }
     }
   }
-  .slogan-logo {
-    position: absolute;
-    left:0; right:0;      //元素居中
-    color: #999;
-    bottom: 5%;
-    font-size: 18px;
-    font-family: "Futura";
-    font-weight:  300;
-    letter-spacing: 3px;
-    transition: 0.5s;
-  }
-  .slogan-logo:hover {
-    transition: 0.5s;
-    bottom: 7%;
-  }
-}
-
-.section-info {
-  z-index: 3;
-  position: absolute;
-  background-color: #fff;
-  left:0; right:0;      //元素居中
-  margin: 0 auto 0;
-  text-align: justify;
-  opacity:0.9;
 }
 
 
-// --------- section2  首页第二屏 ---------
-.section2-info1 {
-  height: 43%;
-  background-color: #f7f7f7;
-  position: relative;
-  .icon-box {
-    p {
-      text-decoration: line-through;
-    }
-  }
-}
-
-.section2-info2 {
-  height: 43%;
-  background-color: #fff;
-  position: relative;
-}
-.section2-info3 {
-  height: 14%;
-  background-color: #222;
-  position: relative;
-}
-
-.section2-info-slogan {
-    position: absolute;
-    text-align: center;
-    left:30%; right:30%;      //元素居中
-    top: 13%;
-  h4 {
-    font-size: 3em;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-  }
-  p {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    color: #444;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 1px;
-  }
-}
-
-.icon-box {
-  position: absolute;
-  text-align: center;
-  left:23%; right:23%;      //元素居中
-  bottom: 14%;
-  span {
-    float: left;
-  }
-  img {
-    margin: 10px 50px 0px;
-    width: 40%;
-    height: auto;
-  }
-  p {
-    margin-top: 20px;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    color: #444;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-}
-
-.slogan-next {
-  text-align: center;
-  position: absolute;
-  left:0; right:0;      //元素居中
-  color: #999;
-  top: 22%;
-  font-size: 18px;
-  font-family: "Futura";
-  font-weight: lighter;
-  letter-spacing: 3px;
-  transition: 0.5s;
-}
-.slogan-next:hover {
-  transition: 0.5s;
-  top: 16%;
-}
 
 
-// --------- section3  首页第三屏 ---------
-.section3-info1 {
-  height: 58%;
-  background-color: #fff;
-  position: relative;
-}
-.section3-info2 {
-  height: 28%;
-  background-color: #f7f7f7;
-  position: relative;
-}
-.section3-info3 {
-  height: 14%;
-  background-color: #222;
-  position: relative;
-}
-
-.section3-info-slogan {
-  text-align: center;
-  position: absolute;
-  left:0; right:0;      //元素居中
-  top: 15%;
-  h4 {
-    font-size: 3em;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-  }
-  p {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    color: #444;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 1px;
-  }
-}
-
-.img-box {
-  position: absolute;
-  text-align: center;
-  left:0; right:0;      //元素居中
-  bottom: 30%;
-  img {
-    width: 65%;
-    height: auto;
-    box-shadow: 0px 0px 35px 0px #808080;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    transition: 0.3s;
-  }
-}
-
-
-// --------- section4  首页第四屏 ---------
-.section4-info1 {
-  height: 43%;
-  background-color: #f7f7f7;
-  position: relative;
-}
-.section4-info2 {
-  height: 43%;
-  background-color: #ffff;
-  position: relative;
-}
-.section4-info3 {
-  height: 14%;
-  background-color: #222;
-  position: relative;
-}
-
-.section4-info-slogan {
-  position: absolute;
-  text-align: center;
-  left:30%; right:30%;      //元素居中
-  top: 13%;
-  h4 {
-    font-size: 3em;
-    font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-  }
-  p {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    color: #444;
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 1px;
-  }
-}
-
-.img-box {
-  position: absolute;
-  text-align: center;
-  left:0; right:0;      //元素居中
-  bottom: 30%;
-  img {
-    width: 65%;
-    height: auto;
-    box-shadow: 0px 0px 35px 0px #808080;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    transition: 0.3s;
-  }
-}
 
 
 
