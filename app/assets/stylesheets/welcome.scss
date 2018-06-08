@@ -158,12 +158,20 @@
         color: #bfb199;
       }
     }
-    @media screen and (min-width: 1200px){
+    @media screen and (min-width: 1600px){
       .example-box {
         height: 390px;
       }
       .example-description {
         height:155px;
+      }
+    }
+    @media screen and (max-width: 1599px) and (min-width: 1200px){
+      .example-box {
+        height: 480px;
+      }
+      .example-description {
+        height: 205px;
       }
     }
     @media screen and (max-width: 1199px){
