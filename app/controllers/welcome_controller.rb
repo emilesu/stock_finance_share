@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
-  def index
-    @stock = Stock.last
+
+  def index2
   end
+
 end

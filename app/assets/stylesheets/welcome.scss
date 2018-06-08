@@ -130,8 +130,6 @@
       padding: 20px 20px;
       margin-top:30px;
       background-color: #eee;
-      min-height: 360px;
-      max-height: 420px;
       h3 {
         span {
           font-size: 16px;
@@ -146,6 +144,7 @@
         font-size: 12px;
         line-height: 20px;
         text-align: justify;
+        overflow:hidden;
       }
     }
     .example-box:hover {
@@ -157,6 +156,22 @@
       -webkit-border-radius: 2px;
       h3 {
         color: #bfb199;
+      }
+    }
+    @media screen and (min-width: 1200px){
+      .example-box {
+        height: 390px;
+      }
+      .example-description {
+        height:155px;
+      }
+    }
+    @media screen and (max-width: 1199px){
+      .example-box {
+        height: 360px;
+      }
+      .example-description {
+        height:130px;
       }
     }
   }
@@ -266,7 +281,9 @@
     }
     @media screen and (min-width: 1200px){
       .you-qa-box {
-        padding-right: 35px;
+        p {
+          padding-right: 35px;
+        }
         margin: 25px 0;
       }
     }
@@ -286,7 +303,7 @@
       margin: 25px 0;
       padding: 30px 0 0;
       img {
-        width: 80px;
+        width: 70px;
         height: auto;
       }
       h6 {

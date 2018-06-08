@@ -56,150 +56,151 @@
   <div class="example col-lg-8 col-lg-offset-2 col-md-12 ">
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("600009") do %>
         <div class="example-box">
           <h3>上海机场 <span>- 600009</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2017-05-04</strong></p>
+            <p>买入价格：<strong>35.5 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("600009").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("600009").stock_latest_price_and_PE[0].to_f - 35.5) / 35.5 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>2016年起，关注到上海机场五年中营收不断创新高，毛利高，盈利能力极强，且企业一直处于持续增长轨道中。股价大概率会增长。</p>
+            <p>2017年1月开始，根据策略规则，股价出现回升，4月确认上涨主波即将开始，并在5月4日买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("300015") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>爱尔眼科 <span>- 300015</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2017-11-03</strong></p>
+            <p>买入价格：<strong>19.5 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("300015").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("300015").stock_latest_price_and_PE[0].to_f - 19.5) / 19.5 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>通过HOLD LE工具对比分析，爱尔眼科在医疗器械类股票中，业绩、盈利能力、经营能力，都很优异。股价长期上涨概率很大。</p>
+            <p>根据策略规则，2017年10月起股价符合入场要求，并在11月3日在预估买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("600519") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>贵州茅台 <span>- 600519</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2016-05-03</strong></p>
+            <p>买入价格：<strong>245 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("600519").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("600519").stock_latest_price_and_PE[0].to_f - 245) / 245 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>贵州茅台的产品有很高的品牌溢价，使它成为毛利率极高、获利能力极强的企业，净利率长期保持50%左右。股价长期增长概率极大。</p>
+            <p>2016年3月起，根据策略规则，进入交易准备期，5月3日时在预估买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("603288") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>海天味业 <span>- 603288</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2017-05-15</strong></p>
+            <p>买入价格：<strong>35 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("603288").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("603288").stock_latest_price_and_PE[0].to_f - 35) / 35 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>HOLD LE表分析可看出，在食品类企业中，海天味业在经营、获利能力等方面，均领先一筹，近五年中都在持续增长，极具价值。</p>
+            <p>2017年4月，根据策略规则，进入交易准备期，5月15日时在预估买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("002415") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>海康威视 <span>- 002415</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2017-03-07</strong></p>
+            <p>买入价格：<strong>18.7 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002415").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002415").stock_latest_price_and_PE[0].to_f - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>HOLD LE表分析可看出，在电子设备类企业中，海康威视近五年的毛利、净利水平极高，企业增长持续且迅速。股价大概率会长期增长。</p>
+            <p>2017年1月，按照策略规则，价格有即将发力上涨的趋势，3月7日在买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to stock_path("002372") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>伟星新材 <span>- 002372</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2016-07-27</strong></p>
+            <p>买入价格：<strong>8.25 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0].to_f - 8.25) / 8.25 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>通过HOLD LE的分析，伟星新材是建材类企业中经营效益、获利能力最强的企业之一，各指标呈持续上升趋势。股价大概率会长期增长。</p>
+            <p>2016年6月，按照策略规则，进入交易准备期，7月27日时在预估买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to us_stock_path("AAPL") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>苹果 <span>- AAPL</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2017-03-15</strong></p>
+            <p>买入价格：<strong>137.8 $(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0].to_f - 137.8) / 137.8 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>苹果公司的股价在近十几年呈现长期上涨的趋势，从HOLD LE表中可以看出，苹果的获利能力及稳定、又强劲。股价长期看涨不看跌。</p>
+            <p>2017年1月，按照策略规则，进入交易准备期，3月15日时价格符合入场条件，马上买进。</p>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path(600009) do %>
+      <%= link_to us_stock_path("AAPL") do %>
         <div class="example-box">
-          <h3>上海机场 <span>- 600009</span></h3>
+          <h3>苹果 <span>- AAPL</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2017-04-08</strong></p>
-            <p>买入价格：<strong>35 ￥</strong></p>
-            <p>当前价格：<strong>54.22 ￥</strong></p>
-            <p>浮动盈亏：<strong>54.97 %</strong></p>
+            <p>买入时间：<strong>2014-05-19</strong></p>
+            <p>买入价格：<strong>77.65 $(复权)</strong></p>
+            <p>卖出时间：<strong>2015-07-09</strong></p>
+            <p>卖出价格：<strong style="color: red">114.2 $(复权)</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((114.2 - 77.65) / 77.65 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>第一层：HOLD LE表分析后可知上海机场各项数据很优异，毛利高，盈利能力极强，五年中营收不断创新高，企业一直处于持续增长轨道中。</p>
-            <p>第二层：2017年1月开始关注价格波动，4月确认大概率出现上涨主波，并在4月8日买点出现时买入进场。</p>
+            <p>这是在2014-2015年间上涨主波出现时，用HOLD LE策略操作的获利情况。</p>
+            <p>2014年5月19日的入场，2015年7月9日的出场，都是按照策略规则预先计划好的执行的。</p>
           </div>
         </div>
       <% end %>
     </div>
 
-    <div class="col-md-4 hidden-lg hidden-sm">
+    <!-- <div class="col-md-4 hidden-lg hidden-sm">
       <%= link_to stock_path(600009) do %>
         <div class="example-box">
           <h3>上海机场 <span>- 600009</span></h3>
@@ -215,7 +216,7 @@
           </div>
         </div>
       <% end %>
-    </div>
+    </div> -->
 
   </div>
 </div>
@@ -411,7 +412,7 @@
             而事实上，当掌握这些简单的交易原则之后，你就已经具备了独立判断的能力、不再需要别人协助，就能逻辑清晰的独立完成交易。
           </p>
           <p>
-            荐股群很容易被不良股票诈骗商利用发布广告，散布错误的短线交易观念，会员如果轻信，很可能会造成经济损失。
+            荐股群容易被不良股票诈骗商利用发布广告，散布错误的短线交易观念，会员如果轻信，很可能会造成经济损失。
           </p>
         </div>
       </div>
@@ -425,7 +426,7 @@
 
       <div class="col-md-4">
         <div class="user-said-box">
-          <img class="img-circle img-responsive center-block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526838562990&di=608516ab91800d5f49a14064828d43d5&imgtype=0&src=http%3A%2F%2Fimg.duoziwang.com%2F2016%2F12%2F18%2F022835135663.jpg" alt="">
+          <img class="img-circle img-responsive center-block" src="http://img0.imgtn.bdimg.com/it/u=2356556675,1648301053&fm=214&gp=0.jpg" alt="">
           <h6> <strong> 皮孩儿 </strong> </h6>
           <p class="text-center"><i>股票交易5年</i></p>
           <div class="user-said-description">
@@ -442,12 +443,12 @@
 
       <div class="col-md-4">
         <div class="user-said-box">
-          <img class="img-circle img-responsive center-block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526838562990&di=608516ab91800d5f49a14064828d43d5&imgtype=0&src=http%3A%2F%2Fimg.duoziwang.com%2F2016%2F12%2F18%2F022835135663.jpg" alt="">
+          <img class="img-circle img-responsive center-block" src="http://img2.imgtn.bdimg.com/it/u=2324816349,1743833351&fm=27&gp=0.jpg" alt="">
           <h6> <strong> Tongkong </strong> </h6>
           <p class="text-center"><i>交易新手 内测期会员</i></p>
           <div class="user-said-description">
             <p>
-              我一直认为那些炒股赚钱的，都是面对满屏花花绿绿的价格走势，有超乎寻常的洞察力，能够把握市场心跳脉搏，不断买进卖出的人。
+              我一直认为炒股赚钱的，都是面对满屏花花绿绿的价格走势，有超乎寻常的洞察力，能够把握市场心跳脉搏，不断买进卖出的人。
             </p>
             <p>
               但在学习HOLD LE之后我知道，股票获利并不来自于每天的价格波动，想获利，需要的是用正确的方法，抓住大概率的机会。
@@ -458,12 +459,12 @@
 
       <div class="col-md-4">
         <div class="user-said-box">
-          <img class="img-circle img-responsive center-block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526838562990&di=608516ab91800d5f49a14064828d43d5&imgtype=0&src=http%3A%2F%2Fimg.duoziwang.com%2F2016%2F12%2F18%2F022835135663.jpg" alt="">
+          <img class="img-circle img-responsive center-block" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526402930605&di=a94f29fc0fba191b2300f20a05ab986d&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201608%2F16%2F20160816121343_urvnx.jpeg" alt="">
           <h6> <strong> 莫文辉 </strong> </h6>
           <p class="text-center"><i>股票3年 比特币半年</i></p>
           <div class="user-said-description">
             <p>
-              这两年我一直用在ES的这个策略交易股票，几次大行情都稳稳踩到了。但缺点在于，分析企业判断第一层概率的时候很麻烦，要在网上搜集企业资料进行对比。
+              这两年我一直在用ES的这个策略交易股票，几次大行情都稳稳踩到了。但缺点在于，分析企业判断第一层概率的时候很麻烦，要在网上搜集企业资料进行对比。
             </p>
             <p>
               但现在ES把它设计成了HOLD LE 工具，把分析企业统一标准化，解决了这个问题！
@@ -481,10 +482,10 @@
 
 <div class="begin row">
   <a href="">
-    <div class="begin-box text-center">
+    <div class="begin-box">
       <h4>开始学习</h4>
       <h4><i class="fa fa-angle-down" aria-hidden="true"></i></h4>
     </div>
   </a><br><br><br>
-  <p class="text-center">HOLD LE 价值投资获利策略</p>
+  <p>HOLD LE 价值投资获利策略</p>
 </div>
