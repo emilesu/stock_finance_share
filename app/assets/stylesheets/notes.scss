@@ -74,6 +74,12 @@
     .note-content {
       background-color: #f0f0f0;
       padding: 0px 65px 0px;
+      p {
+        br{
+          display:inline;
+          line-height:30px;
+        }
+      }
     }
   }
 
@@ -152,6 +158,12 @@
     .note-content {
       background-color: #f0f0f0;
       padding: 0px 15px 0px;
+      p {
+        br{
+          display:inline;
+          line-height:30px;
+        }
+      }
     }
   }
 
