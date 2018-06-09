@@ -1,0 +1,60 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-12 post-center">
+
+  <!-- mastheader课程主题 -->
+  <div class="mastheader row">
+    <div class="col-md-7 course-title">
+      <h1><%= @post.course.title %></h1>
+    </div>
+    <div class="col-md-5 course-surface_img">
+      <div class="col-sm-6">
+        <%= image_tag(@course.surface_img, :class => "thumbnail img-responsive") %>
+      </div>
+      <div class="col-sm-6">
+        <%= sanitize @course.description %>
+      </div>
+    </div>
+  </div>
+  <!-- /mastheader -->
+
+  <div class="post-box row">
+    <!-- left章节目录列表 -->
+    <div class="col-md-3 hidden-sm hidden-xs">
+      <ul class="nav nav-stacked affix affix-top" data-spy="affix" data-offset-top="400">
+        <% @course.posts.order("catalog").each do |post| %>
+          <li role="presentation">
+            <%= link_to(post.title, course_post_path(@course, post)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+      <!-- /left -->
+
+    <!-- public 所有人可见 -->
+    <% if @post.status == "public" %>
+      <div class="col-md-9">
+        <%= sanitize markdown @post.description %>
+      </div>
+    <!-- /public 所有人可见 -->
+
+    <!-- member 会员可见 -->
+    <% elsif @post.status == "member" %>
+      <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
+        <div class="col-md-9">
+          <%= sanitize markdown @post.description %>
+        </div>
+      <% else %>
+        你还不是会员哟
+      <% end %>
+    <!-- /member 会员可见 -->
+
+    <!-- draf 草稿状态时 -->
+    <% else %>
+      <div class="text-center post-box">
+        即将发布
+      </div>
+    <!-- /draf 草稿状态时 -->
+
+    <% end %>
+  </div>
+
+</div>

@@ -60,7 +60,8 @@ class Admin::SettingsController < AdminController
       :us_version_2,
       :us_version_3,
       :us_version_4,
-      :us_version_5
+      :us_version_5,
+      :about
     )
   end
 

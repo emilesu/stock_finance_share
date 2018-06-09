@@ -1,0 +1,73 @@
+.post-show {
+  background-color: #f9f9f9;
+  height: 100%;
+  .post-box {
+    background-color: #fff;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    // padding-bottom: 50px;
+
+    .post-title {
+      background-color: #222;
+      h1 {
+        color: #bfb199;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 40px;
+        margin: 80px 0 30px;
+      }
+    }
+
+    .post-description {
+      padding-top: 50px;
+      color: #333;
+      line-height: 26px;
+      text-align: justify;
+      font-size: 14px;
+      a {
+        color: #bfb199;
+        text-decoration: underline;
+      }
+      .affix
+      {
+        top:80px;              //设置处于 affix 时候,距离顶部的位置
+        max-width: 220px;
+      }
+      blockquote {
+        text-align: justify;
+      }
+      img {
+        border: #f5f5f5 solid 5px;
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .post-catalog {
+      margin-top: 50px;
+      padding: 30px 0;
+      background-color: #222;
+      color: #fff;
+      h3 {
+        color: #bfb199;
+      }
+      ul {
+        li {
+          margin: 8px 0;
+          font-size: 14px;
+          list-style-type: none;
+          a {
+            color: #bfb199;
+            text-decoration: none;
+            transition: 0.3s;
+          }
+          a:hover {
+            color: #fff;
+            transition: 0.3s;
+          }
+        }
+      }
+    }
+
+  }
+}

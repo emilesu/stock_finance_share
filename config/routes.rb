@@ -107,6 +107,7 @@ Rails.application.routes.draw do
 
   namespace :welcome do
     get :index2
+    get :about
   end
 
   root "welcome#index"
