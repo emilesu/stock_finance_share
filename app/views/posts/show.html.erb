@@ -51,3 +51,8 @@
 
   </div>
 </div>
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  <%= @post.title %> -
+<% end %>
