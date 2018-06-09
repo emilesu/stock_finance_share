@@ -37,7 +37,7 @@
 
   <!-- note 笔记内容 -->
   <div class="note-info">
-    <a data-toggle="collapse" href="#note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a data-toggle="collapse" href="#us-note-content-<%= note.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
       <div class="note-title">
         <%= note.title %>
         <span class="pull-right">
@@ -49,7 +49,7 @@
         </span>
       </div>
     </a>
-    <div class="collapse" id="note-content-<%= note.id %>">
+    <div class="collapse" id="us-note-content-<%= note.id %>">
       <div class="note-content">
         <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
           <%= simple_format(sanitize note.description) %> <br>

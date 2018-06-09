@@ -17,19 +17,19 @@
   <div>
     <ul class="nav nav-pills nav-justified">
       <li class="active">
-        <a href="#tab_default_1" data-toggle="tab"><strong>A股</strong><span class="badge pull-right"><%= @user.notes.size %></span></a>
+        <a href="#A-tab" data-toggle="tab"><strong>A股</strong><span class="badge pull-right"><%= @user.notes.size %></span></a>
       </li>
       <li>
-        <a href="#tab_default_2" data-toggle="tab"><strong>美股</strong><span class="badge pull-right"><%= @user.us_notes.size %></span></a>
+        <a href="#US-tab" data-toggle="tab"><strong>美股</strong><span class="badge pull-right"><%= @user.us_notes.size %></span></a>
       </li>
     </ul>
   </div><br>
 
   <div class="tab-content">
-    <div class="tab-pane active" id="tab_default_1" style="white-space:nowrap;">
+    <div class="tab-pane active" id="A-tab">
       <%= render :partial => "//notes/user_info_note", :locals => { :user => @user } %>
     </div>
-    <div class="tab-pane" id="tab_default_2" style="white-space:nowrap;">
+    <div class="tab-pane" id="US-tab">
       <%= render :partial => "//us_notes/us_user_info_note", :locals => { :user => @user } %>
     </div>
   </div>
