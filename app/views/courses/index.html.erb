@@ -1,15 +1,139 @@
-<div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
-  <% @courses.each do |course|  %>
+<div class="course-index row">
 
-    <%= link_to course_post_path( course, course.posts[0] ) do %>
-    <div class="col-md-4 col-sm-6">
-      <div class="course-content">
-        <%= image_tag(course.surface_img, :class => "thumbnail img-responsive") %>
-        <h2><%= course.title %></h2><hr>
-        <%= sanitize course.description %>
+  <!-- part_1 写在前面-->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>前言 - 来自作者的一封信</h2>
+        <p>
+          在真正开始之前，就当被骗也好，请答应我两件事，并读完我写的这两篇文章。
+        </p>
       </div>
     </div>
-    <% end %>
 
-  <% end %>
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-12 course-post row ">
+          <!-- <h3><%= Course.find_by_id(4).title %></h3><br> -->
+
+          <!-- <video controls>
+            <source src="http://oqc041sze.bkt.clouddn.com/IMG_1661.MP4" type="video/mp4">
+          </video> -->
+
+          <div class="">
+            <%= sanitize markdown Course.find_by_id(5).description %>
+          </div> <br>
+        </div>
+        <!-- <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(1).surface_img %>">
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- part1 股票投资的误区 -->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>赚到钱，才是最终目的</h2>
+        <p>
+          投资交易最大的障碍往往是自己，觉得自己想的就是真相，质疑一切，并远离和批判那些自己看不懂的东西。
+        </p>
+      </div>
+    </div>
+
+    <!-- part_2 lesson1 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(4).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(4).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(4).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(4), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(1).surface_img %>">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- part_2 课程1-->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>第一层概率</h2>
+        <p>
+          企业分析，用价格之外的东西来获得价格的确定性。
+        </p>
+      </div>
+    </div>
+
+    <!-- part_2 lesson1 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(2).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(2).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(2).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(2), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(2).surface_img %>">
+        </div>
+      </div>
+    </div>
+
+    <!-- part_2 lesson2 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(3).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(3).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(3).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(3), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(3).surface_img %>">
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
 </div>

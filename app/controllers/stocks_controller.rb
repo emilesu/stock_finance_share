@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :authenticate_user!, only: [:analyza, :industry, :all_years, :three_years, :five_years]
+  before_action :authenticate_user!, only: [:industry, :all_years, :three_years, :five_years]
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])

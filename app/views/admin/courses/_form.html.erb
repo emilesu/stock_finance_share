@@ -4,13 +4,13 @@
     <%= f.input :title, :label => "标题/title", input_html: { class: "form-control"} %>
     <%= f.input :friendly_id, :label => "网址url/friendly_id", input_html: { class: "form-control"} %>
     <%= f.input :surface_img, :label => "封面图/surface_img", input_html: { class: "form-control"} %>
-    <%= f.input :description, :label => "简介/description", input_html: { class: "form-control", :id => "editor"} %>
+    <%= f.input :description, :label => "简介/description", input_html: { class: "form-control", :rows => 20, :id => "editor"} %>
     <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
   </div>
 
 <% end %>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var editor = new Simditor({
           textarea: $('#editor'),
           placeholder: '想问的问题...',
@@ -20,4 +20,4 @@
           upload: false,
           toolbar: ['title', 'bold', 'italic', 'underline','strikethrough','color', '|','ol','ul','blockquote','code','table','link','image','|', 'fullscreen']
       });
-</script>
+</script> -->

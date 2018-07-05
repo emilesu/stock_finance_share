@@ -163,7 +163,7 @@ class Stock < ApplicationRecord
     elsif time == 5
       return result.reverse[0..4]
     elsif time == 2
-      return ["--", "--"]
+      return [0, 0]
     end
   end
 
@@ -1179,7 +1179,7 @@ class Stock < ApplicationRecord
     # 运算
     result = []
     (0..time-1).each do |i|
-      main_y = y[i][0..3].to_i
+      main_y = y[i].to_i
       data = [main_y, m[i]]
       result << data
     end

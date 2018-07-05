@@ -1,15 +1,9 @@
 <div class="wrapper">
 
   <!-- 同类行业列表栏 会员可见-->
-  <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
     <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
       <%= render "industry_order_member" %>
     </div>
-  <% else %>
-    <div class="col-lg-2 hidden-md hidden-sm hidden-xs industry-list">
-      <%= render "industry_order_nonmember" %>
-    </div>
-  <% end %>
 
 
   <!-- 左表：股票信息+资产负债信息 分析 -->
@@ -62,13 +56,11 @@
         </div> -->
 
         <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
-        <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
           <div class="to-finance-btn">
             <span>
               <%= link_to("行业统计分析 >>", industry_us_stocks_path(:order => @us_stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
           </div>
-        <% end %>
 
       </div>
 

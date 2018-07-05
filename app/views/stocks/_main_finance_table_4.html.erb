@@ -53,6 +53,4 @@
   </table>
 </div>
 
-<% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
   <%= render :partial => "main_finance_table_modal_4", :locals => { :static_data => static_data, :time => time, :stock => @stock, :sd1 => 31, :sd2 => 32  } %>
-<% end %>
