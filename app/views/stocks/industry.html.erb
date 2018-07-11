@@ -34,12 +34,12 @@
         <ul class="list-unstyled">
           <% @all_industrys[0..14].each do |i| %>
             <%= link_to industry_stocks_path(:order => i) do %>
-              <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
+              <li class="col-lg-1 col-md-1 <%= i %>" style="margin-right: 10px;"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
             <% end %>
           <% end %>
           <% @all_industrys[15..-1].each do |i| %>
             <%= link_to industry_stocks_path(:order => i) do %>
-              <li class="col-lg-1 col-md-1"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
+              <li class="col-lg-1 col-md-1 <%= i %>"><%= i %><span class="pull-right"><%= @all_user_choose_time_range_stocks.where(:industry => i).size %></span></li>
             <% end %>
           <% end %>
         </ul>
@@ -59,3 +59,13 @@
 <% content_for :title do %>
   <%= @industry %> -
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $(".<%= @industry %>").each(function(){
+      $(this).css("background-color", "#222");
+      $(this).css("color", "#f9f9f9");
+      $(this).css("text-decoration", "none");
+    });
+  });
+</script>

@@ -134,12 +134,13 @@
           <div class="example-info">
             <p>买入时间：<strong>2017-03-07</strong></p>
             <p>买入价格：<strong>18.7 ￥(复权)</strong></p>
-            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002415").stock_latest_price_and_PE[0] %> ￥</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002415").stock_latest_price_and_PE[0].to_f - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
+            <p>卖出时间：<strong>2018-02-06</strong></p>
+            <p>卖出价格：<strong style="color: red">35.6 $(复权)</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((35.6 - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>HOLD LE表分析可看出，在电子设备类企业中，海康威视近五年的毛利、净利水平极高，企业增长持续且迅速。股价大概率会长期增长。</p>
-            <p>2017年1月，按照策略规则，价格有即将发力上涨的趋势，3月7日在买点出现时买入进场。</p>
+            <p>HOLD LE表分析可看出，海康威视近五年的毛利、净利水平极高，企业增长持续且迅速。股价大概率会长期增长。</p>
+            <p>2017年3月7日在买点出现时买入进场，2018年2月获利了结。</p>
           </div>
         </div>
       <% end %>

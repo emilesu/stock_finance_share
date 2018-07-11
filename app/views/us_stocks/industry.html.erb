@@ -14,7 +14,7 @@
         <ul class="list-unstyled">
           <% @all_industrys.each do |i| %>
             <%= link_to industry_us_stocks_path(:order => i) do %>
-              <li class="col-lg-1 col-md-1" style="margin-right: 10px;"><%= i[0..4] %><span class="pull-right"><%= @us_stocks.where(:industry => i).select{ |x| x.static_data[2] != "0"  }.size %></span></li>
+              <li class="col-lg-1 col-md-1 <%= i %>" style="margin-right: 10px;"><%= i[0..4] %><span class="pull-right"><%= @us_stocks.where(:industry => i).select{ |x| x.static_data[2] != "0"  }.size %></span></li>
             <% end %>
           <% end %>
         </ul>
@@ -34,3 +34,13 @@
 <% content_for :title do %>
   <%= @industry %> -
 <% end %>
+
+<script>
+  $(document).ready(function(){
+    $(".<%= @industry %>").each(function(){
+      $(this).css("background-color", "#222");
+      $(this).css("color", "#f9f9f9");
+      $(this).css("text-decoration", "none");
+    });
+  });
+</script>

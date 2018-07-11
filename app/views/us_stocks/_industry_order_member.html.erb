@@ -48,7 +48,7 @@
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -59,7 +59,7 @@
     <ul class="list-unstyled">
       <% @industrys_roe_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_roe_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -70,7 +70,7 @@
     <ul class="list-unstyled">
       <% @industrys_cash_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_cash_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_cash_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -81,7 +81,7 @@
     <ul class="list-unstyled">
       <% @industrys_operating_margin_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_operating_margin_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_operating_margin_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -92,7 +92,7 @@
     <ul class="list-unstyled">
       <% @industrys_business_profitability_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_business_profitability_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_business_profitability_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -103,7 +103,7 @@
     <ul class="list-unstyled">
       <% @industrys_net_profit_margin_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_net_profit_margin_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_net_profit_margin_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -114,7 +114,7 @@
     <ul class="list-unstyled">
       <% @industrys_debt_asset_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_debt_asset_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_debt_asset_order %></span></li>
         <% end %>
       <% end %>
     </ul>
@@ -125,10 +125,20 @@
     <ul class="list-unstyled">
       <% @industrys_dividend_rate_order.each do |us_stock| %>
         <%= link_to us_stock_path(us_stock) do %>
-          <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_dividend_rate_order %></span></li>
+          <li class="active-<%= us_stock.easy_symbol %>"><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %>  <span class="pull-right"><%= us_stock.us_dividend_rate_order %></span></li>
         <% end %>
       <% end %>
     </ul>
   </div>
 
 </div>
+
+<script>
+  $(document).ready(function(){
+    $(".active-<%= @us_stock.easy_symbol %>").each(function(){
+      $(this).css("background-color", "#222");
+      $(this).css("color", "#f9f9f9");
+      $(this).css("text-decoration", "none");
+    });
+  });
+</script>
