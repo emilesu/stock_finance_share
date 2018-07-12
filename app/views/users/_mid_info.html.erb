@@ -5,7 +5,7 @@
 <h4>我的笔记</h4>
 </div>
 
-<% if @user.notes.empty? || @user.us_notes.empty? %>
+<% if @user.notes.empty? && @user.us_notes.empty? %>
   <hr><br>
   <div class="note-empty">
     <p class="text-center"><i class="fa fa-pencil-square-o fa-4x" aria-hidden="true"></i></p>
