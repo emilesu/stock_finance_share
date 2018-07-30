@@ -135,7 +135,7 @@
             <p>买入时间：<strong>2017-03-07</strong></p>
             <p>买入价格：<strong>18.7 ￥(复权)</strong></p>
             <p>卖出时间：<strong>2018-02-06</strong></p>
-            <p>卖出价格：<strong style="color: red">35.6 $(复权)</strong></p>
+            <p>卖出价格：<strong style="color: red">35.6 ￥(复权)</strong></p>
             <p>结算盈亏：<strong style="color: red"><%= ((35.6 - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
@@ -171,7 +171,7 @@
           <div class="example-info">
             <p>买入时间：<strong>2017-03-15</strong></p>
             <p>买入价格：<strong>137.8 $(复权)</strong></p>
-            <p>当前价格：<strong style="color: red"><%= UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>当前价格：<strong style="color: red"><%= UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0] %> $</strong></p>
             <p>浮动盈亏：<strong style="color: red"><%= ((UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0].to_f - 137.8) / 137.8 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
@@ -236,7 +236,7 @@
 
     <!-- about holdle -->
     <div class="col-md-6">
-      <h2>HOLD LE 揭秘年收益30%的获利方法：</h2>
+      <h2>HOLD LE 揭秘股票获利的细节和方法：</h2>
       <br>
 
       <div class="you-get-box col-xs-12 row">
@@ -271,7 +271,7 @@
           <strong> 正确的投资交易姿态 </strong>
           <p> - 判断正确很容易，难的是学会静静地等待。 </p>
           <p> - “复利”不是你所想的那样。 </p>
-          <p> - 思考交易的时间，每天不要超过3分钟。 </p>
+          <p> - 花在交易上的时间，每天不要超过1分钟。 </p>
         </div>
       </div>
 
@@ -280,7 +280,7 @@
           <img src="http://oqc041sze.bkt.clouddn.com/%E8%AF%BE%E7%A8%8B" alt="">
         </div>
         <div class="you-get-right col-sm-10 col-xs-9">
-          <strong> 文章教程 + 视频直播课 </strong>
+          <strong> 视频 + 文章教程课 </strong>
           <p> - 用大白话把交易方法说清楚。 </p>
           <p> - 不只是原理，还有详细的操作技巧。 </p>
           <p> - 定期视频直播课程、线下交流课程。 </p>
@@ -308,7 +308,7 @@
         </div>
       </div>
       <div class="auther-description col-sm-12">
-        <p>毕业至今，我几乎不间断的做了<strong>八年交易</strong>（股票、外汇保证金等等）。<strong>而前面的六年</strong>，基本是<strong>亏多赢少</strong>，始终跨不过坎。</p>
+        <p>毕业至今，我几乎不间断的做了近<strong>十年交易</strong>（股票、外汇保证金等等）。<strong>而前面的六年</strong>，基本是<strong>亏多赢少</strong>，始终跨不过坎。</p>
         <br>
         <p><strong>——“如何判断正确？”</strong></p><p>和所有人一样，我花所有时间和精力来学习研究这个问题，并用钱去验证每一个想法。
           如果得不到满意的结果，就会认为是哪里出错了？是不是判断还不够精准？

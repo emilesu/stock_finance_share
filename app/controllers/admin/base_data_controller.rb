@@ -98,7 +98,7 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.version_2 != Setting.first.version_2
+      if s.version_2 != Setting.first.version_2 || s.version_2.blank?
         # 从网易提取原始数据
         response = RestClient.get "http://quotes.money.163.com/f10/fhpg_#{s.easy_symbol}.html#10d01"
         doc = Nokogiri::HTML.parse(response.body)
