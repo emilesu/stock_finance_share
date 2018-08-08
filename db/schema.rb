@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180609092851) do
+ActiveRecord::Schema.define(version: 20180808090852) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20180609092851) do
     t.datetime "updated_at", null: false
     t.string "status", default: "draft"
     t.string "catalog"
+    t.string "video_url"
+    t.string "video_img"
     t.index ["course_id"], name: "index_posts_on_course_id"
   end
 
