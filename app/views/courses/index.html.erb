@@ -128,11 +128,44 @@
       </div>
     </div>
 
+  </div>
 
+  <!-- part_3 课程2-->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>寻找低风险、高胜率的交易时机</h2>
+        <p>
+          第二层概率，确定了交易目标后，要耐心等待交易时机的出现，这是个愉快而有趣的过程。
+        </p>
+      </div>
+    </div>
 
+    <!-- part_2 lesson1 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(6).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(6).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(6).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(6), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(2).surface_img %>">
+        </div>
+      </div>
+    </div>
 
-
-
+    <!-- part_2 lesson2 -->
 
   </div>
 
