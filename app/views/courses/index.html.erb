@@ -130,7 +130,7 @@
 
   </div>
 
-  <!-- part_3 课程2-->
+  <!-- part_3 课程1-->
   <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
     <div class="part-title row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -141,7 +141,7 @@
       </div>
     </div>
 
-    <!-- part_2 lesson1 -->
+    <!-- part_3 lesson1 -->
     <div class="course-content row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <div class="col-sm-8 course-post row ">
@@ -165,7 +165,42 @@
       </div>
     </div>
 
-    <!-- part_2 lesson2 -->
+  </div>
+
+  <!-- part_4 课程1-->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>让优秀机会自己生根发芽</h2>
+        <p>
+          找到了长期占有概率优势的机会就千万别错过它，把它当宝贝一样去细心管理。
+        </p>
+      </div>
+    </div>
+
+    <!-- part_3 lesson1 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(7).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(7).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(7).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(7), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 course-img">
+          <img src="<%= Course.find_by_id(7).surface_img %>">
+        </div>
+      </div>
+    </div>
 
   </div>
 

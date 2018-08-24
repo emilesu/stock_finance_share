@@ -92,18 +92,18 @@
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path("600519") do %>
+      <%= link_to stock_path("002372") do %>
         <div class="example-box">
-          <h3>贵州茅台 <span>- 600519</span></h3>
+          <h3>伟星新材 <span>- 002372</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2016-05-03</strong></p>
-            <p>买入价格：<strong>245 ￥(复权)</strong></p>
-            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("600519").stock_latest_price_and_PE[0] %> ￥</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("600519").stock_latest_price_and_PE[0].to_f - 245) / 245 * 100).round(1) %> %</strong></p>
+            <p>买入时间：<strong>2016-07-27</strong></p>
+            <p>买入价格：<strong>8.25 ￥(复权)</strong></p>
+            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0] %> ￥</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0].to_f - 8.25) / 8.25 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>贵州茅台的产品有很高的品牌溢价，使它成为毛利率极高、获利能力极强的企业，净利率长期保持50%左右。股价长期增长概率极大。</p>
-            <p>2016年3月起，根据策略规则，进入交易准备期，5月3日时在预估买点出现时买入进场。</p>
+            <p>通过HOLD LE的分析，伟星新材是建材类企业中经营效益、获利能力最强的企业之一，各指标呈持续上升趋势。股价大概率会长期增长。</p>
+            <p>2016年6月，按照策略规则，进入交易准备期，7月27日时在预估买点出现时买入进场。</p>
           </div>
         </div>
       <% end %>
@@ -115,9 +115,9 @@
           <h3>海天味业 <span>- 603288</span></h3>
           <div class="example-info">
             <p>买入时间：<strong>2017-05-15</strong></p>
-            <p>买入价格：<strong>35 ￥(复权)</strong></p>
+            <p>买入价格：<strong>37 ￥(复权)</strong></p>
             <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("603288").stock_latest_price_and_PE[0] %> ￥</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("603288").stock_latest_price_and_PE[0].to_f - 35) / 35 * 100).round(1) %> %</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("603288").stock_latest_price_and_PE[0].to_f - 37) / 37 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
             <p>HOLD LE表分析可看出，在食品类企业中，海天味业在经营、获利能力等方面，均领先一筹，近五年中都在持续增长，极具价值。</p>
@@ -135,8 +135,8 @@
             <p>买入时间：<strong>2017-03-07</strong></p>
             <p>买入价格：<strong>18.7 ￥(复权)</strong></p>
             <p>卖出时间：<strong>2018-02-06</strong></p>
-            <p>卖出价格：<strong style="color: red">35.6 ￥(复权)</strong></p>
-            <p>结算盈亏：<strong style="color: red"><%= ((35.6 - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
+            <p>卖出价格：<strong style="color: red">35.3 ￥(复权)</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((35.3 - 18.7) / 18.7 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
             <p>HOLD LE表分析可看出，海康威视近五年的毛利、净利水平极高，企业增长持续且迅速。股价大概率会长期增长。</p>
@@ -147,18 +147,19 @@
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path("002372") do %>
+      <%= link_to stock_path("600519") do %>
         <div class="example-box">
-          <h3>伟星新材 <span>- 002372</span></h3>
+          <h3>贵州茅台 <span>- 600519</span></h3>
           <div class="example-info">
-            <p>买入时间：<strong>2016-07-27</strong></p>
-            <p>买入价格：<strong>8.25 ￥(复权)</strong></p>
-            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0] %> ￥</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0].to_f - 8.25) / 8.25 * 100).round(1) %> %</strong></p>
+            <p>买入时间：<strong>2016-05-03</strong></p>
+            <p>买入价格：<strong>234 ￥(复权)</strong></p>
+            <p>卖出时间：<strong>2018-08-20</strong></p>
+            <p>卖出价格：<strong style="color: red">627.6 ￥(复权)</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((627.6 - 234) / 234 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
-            <p>通过HOLD LE的分析，伟星新材是建材类企业中经营效益、获利能力最强的企业之一，各指标呈持续上升趋势。股价大概率会长期增长。</p>
-            <p>2016年6月，按照策略规则，进入交易准备期，7月27日时在预估买点出现时买入进场。</p>
+            <p>贵州茅台的产品有很高的品牌溢价，使它成为毛利率极高、获利能力极强的企业，股东权益报酬率常年25%以上。股价长期增长概率极大。</p>
+            <p>2016年5月3日在买点出现时买入进场，2018年8月获利了结。</p>
           </div>
         </div>
       <% end %>
@@ -188,14 +189,14 @@
           <h3>苹果 <span>- AAPL</span></h3>
           <div class="example-info">
             <p>买入时间：<strong>2014-05-19</strong></p>
-            <p>买入价格：<strong>77.65 $(复权)</strong></p>
-            <p>卖出时间：<strong>2015-07-09</strong></p>
+            <p>买入价格：<strong>76.88 $(复权)</strong></p>
+            <p>卖出时间：<strong>2015-08-24</strong></p>
             <p>卖出价格：<strong style="color: red">114.2 $(复权)</strong></p>
-            <p>结算盈亏：<strong style="color: red"><%= ((114.2 - 77.65) / 77.65 * 100).round(1) %> %</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((94.86 - 76.88) / 76.88 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
             <p>这是在2014-2015年间上涨主波出现时，用HOLD LE策略操作的获利情况。</p>
-            <p>2014年5月19日的入场，2015年7月9日的出场，都是按照策略规则预先计划好的执行的。</p>
+            <p>2014年5月19日的入场，2015年8月24日的出场，都是按照预先计划好的规则执行的。</p>
           </div>
         </div>
       <% end %>
