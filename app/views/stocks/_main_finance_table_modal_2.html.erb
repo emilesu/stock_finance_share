@@ -196,7 +196,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">平均收现日数</h5>
       </div>
       <div class="modal-body">
-        <% m = static_data[9].map!{ |x| (360 / x).round(2) } %>
+        <% m = static_data[9].map!{ |x| (360 / x).round(1) } %>
         <%= line_chart(
           stock.modal_data(time, m).reverse.each do |i|
           end
@@ -277,7 +277,7 @@
         <h5 class="modal-title" id="exampleModalLongTitle">平均销货日数(平均在库天数)</h5>
       </div>
       <div class="modal-body">
-        <% m = static_data[10].map!{ |x| (360 / x).round(2) } %>
+        <% m = static_data[10].map!{ |x| (360 / x).round(1) } %>
         <%= line_chart(
           stock.modal_data(time, m).reverse.each do |i|
           end
