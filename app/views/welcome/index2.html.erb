@@ -92,24 +92,6 @@
     </div>
 
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <%= link_to stock_path("002372") do %>
-        <div class="example-box">
-          <h3>伟星新材 <span>- 002372</span></h3>
-          <div class="example-info">
-            <p>买入时间：<strong>2016-07-27</strong></p>
-            <p>买入价格：<strong>8.25 ￥(复权)</strong></p>
-            <p>当前价格：<strong style="color: red"><%= Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0] %> ￥</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((Stock.find_by_easy_symbol("002372").stock_latest_price_and_PE[0].to_f - 8.25) / 8.25 * 100).round(1) %> %</strong></p>
-          </div>
-          <div class="example-description">
-            <p>通过HOLD LE的分析，伟星新材是建材类企业中经营效益、获利能力最强的企业之一，各指标呈持续上升趋势。股价大概率会长期增长。</p>
-            <p>2016年6月，按照策略规则，进入交易准备期，7月27日时在预估买点出现时买入进场。</p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-lg-3 col-md-4 col-sm-6">
       <%= link_to stock_path("603288") do %>
         <div class="example-box">
           <h3>海天味业 <span>- 603288</span></h3>
@@ -122,6 +104,25 @@
           <div class="example-description">
             <p>HOLD LE表分析可看出，在食品类企业中，海天味业在经营、获利能力等方面，均领先一筹，近五年中都在持续增长，极具价值。</p>
             <p>2017年4月，根据策略规则，进入交易准备期，5月15日时在预估买点出现时买入进场。</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <%= link_to stock_path("002372") do %>
+        <div class="example-box">
+          <h3>伟星新材 <span>- 002372</span></h3>
+          <div class="example-info">
+            <p>买入时间：<strong>2016-07-27</strong></p>
+            <p>买入价格：<strong>8.25 ￥(复权)</strong></p>
+            <p>卖出时间：<strong>2018-09-12</strong></p>
+            <p>卖出价格：<strong style="color: red">13.98 ￥(复权)</strong></p>
+            <p>结算盈亏：<strong style="color: red"><%= ((13.98 - 8.25) / 8.25 * 100).round(1) %> %</strong></p>
+          </div>
+          <div class="example-description">
+            <p>HOLD LE的分析可见伟星新材是建材行业中经营、获利能力最强，各指标呈持续上升趋势。大概率长期增长。</p>
+            <p>2016年6月，按规则准确入场，2018年9月获利了结。</p>
           </div>
         </div>
       <% end %>
