@@ -69,7 +69,7 @@ body {
   // footer
   .footer-box {
     background-color: #f0f0f0;
-    padding: 30px 0 10px;
+    padding: 30px 0 0;
     color: #999;
     span {
       position: relative;                    // 垂直居中
@@ -79,7 +79,12 @@ body {
     a {
       // text-decoration: none;
       color: #999;
-      margin: 0 20px;
+      padding: 10px 18px 0;
+      cursor:pointer;
+
+    }
+    a:hover {
+      color: #333;
     }
     .icp {
       margin-left: 20px;

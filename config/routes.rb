@@ -110,5 +110,5 @@ Rails.application.routes.draw do
     get :about
   end
 
-  root "welcome#index"
+  root "welcome#index2"
 end
