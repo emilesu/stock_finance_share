@@ -48,22 +48,24 @@
 
 </div><br><br>
 
-<!-- 我的粉丝 -->
-<div class="relation-box">
+<!-- 我的粉丝  是用户本人 or 管理员 时才可见 -->
+<% if current_user == user || current_user.role == "admin" %>
+  <div class="relation-box">
 
-  <div class="relation-title">
-    <h4>Fans<span class="badge pull-right"><%= @fans.size %></span></h4>
-  </div>
-  <hr>
+    <div class="relation-title">
+      <h4>Fans<span class="badge pull-right"><%= @fans.size %></span></h4>
+    </div>
+    <hr>
 
-  <!-- 关注列表 -->
-  <div class="relation-list">
-    <% @fans.each do |fan| %>
-      <% u = User.find(fan.my_fans) %>
-      <%= link_to user_path(u) do %>
-        <span><%= image_tag(u.avatar, :class => "img-circle") %></span>
+    <!-- 关注列表 -->
+    <div class="relation-list">
+      <% @fans.each do |fan| %>
+        <% u = User.find(fan.my_fans) %>
+        <%= link_to user_path(u) do %>
+          <span><%= image_tag(u.avatar, :class => "img-circle") %></span>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-</div><br><br>
+  </div><br><br>
+<% end %>
