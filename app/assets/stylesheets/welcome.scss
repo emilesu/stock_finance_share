@@ -233,6 +233,10 @@
   .auther-info {
     h4 {
       margin-top: 0;
+      color: #333;
+    }
+    a:hover {
+      text-decoration: none;
     }
     p {
       text-align: justify;
