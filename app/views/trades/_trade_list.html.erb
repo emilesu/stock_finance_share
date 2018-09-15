@@ -87,7 +87,7 @@ $(document).ready(function(){
     };
 
     // 判断 买入价 VS 结算价
-    if (dataLatestPrice > dataSellPrice) {
+    if (dataSellPrice > dataBuyPrice) {
       $("." + "sell-price-" + tradeClass).css("color", "red");
     } else {
       $("." + "sell-price-" + tradeClass).css("color", "#339933");
