@@ -54,7 +54,7 @@
             <%= latest_price %> <em style="font-weight:normal;">¥</em></strong>
           </p>
           <p>浮动盈亏：<strong class="us-floating-price-<%= trade.id %>" us-data-floating-price="<%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
-            <%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+            <%= (( latest_price.to_f - trade.buy_price ) / trade.buy_price * 100 ).round(1) %> % </strong>
           </p>
         <% end %>
       <% else %>
@@ -64,7 +64,7 @@
           <%= trade.sell_price %> <em style="font-weight:normal;">¥</em></strong>
         </p>
         <p>结算盈亏：<strong class="us-settlement-price-<%= trade.id %>" us-data-trade-id="<%= trade.id %>" us-data-settlement-price="<%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %>">
-          <%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(2) %> % </strong>
+          <%= (( trade.sell_price - trade.buy_price ) / trade.buy_price * 100 ).round(1) %> % </strong>
         </p>
       <% end %>
     </div>
@@ -87,29 +87,30 @@ $(document).ready(function(){
     var dataSellPrice = $("." + "us-sell-price-" + tradeClass).attr("us-data-sell-price");
     var dataSettlementPrice = $("." + "us-settlement-price-" + tradeClass).attr("us-data-settlement-price");
 
+    // 要用 parseFloat() 方法来吧数字转化为 JS 的浮点数类型 要不然胡导致数字运算错误
     // 判断 买入价 VS 当前价
-    if (dataLatestPrice > dataBuyPrice) {
+    if (parseFloat(dataLatestPrice) > parseFloat(dataBuyPrice)) {
       $("." + "us-latest-price-" + tradeClass).css("color", "red");
     } else {
       $("." + "us-latest-price-" + tradeClass).css("color", "#339933");
     };
 
     // 判断 买入价 VS 结算价
-    if (dataLatestPrice > dataSellPrice) {
+    if (parseFloat(dataSellPrice) > parseFloat(dataBuyPrice)) {
       $("." + "us-sell-price-" + tradeClass).css("color", "red");
     } else {
       $("." + "us-sell-price-" + tradeClass).css("color", "#339933");
     };
 
     // 判断 浮动盈亏 正负值
-    if (dataFloatingPrice > 0) {
+    if (parseFloat(dataFloatingPrice) > 0) {
       $("." + "us-floating-price-" + tradeClass).css("color", "red");
     } else {
       $("." + "us-floating-price-" + tradeClass).css("color", "#339933");
     };
 
     // 判断 结算盈亏 正负值
-    if (dataSettlementPrice > 0) {
+    if (parseFloat(dataSettlementPrice) > 0) {
       $("." + "us-settlement-price-" + tradeClass).css("color", "red");
     } else {
       $("." + "us-settlement-price-" + tradeClass).css("color", "#339933");
