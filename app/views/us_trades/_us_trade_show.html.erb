@@ -50,15 +50,15 @@
           <p><strong>交易策略：</strong></p>
           <!-- 如果当前用户为登陆者 -->
           <% if current_user && (current_user == @user || current_user.role == "admin") %>
-            <%= trade.description %>
+            <%= sanitize markdown trade.description %>
           <% elsif current_user && current_user.role == "member" && trade.status == "对会员公开"  %>
-            <%= trade.description %>
+            <%= sanitize markdown trade.description %>
           <% elsif (!current_user || current_user.role == "nommember") && trade.status == "对会员公开"  %>
-            <p>该策略只有会员可见...</p>
+            <p>只有会员可见...</p>
           <% elsif trade.status == "私密"  %>
-            <p>私密策略，只有作者可见...</p>
+            <p>只有作者可见...</p>
           <% elsif trade.status == "公开" %>
-            <%= trade.description %>
+            <%= sanitize markdown trade.description %>
           <% end %>
 
         </div>
