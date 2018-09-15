@@ -29,25 +29,25 @@
         <% if user.role == "member" %>
           <% if current_user && current_user.role == "admin" %>
             <% if user.nper == 99 %>
-              <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="永久会员">
+              <a id="user-role" type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="永久会员">
                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
               </a>
             <% else %>
-            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
+            <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </a>
             <% end %>
           <% elsif current_user && current_user == user %>
-            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
+            <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </a>
           <% elsif %>
-            <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员">
+            <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </a>
           <% end %>
         <% elsif user.role == "admin" %>
-          <a type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="站长">
+          <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="站长">
             <i class="fa fa-user-secret" aria-hidden="true"></i>
           </a>
         <% end %>
@@ -133,6 +133,6 @@
 <!-- vip 下拉弹出到期时间 -->
 <script>
   $(function () {
-    $('[data-toggle="popover"]').popover()
+    $('#user-role').popover()
   })
 </script>
