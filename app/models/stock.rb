@@ -1018,7 +1018,7 @@ class Stock < ApplicationRecord
     lrb41 = []
     place_data.each do |i|
       if i != nil
-        zcb95 << self.quarter_years(1, 95)[i-1]
+        zcb95 << self.quarter_years(1, 95)[i]
         lrb41 << self.quarter_years(2, 41)[i]
       end
     end
