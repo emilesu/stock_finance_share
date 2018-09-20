@@ -10,10 +10,12 @@
     <thead>
       <tr>
         <th>代码/symbol</th>
+        <th>名称/name</th>
         <th>中文名称/cnname</th>
-        <th>上市市场/market</th>
+        <th>上市时间/ipoyear</th>
+        <th>行业/sector</th>
         <th>行业/industry</th>
-        <th>财务指标/cwzb</th>
+        <!-- <th>财务指标/cwzb</th> -->
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
@@ -27,12 +29,19 @@
       <% @us_stocks.each do |us_stock| %>
         <tr>
           <td><%=link_to(us_stock.symbol, admin_us_stock_path(us_stock)) %></td>
+          <td><%= us_stock.name %></td>
           <td><%= us_stock.cnname %></td>
           <!--  -->
-          <% if us_stock.market.nil? %>
+          <% if us_stock.ipoyear.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
-            <td><%= us_stock.market %></td>
+            <td><%= us_stock.ipoyear %></td>
+          <% end %>
+          <!--  -->
+          <% if us_stock.sector.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.sector %></td>
           <% end %>
           <!--  -->
           <% if us_stock.industry.nil? %>
@@ -41,11 +50,11 @@
             <td><%= us_stock.industry %></td>
           <% end %>
           <!--  -->
-          <% if us_stock.cwzb.nil? || us_stock.cwzb == "" %>
+          <!-- <% if us_stock.cwzb.nil? || us_stock.cwzb == "" %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
-          <% end %>
+          <% end %> -->
           <!--  -->
           <% if us_stock.lrb.nil? || us_stock.lrb == "" %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
