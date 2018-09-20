@@ -1,0 +1,121 @@
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">股东权益报酬率(%) RoE</td>
+    </tr>
+    <% @sectors_roe_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_roe_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">现金与约当现金比率(%)</td>
+    </tr>
+    <% @sectors_cash_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_cash_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">营业毛利率(%)</td>
+    </tr>
+    <% @sectors_operating_margin_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_operating_margin_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">营业利益率(%)</td>
+    </tr>
+    <% @sectors_business_profitability_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_business_profitability_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">纯益率 / 净利率(%)</td>
+    </tr>
+    <% @sectors_net_profit_margin_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_net_profit_margin_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">负债占资产利率(%)</td>
+    </tr>
+    <% @sectors_debt_asset_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_debt_asset_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<!-- <div class="col-lg-2  col-md-4  col-sm-6  col-xs-12">
+  <table class="table table-bordered">
+    <tr class="theader-style">
+      <td colspan="2">分红率(%)</td>
+    </tr>
+    <% @sectors_dividend_rate_order.each do |us_stock| %>
+      <tr class="stock-<%= us_stock.easy_symbol %>" data-link="<%= us_stock_path(us_stock) %>">
+        <td align=left width = "60%"><%= us_stock.cnname[0..7] %></td>
+        <td><%= us_stock.us_dividend_rate_order %></td>
+      </tr>
+    <% end %>
+  </table>
+</div> -->
+
+
+<!-- 表格点击跳转到对应的股票 -->
+<script>
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+    alert(mychar);
+  });
+</script>
+
+<!-- 实现不同表格相同股票的关联变化 -->
+<script>
+  $(document).ready(function() {
+    $('tr').each(function(){
+      var stockId = $(this).attr("class");
+      $("."+stockId).mouseover( function(){
+        $("."+stockId).css("background-color","#EDEDED");
+      });
+      $("."+stockId).mouseleave( function(){
+        $("."+stockId).css("background-color","#fff");
+      });
+    });
+  });
+</script>

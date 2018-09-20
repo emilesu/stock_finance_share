@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180920040340) do
+ActiveRecord::Schema.define(version: 20180920152006) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20180920040340) do
     t.integer "us_version_5"
     t.text "us_industry"
     t.text "about"
+    t.text "us_sector"
   end
 
   create_table "stocks", force: :cascade do |t|

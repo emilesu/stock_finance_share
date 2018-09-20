@@ -501,12 +501,18 @@ class Admin::BaseDataController < AdminController
   #更新行业设置
    def update_us_industry_setting
      @all_industrys = UsStock.all_industrys_li           # scope :all_industrys_li
+     @all_sectors = UsStock.all_sectors_li           # scope :all_sectors_li
      x = []
+     y = []
      @all_industrys.each do |i|
        x << i
      end
+     @all_sectors.each do |i|
+       y << i
+     end
      Setting.first.update!(
-       :us_industry => x
+       :us_industry => x,
+       :us_sector => y
      )
      puts "更新完毕*******"
      redirect_to admin_base_data_index_path

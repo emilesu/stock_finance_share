@@ -207,3 +207,33 @@
     }
   }
 }
+
+
+// industry and sector 页面按钮样式
+.dropdown {
+  .dropdown-menu {
+    line-height: 1.8;
+    color: #f9f9f9;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 12px;
+    text-align: left;
+    min-width: 250px;
+    li {
+      span {
+        font-weight: normal;
+      }
+      a {
+        background-color: #fff;
+        color: #333;
+        font-weight: normal;
+        line-height: 1.8;
+        padding: 3px 12px;
+      }
+      a:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+}

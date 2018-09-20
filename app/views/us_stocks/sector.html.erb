@@ -12,7 +12,7 @@
       <!-- 其他领域下拉单 - 可点击选择 -->
       <div class="dropdown clearfix">
         <button class="btn btn-default dropdown-toggle btn-block" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          选择 领域
+          <%= @sector %>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
@@ -40,7 +40,7 @@
       <!-- 其他行业下拉单 - 可点击选择 -->
       <div class="dropdown clearfix">
         <button class="btn btn-default dropdown-toggle btn-block" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <%= @industry %>
+          选择 行业
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
@@ -63,7 +63,7 @@
 
     <!-- 行业指标排序 -->
     <div class="col-lg-10 col-md-10 col-ms-12 col-xs-12">
-      <%= render :partial => "industry_table" %>
+      <%= render :partial => "sector_table" %>
     </div>
 
 </div>
