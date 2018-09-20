@@ -487,7 +487,7 @@ class Admin::BaseDataController < AdminController
     @us_stocks.each do |s|
 
       if s.cnname.blank?
-        response = RestClient.get "https://www.laohu8.com/hq/s/#{s.easy_symbol}"
+        response = RestClient.get "https://www.laohu8.com/hq/s/#{s.symbol}"
         doc = Nokogiri::HTML.parse(response.body)
           main1 = doc.css(".quote-main .title").map{ |x| x.text }[0].split(" ")[1..-1].join(" ")
           s.update!(
