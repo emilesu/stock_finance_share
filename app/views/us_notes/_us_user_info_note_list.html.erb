@@ -21,7 +21,7 @@
       <% if current_user == @user %>
         <span>
           <a class="modal-note-edit" data-toggle="modal" data-target="#momal-note-edit-<%= note.id %>">编辑</a> |
-          <%= link_to("删除", us_stock_us_note_path(note), :method => :delete, data: { confirm: "确定删除吗?" }) %>
+          <%= link_to("删除", us_stock_us_note_path(note.us_stock, note), :method => :delete, data: { confirm: "确定删除吗?" }) %>
           <%= render :partial => "//us_notes/us_note_modal_edit", :locals => {
             :note => note,
             :stock => note.us_stock,
