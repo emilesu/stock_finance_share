@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180808090852) do
+ActiveRecord::Schema.define(version: 20180920040340) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -217,6 +217,9 @@ ActiveRecord::Schema.define(version: 20180808090852) do
     t.integer "us_version_3"
     t.integer "us_version_4"
     t.integer "us_version_5"
+    t.string "sector"
+    t.string "ipoyear"
+    t.string "name"
     t.index ["cnname"], name: "index_us_stocks_on_cnname"
     t.index ["easy_symbol"], name: "index_us_stocks_on_easy_symbol", unique: true
     t.index ["market"], name: "index_us_stocks_on_market"

@@ -58,7 +58,10 @@
   <h1>美 股</h1>
 
   <div class="" style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 20px">
-    <%= link_to("更新 美股 代码、上市地 数据", admin_base_data_update_us_stock_symbol_path, method: :post, :class => "btn btn-sm btn-default btn-block", data: { confirm: "确定更新:美股 代码、上市地 ?" }) %>
+    <%= form_tag admin_base_data_update_us_stock_symbol_path, :multipart => true do %>
+      <p><%= file_field_tag "csv_file" %></p>
+      <p><%= submit_tag "美股列表、行业 CSV数据 汇入", :class => "btn btn-sm btn-default btn-block" %></p>
+    <% end %>
   </div>
 
   <hr>

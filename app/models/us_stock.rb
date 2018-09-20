@@ -9,7 +9,7 @@ class UsStock < ApplicationRecord
 
   def add_easy_symbol
     if self.symbol.include?(".")
-      self.easy_symbol ||= self.symbol.split(".")[0] + "_" + self.symbol.split(".")[1]
+      self.easy_symbol ||= self.symbol.split(".")[0] + "-" + self.symbol.split(".")[1]
     else
       self.easy_symbol ||= self.symbol
     end

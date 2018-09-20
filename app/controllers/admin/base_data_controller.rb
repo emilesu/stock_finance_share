@@ -283,27 +283,62 @@ class Admin::BaseDataController < AdminController
 # ______________________________________美股部分______________________________________
 
   # 全局扫描更新 更新 美股 代码、上市地
+  # (旧版)
+  # def update_us_stock_symbol
+  #
+  #   (1..150).each do |i|        #最终上线要"i"改为149+ , "type"改为3
+  #     response = RestClient.get "http://web.juhe.cn:8080/finance/stock/usaall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "3" }
+  #     data = JSON.parse(response.body)
+  #
+  #     data["result"]["data"].each do |s|
+  #       existing_stock = UsStock.find_by_symbol( s["symbol"] )
+  #       if existing_stock.nil?
+  #         UsStock.create!(
+  #           :symbol => s["symbol"],
+  #           :market => s["market"]
+  #         )
+  #       end
+  #     end
+  #   end
+  #   puts "更新完毕*******"
+  #   redirect_to admin_base_data_index_path
+  #   flash[:notice] = "美股 代码、股票名称、行业、上市地 更新完毕"
+  #
+  # end
+
+
+  # 更新美股列表、行业 数据汇入   数据源 NASDAQ CSV表
+  # (2018.09.20版本)
   def update_us_stock_symbol
+    require 'csv'                       #引入 csv 库
+    csv_string = params[:csv_file].read.force_encoding('utf-8')    #数据源来自上传的 CSV 文件
 
-    (1..150).each do |i|        #最终上线要"i"改为149+ , "type"改为3
-      response = RestClient.get "http://web.juhe.cn:8080/finance/stock/usaall", :params => { :key => KEY_CONFIG["juhe_api_key"], :page => i, :type => "3" }
-      data = JSON.parse(response.body)
+    success = 0
+    failed_records = []
 
-      data["result"]["data"].each do |s|
-        existing_stock = UsStock.find_by_symbol( s["symbol"] )
-        if existing_stock.nil?
-          UsStock.create!(
-            :symbol => s["symbol"],
-            :market => s["market"]
-          )
-        end
+    CSV.parse(csv_string) do |row|
+      us_stock = UsStock.new(
+        :symbol => row[0],
+        :name => row[1],
+        :ipoyear => row[4],
+        :sector => row[5],
+        :industry => row[6],
+      )
+
+      if us_stock.save
+        success += 1
+      else
+        failed_records << [row, us_stock]
+        Rails.logger.info("#{row} ----> #{us_stock.errors.full_messages}")
       end
     end
+
     puts "更新完毕*******"
+    flash[:notice] = "总共汇入 #{success} 笔，失败 #{failed_records.size} 笔"
     redirect_to admin_base_data_index_path
-    flash[:notice] = "美股 代码、股票名称、行业、上市地 更新完毕"
 
   end
+
 
 
   # 全局扫描更新 财务表 数据
