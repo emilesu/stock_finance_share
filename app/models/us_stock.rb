@@ -50,7 +50,7 @@ class UsStock < ApplicationRecord
 
   # 年份列表
   def us_stock_years
-    date = JSON.parse(self.cwzb)[0]
+    date = JSON.parse(self.zcb)[0]
     # 运算
     result = []
     (0..4).each do |i|
@@ -66,16 +66,16 @@ class UsStock < ApplicationRecord
 
 
   # --- A1-1、现金流量比率（  >100%比较好 ）---
-  # =  经营净现金流llb9  /  流动负债zcb17
+  # =  经营净现金流llb9  /  流动负债zcb20
   def us_operating_cash_flow_ratio
     # 数据提取
     llb9 = JSON.parse(self.llb)[9]
-    zcb17 = JSON.parse(self.zcb)[17]
+    zcb20 = JSON.parse(self.zcb)[20]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb17[i]) != 0
-         m = to_num(llb9[i]) / to_num(zcb17[i]) * 100
+       if to_num(zcb20[i]) != 0
+         m = to_num(llb9[i]) / to_num(zcb20[i]) * 100
        else
          m = 0
        end
@@ -85,18 +85,18 @@ class UsStock < ApplicationRecord
   end
 
   # --- A1-3、现金再投资比率（  >10%比较好 ）---
-  # =  经营净现金流llb9 - 红利支付llb17  /  总资产zcb15 - 流动负债zcb17
+  # =  经营净现金流llb9 - 红利支付llb16(负数)  /  总资产zcb15 - 流动负债zcb19
   def us_cash_re_investment_ratio
     # 数据提取
     llb9 = JSON.parse(self.llb)[9]
-    llb17 = JSON.parse(self.llb)[17]
+    llb16 = JSON.parse(self.llb)[16]
     zcb15 = JSON.parse(self.zcb)[15]
-    zcb17 = JSON.parse(self.zcb)[17]
+    zcb19 = JSON.parse(self.zcb)[19]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb15[i]) - to_num(zcb17[i]) != 0
-         m = (to_num(llb9[i]) - to_num(llb17[i])) / (to_num(zcb15[i]) - to_num(zcb17[i])) * 100
+       if to_num(zcb15[i]) - to_num(zcb19[i]) != 0
+         m = (to_num(llb9[i]) + to_num(llb16[i])) / (to_num(zcb15[i]) - to_num(zcb19[i])) * 100
        else
          m = 0
        end
@@ -106,65 +106,8 @@ class UsStock < ApplicationRecord
   end
 
   # --- A2-1、现金与约当现金占总资产比率 ( 10% - 25% 较好 ) ---
-  # =  现金与约当现金 zcb3  /  总资产 zcb15
+  # =  现金与约当现金 zcb2  /  总资产 zcb15
   def us_cash_and_cash_equivalents_ratio
-    # 数据提取
-    zcb3 = JSON.parse(self.zcb)[3]
-    zcb15 = JSON.parse(self.zcb)[15]
-    # 运算
-     result = []
-     (0..4).each do |i|
-       if to_num(zcb15[i]) != 0
-         m = to_num(zcb3[i]) / to_num(zcb15[i]) * 100
-       else
-         m = 0
-       end
-       result << m.round(1)
-    end
-    return result
-  end
-
-  # --- A2-2、应收账款占总资产比率 ---
-  # =  应收账款 zcb5  /  总资产 zcb15
-  def us_receivables_ratio
-    # 数据提取
-    zcb5 = JSON.parse(self.zcb)[5]
-    zcb15 = JSON.parse(self.zcb)[15]
-    # 运算
-     result = []
-     (0..4).each do |i|
-       if to_num(zcb15[i]) != 0
-         m = to_num(zcb5[i]) / to_num(zcb15[i]) * 100
-       else
-         m = 0
-       end
-       result << m.round(1)
-    end
-    return result
-  end
-
-  # --- A2-3、存货占总资产比率 ---
-  # =  存货 zcb6  /  总资产 zcb15
-  def us_inventory_ratio
-    # 数据提取
-    zcb6 = JSON.parse(self.zcb)[6]
-    zcb15 = JSON.parse(self.zcb)[15]
-    # 运算
-     result = []
-     (0..4).each do |i|
-       if to_num(zcb15[i]) != 0
-         m = to_num(zcb6[i]) / to_num(zcb15[i]) * 100
-       else
-         m = 0
-       end
-       result << m.round(1)
-    end
-    return result
-  end
-
-  # --- A2-4、流动资产占总资产比率 ---
-  # =  流动资产 zcb2  /  总资产 zcb15
-  def us_current_assets_ratio
     # 数据提取
     zcb2 = JSON.parse(self.zcb)[2]
     zcb15 = JSON.parse(self.zcb)[15]
@@ -181,17 +124,17 @@ class UsStock < ApplicationRecord
     return result
   end
 
-  # --- A2-5、应付账款占总资产比率 ---
-  # =  应付账款 zcb19  /  总资产 zcb15
-  def us_accounts_payable_ratio
+  # --- A2-2、应收账款占总资产比率 ---
+  # =  应收账款 zcb4  /  总资产 zcb15
+  def us_receivables_ratio
     # 数据提取
-    zcb19 = JSON.parse(self.zcb)[19]
+    zcb4 = JSON.parse(self.zcb)[4]
     zcb15 = JSON.parse(self.zcb)[15]
     # 运算
      result = []
      (0..4).each do |i|
        if to_num(zcb15[i]) != 0
-         m = to_num(zcb19[i]) / to_num(zcb15[i]) * 100
+         m = to_num(zcb4[i]) / to_num(zcb15[i]) * 100
        else
          m = 0
        end
@@ -200,9 +143,47 @@ class UsStock < ApplicationRecord
     return result
   end
 
-  # --- A2-6、流动负债占总资产比率 ---
-  # =  流动负债 zcb17  /  总资产 zcb15
-  def us_current_liabilities_ratio
+  # --- A2-3、存货占总资产比率 ---
+  # =  存货 zcb5  /  总资产 zcb15
+  def us_inventory_ratio
+    # 数据提取
+    zcb5 = JSON.parse(self.zcb)[5]
+    zcb15 = JSON.parse(self.zcb)[15]
+    # 运算
+     result = []
+     (0..4).each do |i|
+       if to_num(zcb15[i]) != 0
+         m = to_num(zcb5[i]) / to_num(zcb15[i]) * 100
+       else
+         m = 0
+       end
+       result << m.round(1)
+    end
+    return result
+  end
+
+  # --- A2-4、流动资产占总资产比率 ---
+  # =  流动资产 zcb7  /  总资产 zcb15
+  def us_current_assets_ratio
+    # 数据提取
+    zcb7 = JSON.parse(self.zcb)[7]
+    zcb15 = JSON.parse(self.zcb)[15]
+    # 运算
+     result = []
+     (0..4).each do |i|
+       if to_num(zcb15[i]) != 0
+         m = to_num(zcb7[i]) / to_num(zcb15[i]) * 100
+       else
+         m = 0
+       end
+       result << m.round(1)
+    end
+    return result
+  end
+
+  # --- A2-5、应付账款占总资产比率 ---
+  # =  应付账款 zcb17  /  总资产 zcb15
+  def us_accounts_payable_ratio
     # 数据提取
     zcb17 = JSON.parse(self.zcb)[17]
     zcb15 = JSON.parse(self.zcb)[15]
@@ -219,17 +200,37 @@ class UsStock < ApplicationRecord
     return result
   end
 
+  # --- A2-6、流动负债占总资产比率 ---
+  # =  流动负债 zcb20  /  总资产 zcb15
+  def us_current_liabilities_ratio
+    # 数据提取
+    zcb20 = JSON.parse(self.zcb)[20]
+    zcb15 = JSON.parse(self.zcb)[15]
+    # 运算
+     result = []
+     (0..4).each do |i|
+       if to_num(zcb15[i]) != 0
+         m = to_num(zcb20[i]) / to_num(zcb15[i]) * 100
+       else
+         m = 0
+       end
+       result << m.round(1)
+    end
+    return result
+  end
+
   # --- A2-7、长期负债占总资产比率 ---
-  # =  非流动负债 zcb22  /  总资产 zcb15
+  # =  长期负债 zcb21 + 其他负债 zcb22  /  总资产 zcb15
   def us_long_term_liability_ratio
     # 数据提取
+    zcb21 = JSON.parse(self.zcb)[21]
     zcb22 = JSON.parse(self.zcb)[22]
     zcb15 = JSON.parse(self.zcb)[15]
     # 运算
      result = []
      (0..4).each do |i|
        if to_num(zcb15[i]) != 0
-         m = to_num(zcb22[i]) / to_num(zcb15[i]) * 100
+         m = (to_num(zcb21[i]) + to_num(zcb22[i])) / to_num(zcb15[i]) * 100
        else
          m = 0
        end
@@ -239,16 +240,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- A2-8、股东权益占总资产比率 ---
-  # =  股东权益 zcb27  /  总资产 zcb15
+  # =  股东权益 zcb36  /  总资产 zcb15
   def us_shareholders_equity_ratio
     # 数据提取
-    zcb27 = JSON.parse(self.zcb)[27]
+    zcb36 = JSON.parse(self.zcb)[36]
     zcb15 = JSON.parse(self.zcb)[15]
     # 运算
      result = []
      (0..4).each do |i|
        if to_num(zcb15[i]) != 0
-         m = to_num(zcb27[i]) / to_num(zcb15[i]) * 100
+         m = to_num(zcb36[i]) / to_num(zcb15[i]) * 100
        else
          m = 0
        end
@@ -258,16 +259,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- A3-1、应收账款周转率 ---
-  # =  营业收入  lrb1  /  应收账款 zcb5
+  # =  营业收入  lrb1  /  应收账款 zcb4
   def us_accounts_receivable_turnover_ratio
     # 数据提取
     lrb1 = JSON.parse(self.lrb)[1]
-    zcb5 = JSON.parse(self.zcb)[5]
+    zcb4 = JSON.parse(self.zcb)[4]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb5[i]) != 0
-         m = to_num(lrb1[i]) / to_num(zcb5[i])
+       if to_num(zcb4[i]) != 0
+         m = to_num(lrb1[i]) / to_num(zcb4[i])
        else
          m = 0
        end
@@ -277,16 +278,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- A3-2、存货周转率 ---
-  # =  营业成本  lrb2  /  存货 zcb6
+  # =  营业成本  lrb2  /  存货 zcb5
   def us_inventory_turnover_ratio
     # 数据提取
     lrb2 = JSON.parse(self.lrb)[2]
-    zcb6 = JSON.parse(self.zcb)[6]
+    zcb5 = JSON.parse(self.zcb)[5]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb6[i]) != 0
-         m = to_num(lrb2[i]) / to_num(zcb6[i])
+       if to_num(zcb5[i]) != 0
+         m = to_num(lrb2[i]) / to_num(zcb5[i])
        else
          m = 0
        end
@@ -296,16 +297,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- A3-3、固定资产周转率(不动产/厂房及设备周转率) ---
-  # =  营业收入  lrb1  /  不动产/厂房及设备 zcb11
+  # =  营业收入  lrb1  /  不动产/厂房及设备 zcb9
   def us_fixed_asset_turnover_ratio
     # 数据提取
     lrb1 = JSON.parse(self.lrb)[1]
-    zcb11 = JSON.parse(self.zcb)[11]
+    zcb9 = JSON.parse(self.zcb)[9]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb11[i]) != 0
-         m = to_num(lrb1[i]) / to_num(zcb11[i])
+       if to_num(zcb9[i]) != 0
+         m = to_num(lrb1[i]) / to_num(zcb9[i])
        else
          m = 0
        end
@@ -334,15 +335,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C1、营业毛利率 ---
-  # =  营业毛利率 cwzb10
+  # =  营业毛利率 = 毛利 lrb3 / 营业收入lrb1
   def us_operating_margin_ratio
     # 数据提取
-    cwzb10 = JSON.parse(self.cwzb)[10]
+    lrb3 = JSON.parse(self.lrb)[3]
+    lrb1 = JSON.parse(self.lrb)[1]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb10[i]) != 0
-         m = to_num(cwzb10[i])
+       if to_num(lrb1[i]) != 0
+         m = to_num(lrb3[i]) / to_num(lrb1[i]) * 100
        else
          m = 0
        end
@@ -352,15 +354,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C2、营业利益率 ---
-  # =  营业利益率 cwzb12
+  # =  营业利益率 = 营业收入或亏损 lrb10 / 营业收入lrb1
   def us_business_profitability_ratio
     # 数据提取
-    cwzb12 = JSON.parse(self.cwzb)[12]
+    lrb10 = JSON.parse(self.lrb)[10]
+    lrb1 = JSON.parse(self.lrb)[1]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb12[i]) != 0
-         m = to_num(cwzb12[i])
+       if to_num(lrb1[i]) != 0
+         m = to_num(lrb10[i]) / to_num(lrb1[i]) * 100
        else
          m = 0
        end
@@ -370,16 +373,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C3、经营安全边际率 ---
-  # =  营业利益率 cwzb12 / 营业毛利率 cwzb10
+  # =  营业收入或亏损 lrb10 / 毛利 lrb3
   def us_operating_margin_of_safety_ratio
     # 数据提取
-    cwzb12 = JSON.parse(self.cwzb)[12]
-    cwzb10 = JSON.parse(self.cwzb)[10]
+    lrb10 = JSON.parse(self.lrb)[10]
+    lrb3 = JSON.parse(self.lrb)[3]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb10[i]) != 0
-         m = to_num(cwzb12[i]) / to_num(cwzb10[i]) * 100
+       if to_num(lrb3[i]) != 0
+         m = to_num(lrb10[i]) / to_num(lrb3[i]) * 100
        else
          m = 0
        end
@@ -389,15 +392,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C4、净利率 ---
-  # =  净利率 cwzb13
+  # =  净利率 = 净收入 lrb25 / 营业收入lrb1
   def us_net_profit_margin_ratio
     # 数据提取
-    cwzb13 = JSON.parse(self.cwzb)[13]
+    lrb25 = JSON.parse(self.lrb)[25]
+    lrb1 = JSON.parse(self.lrb)[1]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb13[i]) != 0
-         m = to_num(cwzb13[i])
+       if to_num(lrb1[i]) != 0
+         m = to_num(lrb25[i]) / to_num(lrb1[i]) * 100
        else
          m = 0
        end
@@ -407,15 +411,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C5、每股盈余 ---
-  # =  每股收益 cwzb27
+  # =  每股收益 = 适用于普通股的净收入 lrb27 / 普通股 zcb31
   def us_earnings_per_share
     # 数据提取
-    cwzb27 = JSON.parse(self.cwzb)[27]
+    lrb27 = JSON.parse(self.lrb)[27]
+    zcb31 = JSON.parse(self.zcb)[31]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb27[i]) != 0
-         m = to_num(cwzb27[i])
+       if to_num(zcb31[i]) != 0
+         m = to_num(lrb27[i]) / to_num(zcb31[i]) / 10
        else
          m = 0
        end
@@ -425,15 +430,15 @@ class UsStock < ApplicationRecord
   end
 
   # --- C5-1、税后净利(百万元) ---
-  # =  净利润 lrb14
+  # =  净利润 lrb25
   def us_after_tax_profit
     # 数据提取
-    lrb14 = JSON.parse(self.lrb)[14]
+    lrb25 = JSON.parse(self.lrb)[25]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(lrb14[i]) != 0
-         m = to_num(lrb14[i])
+       if to_num(lrb25[i]) != 0
+         m = to_num(lrb25[i]) / 1000
        else
          m = 0
        end
@@ -443,16 +448,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- C6、股东权益报酬率 ---
-  # =  归属于母公司所有者的净利润 lrb16 / 归属于母公司股东权益合计 zcb29
+  # =  净利润 lrb25 / 总股东权益 zcb36
   def us_roe_ratio
     # 数据提取
-    lrb16 = JSON.parse(self.lrb)[16]
-    zcb29 = JSON.parse(self.zcb)[29]
+    lrb25 = JSON.parse(self.lrb)[25]
+    zcb36 = JSON.parse(self.zcb)[36]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb29[i]) != 0
-         m = to_num(lrb16[i]) / to_num(zcb29[i]) * 100
+       if to_num(zcb36[i]) != 0
+         m = to_num(lrb25[i]) / to_num(zcb36[i]) * 100
        else
          m = 0
        end
@@ -462,16 +467,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- D1、负债占资产比率 ---
-  # =  总负债 zcb25 / 总资产 zcb15
+  # =  总负债 zcb26 / 总资产 zcb15
   def us_debt_asset_ratio
     # 数据提取
-    zcb25 = JSON.parse(self.zcb)[25]
+    zcb26 = JSON.parse(self.zcb)[26]
     zcb15 = JSON.parse(self.zcb)[15]
     # 运算
      result = []
      (0..4).each do |i|
        if to_num(zcb15[i]) != 0
-         m = to_num(zcb25[i]) / to_num(zcb15[i]) * 100
+         m = to_num(zcb26[i]) / to_num(zcb15[i]) * 100
        else
          m = 0
        end
@@ -481,17 +486,17 @@ class UsStock < ApplicationRecord
   end
 
   # --- D2、长期负债占不动产/厂房及设备比率 ---
-  # =  (长期负债 zcb22 + 股东权益 zcb27) / 不动产/厂房及设备 zcb11
+  # =  (长期负债 zcb21 + 股东权益 zcb36) / 不动产/厂房及设备 zcb9
   def us_long_term_funds_for_fixed_assets_ratio
     # 数据提取
-    zcb22 = JSON.parse(self.zcb)[22]
-    zcb27 = JSON.parse(self.zcb)[27]
-    zcb11 = JSON.parse(self.zcb)[11]
+    zcb21 = JSON.parse(self.zcb)[21]
+    zcb36 = JSON.parse(self.zcb)[36]
+    zcb9 = JSON.parse(self.zcb)[9]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb11[i]) != 0
-         m = (to_num(zcb22[i]) + to_num(zcb27[i])) / to_num(zcb11[i]) * 100
+       if to_num(zcb9[i]) != 0
+         m = (to_num(zcb21[i]) + to_num(zcb36[i])) / to_num(zcb9[i]) * 100
        else
          m = 0
        end
@@ -501,15 +506,16 @@ class UsStock < ApplicationRecord
   end
 
   # --- E1、流动比率 ---
-  # =  流动比率 cwzb22
+  # =  流动比率 = 流动资产 zcb7 / 流动负债 zcb20
   def us_current_ratio
     # 数据提取
-    cwzb22 = JSON.parse(self.cwzb)[22]
+    zcb7 = JSON.parse(self.zcb)[7]
+    zcb20 = JSON.parse(self.zcb)[20]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb22[i]) != 0
-         m = to_num(cwzb22[i]) * 100
+       if to_num(zcb20[i]) != 0
+         m = to_num(zcb7[i]) / to_num(zcb20[i]) * 100
        else
          m = 0
        end
@@ -519,15 +525,17 @@ class UsStock < ApplicationRecord
   end
 
   # --- E2、速动比率 ---
-  # =  速动比率 cwzb24
+  # =  流动比率 = (流动资产 zcb7 - 存货 zcb5) / 流动负债 zcb20
   def us_quick_ratio
     # 数据提取
-    cwzb24 = JSON.parse(self.cwzb)[24]
+    zcb7 = JSON.parse(self.zcb)[7]
+    zcb5 = JSON.parse(self.zcb)[5]
+    zcb20 = JSON.parse(self.zcb)[20]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(cwzb24[i]) != 0
-         m = to_num(cwzb24[i]) * 100
+       if to_num(zcb20[i]) != 0
+         m = (to_num(zcb7[i]) - to_num(zcb5[i])) / to_num(zcb20[i]) * 100
        else
          m = 0
        end
@@ -545,7 +553,7 @@ class UsStock < ApplicationRecord
      result = []
      (0..4).each do |i|
        if to_num(llb9[i]) != 0
-         m = to_num(llb9[i])
+         m = to_num(llb9[i]) / 1000
        else
          m = 0
        end
@@ -555,15 +563,15 @@ class UsStock < ApplicationRecord
   end
 
   # --- F2、投资活动现金流量 ---
-  # =  投资活动产生现金流量净额 llb15
+  # =  投资活动产生现金流量净额 llb14
   def us_net_investment_activities_generated_cash_flow
     # 数据提取
-    llb15 = JSON.parse(self.llb)[15]
+    llb14 = JSON.parse(self.llb)[14]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(llb15[i]) != 0
-         m = to_num(llb15[i])
+       if to_num(llb14[i]) != 0
+         m = to_num(llb14[i]) / 1000
        else
          m = 0
        end
@@ -573,15 +581,15 @@ class UsStock < ApplicationRecord
   end
 
   # --- F2、筹资活动现金流量(百万元) ---
-  # =  筹资活动产生的现金流量净额 llb21
+  # =  筹资活动产生的现金流量净额 llb20
   def us_net_financing_activities_generated_cash_flow
     # 数据提取
-    llb21 = JSON.parse(self.llb)[21]
+    llb20 = JSON.parse(self.llb)[20]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(llb21[i]) != 0
-         m = to_num(llb21[i])
+       if to_num(llb20[i]) != 0
+         m = to_num(llb20[i]) / 1000
        else
          m = 0
        end
@@ -591,34 +599,35 @@ class UsStock < ApplicationRecord
   end
 
   # --- G-2、分红金额( b.派息 ) ---
-  # =  红利支付 llb17
+  # 分红金额 = 红利支付 llb16 / 普通股数 zcb31
   def us_dividend_amount
     # 数据提取
-    llb17 = JSON.parse(self.llb)[17]
+    llb16 = JSON.parse(self.llb)[16]
+    zcb31 = JSON.parse(self.zcb)[31]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(llb17[i]) != 0
-         m = to_num(llb17[i])
+       if to_num(zcb31[i]) != 0
+         m = (0 - to_num(llb16[i])) / to_num(zcb31[i])
        else
          m = 0
        end
-       result << m.round(0)
+       result << m.round(1)
     end
     return result
   end
 
   # --- G-3、分红率 ---
-  # = 红利支付 llb17 / 属总公司净利润 lrb16
+  # = 红利支付 llb16 / 净利润 lrb27
   def us_dividend_rate
     # 数据提取
-    llb17 = JSON.parse(self.llb)[17]
-    lrb16 = JSON.parse(self.lrb)[16]
+    llb16 = JSON.parse(self.llb)[16]
+    lrb27 = JSON.parse(self.lrb)[27]
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(lrb16[i]) != 0
-         m = to_num(llb17[i]) / to_num(lrb16[i]) * 100
+       if to_num(lrb27[i]) != 0
+         m = (0 - to_num(llb16[i])) / to_num(lrb27[i]) * 100
        else
          m = 0
        end
@@ -747,102 +756,72 @@ class UsStock < ApplicationRecord
   # 五年平均 现金流量排序
   def us_cash_order
     array = JSON.parse(self.static_data)[1]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   # 五年平均 毛利率排序
   def us_operating_margin_order
     array = JSON.parse(self.static_data)[14]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   # 五年平均 营业利益率排序
   def us_business_profitability_order
     array = JSON.parse(self.static_data)[15]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   # 五年平均 净利率排序
   def us_net_profit_margin_order
     array = JSON.parse(self.static_data)[17]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   #股五年平均 东权益报酬率 RoE 排序
   def us_roe_order
     array = JSON.parse(self.static_data)[13]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   #五年平均 负债占资本利率排序
   def us_debt_asset_order
     array = JSON.parse(self.static_data)[20]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
-      return (num_array.sum / num_array.size).round(1)
+      return (array.sum / num_array.size).round(1)
     end
   end
 
   #分红率排序
   def us_dividend_rate_order
-    data = JSON.parse(self.static_data)[30][0]
+    data = JSON.parse(self.static_data)[32][0]
     if data != nil
       return data
     else
@@ -851,10 +830,6 @@ class UsStock < ApplicationRecord
   end
 
 
-  # 筛选出无财务数据的股票，在排序时候忽略掉
-  def nil_stock
-
-  end
 
 
 

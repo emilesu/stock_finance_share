@@ -478,23 +478,17 @@ class Admin::BaseDataController < AdminController
 
 
 
-  #全局扫描更新 股票信息 中文名 行业
+  #全局扫描更新 股票信息 中文名 (2018.09.20版本)
   def update_us_stock_company_info
     @us_stocks = UsStock.all
     @us_stocks.each do |s|
 
-      if s.cnname.blank? || s.industry.blank?
+      if s.cnname.blank?
         response = RestClient.get "https://www.laohu8.com/hq/s/#{s.easy_symbol}"
         doc = Nokogiri::HTML.parse(response.body)
           main1 = doc.css(".quote-main .title").map{ |x| x.text }[0].split(" ")[1..-1].join(" ")
-          if doc.css(".quote-main .belong").map{ |x| x.text }[0].nil?
-            main2 = "其他"        #爬取的数据有时会存在 nil 的情况，独自区分为 “其他”
-          else
-            main2 = doc.css(".quote-main .belong").map{ |x| x.text }[0].split("：")[1]
-          end
           s.update!(
             :cnname => main1,
-            :industry => main2
           )
       end
     end

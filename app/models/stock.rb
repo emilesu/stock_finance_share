@@ -1057,13 +1057,8 @@ class Stock < ApplicationRecord
   # 五年平均 现金流量排序
   def cash_order
     array = JSON.parse(self.static_data_5)[1]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1073,13 +1068,8 @@ class Stock < ApplicationRecord
   # 五年平均 毛利率排序
   def operating_margin_order
     array = JSON.parse(self.static_data_5)[14]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1089,13 +1079,8 @@ class Stock < ApplicationRecord
   # 五年平均 营业利益率排序
   def business_profitability_order
     array = JSON.parse(self.static_data_5)[15]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1105,13 +1090,8 @@ class Stock < ApplicationRecord
   # 五年平均 净利率排序
   def net_profit_margin_order
     array = JSON.parse(self.static_data_5)[17]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1121,13 +1101,8 @@ class Stock < ApplicationRecord
   #股五年平均 东权益报酬率 RoE 排序
   def roe_order
     array = JSON.parse(self.static_data_5)[13]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1137,13 +1112,8 @@ class Stock < ApplicationRecord
   #五年平均 负债占资本利率排序
   def debt_asset_order
     array = JSON.parse(self.static_data_5)[20]
-    num_array = []
-    array.each do |i|
-      if i.to_s != "NaN" && i.to_s != "Infinity" && i.to_s != "-Infinity" && i.class == Float                                         # 判断是否是数字, 防止出现分母是0导致的"Infinity"错误
-        num_array << i
-      end
-    end
-    if num_array.blank?
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
