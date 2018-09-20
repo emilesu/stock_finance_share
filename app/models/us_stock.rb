@@ -57,7 +57,8 @@ class UsStock < ApplicationRecord
       if date[i].nil?
         m = "0"
       else
-        m = date[i]
+        d = date[i].split("/")                      # 对时间进行格式化
+        m = d[2] + "-" + d[0] + "-" + d[1]          # 把 1/30/2018 转换成 2018-1-31
       end
       result << m
     end

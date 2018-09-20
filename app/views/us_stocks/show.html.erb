@@ -45,8 +45,11 @@
             } %>
         </div>
         <strong>
-          <p>行业：<%= @us_stock.industry %></p>
-          <p>市场: <%= @us_stock.market %></p>
+          <% if @us_stock.name[0] != @us_stock.cnname[0] %>
+            <p><%= @us_stock.name %></p>
+          <% end %>
+          <p>行业：<%= @us_stock.sector %></p>
+          <p>行业细分: <%= @us_stock.industry %></p>
           <p>滚动市盈率(TTM): <%= @latest_price[2] %></p>
           <p>股息率: <%= @latest_price[3] %></p>
         </strong>
