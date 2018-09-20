@@ -317,19 +317,22 @@ class Admin::BaseDataController < AdminController
     failed_records = []
 
     CSV.parse(csv_string) do |row|
-      us_stock = UsStock.new(
-        :symbol => row[0],
-        :name => row[1],
-        :ipoyear => row[4],
-        :sector => row[5],
-        :industry => row[6],
-      )
+      existing_stock = UsStock.find_by_symbol( row[0] )
+      if existing_stock.nil?
+        us_stock = UsStock.new(
+          :symbol => row[0],
+          :name => row[1],
+          :ipoyear => row[4],
+          :sector => row[5],
+          :industry => row[6],
+        )
 
-      if us_stock.save
-        success += 1
-      else
-        failed_records << [row, us_stock]
-        Rails.logger.info("#{row} ----> #{us_stock.errors.full_messages}")
+        if us_stock.save
+          success += 1
+        else
+          failed_records << [row, us_stock]
+          Rails.logger.info("#{row} ----> #{us_stock.errors.full_messages}")
+        end
       end
     end
 
