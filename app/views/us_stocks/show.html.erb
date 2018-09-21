@@ -48,8 +48,20 @@
           <% if @us_stock.name[0] != @us_stock.cnname[0] %>
             <p><%= @us_stock.name %></p>
           <% end %>
-          <p>行业：<%= @us_stock.sector %></p>
-          <p>行业细分: <%= @us_stock.industry %></p>
+          <p>领域:
+            <button type="button" class="btn btn-default btn-xs">
+              <%= link_to sector_us_stocks_path(:order => @us_stock.sector) do %>
+                <%= @us_stock.sector %>  >>
+              <% end %>
+            </button>
+          </p>
+          <p>行业:
+            <button type="button" class="btn btn-default btn-xs">
+              <%= link_to industry_us_stocks_path(:order => @us_stock.industry) do %>
+                <%= @us_stock.industry %>  >>
+              <% end %>
+            </button>
+          </p>
           <p>滚动市盈率(TTM): <%= @latest_price[2] %></p>
           <p>股息率: <%= @latest_price[3] %></p>
         </strong>
@@ -59,11 +71,11 @@
         </div> -->
 
         <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
-          <div class="to-finance-btn">
+          <!-- <div class="to-finance-btn">
             <span>
               <%= link_to("行业统计分析 >>", industry_us_stocks_path(:order => @us_stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
-          </div>
+          </div> -->
 
       </div>
 
