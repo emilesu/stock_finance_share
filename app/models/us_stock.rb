@@ -686,10 +686,21 @@ class UsStock < ApplicationRecord
 
   # -----------------modal 弹窗数据脚本, 将输出[时间+数据]的格式用于生成图表-----------------
 
+  # 为 modal_data 传入 time 次数
+  def modal_time
+    array = JSON.parse(self.static_data)[0]
+    num_array = array.delete_if {|x| x == "0" }
+    if array.blank?
+      return 0
+    else
+      return num_array.size
+    end
+  end
+
   # 财报类 时间为按年
   def modal_data(time, data)
     #判断时间,以确定生成的数据长度
-    y = JSON.parse(self.static_data)[0][0..4]
+    y = JSON.parse(self.static_data)[0][0..time-1]
     #与日期对应的数据,生成具体的数据
     m = data
     # 运算
