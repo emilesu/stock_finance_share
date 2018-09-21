@@ -15,7 +15,7 @@
         <th>上市时间/ipoyear</th>
         <th>领域/sector</th>
         <th>行业/industry</th>
-        <!-- <th>财务指标/cwzb</th> -->
+        <th>财务指标/cwzb</th>
         <th>利润表/lrb</th>
         <th>流量表/llb</th>
         <th>资产表/zcb</th>
@@ -50,11 +50,13 @@
             <td><%= us_stock.industry %></td>
           <% end %>
           <!--  -->
-          <!-- <% if us_stock.cwzb.nil? || us_stock.cwzb == "" %>
-            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
-          <% else %>
-            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
-          <% end %> -->
+
+            <% if us_stock.lrb.include?("nil") %>
+              <td><%= "nil" %></td>
+            <% else %>
+              <td><%= "good" %></td>
+            <% end %>
+
           <!--  -->
           <% if us_stock.lrb.nil? || us_stock.lrb == "" %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
