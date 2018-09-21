@@ -803,7 +803,7 @@ class UsStock < ApplicationRecord
   def us_roe_order
     array = JSON.parse(self.static_data)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank?
+    if array.blank? || array.sum / num_array.size > 100         #修正掉离谱的大数值
       return 0
     else
       return (array.sum / num_array.size).round(1)
