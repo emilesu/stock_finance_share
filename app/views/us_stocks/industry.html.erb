@@ -43,7 +43,7 @@
           <%= @industry %>
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider"  style="height:800px; overflow:scroll" >
           <% @all_industrys.each do |i| %>
             <li>
               <%= link_to industry_us_stocks_path(:order => i) do %>
