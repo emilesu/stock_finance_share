@@ -1054,20 +1054,6 @@ class Stock < ApplicationRecord
 
 # -----------------------------------数据排序算法脚本(五年平均)-----------------------------------
 
-  # 判断一个数组中是否有小于或等于0的值，返回 HASH，用以修正 ROE 含有负数的情况
-  def if_less_than_0(array)
-    result = []
-    array.each do |i|
-      if i <= 0
-        result << 0
-      else
-        result << i
-      end
-    end
-    return result
-  end
-
-
   # 五年平均 现金流量排序
   def cash_order
     array = JSON.parse(self.static_data_5)[1]
@@ -1116,7 +1102,7 @@ class Stock < ApplicationRecord
   def roe_order
     array = JSON.parse(self.static_data_5)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank? || if_less_than_0(array).include?(0) || self.net_profit_margin_order <= 0         #修正掉离谱的大数值
+    if array.blank || self.net_profit_margin_order <= 0         #修正掉离谱的大数值
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
