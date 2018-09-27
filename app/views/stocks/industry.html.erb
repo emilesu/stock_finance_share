@@ -8,23 +8,37 @@
         <%= @industry %>
 
         <!-- 选择股票的上市年限 -->
-        <div class="btn-group pull-right">
-          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.time_range == "all_years" %>
-              全部
-            <% elsif current_user.time_range == "three_years" %>
-              近3年
-            <% elsif current_user.time_range == "five_years" %>
-              近5年
-            <% end %>
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><%= link_to("全部", all_years_stocks_path, method: :post) %></li>
-            <li><%= link_to("已上市3年", three_years_stocks_path, method: :post) %></li>
-            <li><%= link_to("已上市5年", five_years_stocks_path, method: :post) %></li>
-          </ul>
-        </div>
+        <% if current_user %>
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if current_user.time_range == "all_years" %>
+                全部
+              <% elsif current_user.time_range == "three_years" %>
+                近3年
+              <% elsif current_user.time_range == "five_years" %>
+                近5年
+              <% end %>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to("全部", all_years_stocks_path, method: :post) %></li>
+              <li><%= link_to("已上市3年", three_years_stocks_path, method: :post) %></li>
+              <li><%= link_to("已上市5年", five_years_stocks_path, method: :post) %></li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              选择上市年限
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to("全部", user_wechat_omniauth_authorize_path) %></li>
+              <li><%= link_to("已上市3年", user_wechat_omniauth_authorize_path) %></li>
+              <li><%= link_to("已上市5年", user_wechat_omniauth_authorize_path) %></li>
+            </ul>
+          </div>
+        <% end %>
 
       </div>
 

@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :authenticate_user!, only: [:industry, :all_years, :three_years, :five_years]
+  before_action :authenticate_user!, only: [:all_years, :three_years, :five_years]
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
@@ -95,14 +95,17 @@ class StocksController < ApplicationController
   end
 
   def user_choose_time_range_stocks
-    if current_user.time_range == "all_years"
+    if current_user && current_user.time_range == "all_years"
       range = Time.now
       return range
-    elsif current_user.time_range == "three_years"
+    elsif current_user && current_user.time_range == "three_years"
       range = Time.now - 1095.days
       return range
-    elsif current_user.time_range == "five_years"
+    elsif current_user && current_user.time_range == "five_years"
       range = Time.now - 1825.days
+      return range
+    elsif !current_user
+      range = Time.now
       return range
     end
   end

@@ -1102,7 +1102,7 @@ class Stock < ApplicationRecord
   def roe_order
     array = JSON.parse(self.static_data_5)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank || self.net_profit_margin_order <= 0         #修正掉离谱的大数值
+    if array.blank? || self.net_profit_margin_order <= 0         #修正掉离谱的大数值
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
