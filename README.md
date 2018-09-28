@@ -2,8 +2,6 @@
 
 ### 关于 HOLD LE
 
----
-
 HOLD LE 是一个交易策略学习及工具网站，旨在传播正确的价值投资观念及技巧，学习如何通过合理运用各种分析方法，提高交易成功率，提升交易回报。
 
 HOLD LE 适用于包括股票、区块链货币、外汇等在内的金融交易，是经过笔者多次交易实践检验的高效交易策略，学习完毕后，能够很大程度提高金融交易的判断和操作能力。
@@ -32,8 +30,6 @@ HOLD LE 适用于包括股票、区块链货币、外汇等在内的金融交易
 
 
 ### 作者 / 站长
-
----
 
 **Emile Su ( 苏超鹏)**
 
@@ -74,8 +70,6 @@ HOLD LE 适用于包括股票、区块链货币、外汇等在内的金融交易
 
 ### 联系我们
 
----
-
 商业、公关、出版、演讲 等合作，请统一发邮件至：
 
 emilesu@qq.com
@@ -102,8 +96,6 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 
 
 ### 网站开发技术栈
-
----
 
 - [HOLD LE on GitHub](https://github.com/emilesu/stock_finance_share)
 
@@ -136,8 +128,6 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 <html><br><br><br><br></html>
 
 ### 主要功能升级
-
----
 
 **2018.1 - 2018.2 开发beta版：**
 - A 股数据爬取程式开发
