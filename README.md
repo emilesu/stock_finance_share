@@ -1,4 +1,4 @@
-HOLDLE 投资交易课设计程式(www.holdle.com)
+# HOLDLE 投资交易课设计程式(www.holdle.com)
 
 ### 关于 HOLD LE
 
@@ -28,7 +28,7 @@ HOLD LE 适用于包括股票、区块链货币、外汇等在内的金融交易
 - ……
 
 
-<html><br><br><br><br><br><br></html>
+<html><br><br><br><br></html>
 
 
 ### 作者 / 站长
@@ -69,7 +69,7 @@ HOLD LE 适用于包括股票、区块链货币、外汇等在内的金融交易
 - 2018年起重新独自创业，开发并维护 HOLD LE 网站、拍摄课程影片，开始致力投资理财、交易策略教学。
 
 
-<html><br><br><br><br><br><br></html>
+<html><br><br><br><br></html>
 
 
 ### 联系我们
@@ -98,7 +98,7 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 
 
 
-<html><br><br><br><br><br><br></html>
+<html><br><br><br><br></html>
 
 
 ### 网站开发技术栈
@@ -133,7 +133,7 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 
 
 
-<html><br><br><br><br><br><br></html>
+<html><br><br><br><br></html>
 
 ### 主要功能升级
 
