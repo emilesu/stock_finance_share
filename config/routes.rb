@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :videos          #视频教程
+
   namespace :admin do
     resources :users do
       member do
@@ -97,6 +99,7 @@ Rails.application.routes.draw do
       post :update_us_stock_company_info       #更新 美股 中文名 行业
       post :update_us_industry_setting    #更新行业设置
     end
+    resources :videos          #视频教程
   end
 
 

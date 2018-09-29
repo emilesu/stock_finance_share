@@ -29,7 +29,7 @@
 
         <li><%= link_to("对比", contrast_vs_path) %></li>
         <li><%= link_to("投资交易课", courses_path ) %></li>
-        <li><%= link_to("视频教学",  ) %></li>
+        <li><%= link_to("视频教学",  videos_path) %></li>
         <li><%= link_to("关于我们", welcome_about_path) %></li>
         <% if !current_user %>
           <li><%= link_to("注册/登入", user_wechat_omniauth_authorize_path) %></li>

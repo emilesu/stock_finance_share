@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180920152006) do
+ActiveRecord::Schema.define(version: 20180929073534) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -267,6 +267,18 @@ ActiveRecord::Schema.define(version: 20180920152006) do
     t.index ["openid"], name: "index_users_on_openid", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "cover"
+    t.string "video_link_1"
+    t.string "video_link_2"
+    t.string "video_link_3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "video_link_4"
   end
 
 end

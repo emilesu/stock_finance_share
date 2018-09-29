@@ -1,0 +1,64 @@
+<div>
+
+  <div>
+    <%= link_to("新建视频", new_admin_video_path, :class => "btn btn-default pull-right" ) %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>标题/title</th>
+        <th>封面/cover</th>
+        <th>视频连接1/video_link_1</th>
+        <th>视频连接2/video_link_2</th>
+        <th>视频连接3/video_link_3</th>
+        <th>添加时间/created_at</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @videos.each do |video| %>
+        <tr>
+          <td>
+            <%= video.id %>
+          </td>
+          <td>
+            <%= link_to video_path(video) do %>
+              <%= video.title %>
+            <% end %>
+          </td>
+          <td class="video-td">
+            <%= image_tag(video.cover) %>
+          </td>
+          <!-- 视频连接1 -->
+          <% if video.video_link_1.nil? || video.video_link_1 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!-- 视频连接2 -->
+          <% if video.video_link_2.nil? || video.video_link_2 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <!-- 视频连接3 -->
+          <% if video.video_link_3.nil? || video.video_link_3 == ""  %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
+          <% end %>
+          <td>
+            <%= video.created_at %>
+          </td>
+          <td>
+            <%= link_to("编辑", edit_admin_video_path(video), :class => "btn btn-xs btn-default") %>
+            <%= link_to("删除", admin_video_path(video), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
