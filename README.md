@@ -66,7 +66,9 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 - sidekiq       （異步處理）
 - figaro        （密匙管理）
 <html><br><br><br><br></html>
+
 ### 主要功能升級
+
 **2018.1 - 2018.2 開發beta版：**
 - A 股數據爬取程式開發
 - A 股會計報表數據整理，數據指標的算法公式整理
@@ -74,6 +76,7 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 - 增加 行業、企業簡介等欄位字段，
 - 增加 用戶管理功能
 <html><br></html>
+
 **2018.3 開發 V1 版：**
 - 增加 自動補全搜索功能 （A 股）
 - 增加  modal 可視圖表功能 （A 股）
@@ -81,6 +84,7 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 - 增加 近10年財報分析 + 最新季度同比分析功能 （A 股）
 - 增加 筆記（note）功能
 <html><br></html>
+
 **2018.4 開發 V2 版：**
 - 增加 用戶個人中心頁面及功能
 - 增加 編寫並整理“課程 - 企業分析”部分的文案
@@ -88,19 +92,23 @@ YouTube：[Emile Su](https://www.youtube.com/channel/UCyPKup86PifJpHaaXKRmkcQ?vi
 - 增加 股票實時價格數據流、市盈率、股息率等指標
 - 優化頁面布局，自適應移動設備的浏覽效果
 <html><br></html>
+
 **2018.5 開發 V3 版：**
 - 美股 數據爬取程式開發
 - 增加 美股 HOLD LE 表功能
 - 增加 股票間 VS 數據對比功能
 <html><br></html>
+
 **2018.6 開發 V4 版：**
 - 增加 “個人中心-交易曆史”功能
 - 持續優化編寫教程文案
 <html><br></html>
+
 **2018.7 開發 V5 版：**
 - 持續優化編寫教程文案
 - 完善“投資交易課”各項功能和浏覽體驗
 <html><br></html>
+
 **2018.9 開發 V6 版：**
 - 更換美股財報數據源，從 NASDAQ 和 Yahoo 接入第一手資料，並重新設計企業領域、行業的劃分
 - 開始錄制視頻版課程
