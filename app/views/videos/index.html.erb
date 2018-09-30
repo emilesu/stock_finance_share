@@ -1,0 +1,23 @@
+<div class="videos-index row">
+  <div class="videos col-lg-8 col-lg-offset-2 col-md-12 ">
+
+    <!-- video-box -->
+    <div class="row">
+    <% @videos.each do |video| %>
+      <div class="col-lg-4 col-sm-6">
+        <%= link_to video_path(video) do %>
+          <div class="video-box">
+            <%= image_tag video.cover %>
+            <div class="video-info">
+              <h2><%= video.title %></h2>
+              <p><%= video.introduction %></p>
+              <i class="pull-right">- <%= time_ago_in_words( video.created_at ) %> 前  -</i> <br>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+
+  </div>
+</div>

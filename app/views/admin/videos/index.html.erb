@@ -10,6 +10,7 @@
         <th>ID</th>
         <th>标题/title</th>
         <th>封面/cover</th>
+        <th>简介/introduction</th>
         <th>视频连接1/video_link_1</th>
         <th>视频连接2/video_link_2</th>
         <th>视频连接3/video_link_3</th>
@@ -30,6 +31,9 @@
           </td>
           <td class="video-td">
             <%= image_tag(video.cover) %>
+          </td>
+          <td>
+            <%= video.introduction %>
           </td>
           <!-- 视频连接1 -->
           <% if video.video_link_1.nil? || video.video_link_1 == ""  %>

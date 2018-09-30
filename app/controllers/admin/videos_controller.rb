@@ -43,7 +43,7 @@ class Admin::VideosController < AdminController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :cover, :video_link_1, :video_link_2, :video_link_3, :video_link_4)
+    params.require(:video).permit(:title, :introduction, :description, :cover, :video_link_1, :video_link_2, :video_link_3, :video_link_4)
   end
 
 end

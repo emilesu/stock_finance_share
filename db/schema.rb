@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180929073534) do
+ActiveRecord::Schema.define(version: 20180929174217) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -279,6 +279,7 @@ ActiveRecord::Schema.define(version: 20180929073534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "video_link_4"
+    t.text "introduction"
   end
 
 end

@@ -1,3 +1,119 @@
-// Place all the styles related to the videos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.videos-index {
+  // position: absolute;
+  // background-color: #f9f9f9;
+  // height: 100%;
+  .videos {
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    .video-box {
+      transition: 0.3s;
+      background-color: #fff;
+      margin-top: 50px;
+      border: rgba(0, 0, 0, 0.12) solid 1px;
+      min-height:420px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      img {
+        border-bottom: rgba(0, 0, 0, 0.12) solid 1px;
+        width: 100%;
+        height: auto;
+      }
+      .video-info {
+        text-align: justify;
+          margin: 24px 24px;
+        h2 {
+          font-size: 18px;
+          line-height: 28px;
+          font-weight: 400;
+        }
+        i {
+          color: #999;
+        }
+        p {
+          margin: 20px 0;
+          overflow: initial;
+          text-overflow: initial;
+          font-size: 13px;
+          line-height: 20px;
+        }
+      }
+    }
+    .video-box:hover {
+      transition: 0.3s;
+      background-color: #f9f9f9;
+      box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.2);
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+    }
+  }
+}
+
+.video-show {
+  .video-show-box {
+
+    .video-cover-box {
+      img {
+        width: 100%;
+        height: auto;
+        margin-top: 50px;
+        margin-bottom: 25px;
+      }
+      .tips1 {
+        font-size: 13px;
+      }
+      i {
+        color: #999;
+      }
+      .btn-group {
+        margin: 10px 0;
+      }
+    }
+
+    .video-info-box {
+      margin-bottom: 25px;
+      h1 {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 40px;
+      }
+      .video-description-box {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        p {
+          color: #333;
+          line-height: 26px;
+          text-align: justify;
+          font-size: 14px;
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
+@media screen and (min-width: 1400px){
+  .video-show {
+    background-color: #f9f9f9;
+    height: 100%;
+    .video-show-box {
+      background-color: #fff;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 1399px){
+  .video-show {
+    background-color: #fff;
+    height: 100%;
+    .video-show-box {
+      background-color: #fff;
+    }
+  }
+}

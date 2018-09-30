@@ -8,7 +8,8 @@
     <%= f.input :video_link_3, :label => "视频连接3（bilibili）/video_link_3", input_html: { class: "form-control"} %>
     <%= f.input :video_link_4, :label => "视频连接4（youku）/video_link_4", input_html: { class: "form-control"} %>
 
-    <%= f.input :description, :label => "简介/description", input_html: { class: "form-control", :rows => 30, :id => "editor"} %>
+    <%= f.input :introduction, :label => "简介/introduction", input_html: { class: "form-control", :rows => 2, :id => "editor"} %>
+    <%= f.input :description, :label => "内容/description", input_html: { class: "form-control", :rows => 30, :id => "editor"} %>
     <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
   </div>
 
