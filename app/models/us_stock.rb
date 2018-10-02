@@ -813,7 +813,7 @@ class UsStock < ApplicationRecord
   def us_roe_order
     array = JSON.parse(self.static_data)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank? || self.us_net_profit_margin_order <= 0         #修正掉离谱的大数值
+    if array.blank? || self.us_net_profit_margin_order <= 0 || self.us_shareholders_equity_ratio_order <= 0         #修正掉离谱的大数值
       return 0
     else
       return (array.sum / num_array.size).round(1)
@@ -823,6 +823,17 @@ class UsStock < ApplicationRecord
   #五年平均 负债占资本利率排序
   def us_debt_asset_order
     array = JSON.parse(self.static_data)[20]
+    num_array = array.delete_if {|x| x == 0 }
+    if array.blank?
+      return 0
+    else
+      return (array.sum / num_array.size).round(1)
+    end
+  end
+
+  #五年平均 股东权益占总资产排序
+  def us_shareholders_equity_ratio_order
+    array = JSON.parse(self.static_data)[8]
     num_array = array.delete_if {|x| x == 0 }
     if array.blank?
       return 0
