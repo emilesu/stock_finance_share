@@ -2,8 +2,12 @@ production:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
   open_weixin_app_id: wx51bd19f8a9f4a04c
   open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
+  GOOGLE_CLIENT_ID: '391297052027-de2gsnn6rk5ocqmj7udov7gr9jlmpr3e.apps.googleusercontent.com'
+  GOOGLE_CLIENT_SECRET: 'GumquYvWMDIfZPvbqvfU_ofV'
 
 development:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
   open_weixin_app_id: wx51bd19f8a9f4a04c
   open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
+  GOOGLE_CLIENT_ID: '391297052027-de2gsnn6rk5ocqmj7udov7gr9jlmpr3e.apps.googleusercontent.com'
+  GOOGLE_CLIENT_SECRET: 'GumquYvWMDIfZPvbqvfU_ofV'

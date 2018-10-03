@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:wechat]
+         :omniauthable, :omniauth_providers => [:wechat, :google_oauth2, :facebook]
 
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   # 资料验证
   validates_presence_of :username, :role
+  validates :username, length: {maximum: 25}
 
   # 用户权限等级
   ROLE = ["admin", "member", "nonmember"]
@@ -85,5 +86,66 @@ class User < ApplicationRecord
     end
     return stocks.uniq
   end
+
+
+  # google登录的from_google方法，用于omniauth_callbacks_controller.rb中
+  def self.from_google(access_token, signed_in_resource=nil)
+    data = access_token.info
+    identify = Identify.find_by(:provider => access_token.provider, :uid => access_token.uid)
+
+    if identify
+        return identify.user
+    else
+        user = User.find_by(:username => access_token.username)
+        if !user
+            i = Devise.friendly_token[0,20]
+            user = User.create(
+                username: data["name"],
+                openid: data["email"],
+                email: data["email"],
+                avatar: data["image"],
+                password: i,
+                password_confirmation: i
+            )
+        end
+            identify = Identify.create(
+                provider: access_token.provider,
+                uid: access_token.uid,
+                user: user
+            )
+        return user
+    end
+  end
+
+
+  # facebook登录的from_facebook方法，用于omniauth_callbacks_controller.rb中
+  def self.from_facebook(access_token, signed_in_resoruce=nil)
+    data = access_token.info
+    identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
+
+    if identify
+        return identify.user
+    else
+        user = User.find_by(:email => data.email)
+        if !user
+            i = Devise.friendly_token[0,20]
+            user = User.create(
+                username: access_token.extra.raw_info.name,
+                openid: data.email,
+                email: data.email,
+                image: data.image,
+                password: i,
+                password_confirmation: i
+            )
+        end
+        identify = Identify.create(
+            provider: access_token.provider,
+            uid: access_token.uid,
+            user: user
+        )
+        return user
+    end
+  end
+
 
 end

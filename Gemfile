@@ -42,6 +42,8 @@ gem 'kaminari'
 gem 'ransack'
 gem 'omniauth'
 gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 #统计阅读量
 gem 'impressionist'
