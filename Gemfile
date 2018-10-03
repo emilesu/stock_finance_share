@@ -44,6 +44,7 @@ gem 'omniauth'
 gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 #统计阅读量
 gem 'impressionist'

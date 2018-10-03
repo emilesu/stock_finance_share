@@ -285,4 +285,7 @@ Devise.setup do |config|
   require 'omniauth-facebook'
   config.omniauth :facebook, KEY_CONFIG["FACEBOOK_CLIENT_ID"], KEY_CONFIG["FACEBOOK_CLIENT_SECRET"]
 
+  require 'omniauth-github'
+  config.omniauth :github, KEY_CONFIG["GITHUB_CLIENT_ID"], KEY_CONFIG["GITHUB_CLIENT_SECRET"], scope: "user:email"
+
 end
