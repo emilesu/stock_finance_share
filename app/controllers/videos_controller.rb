@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
 
+  impressionist actions: [:show]
+
   def index
     @videos = Video.all
   end

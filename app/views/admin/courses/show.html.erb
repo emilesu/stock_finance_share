@@ -15,6 +15,7 @@
         <th>章节/section</th>
         <th>目录序号/catalog</th>
         <th>添加时间/created_at</th>
+        <th>浏览量 次/人</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -40,6 +41,9 @@
           </td>
           <td>
             <%= post.created_at %>
+          </td>
+          <td>
+            <%= post.impressionist_count(:filter=>:all) %> / <%= post.impressionist_count(:filter=>:session_hash) %>
           </td>
           <td>
             <%= link_to("编辑", edit_admin_course_post_path(@course, post), :class => "btn btn-xs btn-default") %>

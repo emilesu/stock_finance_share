@@ -54,6 +54,9 @@ class User < ApplicationRecord
     self.username
   end
 
+  #浏览量易受器
+  is_impressionable
+
   # avatar 头像上传
   # mount_uploader :avatar, AvatarUploader
 

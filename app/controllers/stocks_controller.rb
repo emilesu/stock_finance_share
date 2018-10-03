@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   before_action :authenticate_user!, only: [:all_years, :three_years, :five_years]
+  impressionist actions: [:show]
 
   def show
     @stock = Stock.find_by_easy_symbol!(params[:id])
@@ -29,6 +30,9 @@ class StocksController < ApplicationController
       @current_user_notes = @stock.notes.where( :user_id => current_user.id ).order("updated_at DESC")
     end
     @notes = @stock.notes.order("updated_at DESC").page(params[:notes]).per(20)
+
+    #浏览量极速器
+    impressionist(@stock)
   end
 
 

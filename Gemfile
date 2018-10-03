@@ -1,5 +1,5 @@
 # source 'https://rubygems.org'
-source 'https://gems.ruby-china.org'
+source 'https://gems.ruby-china.com'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -42,6 +42,9 @@ gem 'kaminari'
 gem 'ransack'
 gem 'omniauth'
 gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
+
+#统计阅读量
+gem 'impressionist'
 
 # markdown
 gem 'redcarpet'

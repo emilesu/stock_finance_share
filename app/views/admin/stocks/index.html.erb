@@ -40,6 +40,7 @@
         <th>数据version_1</th>
         <th>数据version_2</th>
         <th>数据version_3</th>
+        <th>浏览量 次/人</th>
       </tr>
     </thead>
     <tbody>
@@ -141,6 +142,7 @@
           <% else %>
             <td><%= stock.version_3 %></td>
           <% end %>
+          <td><%= stock.impressionist_count(:filter=>:all) %> / <%= stock.impressionist_count(:filter=>:session_hash) %></td>
         </tr>
       <% end %>
     </tbody>

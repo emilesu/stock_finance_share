@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :fan, :un_fan]
+  impressionist actions: [:show]
 
   def show
     @user_twitter_new = Twitter.new
@@ -24,6 +25,9 @@ class UsersController < ApplicationController
     # 美股交易记录
     @us_trades = @user.us_trades.order("created_at DESC")
     @user_us_trade_new = UsTrade.new
+
+    #浏览量极速器
+    impressionist(@user)
   end
 
   def edit

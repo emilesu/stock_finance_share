@@ -21,6 +21,9 @@ class UsStock < ApplicationRecord
     self.easy_symbol
   end
 
+  #浏览量易受器
+  is_impressionable
+
   # ---捞出 所有的 sector 和 industrys 行业, 并且去重---
   scope :all_sectors_li, -> { pluck(:sector).uniq }       # pluck 方法捞出指定字段的资料
   scope :all_industrys_li, -> { pluck(:industry).uniq }       # pluck 方法捞出指定字段的资料

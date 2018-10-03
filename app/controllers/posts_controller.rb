@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_course
+  impressionist actions: [:show]
 
   def show
     @post = Post.find(params[:id])

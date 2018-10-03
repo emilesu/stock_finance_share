@@ -1,5 +1,6 @@
 class UsStocksController < ApplicationController
   before_action :authenticate_user!, only: []
+  impressionist actions: [:show]
 
   def show
     @us_stock = UsStock.find_by_easy_symbol!(params[:id])
@@ -24,6 +25,9 @@ class UsStocksController < ApplicationController
 
     # 股票现价\涨跌幅\市盈率\股息率 数列式
     @latest_price = @us_stock.us_stock_latest_price_and_PE
+
+    #浏览量极速器
+    impressionist(@us_stock)
   end
 
 

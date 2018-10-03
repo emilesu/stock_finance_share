@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
 
+  impressionist actions: [:show]
+
   def index
     @courses = Course.all
   end

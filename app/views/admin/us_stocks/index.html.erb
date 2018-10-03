@@ -23,6 +23,7 @@
         <th>操作</th>
         <th>数据版本us_version_1</th>
         <th>数据版本us_version_3</th>
+        <th>浏览量 次/人</th>
       </tr>
     </thead>
     <tbody>
@@ -97,6 +98,7 @@
           <% else %>
             <td><%= us_stock.us_version_3 %></td>
           <% end %>
+          <td><%= us_stock.impressionist_count(:filter=>:all) %> / <%= us_stock.impressionist_count(:filter=>:session_hash) %></td>
         </tr>
       <% end %>
     </tbody>
