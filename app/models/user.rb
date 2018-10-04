@@ -96,16 +96,16 @@ class User < ApplicationRecord
     if identify
         return identify.user
     else
-        user = User.find_by(:username => access_token.username)
+        user = User.find_by(:email => data.email)
         if !user
             i = Devise.friendly_token[0,20]
             user = User.create(
                 username: data["name"],
-                openid: data["email"],
+                # openid: data["email"],
                 email: data["email"],
                 avatar: data["image"],
-                password: i,
-                password_confirmation: i
+                password: friendly_token[0,20],
+                # password_confirmation: i
             )
         end
             identify = Identify.create(
@@ -133,7 +133,7 @@ class User < ApplicationRecord
                 username: access_token.extra.raw_info.name,
                 openid: data.email,
                 email: data.email,
-                image: data.image,
+                avatar: data.image,
                 password: i,
                 password_confirmation: i
             )
@@ -165,11 +165,11 @@ class User < ApplicationRecord
           i = Devise.friendly_token[0,20]
           user = User.create(
               username: name,
-              openid: data["email"],
+              # openid: data["email"],
               email: data["email"],
-              image: data["image"],
-              password: i,
-              password_confirmation: i
+              avatar: data["image"],
+              password: Devise.friendly_token[0,20],
+              # password_confirmation: i
           )
       end
 

@@ -280,7 +280,7 @@ Devise.setup do |config|
   config.omniauth :wechat, KEY_CONFIG["open_weixin_app_id"], KEY_CONFIG["open_weixin_app_screct"]
 
   require 'omniauth-google-oauth2'
-  config.omniauth :google_oauth2, KEY_CONFIG["GOOGLE_CLIENT_ID"], KEY_CONFIG["GOOGLE_CLIENT_SECRET"], {access_type: "offline", approval_prompt: ""}
+  config.omniauth :google_oauth2, KEY_CONFIG["GOOGLE_CLIENT_ID"], KEY_CONFIG["GOOGLE_CLIENT_SECRET"], {}
 
   require 'omniauth-facebook'
   config.omniauth :facebook, KEY_CONFIG["FACEBOOK_CLIENT_ID"], KEY_CONFIG["FACEBOOK_CLIENT_SECRET"]

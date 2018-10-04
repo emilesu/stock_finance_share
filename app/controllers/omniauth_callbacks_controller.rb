@@ -58,11 +58,11 @@ class OmniauthCallbacksController < ApplicationController
       i = Devise.friendly_token[0,20]
       user = User.create(
           username: access_token.extra.raw_info.name,
-          openid: data.email,
+          # openid: data.email,
           email: data.email,
           image: data.image,
           password: i,
-          password_confirmation: i
+          # password_confirmation: i
       )
       identify = Identify.create(
           provider: access_token.provider,
