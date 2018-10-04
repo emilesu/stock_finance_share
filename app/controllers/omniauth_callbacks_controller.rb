@@ -16,7 +16,7 @@ class OmniauthCallbacksController < ApplicationController
         email:  "#{auth.extra.raw_info.openid}@holdle.com",       # 因为devise 的缘故,邮箱暂做成随机
         avatar: data.headimgurl,
         password: i,                                              # 密码随机
-        password_confirmation: i
+        # password_confirmation: i
       )
       identify = Identify.create(
         provider: auth.provider,
