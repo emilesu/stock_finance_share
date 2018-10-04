@@ -24,4 +24,4 @@ module StockFinanceShare
   end
 end
 
-# KEY_CONFIG = Rails.application.config_for(:application)
+KEY_CONFIG = Rails.application.config_for(:application)
