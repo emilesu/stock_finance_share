@@ -11,7 +11,7 @@ class OmniauthCallbacksController < ApplicationController
     else                                      # false 则注册新用户
       i = Devise.friendly_token[0,20]
       user = User.create!(
-        username: data.nicknam,
+        username: data.nickname,
         openid: auth.extra.raw_info.openid,
         email:  "#{auth.extra.raw_info.openid}@holdle.com",       # 因为devise 的缘故,邮箱暂做成随机
         avatar: data.headimgurl,
@@ -62,7 +62,7 @@ class OmniauthCallbacksController < ApplicationController
           email: data.email,
           avatar: data.image,
           password: i,
-          password_confirmation: i
+          # password_confirmation: i
       )
       identify = Identify.create(
           provider: access_token.provider,
