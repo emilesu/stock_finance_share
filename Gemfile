@@ -49,6 +49,9 @@ gem 'omniauth-github'
 #统计阅读量
 gem 'impressionist'
 
+# 网站地图
+gem 'sitemap_generator'
+
 # markdown
 gem 'redcarpet'
 gem 'simditor'
