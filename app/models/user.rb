@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-         # :omniauth_providers => [:wechat, :google_oauth2, :facebook, :github]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
+         :omniauth_providers => [:wechat, :google_oauth2, :facebook, :github]
 
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
@@ -11,7 +11,7 @@ class User < ApplicationRecord
   # </---- 微信登入回调数据处理 ---->
 
   # 资料验证
-  # validates_presence_of :username, :role
+  validates_presence_of :username, :role
   validates :username, presence: true, length: {maximum: 25}
 
   # 用户权限等级
