@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://localhost:3000"
+SitemapGenerator::Sitemap.default_host = "http://www.holdle.com/"
 
 SitemapGenerator::Sitemap.create do
 
