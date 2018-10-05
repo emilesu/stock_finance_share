@@ -89,61 +89,61 @@ class User < ApplicationRecord
 
 
   # google登录的from_google方法，用于omniauth_callbacks_controller.rb中
-  def self.from_google(access_token, signed_in_resource=nil)
-    data = access_token.info
-    identify = Identify.find_by(:provider => access_token.provider, :uid => access_token.uid)
-
-    if identify
-        return identify.user
-    else
-        user = User.find_by(:email => access_token.email)
-        if !user
-            user = User.create(
-                username: data["name"],
-                # openid: data["email"],
-                email: data["email"],
-                avatar: data["image"],
-                password: Devise.friendly_token[0,20]
-            )
-        end
-            identify = Identify.create(
-                provider: access_token.provider,
-                uid: access_token.uid,
-                user: user
-            )
-        return user
-    end
-  end
+  # def self.from_google(access_token, signed_in_resource=nil)
+  #   data = access_token.info
+  #   identify = Identify.find_by(:provider => access_token.provider, :uid => access_token.uid)
+  #
+  #   if identify
+  #       return identify.user
+  #   else
+  #       user = User.find_by(:email => access_token.email)
+  #       if !user
+  #           user = User.create(
+  #               username: data["name"],
+  #               # openid: data["email"],
+  #               email: data["email"],
+  #               avatar: data["image"],
+  #               password: Devise.friendly_token[0,20]
+  #           )
+  #       end
+  #           identify = Identify.create(
+  #               provider: access_token.provider,
+  #               uid: access_token.uid,
+  #               user: user
+  #           )
+  #       return user
+  #   end
+  # end
 
 
   # facebook登录的from_facebook方法，用于omniauth_callbacks_controller.rb中
-  def self.from_facebook(access_token, signed_in_resoruce=nil)
-    data = access_token.info
-    identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
-
-    if identify
-        return identify.user
-    else
-        user = User.find_by(:email => data.email)
-        if !user
-            i = Devise.friendly_token[0,20]
-            user = User.create(
-                username: access_token.extra.raw_info.name,
-                openid: data.email,
-                email: data.email,
-                avatar: data.image,
-                password: i,
-                password_confirmation: i
-            )
-        end
-        identify = Identify.create(
-            provider: access_token.provider,
-            uid: access_token.uid,
-            user: user
-        )
-        return user
-    end
-  end
+  # def self.from_facebook(access_token, signed_in_resoruce=nil)
+  #   data = access_token.info
+  #   identify = Identify.find_by(provider: access_token.provider, uid: access_token.uid)
+  #
+  #   if identify
+  #       return identify.user
+  #   else
+  #       user = User.find_by(:email => data.email)
+  #       if !user
+  #           i = Devise.friendly_token[0,20]
+  #           user = User.create(
+  #               username: access_token.extra.raw_info.name,
+  #               openid: data.email,
+  #               email: data.email,
+  #               avatar: data.image,
+  #               password: i,
+  #               password_confirmation: i
+  #           )
+  #       end
+  #       identify = Identify.create(
+  #           provider: access_token.provider,
+  #           uid: access_token.uid,
+  #           user: user
+  #       )
+  #       return user
+  #   end
+  # end
 
 
   def self.from_github(access_token, signed_in_resoruce=nil)
