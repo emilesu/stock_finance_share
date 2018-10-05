@@ -100,7 +100,6 @@ class User < ApplicationRecord
   #       if !user
   #           user = User.create(
   #               username: data["name"],
-  #               # openid: data["email"],
   #               email: data["email"],
   #               avatar: data["image"],
   #               password: Devise.friendly_token[0,20]
@@ -129,7 +128,6 @@ class User < ApplicationRecord
   #           i = Devise.friendly_token[0,20]
   #           user = User.create(
   #               username: access_token.extra.raw_info.name,
-  #               openid: data.email,
   #               email: data.email,
   #               avatar: data.image,
   #               password: i,
@@ -163,7 +161,6 @@ class User < ApplicationRecord
           i = Devise.friendly_token[0,20]
           user = User.create(
               username: name,
-              # openid: data["email"],
               email: data["email"],
               avatar: data["image"],
               password: Devise.friendly_token[0,20],

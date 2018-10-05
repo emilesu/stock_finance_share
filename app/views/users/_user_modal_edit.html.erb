@@ -14,9 +14,9 @@
           <% if user.avatar.present? %>
             <%= image_tag(user.avatar, :class => "thumbnail img-responsive center-block") %>
           <% else %>
-            <%= image_tag("http://placehold.it/200x200&text=No Pic", :class => "thumbnail img-responsive center-block") %>
+            <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => "thumbnail img-responsive center-block") %>
           <% end %>
-          <%= f.input :avatar, :label => "修改头像", input_html: { class: "form-control"} %>
+          <!-- <%= f.input :avatar, :label => "修改头像", input_html: { class: "form-control"} %> -->
         </div>
         <div>
           <%= f.input :username, :label => "用户名", input_html: { class: "form-control"} %>

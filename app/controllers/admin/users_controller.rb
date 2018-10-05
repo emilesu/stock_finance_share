@@ -127,7 +127,6 @@ class Admin::UsersController < AdminController
       :email,                           #email
       :password,                        #密码
       :password_confirmation,           #确认密码
-      :openid,                          #微信 ID
       :join_time,                       #加入会员时间
       :end_time,                        #会员到期时间
       :nper                             #会员期数
