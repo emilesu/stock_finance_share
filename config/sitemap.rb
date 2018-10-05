@@ -19,13 +19,13 @@ SitemapGenerator::Sitemap.create do
     add video_path(video), :lastmod => video.updated_at
   end
 
-  Stock.find_each do |stock|
-    add stock_path(stock), :changefreq => 'monthly', :lastmod => stock.updated_at
-  end
+  # Stock.find_each do |stock|
+  #   add stock_path(stock), :changefreq => 'monthly', :lastmod => stock.updated_at
+  # end
 
-  UsStock.find_each do |us_stock|
-    add us_stock_path(us_stock), :changefreq => 'monthly', :lastmod => us_stock.updated_at
-  end
+  # UsStock.find_each do |us_stock|
+  #   add us_stock_path(us_stock), :changefreq => 'monthly', :lastmod => us_stock.updated_at
+  # end
 
   # Put links creation logic here.
   #
