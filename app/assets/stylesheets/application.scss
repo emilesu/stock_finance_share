@@ -65,6 +65,27 @@ body {
     background-color: #666
   }
 
+  a {
+    cursor:pointer;
+  }
+
+  // 登录框
+  .navbar-login-modal {
+    min-height: 180px;
+    padding-top: 30px;
+    .login-link-box {
+      transition: 0.2s;
+    }
+    .login-link-box :hover {
+      img {
+        transition: 0.2s;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.2);
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+      }
+    }
+  }
 
   // footer
   .footer-box {
@@ -80,8 +101,6 @@ body {
       // text-decoration: none;
       color: #999;
       padding: 10px 18px 0;
-      cursor:pointer;
-
     }
     a:hover {
       color: #333;
