@@ -523,4 +523,52 @@ class Admin::BaseDataController < AdminController
    end
 
 
+
+
+
+
+
+
+
+# ______________________________________百度链接推送______________________________________
+
+  def  baidu_url_push
+    require 'net/http'
+
+    # 基础大链接
+    urls = [
+      'https://www.holdle.com/',
+      'https://www.holdle.com/courses',
+      'https://www.holdle.com/videos',
+      'https://www.holdle.com/welcome/about'
+    ]
+
+    # post 页链接并合并
+    Post.where(:status => "public").each do |post|
+      url = "https://www.holdle.com/courses/#{post.course.friendly_id}/posts/#{post.id}"
+      urls << url
+    end
+
+    # video 页链接并合并
+    Video.all.each do |video|
+      url = "https://www.holdle.com/videos/#{video.id}"
+      urls << url
+    end
+
+    #接口调用
+    uri = URI.parse('http://data.zz.baidu.com/urls?site=https://www.holdle.com&token=eRENsnW2gW2tdmal')
+    #推送
+    req = Net::HTTP::Post.new(uri.request_uri)
+    req.body = urls.join("\n")
+    req.content_type = 'text/plain'
+    res = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
+
+
+    puts res.body
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "#{res.body}"
+
+  end
+
+
 end

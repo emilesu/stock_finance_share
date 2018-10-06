@@ -98,6 +98,9 @@ Rails.application.routes.draw do
       post :update_us_stock_static_data       #更新 美股 数据静态保存
       post :update_us_stock_company_info       #更新 美股 中文名 行业
       post :update_us_industry_setting    #更新行业设置
+
+        # --------------百度链接推送--------------
+      post :baidu_url_push     #主动推送（实时）
     end
     resources :videos          #视频教程
   end
