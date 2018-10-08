@@ -103,9 +103,6 @@ Rails.application.routes.draw do
       post :baidu_url_push     #主动推送（实时）
     end
     resources :videos          #视频教程
-    namespace :impressions do
-      get :index
-    end
   end
 
 
