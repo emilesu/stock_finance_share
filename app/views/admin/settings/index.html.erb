@@ -89,6 +89,26 @@
           %>
         </td>
       </tr>
+      <!-- 关于我们 welcome/about -->
+     <tr>
+       <td>关于我们 welcome/about</td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Welcome",
+           :controller_name => "welcome",
+           :action_name => "about",
+         ).count
+         %>
+       </td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Welcome",
+           :controller_name => "welcome",
+           :action_name => "about",
+         ).pluck(:session_hash).uniq.count
+         %>
+       </td>
+     </tr>
        <!-- 投资交易课  courses/index -->
       <tr>
         <td>课程  courses/index</td>
@@ -190,6 +210,27 @@
           %>
         </td>
       </tr>
+      <!-- A股  stocks/industry -->
+     <tr>
+       <td>A股行业页面  stocks/industry</td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Stock",
+           :controller_name => "stocks",
+           :action_name => "industry",
+         ).count
+         %>
+       </td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Stock",
+           :controller_name => "stocks",
+           :action_name => "industry",
+         ).pluck(:session_hash).uniq.count
+         %>
+       </td>
+     </tr>
+     <tr><td>-</td><td>-</td><td>-</td></tr>
        <!-- 美股   us_stocks/show -->
       <tr>
         <td>美股  us_stocks/show</td>
@@ -210,6 +251,46 @@
           %>
         </td>
       </tr>
+      <!-- 美股   us_stocks/sector -->
+     <tr>
+       <td>美股领域页面  us_stocks/sector</td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "UsStock",
+           :controller_name => "us_stocks",
+           :action_name => "sector",
+         ).count
+         %>
+       </td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "UsStock",
+           :controller_name => "us_stocks",
+           :action_name => "sector",
+         ).pluck(:session_hash).uniq.count
+         %>
+       </td>
+     </tr>
+     <!-- 美股   us_stocks/industry -->
+    <tr>
+      <td>美股行业页面  us_stocks/industry</td>
+      <td>
+        <%= Impression.where(
+          :impressionable_type => "UsStock",
+          :controller_name => "us_stocks",
+          :action_name => "industry",
+        ).count
+        %>
+      </td>
+      <td>
+        <%= Impression.where(
+          :impressionable_type => "UsStock",
+          :controller_name => "us_stocks",
+          :action_name => "industry",
+        ).pluck(:session_hash).uniq.count
+        %>
+      </td>
+    </tr>
      </tbody>
   </table>
  </div>

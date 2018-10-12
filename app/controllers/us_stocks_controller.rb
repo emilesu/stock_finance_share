@@ -1,6 +1,6 @@
 class UsStocksController < ApplicationController
   before_action :authenticate_user!, only: []
-  impressionist actions: [:show]
+  impressionist actions: [:show, :industry, :sector]
 
   def show
     @us_stock = UsStock.find_by_easy_symbol!(params[:id])

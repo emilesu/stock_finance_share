@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
 
-  impressionist actions: [:index2]
+  impressionist actions: [:index2, :about]
 
   def index2
   end
