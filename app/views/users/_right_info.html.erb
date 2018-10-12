@@ -41,7 +41,11 @@
     <% @attentions.each do |atention| %>
       <% u = User.find(atention.my_attention) %>
       <%= link_to user_path(u) do %>
-        <%= image_tag(u.avatar, :class => "img-circle") %>
+        <% if u.avatar.present? %>
+          <%= image_tag(u.avatar, :class => "img-circle") %>
+        <% else %>
+          <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => "img-circle") %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -62,7 +66,11 @@
       <% @fans.each do |fan| %>
         <% u = User.find(fan.my_fans) %>
         <%= link_to user_path(u) do %>
-          <span><%= image_tag(u.avatar, :class => "img-circle") %></span>
+          <% if u.avatar.present? %>
+            <%= image_tag(u.avatar, :class => "img-circle") %></span>
+          <% else %>
+            <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => "img-circle") %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
