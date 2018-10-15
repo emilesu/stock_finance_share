@@ -72,11 +72,17 @@
     }
 
     .video-info-box {
+      color: #333;
+      line-height: 26px;
+      text-align: justify;
+      font-size: 14px;
       margin-bottom: 25px;
       h1 {
-        font-size: 22px;
-        font-weight: 400;
+        font-size: 26px;
+        font-weight: 600;
         line-height: 40px;
+        padding-bottom: 25px;
+        text-align: center;
       }
       .video-description-box {
         margin-top: 25px;
@@ -86,10 +92,29 @@
           line-height: 26px;
           text-align: justify;
           font-size: 14px;
+          margin-bottom: 15px;
         }
       }
     }
-
+    blockquote {
+      color: #999;
+      font-size: 14px;
+      text-align: justify;
+      p {
+        margin-bottom: 10px;
+      }
+    }
+    img {
+      // border: #f5f5f5 solid 5px;
+      width: 100%;
+      height: auto;
+    }
+    hr {
+      margin: 40px 0;
+    }
+    h4 {
+      margin: 30px 0 15px;
+    }
   }
 }
 
