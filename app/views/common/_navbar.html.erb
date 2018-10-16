@@ -25,6 +25,20 @@
 
     <div class="navbar-collapse navbar-ex1-collapse collapse" aria-expanded="false">
 
+      <!-- 搜索输入框 小屏幕时位置 -->
+      <div class="navbar-form navbar-nav navbar-right search d3 hidden-md hidden-lg">
+
+          <div id="form-rearch">
+            <%= form_tag search_stocks_path, :method => :get  do %>
+              <div class="">
+                <input class="search-v1" type="saerch" name="q" value="<%= params[:q] %>" placeholder="股票代码\名称..." required="required" autocomplete="off">
+                  <button type="submit"></button>
+              </div>
+            <% end %>
+          </div>
+
+      </div>
+
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown navbar-font-size">
@@ -63,8 +77,8 @@
         <% end %>
       </ul>
 
-      <!-- 搜索输入框 -->
-      <div class="navbar-form navbar-nav navbar-right search d3">
+      <!-- 搜索输入框 大屏幕时位置 -->
+      <div class="navbar-form navbar-nav navbar-right search d3 hidden-sm hidden-xs">
 
           <div id="form-rearch">
             <%= form_tag search_stocks_path, :method => :get  do %>
