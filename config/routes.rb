@@ -41,6 +41,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :pyramid do             #长期上涨潜力排行表
+    get :stock
+    get :us_stock
+  end
+
   namespace :contrast do            #股票对比
     get :search
     get :index

@@ -1327,4 +1327,286 @@ class Stock < ApplicationRecord
 
   end
 
+
+  # ----------------------------------- pyramid 长期上涨潜力价值算法 -----------------------------------
+
+  # 集合分合计
+  def stock_main_pyramid
+    self.stock_roe_ratio_pyramid +
+    self.stock_dividend_rate_pyramid +
+    self.stock_cash_and_cash_equivalents_ratio_pyramid +
+    self.stock_accounts_receivable_turnover_ratio_pyramid +
+    self.stock_inventory_turnover_ratio_pyramid +
+    self.stock_business_cycle_ratio_pyramid +
+    self.stock_operating_margin_ratio_pyramid +
+    self.stock_business_profitability_ratio_pyramid +
+    self.stock_operating_margin_of_safety_ratio_pyramid +
+    self.stock_after_tax_profit_pyramid +
+    self.stock_net_cash_flow_of_business_activities_pyramid
+  end
+
+  # ROE 积分算法（以 ROE 的平均值为基础，阶梯递减 7 级）
+  def stock_roe_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[13]        # 导入数据
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.max / num_array.min >= 3 || num_array.sum == 0             # 排除掉最大值比最小值大3倍的极端情况
+      rating = 0
+    elsif (num_array.sum / num_array.size) >= 35
+      rating = 600
+    elsif (num_array.sum / num_array.size) >= 30 && (num_array.sum / num_array.size) < 35
+      rating = 500
+    elsif (num_array.sum / num_array.size) >= 25 && (num_array.sum / num_array.size) < 30
+      rating = 400
+    elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 25
+      rating = 300
+    elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
+      rating = 200
+    elsif (num_array.sum / num_array.size) >= 10 && (num_array.sum / num_array.size) < 15
+      rating = 100
+    elsif (num_array.sum / num_array.size) < 10
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 分红率 积分算法（以 分红率 的平均值为基础，阶梯递减 3 级）
+  def stock_dividend_rate_pyramid
+    array = JSON.parse(self.static_data_5)[32]        # 导入数据 分红率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif (num_array.sum / num_array.size) >= 30
+      rating = 50
+    elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 30
+      rating = 20
+    elsif (num_array.sum / num_array.size) < 20
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 现金量 积分算法（总资产周转率 & 现金占比 对比）
+  def stock_cash_and_cash_equivalents_ratio_pyramid
+    array_1 = JSON.parse(self.static_data_5)[12]        # 导入数据 总资产周转率
+    num_array_1 = array_1.delete_if {|x| x == 0 }         # 去除空数据
+    array_2 = JSON.parse(self.static_data_5)[1]         # 导入数据 现金占比
+    num_array_2 = array_2.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array_1.sum == 0 || num_array_2.sum == 0
+      rating = 0
+    elsif (num_array_1.sum / num_array_1.size) < 0.8 && (num_array_2.sum / num_array_2.size) >= 20
+      rating = 50
+    elsif (num_array_1.sum / num_array_1.size) >= 0.8 && (num_array_2.sum / num_array_2.size) > 10
+      rating = 50
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 收现日数 积分算法（以 平均收现日数 的平均值为基础，<= 30）
+  def stock_accounts_receivable_turnover_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[9]        # 导入数据 应收账款周转率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif 360 / (num_array.sum / num_array.size) <= 30
+      rating = 20
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 销货日数 积分算法（以 平均销货日数 的平均值为基础，<= 30）
+  def stock_inventory_turnover_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[10]        # 导入数据 应收账款周转率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif 360 / (num_array.sum / num_array.size) <= 30
+      rating = 20
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 收现日数 + 销货日数 积分算法（平均首先日数 + 平均销货日数 <= 40 或 <= 60）
+  def stock_business_cycle_ratio_pyramid
+    array_1 = JSON.parse(self.static_data_5)[9]        # 导入数据 应收账款周转率
+    num_array_1 = array_1.delete_if {|x| x == 0 }         # 去除空数据
+    array_2 = JSON.parse(self.static_data_5)[10]         # 导入数据 应收账款周转率
+    num_array_2 = array_2.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array_1.sum == 0 || num_array_2.sum == 0
+      rating = 0
+    elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 40
+      rating = 20
+    elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 60 && 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) > 40
+      rating = 10
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 毛利率均衡 积分算法(毛利的波动不能错过平均值的 30%)
+  def stock_operating_margin_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[14]        # 导入数据 营业毛利率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif num_array.min / (num_array.sum / num_array.size) >= 0.7 &&  num_array.max / (num_array.sum / num_array.size) <= 1.3
+      rating = 50
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 净利率均衡 积分算法(净利率的波动不能错过平均值的 30%)
+  def stock_business_profitability_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[15]        # 导入数据 营业利益率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif num_array.min / (num_array.sum / num_array.size) >= 0.7 &&  num_array.max / (num_array.sum / num_array.size) <= 1.3
+      rating = 50
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  #经营安全边际率 积分算法(经营安全边际率是否 >= 70(50份) 50(30份) 40(10分) )
+  def stock_operating_margin_of_safety_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[16]        # 导入数据 经营安全边际率
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif (num_array.sum / num_array.size) >= 70
+      rating = 50
+    elsif (num_array.sum / num_array.size) >= 50
+      rating = 30
+    elsif (num_array.sum / num_array.size) >= 40
+      rating = 10
+    else
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 税后净利 积分算法(当年的净利比去年是增加还是减少，增加则加分，减少则减分)
+  def stock_after_tax_profit_pyramid
+    array = JSON.parse(self.static_data_5)[19]        # 导入数据 税后净利
+
+    if array.sum == 0
+      rating = 0
+    else
+
+      if array[0] > array[1]
+        rating_1 = 50
+      else
+        rating_1 = -50
+      end
+
+      if array[1] > array[2]
+        rating_2 = 40
+      else
+        rating_2 = -40
+      end
+
+      if array[2] > array[3]
+        rating_3 = 30
+      else
+        rating_3 = -30
+      end
+
+      if array[3] > array[4]
+        rating_4 = 20
+      else
+        rating_4 = -20
+      end
+
+      rating = rating_1 + rating_2 + rating_3 + rating_4
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 经营活动现金流量 积分算法(当年的经营活动现金流量比去年是增加还是减少，增加则加分，减少则减分)
+  def stock_net_cash_flow_of_business_activities_pyramid
+    array = JSON.parse(self.static_data_5)[24]        # 导入数据 经营活动现金流量
+
+    if array.sum == 0
+      rating = 0
+    else
+
+      if array[0] > array[1]
+        rating_1 = 50
+      else
+        rating_1 = -50
+      end
+
+      if array[1] > array[2]
+        rating_2 = 40
+      else
+        rating_2 = -40
+      end
+
+      if array[2] > array[3]
+        rating_3 = 30
+      else
+        rating_3 = -30
+      end
+
+      if array[3] > array[4]
+        rating_4 = 20
+      else
+        rating_4 = -20
+      end
+
+      rating = rating_1 + rating_2 + rating_3 + rating_4
+    end
+
+    # 返回分值
+    return rating
+  end
+
+
+
+
+
+
+
+
+
+
 end
