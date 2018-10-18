@@ -816,7 +816,7 @@ class UsStock < ApplicationRecord
   def us_roe_order
     array = JSON.parse(self.static_data)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank? || self.us_net_profit_margin_order <= 0 || self.us_shareholders_equity_ratio_order <= 0         #修正掉离谱的大数值
+    if array.blank? || self.us_net_profit_margin_order <= 0 || self.us_shareholders_equity_ratio_order <= 0 || num_array.min < 0         #修正掉离谱的大数值
       return 0
     else
       return (array.sum / num_array.size).round(1)
@@ -879,11 +879,9 @@ class UsStock < ApplicationRecord
     array = JSON.parse(self.static_data)[13]        # 导入数据
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.size == 0
+    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0
       rating = 0
-    elsif (num_array.sum / num_array.size) == 0
-      rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) < 0.7 || num_array.max / (num_array.sum / num_array.size) > 1.3 || num_array.sum == 0             # 排除掉最大值比最小值大3倍的极端情况
+    elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
     elsif (num_array.sum / num_array.size) >= 35
       rating = 600

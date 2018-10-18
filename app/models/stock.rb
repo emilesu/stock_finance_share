@@ -1105,7 +1105,7 @@ class Stock < ApplicationRecord
   def roe_order
     array = JSON.parse(self.static_data_5)[13]
     num_array = array.delete_if {|x| x == 0 }
-    if array.blank? || self.net_profit_margin_order <= 0         #修正掉离谱的大数值
+    if array.blank? || self.net_profit_margin_order <= 0 || num_array.min < 0         #修正掉离谱的大数值
       return 0
     else
       return (num_array.sum / num_array.size).round(1)
@@ -1350,7 +1350,9 @@ class Stock < ApplicationRecord
     array = JSON.parse(self.static_data_5)[13]        # 导入数据
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.max / num_array.min >= 3 || num_array.sum == 0             # 排除掉最大值比最小值大3倍的极端情况
+    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0
+      rating = 0
+    elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
     elsif (num_array.sum / num_array.size) >= 35
       rating = 600
