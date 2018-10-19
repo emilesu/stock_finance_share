@@ -884,10 +884,12 @@ class UsStock < ApplicationRecord
       rating = 0
     elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
-    elsif (num_array.sum / num_array.size) >= 30
-      rating = 550
+    elsif (num_array.sum / num_array.size) >= 35
+      rating = 600
+    elsif (num_array.sum / num_array.size) >= 30 && (num_array.sum / num_array.size) < 35
+      rating = 500
     elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 30
-      rating = 400
+      rating = 450
     elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
       rating = 300
     elsif (num_array.sum / num_array.size) >= 10 && (num_array.sum / num_array.size) < 15
@@ -908,7 +910,7 @@ class UsStock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif (num_array.sum / num_array.size) >= 10000
-      rating = 100
+      rating = 150
     elsif (num_array.sum / num_array.size) >= 1000 && (num_array.sum / num_array.size) < 10000
       rating = 50
     else
@@ -967,7 +969,7 @@ class UsStock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif 360 / (num_array.sum / num_array.size) <= 30
-      rating = 30
+      rating = 20
     else
       rating = 0
     end
@@ -984,7 +986,7 @@ class UsStock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif 360 / (num_array.sum / num_array.size) <= 30
-      rating = 30
+      rating = 20
     else
       rating = 0
     end
@@ -1003,7 +1005,7 @@ class UsStock < ApplicationRecord
     if num_array_1.sum == 0 || num_array_2.sum == 0
       rating = 0
     elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 40
-      rating = 30
+      rating = 20
     elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 60 && 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) > 40
       rating = 10
     else
