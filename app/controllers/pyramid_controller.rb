@@ -7,7 +7,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "保险及其他")
     .where.not(:industry => "证券")
     .where.not(:industry => "银行")
-    .sort{ |x,y| y.pyramid_rating <=> x.pyramid_rating }[0..59]
+    .order("pyramid_rating desc")[0..59]
 
     @us_stocks = UsStock
     .where.not(:industry => "财产保险公司")
@@ -17,7 +17,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "银行")
     .where.not(:industry => "商业银行")
     .where.not(:industry => "专业银行")
-    .sort{ |x,y| y.pyramid_rating <=> x.pyramid_rating }[0..59]
+    .order("pyramid_rating desc")[0..59]
 
   end
 
@@ -33,7 +33,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "保险及其他")
     .where.not(:industry => "证券")
     .where.not(:industry => "银行")
-    .sort{ |x,y| y.stock_main_pyramid <=> x.stock_main_pyramid }[0..59]
+    .order("pyramid_rating desc")[0..59]
   end
 
   def us_stock
@@ -45,7 +45,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "银行")
     .where.not(:industry => "商业银行")
     .where.not(:industry => "专业银行")
-    .sort{ |x,y| y.us_stock_main_pyramid <=> x.us_stock_main_pyramid }[0..59]
+    .order("pyramid_rating desc")[0..59]
   end
 
 
