@@ -25,6 +25,7 @@
         <th>代码/symbol</th>
         <th>名称/name</th>
         <th>拼音简称/pinyin</th>
+        <th>潜力值/pyramid_rating</th>
         <th>上市时间/time_to_market</th>
         <th>地域/regional</th>
         <th>网址/company_url</th>
@@ -40,6 +41,7 @@
         <th>数据version_1</th>
         <th>数据version_2</th>
         <th>数据version_3</th>
+        <th>数据version_4</th>
         <th>浏览量 次/人</th>
       </tr>
     </thead>
@@ -54,6 +56,8 @@
           <% else %>
             <td><%= stock.pinyin %></td>
           <% end %>
+          <!--  -->
+          <td><%= stock.pyramid_rating %></td>
           <!--  -->
           <% if stock.time_to_market.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
@@ -142,6 +146,13 @@
           <% else %>
             <td><%= stock.version_3 %></td>
           <% end %>
+          <!--  -->
+          <% if stock.version_4.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= stock.version_4 %></td>
+          <% end %>
+          <!--  -->
           <td><%= stock.impressionist_count(:filter=>:all) %> / <%= stock.impressionist_count(:filter=>:session_hash) %></td>
         </tr>
       <% end %>

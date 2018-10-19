@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181005171116) do
+ActiveRecord::Schema.define(version: 20181019154359) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20181005171116) do
     t.integer "version_3"
     t.integer "version_4"
     t.integer "version_5"
+    t.integer "pyramid_rating"
     t.index ["easy_symbol"], name: "index_stocks_on_easy_symbol", unique: true
     t.index ["industry"], name: "index_stocks_on_industry"
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
@@ -247,6 +248,7 @@ ActiveRecord::Schema.define(version: 20181005171116) do
     t.string "sector"
     t.string "ipoyear"
     t.string "name"
+    t.integer "pyramid_rating"
     t.index ["cnname"], name: "index_us_stocks_on_cnname"
     t.index ["easy_symbol"], name: "index_us_stocks_on_easy_symbol", unique: true
     t.index ["market"], name: "index_us_stocks_on_market"

@@ -256,22 +256,36 @@ class Admin::BaseDataController < AdminController
 
 
   #更新行业设置
-   def update_industry_setting
-     @all_industrys = Stock.all_industrys_li           # scope :all_industrys_li
-     x = []
-     @all_industrys.each do |i|
-       x << i
+  def update_industry_setting
+    @all_industrys = Stock.all_industrys_li           # scope :all_industrys_li
+      x = []
+    @all_industrys.each do |i|
+      x << i
+    end
+    Setting.first.update!(
+      :a_industry => x
+    )
+    puts "更新完毕*******"
+    redirect_to admin_base_data_index_path
+    flash[:notice] = "行业设置 设置完毕"
+  end
+
+
+   # 更新 pyramid_rating 数据静态化    储存数据 version_4
+   def update_stock_pyramid_rating_data
+     @stocks = Stock.all
+     @stocks.each do |s|
+       if s.version_4 != Setting.first.version_4
+         s.update!(
+           :pyramid_rating => s.stock_main_pyramid,
+           :version_4 => Setting.first.version_4
+         )
+       end
      end
-     Setting.first.update!(
-       :a_industry => x
-     )
      puts "更新完毕*******"
      redirect_to admin_base_data_index_path
-     flash[:notice] = "行业设置 设置完毕"
+     flash[:notice] = "pyramid_rating 数据静态化 更新完毕"
    end
-
-
-
 
 
 
@@ -520,6 +534,23 @@ class Admin::BaseDataController < AdminController
      puts "更新完毕*******"
      redirect_to admin_base_data_index_path
      flash[:notice] = "行业设置 设置完毕"
+   end
+
+
+   # 更新 pyramid_rating 数据静态化    储存数据 version_4
+   def update_us_stock_pyramid_rating_data
+     @us_stocks = UsStock.all
+     @us_stocks.each do |s|
+       if s.us_version_4 != Setting.first.us_version_4
+         s.update!(
+           :pyramid_rating => s.us_stock_main_pyramid,
+           :us_version_4 => Setting.first.us_version_4
+         )
+       end
+     end
+     puts "更新完毕*******"
+     redirect_to admin_base_data_index_path
+     flash[:notice] = "pyramid_rating 数据静态化 更新完毕"
    end
 
 

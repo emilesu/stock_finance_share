@@ -12,6 +12,7 @@
         <th>代码/symbol</th>
         <th>名称/name</th>
         <th>中文名称/cnname</th>
+        <th>潜力值/pyramid_rating</th>
         <th>上市时间/ipoyear</th>
         <th>领域/sector</th>
         <th>行业/industry</th>
@@ -23,6 +24,7 @@
         <th>操作</th>
         <th>数据版本us_version_1</th>
         <th>数据版本us_version_3</th>
+        <th>数据版本us_version_4</th>
         <th>浏览量 次/人</th>
       </tr>
     </thead>
@@ -32,6 +34,7 @@
           <td><%=link_to(us_stock.symbol, admin_us_stock_path(us_stock)) %></td>
           <td><%= us_stock.name %></td>
           <td><%= us_stock.cnname %></td>
+          <td><%= us_stock.pyramid_rating %></td>
           <!--  -->
           <% if us_stock.ipoyear.nil? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
@@ -98,6 +101,13 @@
           <% else %>
             <td><%= us_stock.us_version_3 %></td>
           <% end %>
+          <!--  -->
+          <% if us_stock.us_version_4.nil? %>
+            <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
+          <% else %>
+            <td><%= us_stock.us_version_4 %></td>
+          <% end %>
+          <!--  -->
           <td><%= us_stock.impressionist_count(:filter=>:all) %> / <%= us_stock.impressionist_count(:filter=>:session_hash) %></td>
         </tr>
       <% end %>
