@@ -1553,15 +1553,15 @@ class Stock < ApplicationRecord
     else
 
       if array[0] > array[1]
-        rating_1 = 40
+        rating_1 = 30
       else
-        rating_1 = -40
+        rating_1 = -30
       end
 
       if array[1] > array[2]
-        rating_2 = 30
+        rating_2 = 25
       else
-        rating_2 = -30
+        rating_2 = -25
       end
 
       if array[2] > array[3]
@@ -1571,9 +1571,9 @@ class Stock < ApplicationRecord
       end
 
       if array[3] > array[4]
-        rating_4 = 10
+        rating_4 = 15
       else
-        rating_4 = -10
+        rating_4 = -15
       end
 
       rating = rating_1 + rating_2 + rating_3 + rating_4
@@ -1592,15 +1592,15 @@ class Stock < ApplicationRecord
     else
 
       if array[0] > array[1]
-        rating_1 = 40
+        rating_1 = 30
       else
-        rating_1 = -40
+        rating_1 = -30
       end
 
       if array[1] > array[2]
-        rating_2 = 30
+        rating_2 = 25
       else
-        rating_2 = -30
+        rating_2 = -25
       end
 
       if array[2] > array[3]
@@ -1610,9 +1610,9 @@ class Stock < ApplicationRecord
       end
 
       if array[3] > array[4]
-        rating_4 = 10
+        rating_4 = 15
       else
-        rating_4 = -10
+        rating_4 = -15
       end
 
       rating = rating_1 + rating_2 + rating_3 + rating_4
