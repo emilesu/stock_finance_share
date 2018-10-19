@@ -1379,9 +1379,9 @@ class Stock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif (num_array.sum / num_array.size) >= 10000
-      rating = 200
-    elsif (num_array.sum / num_array.size) >= 1000 && (num_array.sum / num_array.size) < 10000
       rating = 100
+    elsif (num_array.sum / num_array.size) >= 1000 && (num_array.sum / num_array.size) < 10000
+      rating = 50
     else
       rating = 0
     end
@@ -1438,7 +1438,7 @@ class Stock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif 360 / (num_array.sum / num_array.size) <= 30
-      rating = 20
+      rating = 30
     else
       rating = 0
     end
@@ -1455,7 +1455,7 @@ class Stock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif 360 / (num_array.sum / num_array.size) <= 30
-      rating = 20
+      rating = 30
     else
       rating = 0
     end
@@ -1474,7 +1474,7 @@ class Stock < ApplicationRecord
     if num_array_1.sum == 0 || num_array_2.sum == 0
       rating = 0
     elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 40
-      rating = 20
+      rating = 30
     elsif 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) <= 60 && 360 / (num_array_1.sum / num_array_1.size) + 360 / (num_array_2.sum / num_array_2.size) > 40
       rating = 10
     else
