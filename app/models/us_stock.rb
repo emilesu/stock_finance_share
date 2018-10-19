@@ -1082,21 +1082,21 @@ class UsStock < ApplicationRecord
     else
 
       if array[0] > array[1]
-        rating_1 = 50
+        rating_1 = 40
       else
-        rating_1 = -50
+        rating_1 = -40
       end
 
       if array[1] > array[2]
-        rating_2 = 40
+        rating_2 = 30
       else
-        rating_2 = -40
+        rating_2 = -30
       end
 
       if array[2] > array[3]
-        rating_3 = 30
+        rating_3 = 20
       else
-        rating_3 = -30
+        rating_3 = -20
       end
 
       rating = rating_1 + rating_2 + rating_3
@@ -1115,21 +1115,21 @@ class UsStock < ApplicationRecord
     else
 
       if array[0] > array[1]
-        rating_1 = 50
+        rating_1 = 40
       else
-        rating_1 = -50
+        rating_1 = -40
       end
 
       if array[1] > array[2]
-        rating_2 = 40
+        rating_2 = 30
       else
-        rating_2 = -40
+        rating_2 = -30
       end
 
       if array[2] > array[3]
-        rating_3 = 30
+        rating_3 = 20
       else
-        rating_3 = -30
+        rating_3 = -20
       end
 
       rating = rating_1 + rating_2 + rating_3
