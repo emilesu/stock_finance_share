@@ -19,6 +19,8 @@
     <%= f.input :static_data, :label => "静态数据/static_data", input_html: { class: "form-control"} %>
     <hr>
     <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+    <%= link_to("删除", admin_us_stock_path(@us_stock), method: :delete, :class => "btn btn-sm btn-danger", data: { confirm: "确定删除" }) %>
+
   </div>
 
 <% end %>
