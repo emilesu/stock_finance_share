@@ -1357,15 +1357,15 @@ class Stock < ApplicationRecord
     elsif (num_array.sum / num_array.size) >= 35
       rating = 600
     elsif (num_array.sum / num_array.size) >= 30 && (num_array.sum / num_array.size) < 35
-      rating = 500
+      rating = 550
     elsif (num_array.sum / num_array.size) >= 25 && (num_array.sum / num_array.size) < 30
-      rating = 400
+      rating = 500
     elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 25
-      rating = 300
+      rating = 450
     elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
-      rating = 200
+      rating = 400
     elsif (num_array.sum / num_array.size) >= 10 && (num_array.sum / num_array.size) < 15
-      rating = 100
+      rating = 350
     elsif (num_array.sum / num_array.size) < 10
       rating = 0
     end
