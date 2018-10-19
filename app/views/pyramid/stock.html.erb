@@ -1,4 +1,6 @@
-<table class="table table-striped">
+<% if current_user && current_user.role == "admin" %>
+
+  <table class="table table-striped">
 
     <thead>
       <td>公司</td>
@@ -17,23 +19,25 @@
       <td>经营活动现金流量</td>
     </thead>
 
-  <% @stocks.each do |stock| %>
-    <tr>
-      <td><%= link_to(stock.name, stock_path(stock) ) %> </td>
-      <td><%= stock.stock_main_pyramid %> </td>
-      <td><%= stock.stock_roe_ratio_pyramid %> </td>
-      <td><%= stock.stock_after_tax_profit_weighted_pyramid %> </td>
-      <td><%= stock.stock_dividend_rate_pyramid %> </td>
-      <td><%= stock.stock_cash_and_cash_equivalents_ratio_pyramid %> </td>
-      <td><%= stock.stock_accounts_receivable_turnover_ratio_pyramid %> </td>
-      <td><%= stock.stock_inventory_turnover_ratio_pyramid %> </td>
-      <td><%= stock.stock_business_cycle_ratio_pyramid %> </td>
-      <td><%= stock.stock_operating_margin_ratio_pyramid %> </td>
-      <td><%= stock.stock_business_profitability_ratio_pyramid %> </td>
-      <td><%= stock.stock_operating_margin_of_safety_ratio_pyramid %> </td>
-      <td><%= stock.stock_after_tax_profit_pyramid %> </td>
-      <td><%= stock.stock_net_cash_flow_of_business_activities_pyramid %> </td>
-    </tr>
-  <% end %>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <td><%= link_to(stock.name, stock_path(stock) ) %> </td>
+        <td><%= stock.stock_main_pyramid %> </td>
+        <td><%= stock.stock_roe_ratio_pyramid %> </td>
+        <td><%= stock.stock_after_tax_profit_weighted_pyramid %> </td>
+        <td><%= stock.stock_dividend_rate_pyramid %> </td>
+        <td><%= stock.stock_cash_and_cash_equivalents_ratio_pyramid %> </td>
+        <td><%= stock.stock_accounts_receivable_turnover_ratio_pyramid %> </td>
+        <td><%= stock.stock_inventory_turnover_ratio_pyramid %> </td>
+        <td><%= stock.stock_business_cycle_ratio_pyramid %> </td>
+        <td><%= stock.stock_operating_margin_ratio_pyramid %> </td>
+        <td><%= stock.stock_business_profitability_ratio_pyramid %> </td>
+        <td><%= stock.stock_operating_margin_of_safety_ratio_pyramid %> </td>
+        <td><%= stock.stock_after_tax_profit_pyramid %> </td>
+        <td><%= stock.stock_net_cash_flow_of_business_activities_pyramid %> </td>
+      </tr>
+    <% end %>
 
-</table>
+  </table>
+
+<% end %>

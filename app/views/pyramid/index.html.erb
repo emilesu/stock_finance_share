@@ -1,0 +1,115 @@
+<div class="pyramid-index row">
+
+  <div class="col-lg-8 col-lg-offset-2 col-xs-12 pyramid-box">
+
+    <!-- banner 长期上涨潜力金字塔 -->
+    <!-- <div class="pyramid-banner jumbotron row">
+      <div class="container">
+        <h1>上涨潜力金字塔</h1>
+        <p>使用加权算法计算 - 统计出长期上涨潜力榜</p>
+      </div>
+    </div> -->
+
+
+    <div class="">
+
+      <!-- A股部分 -->
+      <div class="col-sm-6 pyramid-list-box ">
+        <div class="pyramid-flag row">
+          <h2>A 股 <span>- China A shares -</span></h2>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @stocks[0..9].each do |stock| %>
+            <%= link_to stock_path(stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= stock.name %> -
+                <%= stock.easy_symbol %>
+                <span class="pull-right"><%= stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @stocks[10..29].each do |stock| %>
+            <%= link_to stock_path(stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= stock.name %> -
+                <%= stock.easy_symbol %>
+                <span class="pull-right"><%= stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @stocks[30..59].each do |stock| %>
+            <%= link_to stock_path(stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= stock.name %> -
+                <%= stock.easy_symbol %>
+                <span class="pull-right"><%= stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <!-- 美股部分 -->
+      <div class="col-sm-6 pyramid-list-box ">
+        <div class="pyramid-flag row">
+          <h2>美 股 <span>- US stocks -</span></h2>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @us_stocks[0..9].each do |us_stock| %>
+            <%= link_to us_stock_path(us_stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @us_stocks[10..29].each do |us_stock| %>
+            <%= link_to us_stock_path(us_stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <!-- list -->
+        <div class="pyramid-ul row">
+          <% @us_stocks[30..59].each do |us_stock| %>
+            <%= link_to us_stock_path(us_stock) do %>
+              <div class="pyramid-li col-sm-6 row">
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
