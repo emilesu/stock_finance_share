@@ -863,6 +863,7 @@ class UsStock < ApplicationRecord
   def us_stock_main_pyramid
     self.us_stock_roe_ratio_pyramid +
     self.us_stock_dividend_rate_pyramid +
+    self.us_stock_after_tax_profit_weighted_pyramid +
     self.us_stock_cash_and_cash_equivalents_ratio_pyramid +
     self.us_stock_accounts_receivable_turnover_ratio_pyramid +
     self.us_stock_inventory_turnover_ratio_pyramid +
@@ -883,19 +884,34 @@ class UsStock < ApplicationRecord
       rating = 0
     elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
-    elsif (num_array.sum / num_array.size) >= 35
-      rating = 600
-    elsif (num_array.sum / num_array.size) >= 30 && (num_array.sum / num_array.size) < 35
+    elsif (num_array.sum / num_array.size) >= 30
       rating = 550
-    elsif (num_array.sum / num_array.size) >= 25 && (num_array.sum / num_array.size) < 30
-      rating = 500
-    elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 25
-      rating = 450
-    elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
+    elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 30
       rating = 400
+    elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
+      rating = 300
     elsif (num_array.sum / num_array.size) >= 10 && (num_array.sum / num_array.size) < 15
-      rating = 350
+      rating = 250
     elsif (num_array.sum / num_array.size) < 10
+      rating = 0
+    end
+
+    # 返回分值
+    return rating
+  end
+
+  # 净利加成 积分算法（以 税后净利 的平均值为基础，1000（100分），10000（200分））
+  def us_stock_after_tax_profit_weighted_pyramid
+    array = JSON.parse(self.static_data)[19]        # 导入数据 税后净利
+    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
+
+    if num_array.sum == 0
+      rating = 0
+    elsif (num_array.sum / num_array.size) >= 10000
+      rating = 200
+    elsif (num_array.sum / num_array.size) >= 1000 && (num_array.sum / num_array.size) < 10000
+      rating = 100
+    else
       rating = 0
     end
 
