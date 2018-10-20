@@ -1,24 +1,8 @@
 class PyramidController < ApplicationController
 
   def index
-
-    @stocks = Stock
-    .where(["time_to_market < ? ", Time.now - 1095.days ])
-    .where.not(:industry => "保险及其他")
-    .where.not(:industry => "证券")
-    .where.not(:industry => "银行")
-    .order("pyramid_rating desc")[0..59]
-
-    @us_stocks = UsStock
-    .where.not(:industry => "财产保险公司")
-    .where.not(:industry => "人寿保险")
-    .where.not(:industry => "意外健康保险")
-    .where.not(:industry => "专业保险公司")
-    .where.not(:industry => "银行")
-    .where.not(:industry => "商业银行")
-    .where.not(:industry => "专业银行")
-    .order("pyramid_rating desc")[0..59]
-
+    @stock_pyramid = JSON.parse(Setting.first.a_pyramid)
+    @us_stock_pyramid = JSON.parse(Setting.first.us_pyramid)
   end
 
 

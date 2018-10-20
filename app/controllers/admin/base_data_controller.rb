@@ -288,6 +288,26 @@ class Admin::BaseDataController < AdminController
    end
 
 
+   #更新 a_pyramid 设置
+   def update_a_pyramid_setting
+     @stocks = Stock
+     .where(["time_to_market < ? ", Time.now - 1095.days ])
+     .where.not(:industry => "保险及其他")
+     .where.not(:industry => "证券")
+     .where.not(:industry => "银行")
+     .order("pyramid_rating desc")[0..59]
+
+     x = []
+     @stocks.each do |i|
+       x << i.easy_symbol
+     end
+     Setting.first.update!(
+       :a_pyramid => x
+     )
+     puts "更新完毕*******"
+     redirect_to admin_base_data_index_path
+     flash[:notice] = "a_pyramid 设置 设置完毕"
+   end
 
 
 
@@ -554,6 +574,29 @@ class Admin::BaseDataController < AdminController
    end
 
 
+   #更新 us_pyramid 设置
+   def update_us_pyramid_setting
+     @us_stocks = UsStock
+     .where.not(:industry => "财产保险公司")
+     .where.not(:industry => "人寿保险")
+     .where.not(:industry => "意外健康保险")
+     .where.not(:industry => "专业保险公司")
+     .where.not(:industry => "银行")
+     .where.not(:industry => "商业银行")
+     .where.not(:industry => "专业银行")
+     .order("pyramid_rating desc")[0..59]
+
+     x = []
+     @us_stocks.each do |i|
+       x << i.easy_symbol
+     end
+     Setting.first.update!(
+       :us_pyramid => x
+     )
+     puts "更新完毕*******"
+     redirect_to admin_base_data_index_path
+     flash[:notice] = "us_pyramid 设置 设置完毕"
+   end
 
 
 

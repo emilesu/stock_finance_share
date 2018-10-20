@@ -98,6 +98,7 @@ Rails.application.routes.draw do
       post :update_stock_time_to_market    #更新股票主营业务
       post :update_industry_setting    #更新行业设置
       post :update_stock_pyramid_rating_data    #更新 pyramid_rating 数据静态化
+      post :update_a_pyramid_setting    #更新pyramid设置
 
         # --------------美股部分 --------------
       post :update_us_stock_symbol     #更新 美股 代码、上市地
@@ -106,6 +107,7 @@ Rails.application.routes.draw do
       post :update_us_stock_company_info       #更新 美股 中文名 行业
       post :update_us_industry_setting    #更新行业设置
       post :update_us_stock_pyramid_rating_data    #更新 pyramid_rating 数据静态化
+      post :update_us_pyramid_setting    #更新pyramid设置
 
         # --------------百度链接推送--------------
       post :baidu_url_push     #主动推送（实时）

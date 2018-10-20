@@ -21,12 +21,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stocks[0..9].each do |stock| %>
+          <% @stock_pyramid[0..9].each do |stock| %>
             <%= link_to stock_path(stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= stock.name %> -
-                <%= stock.easy_symbol %>
-                <span class="pull-right"><%= stock.pyramid_rating %></span>
+                <%= Stock.find_by_easy_symbol(stock).name %> -
+                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
+                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -34,12 +34,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stocks[10..29].each do |stock| %>
+          <% @stock_pyramid[10..29].each do |stock| %>
             <%= link_to stock_path(stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= stock.name %> -
-                <%= stock.easy_symbol %>
-                <span class="pull-right"><%= stock.pyramid_rating %></span>
+                <%= Stock.find_by_easy_symbol(stock).name %> -
+                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
+                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -47,12 +47,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stocks[30..59].each do |stock| %>
+          <% @stock_pyramid[30..59].each do |stock| %>
             <%= link_to stock_path(stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= stock.name %> -
-                <%= stock.easy_symbol %>
-                <span class="pull-right"><%= stock.pyramid_rating %></span>
+                <%= Stock.find_by_easy_symbol(stock).name %> -
+                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
+                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -68,12 +68,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stocks[0..9].each do |us_stock| %>
+          <% @us_stock_pyramid[0..9].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
+                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
+                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -81,12 +81,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stocks[10..29].each do |us_stock| %>
+          <% @us_stock_pyramid[10..29].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
+                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
+                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -94,12 +94,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stocks[30..59].each do |us_stock| %>
+          <% @us_stock_pyramid[30..59].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock) do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
+                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
+                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>

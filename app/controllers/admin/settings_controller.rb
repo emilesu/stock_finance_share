@@ -63,7 +63,9 @@ class Admin::SettingsController < AdminController
       :us_version_3,
       :us_version_4,
       :us_version_5,
-      :about
+      :about,
+      :a_pyramid,
+      :us_pyramid,
     )
   end
 
