@@ -2,7 +2,7 @@
   height: 100%;
 
   .pyramid-box {
-    margin-top: 50px;
+    // margin-top: 50px;
     margin-bottom: 30px;
 
     .jumbotron {
@@ -20,6 +20,7 @@
     }
 
     .pyramid-list-box {
+      margin-top: 50px;
       .pyramid-flag {
         background-color: #222;
         border-left: 10px solid #333;
