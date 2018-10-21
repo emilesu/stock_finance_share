@@ -21,12 +21,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stock_pyramid[0..9].each do |stock| %>
+          <% @stocks[0..9].each do |stock| %>
             <%= link_to stock_path(stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= Stock.find_by_easy_symbol(stock).name %> -
-                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
-                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
+                  <%= stock.name %> -
+                  <%= stock.easy_symbol %>
+                  <span class="pull-right"><%= stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -34,12 +34,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stock_pyramid[10..29].each do |stock| %>
+          <% @stocks[10..29].each do |stock| %>
             <%= link_to stock_path(stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= Stock.find_by_easy_symbol(stock).name %> -
-                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
-                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
+                  <%= stock.name %> -
+                  <%= stock.easy_symbol %>
+                  <span class="pull-right"><%= stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -47,12 +47,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @stock_pyramid[30..59].each do |stock| %>
+          <% @stocks[30..59].each do |stock| %>
             <%= link_to stock_path(stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= Stock.find_by_easy_symbol(stock).name %> -
-                <%= Stock.find_by_easy_symbol(stock).easy_symbol %>
-                <span class="pull-right"><%= Stock.find_by_easy_symbol(stock).pyramid_rating %></span>
+                  <%= stock.name %> -
+                  <%= stock.easy_symbol %>
+                  <span class="pull-right"><%= stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -68,12 +68,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stock_pyramid[0..9].each do |us_stock| %>
+          <% @us_stocks[0..9].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
-                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
-                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -81,12 +81,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stock_pyramid[10..29].each do |us_stock| %>
+          <% @us_stocks[10..29].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
-                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
-                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -94,12 +94,12 @@
 
         <!-- list -->
         <div class="pyramid-ul row">
-          <% @us_stock_pyramid[30..59].each do |us_stock| %>
+          <% @us_stocks[30..59].each do |us_stock| %>
             <%= link_to us_stock_path(us_stock), target: "_blank" do %>
               <div class="pyramid-li col-sm-6 row">
-                <%= UsStock.find_by_easy_symbol(us_stock).cnname[0..10] %> -
-                <%= UsStock.find_by_easy_symbol(us_stock).symbol %>
-                <span class="pull-right"><%= UsStock.find_by_easy_symbol(us_stock).pyramid_rating %></span>
+                <%= us_stock.cnname[0..10] %> -
+                <%= us_stock.symbol %>
+                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
               </div>
             <% end %>
           <% end %>
@@ -113,3 +113,27 @@
   </div>
 
 </div>
+
+
+<!-- 还需继续调试 -->
+<!-- 实现不同表格相同股票的关联变化 -->
+<!-- <script>
+  $(document).ready(function() {
+    $('.pyramid-li').each(function(){
+      var stockId = $(this).attr("class");
+      $("."+stockId).mouseover( function(){
+        $("."+stockId).css("background-color","#222");
+        $("."+stockId).css("text-decoration","none");
+        $("."+stockId).css("color","#f9f9f9");
+        $("."+stockId).css("padding","7px 0");
+        // $("."+stockId).css("min-width","250px");
+        $("."+stockId, "p", "span").css("padding","7px 10px");
+      });
+      $("."+stockId).mouseleave( function(){
+        $("."+stockId).css("background-color","#fff");
+        $("."+stockId).css("color","#333");
+        $("."+stockId).css("padding","0");
+      });
+    });
+  });
+</script> -->

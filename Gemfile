@@ -46,6 +46,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
+#汉字转拼音工具
+gem 'ruby-pinyin'
+
 #统计阅读量
 gem 'impressionist'
 

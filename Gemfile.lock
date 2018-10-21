@@ -272,6 +272,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rmmseg-cpp-new (0.3.1)
+    ruby-pinyin (0.5.0)
+      rmmseg-cpp-new (~> 0.3.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.5)
@@ -376,6 +379,7 @@ DEPENDENCIES
   ransack
   redcarpet
   rest-client
+  ruby-pinyin
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq

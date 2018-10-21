@@ -2,7 +2,9 @@ class PyramidController < ApplicationController
 
   def index
     @stock_pyramid = JSON.parse(Setting.first.a_pyramid)
+    @stocks = Stock.where(:easy_symbol => @stock_pyramid).order("pyramid_rating desc")
     @us_stock_pyramid = JSON.parse(Setting.first.us_pyramid)
+    @us_stocks = UsStock.where(:easy_symbol => @us_stock_pyramid).order("pyramid_rating desc")
   end
 
 
