@@ -11,108 +11,254 @@
     </div> -->
 
 
-    <div class="">
+    <div>
 
-      <!-- A股部分 -->
-      <div class="col-sm-6 pyramid-list-box ">
-        <div class="pyramid-flag row">
-          <h2>A 股 <span>- China A shares -</span></h2>
-        </div>
+      <!-- ————————————————————————————————————————A股部分———————————————————————————————————————————— -->
 
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @stocks[0..9].each do |stock| %>
-            <%= link_to stock_path(stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                  <%= stock.name %> -
-                  <%= stock.easy_symbol %>
-                  <span class="pull-right"><%= stock.pyramid_rating %></span>
-              </div>
+
+      <!-- A股部分 会员可见 -->
+      <% if current_user && current_user.role == "admin" || current_user && current_user.role == "member" %>
+        <div class="col-sm-6 pyramid-list-box ">
+          <div class="pyramid-flag row">
+            <h2>A 股 <span>- China A shares -</span></h2>
+          </div>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[0..9].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div><hr>
 
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @stocks[10..29].each do |stock| %>
-            <%= link_to stock_path(stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                  <%= stock.name %> -
-                  <%= stock.easy_symbol %>
-                  <span class="pull-right"><%= stock.pyramid_rating %></span>
-              </div>
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[10..29].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div><hr>
 
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @stocks[30..59].each do |stock| %>
-            <%= link_to stock_path(stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                  <%= stock.name %> -
-                  <%= stock.easy_symbol %>
-                  <span class="pull-right"><%= stock.pyramid_rating %></span>
-              </div>
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[30..59].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
+
         </div>
+      <% end %>
 
-      </div>
+      <!-- A股部分 非会员可见 -->
+      <% if !current_user || current_user.role == "nonmember" %>
+        <div class="col-sm-6 pyramid-list-box ">
+          <div class="pyramid-flag row">
+            <h2>A 股 <span>- China A shares -</span></h2>
+          </div>
 
-      <!-- 美股部分 -->
-      <div class="col-sm-6 pyramid-list-box ">
-        <div class="pyramid-flag row">
-          <h2>美 股 <span>- US stocks -</span></h2>
-        </div>
-
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @us_stocks[0..9].each do |us_stock| %>
-            <%= link_to us_stock_path(us_stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
-              </div>
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[0..1].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+            <div class="nonmember-show-1 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示1~10榜</p>
+            </div>
+          </div><hr>
 
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @us_stocks[10..29].each do |us_stock| %>
-            <%= link_to us_stock_path(us_stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
-              </div>
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[10..13].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+            <div class="nonmember-show-2 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示11~30榜</p>
+            </div>
+          </div><hr>
 
-        <!-- list -->
-        <div class="pyramid-ul row">
-          <% @us_stocks[30..59].each do |us_stock| %>
-            <%= link_to us_stock_path(us_stock), target: "_blank" do %>
-              <div class="pyramid-li col-sm-6 row">
-                <%= us_stock.cnname[0..10] %> -
-                <%= us_stock.symbol %>
-                <span class="pull-right"><%= us_stock.pyramid_rating %></span>
-              </div>
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[30..35].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+            <div class="nonmember-show-3 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示31~60榜</p>
+            </div>
+          </div>
 
-      </div>
+        </div>
+      <% end %>
+
+
+      <!-- ———————————————————————————————————————美股部分————————————————————————————————————————————— -->
+
+      <!-- 美股部分 会员可见 -->
+      <% if current_user && current_user.role == "admin" || current_user && current_user.role == "member" %>
+        <div class="col-sm-6 pyramid-list-box ">
+          <div class="pyramid-flag row">
+            <h2>美 股 <span>- US stocks -</span></h2>
+          </div>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[0..9].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[10..29].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[30..59].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+      <% end %>
+
+      <!-- 美股部分 非会员可见 -->
+      <% if !current_user || current_user.role == "nonmember" %>
+        <div class="col-sm-6 pyramid-list-box ">
+          <div class="pyramid-flag row">
+            <h2>美 股 <span>- US stocks -</span></h2>
+          </div>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[0..1].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="nonmember-show-1 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示1~10榜</p>
+            </div>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[10..13].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="nonmember-show-2 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示11~30榜</p>
+            </div>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[30..35].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
+            <div class="nonmember-show-3 col-sm-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/21/5bcc53fe30776.png">
+              <p class="text-center">加入会员 展示31~60榜</p>
+            </div>
+          </div><hr>
+
+        </div>
+      <% end %>
 
     </div>
 
 
   </div>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  金字塔(上涨潜力排行榜) -
+<% end %>
+
 
 
 <!-- 还需继续调试 -->

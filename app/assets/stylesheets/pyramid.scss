@@ -57,6 +57,48 @@
           text-decoration: none;
           color: #f9f9f9;
         }
+        .nonmember-show-1 {
+          background-color: #f9f9f9;
+          height: 100px;
+          margin-top: 7px;
+          padding-bottom: 10px;
+          -webkit-user-select: none;        // 禁用文本复制
+          user-select: none;                // 禁用文本复制
+          img {
+            padding-top: 10px;
+          }
+          p {
+            color: #999;
+          }
+        }
+        .nonmember-show-2 {
+          background-color: #f9f9f9;
+          height: 200px;
+          margin-top: 7px;
+          padding-bottom: 10px;
+          -webkit-user-select: none;        // 禁用文本复制
+          user-select: none;                // 禁用文本复制
+          img {
+            padding-top: 50px;
+          }
+          p {
+            color: #999;
+          }
+        }
+        .nonmember-show-3 {
+          background-color: #f9f9f9;
+          height: 350px;
+          margin-top: 7px;
+          padding-bottom: 10px;
+          -webkit-user-select: none;        // 禁用文本复制
+          user-select: none;                // 禁用文本复制
+          img {
+            padding-top: 120px;
+          }
+          p {
+            color: #999;
+          }
+        }
       }
     }
 
