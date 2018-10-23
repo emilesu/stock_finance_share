@@ -1,5 +1,7 @@
 class JoinController < ApplicationController
 
+  impressionist actions: [:index]
+
   def index
     #code
   end

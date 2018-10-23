@@ -1,5 +1,7 @@
 class PyramidController < ApplicationController
 
+  impressionist actions: [:index]
+
   def index
     @stock_pyramid = JSON.parse(Setting.first.a_pyramid)
     @stocks = Stock.where(:easy_symbol => @stock_pyramid).order("pyramid_rating desc")

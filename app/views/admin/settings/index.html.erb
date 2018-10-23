@@ -197,6 +197,46 @@
           %>
         </td>
       </tr>
+      <!-- 金字塔 pyramid/index -->
+      <tr>
+       <td>金字塔 pyramid/index</td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Pyramid",
+           :controller_name => "pyramid",
+           :action_name => "index",
+         ).count
+         %>
+       </td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Pyramid",
+           :controller_name => "pyramid",
+           :action_name => "index",
+         ).pluck(:session_hash).uniq.count
+         %>
+       </td>
+      </tr>
+      <!-- 加入会员 join/index -->
+      <tr>
+       <td>加入会员 join/index</td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Join",
+           :controller_name => "join",
+           :action_name => "index",
+         ).count
+         %>
+       </td>
+       <td>
+         <%= Impression.where(
+           :impressionable_type => "Join",
+           :controller_name => "join",
+           :action_name => "index",
+         ).pluck(:session_hash).uniq.count
+         %>
+       </td>
+      </tr>
        <tr><td>-</td><td>-</td><td>-</td></tr>
        <!-- A股  stocks/show -->
       <tr>
