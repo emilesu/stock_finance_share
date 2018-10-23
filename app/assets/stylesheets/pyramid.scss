@@ -47,7 +47,7 @@
           margin: 0;
           padding: 7px 10px;
           border-radius:5px;
-          min-width: 250px;
+          min-width: 200px;
           span {
             margin-right: 50px;
           }
@@ -57,46 +57,40 @@
           text-decoration: none;
           color: #f9f9f9;
         }
-        .nonmember-show-1 {
+        .nonmember-show {
+          transition: 0.2s;
           background-color: #f9f9f9;
-          height: 100px;
           margin-top: 7px;
           padding-bottom: 10px;
           -webkit-user-select: none;        // 禁用文本复制
           user-select: none;                // 禁用文本复制
+          p {
+            color: #999;
+          }
+        }
+        .nonmember-show:hover {
+          transition: 0.2s;
+          background-color: #f9f9f9;
+          box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+        }
+        .nonmember-show-1 {
+          height: 100px;
           img {
             padding-top: 10px;
           }
-          p {
-            color: #999;
-          }
         }
         .nonmember-show-2 {
-          background-color: #f9f9f9;
           height: 200px;
-          margin-top: 7px;
-          padding-bottom: 10px;
-          -webkit-user-select: none;        // 禁用文本复制
-          user-select: none;                // 禁用文本复制
           img {
             padding-top: 50px;
           }
-          p {
-            color: #999;
-          }
         }
         .nonmember-show-3 {
-          background-color: #f9f9f9;
           height: 350px;
-          margin-top: 7px;
-          padding-bottom: 10px;
-          -webkit-user-select: none;        // 禁用文本复制
-          user-select: none;                // 禁用文本复制
           img {
             padding-top: 120px;
-          }
-          p {
-            color: #999;
           }
         }
       }

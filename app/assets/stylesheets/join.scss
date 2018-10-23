@@ -1,55 +1,76 @@
-// 滚动背景设置
-#fullpage-join-page {
-  background-color: #fff;
-  // 禁止选择文本
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  // /禁止选择文本
-  .section1 {
-    position: relative;
-    height: auto;
-  }
-  .section2{
-    position: relative;
-  }
-  .section3{
-    position: relative;
-  }
-}
+.join-index {
+  height: 100%;
 
-.section-bg-1 {
-  img {
-    position:absolute;
-    max-width:100%;
-    height: auto;
-    margin: auto;
-    left: 0;
-    right: 0;
-  }
-}
-.section-text-1 {
-  z-index: 3;
-  position: absolute;
-  bottom: 15%;
-  height: auto;
-  width: 100%;
-  // background-color: #f5f5f5;
-  opacity:0.9;
-  h2 {
-    margin: 40px 0 20px;
-    text-align: center;
-    font-weight: normal;
-  }
-  .section-p-1 {
-    p {
-      padding: 30px;
-      font-size: 14px;
-      line-height: 26px;
-      text-align: justify;
+  .join-box {
+    margin-top: 50px;
+    margin-bottom: 30px;
+
+    .h1-title {
+      background-color: #222;
+      border-left: 10px solid #333;
+      border-right: 10px solid #333;
+      h1{
+        font-weight: bold;
+        text-align: center;
+        color: #bfb199;
+        font-size: 30px;
+        line-height: 40px;
+        padding: 30px 20px 10px 20px;
+      }
     }
+
+    .why-join {
+      border: 1px solid #eee;
+      padding: 10px 10px;
+      margin-bottom: 30px;
+      .why-join-desc {
+        h3 {
+          font-weight: 600;
+          font-size: 20px;
+          margin-bottom: 15px;
+          span {
+            color: #bfb199;
+          }
+        }
+        p {
+          font-size: 13px;
+          text-align: justify;
+          line-height: 20px;
+        }
+      }
+    }
+
+    .wechat-rq-code {
+      background-color: #f9f9f9;
+      padding: 70px 0 50px;
+      img {
+        box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.2);
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+      }
+      p {
+        font-size: 15px;
+        text-align: center;
+        line-height: 20px;
+        span {
+          font-size: 25px;
+        }
+        a {
+          text-decoration: underline;
+          color: #bfb199;
+        }
+      }
+      h3 {
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      table {
+        font-size: 13px;
+      }
+    }
+
+
+
   }
 }
