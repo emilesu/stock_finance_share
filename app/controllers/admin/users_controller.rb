@@ -107,9 +107,9 @@ class Admin::UsersController < AdminController
     if @user.role == "member"
       @user.update!(
         :role => "nonmember",
-        # :join_time => nil,
-        # :end_time => nil,
-        # :nper => nil
+        :join_time => nil,
+        :end_time => nil,
+        :nper => nil
       )
     end
     redirect_to admin_users_path
