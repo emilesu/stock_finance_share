@@ -4,9 +4,9 @@ class PyramidController < ApplicationController
 
   def index
     @stock_pyramid = JSON.parse(Setting.first.a_pyramid)
-    @stocks = Stock.where(:easy_symbol => @stock_pyramid).order("pyramid_rating desc")
+    @stocks = Stock.where(:easy_symbol => @stock_pyramid).order("pyramid_rating desc")[0..99]
     @us_stock_pyramid = JSON.parse(Setting.first.us_pyramid)
-    @us_stocks = UsStock.where(:easy_symbol => @us_stock_pyramid).order("pyramid_rating desc")
+    @us_stocks = UsStock.where(:easy_symbol => @us_stock_pyramid).order("pyramid_rating desc")[0..99]
   end
 
 
@@ -21,7 +21,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "保险及其他")
     .where.not(:industry => "证券")
     .where.not(:industry => "银行")
-    .order("pyramid_rating desc")[0..59]
+    .order("pyramid_rating desc")[0..99]
   end
 
   def us_stock
@@ -33,7 +33,7 @@ class PyramidController < ApplicationController
     .where.not(:industry => "银行")
     .where.not(:industry => "商业银行")
     .where.not(:industry => "专业银行")
-    .order("pyramid_rating desc")[0..59]
+    .order("pyramid_rating desc")[0..99]
   end
 
 
