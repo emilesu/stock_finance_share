@@ -33,7 +33,7 @@
           }
         }
         p {
-          font-size: 13px;
+          font-size: 14px;
           text-align: justify;
           line-height: 20px;
         }
@@ -49,11 +49,11 @@
         -webkit-border-radius: 2px;
       }
       p {
-        font-size: 15px;
+        font-size: 14px;
         text-align: center;
         line-height: 20px;
         span {
-          font-size: 25px;
+          font-size: 28px;
         }
         a {
           text-decoration: underline;
@@ -69,7 +69,16 @@
         font-size: 13px;
       }
     }
-
+    .join-slogan {
+      p {
+        font-size: 14px;
+        span {
+          font-size: 16px;
+          font-weight: 600;
+          color: #bfb199;
+        }
+      }
+    }
 
 
   }

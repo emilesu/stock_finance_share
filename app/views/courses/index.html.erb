@@ -196,7 +196,19 @@
                 <% end %>
               </div>
             <% end %>
+            <br>
           </div>
+          <%= link_to join_index_path do %>
+          <div class="why-join col-xs-12">
+            <div class="why-join-img col-sm-2 col-xs-12">
+              <img class="center-block" src="https://i.loli.net/2018/10/23/5bce1a50c5c7b.png" alt="">
+            </div>
+            <div class="why-join-desc col-sm-10 col-xs-12">
+              <h3><span>我在持续更新中……</span></h3>
+              <p>趁现在马上加入会员吧！越早越好，相信这一定是你今年最值得、最便宜、最划算的一笔知识投资！</p>
+            </div>
+          </div>
+          <% end %>
         </div>
         <div class="col-sm-4 hidden-xs course-img">
           <img src="<%= Course.find_by_id(7).surface_img %>">

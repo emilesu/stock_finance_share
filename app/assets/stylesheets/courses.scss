@@ -40,6 +40,7 @@
       }
       a {
         color: #bfb199;
+        font-weight: 500;
         // text-decoration: underline;
       }
       a:hover {
@@ -86,6 +87,43 @@
           float: right;
         }
       }
+
+      .why-join {
+        transition: 0.2s;
+        padding: 20px 5px 0;
+        margin-bottom: 30px;
+        background-color: #f9f9f9;
+        img {
+          width: 60px;
+          height: auto;
+          margin-bottom: 20px;
+        }
+        .why-join-desc {
+          h3 {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 20px;
+            span {
+              color: #bfb199;
+            }
+          }
+          p {
+            color: #bfb199;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: justify;
+            line-height: 24px;
+          }
+        }
+      }
+      .why-join:hover {
+        transition: 0.2s;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+      }
+
     }
   }
 }
