@@ -295,7 +295,7 @@ class Admin::BaseDataController < AdminController
      .where.not(:industry => "保险及其他")
      .where.not(:industry => "证券")
      .where.not(:industry => "银行")
-     .order("pyramid_rating desc")[0..59]
+     .order("pyramid_rating desc")[0..99]
 
      x = []
      @stocks.each do |i|
@@ -584,7 +584,7 @@ class Admin::BaseDataController < AdminController
      .where.not(:industry => "银行")
      .where.not(:industry => "商业银行")
      .where.not(:industry => "专业银行")
-     .order("pyramid_rating desc")[0..59]
+     .order("pyramid_rating desc")[0..99]
 
      x = []
      @us_stocks.each do |i|

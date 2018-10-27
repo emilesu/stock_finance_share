@@ -51,6 +51,19 @@
                 </div>
               <% end %>
             <% end %>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @stocks[60..99].each do |stock| %>
+              <%= link_to stock_path(stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                    <%= stock.name %> -
+                    <%= stock.easy_symbol %>
+                    <span class="pull-right"><%= stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
           </div>
 
         </div>
@@ -170,7 +183,22 @@
                 </div>
               <% end %>
             <% end %>
+          </div><hr>
+
+          <!-- list -->
+          <div class="pyramid-ul row">
+            <% @us_stocks[60..99].each do |us_stock| %>
+              <%= link_to us_stock_path(us_stock), target: "_blank" do %>
+                <div class="pyramid-li col-sm-6 row">
+                  <%= us_stock.cnname[0..10] %> -
+                  <%= us_stock.symbol %>
+                  <span class="pull-right"><%= us_stock.pyramid_rating %></span>
+                </div>
+              <% end %>
+            <% end %>
           </div>
+
+
 
         </div>
       <% end %>
