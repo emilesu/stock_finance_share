@@ -62,18 +62,43 @@
 
     <br><br>
     <!-- 微信二维码： -->
-    <div class="wechat-rq-code col-md-12">
-      <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
-      <br><br>
-      <p>添加 大苏 的微信：  <strong>emilesu</strong></p>
-      <p>通过微信支付 或 红包，支付价格<strong> <span>68</span> </strong>元</p>
-      <% if !current_user %>
-        <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名发送给 大苏 就行了</p>
-      <% elsif current_user %>
-        <p>把您在本站的用户名<strong> <%= current_user.username %> </strong>发送给 大苏 就行了</p>
-      <% end %>
-      <br><br>
-      <div class="join-slogan">
+    <div class="how-to-join col-md-12">
+
+      <!-- 微信方法： -->
+      <div class="wechat-join col-md-6">
+        <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
+        <br><br>
+        <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        <br><br>
+        <p><strong> 方法一：</strong></p>
+        <p>扫码添加 大苏 的微信：  <strong>emilesu</strong></p>
+        <p>通过微信支付 或 红包，支付<strong> <span>68</span> </strong>元(CNY)</p>
+        <% if !current_user %>
+          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名发送给 大苏 就行了</p>
+        <% elsif current_user %>
+          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong>发送给 大苏 就行了</p>
+        <% end %>
+      </div>
+
+      <!-- PayPal 方法： -->
+      <div class="paypal-join col-md-6">
+        <p class="texit-center"><i class="fa fa-paypal fa-4x" aria-hidden="true"></i>
+        <br><br>
+        <img class="center-block" src="https://i.loli.net/2018/10/28/5bd55fc98e1d4.jpg" alt="">
+        <br><br>
+        <p><strong> 方法二：</strong></p>
+        <p>通过 大苏 的 PayPal ：  <strong><a href="https://paypal.me/emilesu" target="_blank">https://paypal.me/emilesu</a></strong></p>
+        <p>支付 <strong> <span>12</span> </strong>(USD)<strong> - 或or -  <span>68</span> </strong>(CNY) </p>
+        <% if !current_user %>
+          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名 附在留言处 就行了</p>
+        <% elsif current_user %>
+          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong> 附在留言处 就行了</p>
+        <% end %>
+      </div>
+
+
+      <div class="join-slogan col-md-12">
+        <hr><br><br>
         <p>现在马上加入吧！<span>越早越好！</span></p>
         <p>这一定是你今年 <span>最值得、最便宜、最划算</span> 的一笔知识投资！</p>
       </div>
@@ -92,19 +117,19 @@
             <tr>
               <td>第一期 (进行中...)</td>
               <td>60人</td>
-              <td>68元</td>
+              <td>68(CNY) 或 12(USD)</td>
               <td>2018年11月30日 或 集满60人时</td>
             </tr>
             <tr>
               <td>第二期</td>
               <td>100人</td>
-              <td>168元</td>
+              <td>168(CNY) 或 26(USD)</td>
               <td>2018年12月1日起 - 待定  或 集满100人时</td>
             </tr>
             <tr>
               <td>第三期</td>
               <td>100人</td>
-              <td>268元</td>
+              <td>268(CNY) 或 40(USD)</td>
               <td>待定</td>
             </tr>
         </table>
