@@ -1,6 +1,6 @@
 GIT
-  remote: git@github.com:yangsr/omniauth-wechat-oauth2.git
-  revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
+  remote: git@github.com:skinnyworm/omniauth-wechat-oauth2.git
+  revision: 646959d7b560836e714d29c0013826eb29f144d6
   specs:
     omniauth-wechat-oauth2 (0.1.0)
       omniauth (~> 1.0)
