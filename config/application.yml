@@ -1,17 +1,21 @@
 production:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
-  open_weixin_app_id: wx51bd19f8a9f4a04c
-  open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
+  # open_weixin_app_id: wx51bd19f8a9f4a04c
+  # open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
   GOOGLE_CLIENT_ID: '391297052027-de2gsnn6rk5ocqmj7udov7gr9jlmpr3e.apps.googleusercontent.com'
   GOOGLE_CLIENT_SECRET: 'GumquYvWMDIfZPvbqvfU_ofV'
   GITHUB_CLIENT_ID: 'b31bca108fd704bbaa7e'
   GITHUB_CLIENT_SECRET: '0440cb9d617032ac166745cba4887c60903f8a0d'
+  open_weixin_app_id: 'wxf095d4f693ef8100'
+  open_weixin_app_screct: 'b74c27ef66bcacff8d18c3c8d27aff9b'
 
 development:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
-  open_weixin_app_id: wx51bd19f8a9f4a04c
-  open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
+  # open_weixin_app_id: wx51bd19f8a9f4a04c
+  # open_weixin_app_screct: 1ae8301cf502843d9345946bcddd7b08
   GOOGLE_CLIENT_ID: '391297052027-de2gsnn6rk5ocqmj7udov7gr9jlmpr3e.apps.googleusercontent.com'
   GOOGLE_CLIENT_SECRET: 'GumquYvWMDIfZPvbqvfU_ofV'
   GITHUB_CLIENT_ID: 'b31bca108fd704bbaa7e'
   GITHUB_CLIENT_SECRET: '0440cb9d617032ac166745cba4887c60903f8a0d'
+  open_weixin_app_id: 'wxf095d4f693ef8100'
+  open_weixin_app_screct: 'b74c27ef66bcacff8d18c3c8d27aff9b'
