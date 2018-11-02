@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181102175528) do
+ActiveRecord::Schema.define(version: 20181102185241) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -86,6 +86,19 @@ ActiveRecord::Schema.define(version: 20181102175528) do
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_likes_on_note_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "new_infos", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.datetime "up_time"
+    t.string "link_1"
+    t.string "link_1_info"
+    t.string "link_2"
+    t.string "link_2_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "news", force: :cascade do |t|

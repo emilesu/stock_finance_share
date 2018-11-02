@@ -1,0 +1,2 @@
+class NewInfo < ApplicationRecord
+end

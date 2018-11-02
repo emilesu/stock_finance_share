@@ -1,0 +1,55 @@
+<div>
+
+  <div>
+    <%= link_to("新建 新内容", new_admin_new_info_path, :class => "btn btn-default pull-right" ) %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>标题/title</th>
+        <th>封面/cover</th>
+        <th>简介/introduction</th>
+        <th>内容时间/up_time</th>
+        <th>浏览量 次/人</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @new_infos.each do |new_info| %>
+        <tr>
+          <td>
+            <%= new_info.id %>
+          </td>
+          <td>
+            <%= link_to new_info_path(new_info) do %>
+              <%= new_info.title %>
+            <% end %>
+          </td>
+          <td class="video-td">
+            <%= image_tag(new_info.image) %>
+          </td>
+          <td>
+            <%= new_info.description %>
+          </td>
+          <td>
+            <%= new_info.up_time %>
+          </td>
+          <td>
+            <%= new_info.created_at %>
+          </td>
+          <td>
+            <%= new_info.impressionist_count(:filter=>:all) %> / <%= new_info.impressionist_count(:filter=>:session_hash) %>
+          </td>
+
+          <td>
+            <%= link_to("编辑", edit_admin_new_info_path(new_info), :class => "btn btn-xs btn-default") %>
+            <%= link_to("删除", admin_new_info_path(new_info), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

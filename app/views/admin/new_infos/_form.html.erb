@@ -1,0 +1,16 @@
+<%= simple_form_for [:admin, @new_info] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :title, :label => "标题/title", input_html: { class: "form-control"} %>
+    <%= f.input :description, :label => "内容/description", input_html: { class: "form-control", :rows => 5, :id => "editor"} %>
+    <%= f.input :image, :label => "图片/image", input_html: { class: "form-control"} %>
+    <%= f.input :up_time, :label => "发布时间/up_time", input_html: { class: "form-control"} %>
+    <%= f.input :link_1, :label => "链接1/link_1", input_html: { class: "form-control"} %>
+    <%= f.input :link_1_info, :label => "链接1/link_1_info", input_html: { class: "form-control"} %>
+    <%= f.input :link_2, :label => "链接2/link_2", input_html: { class: "form-control"} %>
+    <%= f.input :link_2_info, :label => "链接2/link_2_info", input_html: { class: "form-control"} %>
+
+    <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>

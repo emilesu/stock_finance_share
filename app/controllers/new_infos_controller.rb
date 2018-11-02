@@ -1,0 +1,2 @@
+class NewInfosController < ApplicationController
+end

@@ -71,7 +71,7 @@ Rails.application.routes.draw do
 
   resources :videos          #视频教程
 
-  resources :news          #新内容
+  resources :new_infos       #新内容
 
   namespace :admin do
     resources :users do
@@ -115,8 +115,8 @@ Rails.application.routes.draw do
       post :baidu_url_push     #主动推送（实时）
     end
     resources :videos          #视频教程
-    
-    resources :news          #新内容
+
+    resources :new_infos          #新内容
   end
 
 
