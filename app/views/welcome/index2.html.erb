@@ -172,9 +172,9 @@
           <h3>苹果 <span>- AAPL</span></h3>
           <div class="example-info">
             <p>买入时间：<strong>2017-03-15</strong></p>
-            <p>买入价格：<strong>137.8 $(复权)</strong></p>
+            <p>买入价格：<strong>136.4 $(复权)</strong></p>
             <p>当前价格：<strong style="color: red"><%= UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0] %> $</strong></p>
-            <p>浮动盈亏：<strong style="color: red"><%= ((UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0].to_f - 137.8) / 137.8 * 100).round(1) %> %</strong></p>
+            <p>浮动盈亏：<strong style="color: red"><%= ((UsStock.find_by_easy_symbol("AAPL").us_stock_latest_price_and_PE[0].to_f - 136.4) / 136.4 * 100).round(1) %> %</strong></p>
           </div>
           <div class="example-description">
             <p>苹果公司的股价在近十几年呈现长期上涨的趋势，从HOLD LE表中可以看出，苹果的获利能力及稳定、又强劲。股价长期看涨不看跌。</p>
