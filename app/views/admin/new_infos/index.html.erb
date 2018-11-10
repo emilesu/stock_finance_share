@@ -10,9 +10,9 @@
         <th>ID</th>
         <th>标题/title</th>
         <th>封面/cover</th>
-        <th>简介/introduction</th>
-        <th>内容时间/up_time</th>
-        <th>浏览量 次/人</th>
+        <th>内容/description</th>
+        <th>发布时间/up_time</th>
+        <th>创建时间/created_at</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -38,9 +38,6 @@
           </td>
           <td>
             <%= new_info.created_at %>
-          </td>
-          <td>
-            <%= new_info.impressionist_count(:filter=>:all) %> / <%= new_info.impressionist_count(:filter=>:session_hash) %>
           </td>
 
           <td>

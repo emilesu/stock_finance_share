@@ -72,6 +72,17 @@
             加入会员
           <% end %>
         </li>
+
+        <!-- 新内容按钮 -->
+        <!-- 大屏幕时时候 modal -->
+        <li class="hidden-xs hidden-sm">
+          <a data-toggle="modal" data-target="#new-info-modal">新内容</a>
+        </li>
+        <!-- 大屏幕时时候 modal -->
+        <li class="hidden-lg hidden-md">
+
+        </li>
+
         <% if !current_user %>
           <li><a data-toggle="modal" data-target="#login-modal">注册/登录</a></li>
           <!-- <li><%= link_to("注册/登入", user_wechat_omniauth_authorize_path) %></li> -->
@@ -118,3 +129,6 @@
 
 <!-- 登录 login_modal -->
 <%= render :partial => "//common/login_modal" %>
+
+<!-- 新内容 new_info_modal -->
+<%= render :partial => "//common/new_info_modal" %>
