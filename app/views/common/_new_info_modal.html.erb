@@ -1,7 +1,7 @@
 <!-- 登录 login_modal -->
 <div class="modal fade" id="new-info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content  col-md-12">
+    <div class="modal-content  col-sm-12">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -12,6 +12,7 @@
       </div>
       <div class="modal-body new-info-modal-content">
         <div class="new-info-modal">
+          <% @new_infos = NewInfo.all.order("created_at desc").page(params[:page]).per(6) %>
           <% @new_infos.each do |new_info| %>
 
             <!-- 判断是否有链接 -->
@@ -23,10 +24,10 @@
 
                 <!-- 有图片时 左右分布 -->
                 <% if !new_info.image.blank? %>
-                  <div class="new-info-img col-md-3">
+                  <div class="new-info-img col-sm-3">
                     <%= image_tag(new_info.image) %>
                   </div>
-                  <div class="new-info-content col-md-9">
+                  <div class="new-info-content col-sm-9">
                     <h3><%= new_info.title %>
                       <i class="pull-right"><%= time_ago_in_words( new_info.up_time ) %>
                         前
@@ -36,7 +37,7 @@
                   </div>
                 <% else %>
                   <!-- 无图片时 -->
-                  <div class="new-info-content col-md-12">
+                  <div class="new-info-content col-sm-12">
                     <h3><%= new_info.title %>
                       <i class="pull-right"><%= time_ago_in_words( new_info.up_time ) %>
                         前
@@ -56,8 +57,8 @@
           <% end %>
 
           <!-- 更多 -->
-          <%= link_to("查看更多" ,new_infos_path, :class => "btn btn-sm btn-default btn-block") %>
-
+          <%= link_to("更多……" ,new_infos_path, :class => "btn btn-sm btn-default btn-block") %>
+          <br>
         </div>
       </div>
     </div>

@@ -393,21 +393,25 @@
       transition: 0.3s;
       .new-info-img {
         img {
-          margin-top: 10px;
+          width: 100%;
+          height: auto;
+          margin: 10px 0 15px;
         }
       }
       .new-info-content {
         h3 {
           font-size: 18px;
           font-weight: bolder;
-          margin: 5px 0 20px;
+          margin: 5px 0 15px;
           line-height: 30px;
+          i {
+            font-size: 10px;
+            color: #999;
+            font-weight: lighter;
+          }
         }
         p {
           text-align: justify;
-        }
-        i {
-          font-size: 10  px;
         }
       }
     }
