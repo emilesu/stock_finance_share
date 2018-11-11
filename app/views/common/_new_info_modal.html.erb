@@ -12,7 +12,7 @@
       </div>
       <div class="modal-body new-info-modal-content">
         <div class="new-info-modal">
-          <% @new_infos = NewInfo.all.order("created_at desc").page(params[:page]).per(6) %>
+          <% @new_infos = NewInfo.all.order("up_time desc").page(params[:page]).per(6) %>
           <% @new_infos.each do |new_info| %>
 
             <!-- 判断是否有链接 -->

@@ -1,7 +1,7 @@
 class NewInfosController < ApplicationController
 
   def index
-    @new_infos = NewInfo.all.order("created_at desc").page(params[:page]).per(15)
+    @new_infos = NewInfo.all.order("up_time desc").page(params[:page]).per(15)
   end
 
 end
