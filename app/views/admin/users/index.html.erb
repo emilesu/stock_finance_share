@@ -17,7 +17,8 @@
         <th>入会操作</th>
         <th>注册时间/created_at</th>
         <th>笔记数量/note_count</th>
-        <th>浏览量 次/人</th>
+        <th>被看次数</th>
+        <th>浏览量</th>
         <th>编辑用户</th>
       </tr>
     </thead>
@@ -86,9 +87,13 @@
           <td>
             <%= user.notes.size %>
           </td>
-          <!-- 浏览量 -->
+          <!-- 被看次数 -->
           <td>
             <%= user.impressionist_count(:filter=>:all) %> / <%= user.impressionist_count(:filter=>:session_hash) %>
+          </td>
+          <!-- 浏览量 -->
+          <td>
+            <%= Impression.where(:user_id => user.id).count %>
           </td>
           <!-- 操作 -->
           <td>
