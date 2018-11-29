@@ -3511,6 +3511,7 @@ jQuery(function () {
        "300737 - 科顺股份 - KSFS",
        "300738 - 奥飞数据 - AFSJ",
        "300739 - 明阳电路 - MYDL",
+       "600793 - 宜宾纸业 - YBZY",
        "AAPL - 苹果 - US",
        "AMZN - 亚马逊 - US",
        "MSFT - 微软 - US",
