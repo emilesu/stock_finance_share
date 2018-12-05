@@ -1,7 +1,7 @@
 class Admin::UsStocksController < AdminController
 
   def index
-    @us_stocks = UsStock.page(params[:page]).per(25)
+    @us_stocks = UsStock.order("symbol").page(params[:page]).per(25)
   end
 
   def show
@@ -47,7 +47,7 @@ class Admin::UsStocksController < AdminController
   private
 
   def us_stock_params
-    params.require(:us_stock).permit(:symbol, :easy_symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :version, :static_data, :sector, :ipoyear, :name)
+    params.require(:us_stock).permit(:symbol, :easy_symbol, :cnname, :market, :pinyin, :cwzb, :lrb, :llb, :zcb, :industry, :main_business, :company_url, :time_to_market, :version, :static_data, :sector, :ipoyear, :name, :pyramid_rating)
   end
 
 end
