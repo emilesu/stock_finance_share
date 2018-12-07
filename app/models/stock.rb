@@ -923,7 +923,7 @@ class Stock < ApplicationRecord
     elsif time == 5
       llb81 = self.quarter_years(3, 81)[0..4]
     elsif time == 2
-      llb81 = self.quarter_recent(3, 81)
+      llb81 = self.quarter_recent(3, 25)
     end
     # 运算
     result = []
