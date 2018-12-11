@@ -43,23 +43,27 @@
 
         <li class="dropdown navbar-font-size">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="10" viewBox="0 0 23 12">
+              <image id="图层_1" data-name="图层 1" width="23" height="12" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMCAMAAAC+5dbKAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABlVBMVEWhk3+ll4O8r5hsYVO9sJm8r5i8r5i9sJm9sJi8r5i8r5i8r5i8r5i8r5i8r5hrYFOypY+ypI7AtJyQg3CjloGqnYikloKfkX2BdWSpm4aBdWSfkn6ekX2uoYuuoYucjnrAtJy9sJl3a1yPgW+7rZbAs5tZUEWGeWi+sZqDdmZSSkC1p5G2qJKxpI5+cmKCdmWwo42qnIe8r5h/c2KThnO9sJnDtp6ll4N1aVqfkX2vooyHemiKfWy8r5iFeGeYinfEt6C8r5jAtJytn4p9cGDFuKC/sZqIemmLfmx1aVuwo414bF1YT0SKfGvKvaWGemlQSD6xpI6AdGODdmaRg3GkloKdj3yGeWi8r5iFeGeZjHiYinfAs5yzpY9rYFO9r5i9sJm9sJm9sJlsYVPAs5vGuaLAspu7rpe8r5i7rZa6rJXEt5/CtZ6/sZq+sZrAs5zCtZ3BtJ3GuqLFuKC6rZbDtp6zppC9sJnGuaHMv6fJvKXAtJy4qpS+sZnDtp+/spq/spuzpY/FuKG6rJbEt6DGuqMAAAB6KVDIAAAAZHRSTlMAAAA25fXx9vf88Pb7+uM00tH2YLKVcLoPBRC9fiwwY/X6GJBmRQRTt1ED+NaZMR+WtfQZkWZUwRURpFc38i4PUlRzwBcSoVc3FaQYBFO3UQLnVzdgsroOBQ+KdfHSNuX19+Q0ot/y5QAAAAFiS0dEhozeO10AAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiChcUKgP9a/GQAAAA80lEQVQY02NgZklhZWNjZWdj4+DkYOPi5uHl5Uzh42cQSE1LS8/IzMrIzsnNyU7Pyy8ozM8tEmQQyhMWKUwRFUsVl5CUki6WYZCVY5QvUWBQLFVSLspQUS1TU9fQ1NLW0dXTNzAsN2JQzDE2qcgwNTO3SCnOsbQqrbS2qarOsGVQLLSzd3BkcnJ2qaktd3VLL3b3qMvAJw4zx7O+utDSqwEuXuoNtrfRx9fPPyCwoCgouBgkLlQbEgpyZ1NYeERkWE5GTlR0YUZJDENsagPIX80ZLYUlBdnpGen5KenprYIMcfH5CZBwSORMZLO1BTJtG5KSAX2lTt/L4f9eAAAAAElFTkSuQmCC"/>
+            </svg>
             筛选器
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu" style="min-width:80px;">
+          <ul class="dropdown-menu" style="min-width:100px;">
             <li><%= link_to("A 股", industry_stocks_path(:order => "饮料制造")) %></li>
             <li><%= link_to("美股", industry_us_stocks_path(:order => "餐馆")) %></li>
             <li class="divider"> </li>
+            <li>
+              <%= link_to pyramid_index_path do %>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="10" viewBox="0 0 23 12">
+                <image id="图层_1" data-name="图层 1" width="23" height="12" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMCAMAAAC+5dbKAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABlVBMVEWhk3+ll4O8r5hsYVO9sJm8r5i8r5i9sJm9sJi8r5i8r5i8r5i8r5i8r5i8r5hrYFOypY+ypI7AtJyQg3CjloGqnYikloKfkX2BdWSpm4aBdWSfkn6ekX2uoYuuoYucjnrAtJy9sJl3a1yPgW+7rZbAs5tZUEWGeWi+sZqDdmZSSkC1p5G2qJKxpI5+cmKCdmWwo42qnIe8r5h/c2KThnO9sJnDtp6ll4N1aVqfkX2vooyHemiKfWy8r5iFeGeYinfEt6C8r5jAtJytn4p9cGDFuKC/sZqIemmLfmx1aVuwo414bF1YT0SKfGvKvaWGemlQSD6xpI6AdGODdmaRg3GkloKdj3yGeWi8r5iFeGeZjHiYinfAs5yzpY9rYFO9r5i9sJm9sJm9sJlsYVPAs5vGuaLAspu7rpe8r5i7rZa6rJXEt5/CtZ6/sZq+sZrAs5zCtZ3BtJ3GuqLFuKC6rZbDtp6zppC9sJnGuaHMv6fJvKXAtJy4qpS+sZnDtp+/spq/spuzpY/FuKG6rJbEt6DGuqMAAAB6KVDIAAAAZHRSTlMAAAA25fXx9vf88Pb7+uM00tH2YLKVcLoPBRC9fiwwY/X6GJBmRQRTt1ED+NaZMR+WtfQZkWZUwRURpFc38i4PUlRzwBcSoVc3FaQYBFO3UQLnVzdgsroOBQ+KdfHSNuX19+Q0ot/y5QAAAAFiS0dEhozeO10AAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiChcUKgP9a/GQAAAA80lEQVQY02NgZklhZWNjZWdj4+DkYOPi5uHl5Uzh42cQSE1LS8/IzMrIzsnNyU7Pyy8ozM8tEmQQyhMWKUwRFUsVl5CUki6WYZCVY5QvUWBQLFVSLspQUS1TU9fQ1NLW0dXTNzAsN2JQzDE2qcgwNTO3SCnOsbQqrbS2qarOsGVQLLSzd3BkcnJ2qaktd3VLL3b3qMvAJw4zx7O+utDSqwEuXuoNtrfRx9fPPyCwoCgouBgkLlQbEgpyZ1NYeERkWE5GTlR0YUZJDENsagPIX80ZLYUlBdnpGen5KenprYIMcfH5CZBwSORMZLO1BTJtG5KSAX2lTt/L4f9eAAAAAElFTkSuQmCC"/>
+              </svg>
+              金字塔
+              <% end %>
+            </li>
+            <li class="divider"> </li>
             <li><%= link_to("对比", contrast_vs_path) %></li>
           </ul>
-        </li>
-        <li>
-          <%= link_to pyramid_index_path do %>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="10" viewBox="0 0 23 12">
-            <image id="图层_1" data-name="图层 1" width="23" height="12" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMCAMAAAC+5dbKAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABlVBMVEWhk3+ll4O8r5hsYVO9sJm8r5i8r5i9sJm9sJi8r5i8r5i8r5i8r5i8r5i8r5hrYFOypY+ypI7AtJyQg3CjloGqnYikloKfkX2BdWSpm4aBdWSfkn6ekX2uoYuuoYucjnrAtJy9sJl3a1yPgW+7rZbAs5tZUEWGeWi+sZqDdmZSSkC1p5G2qJKxpI5+cmKCdmWwo42qnIe8r5h/c2KThnO9sJnDtp6ll4N1aVqfkX2vooyHemiKfWy8r5iFeGeYinfEt6C8r5jAtJytn4p9cGDFuKC/sZqIemmLfmx1aVuwo414bF1YT0SKfGvKvaWGemlQSD6xpI6AdGODdmaRg3GkloKdj3yGeWi8r5iFeGeZjHiYinfAs5yzpY9rYFO9r5i9sJm9sJm9sJlsYVPAs5vGuaLAspu7rpe8r5i7rZa6rJXEt5/CtZ6/sZq+sZrAs5zCtZ3BtJ3GuqLFuKC6rZbDtp6zppC9sJnGuaHMv6fJvKXAtJy4qpS+sZnDtp+/spq/spuzpY/FuKG6rJbEt6DGuqMAAAB6KVDIAAAAZHRSTlMAAAA25fXx9vf88Pb7+uM00tH2YLKVcLoPBRC9fiwwY/X6GJBmRQRTt1ED+NaZMR+WtfQZkWZUwRURpFc38i4PUlRzwBcSoVc3FaQYBFO3UQLnVzdgsroOBQ+KdfHSNuX19+Q0ot/y5QAAAAFiS0dEhozeO10AAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfiChcUKgP9a/GQAAAA80lEQVQY02NgZklhZWNjZWdj4+DkYOPi5uHl5Uzh42cQSE1LS8/IzMrIzsnNyU7Pyy8ozM8tEmQQyhMWKUwRFUsVl5CUki6WYZCVY5QvUWBQLFVSLspQUS1TU9fQ1NLW0dXTNzAsN2JQzDE2qcgwNTO3SCnOsbQqrbS2qarOsGVQLLSzd3BkcnJ2qaktd3VLL3b3qMvAJw4zx7O+utDSqwEuXuoNtrfRx9fPPyCwoCgouBgkLlQbEgpyZ1NYeERkWE5GTlR0YUZJDENsagPIX80ZLYUlBdnpGen5KenprYIMcfH5CZBwSORMZLO1BTJtG5KSAX2lTt/L4f9eAAAAAElFTkSuQmCC"/>
-          </svg>
-          金字塔
-          <% end %>
         </li>
         <li><%= link_to("投资交易课", courses_path ) %></li>
         <li><%= link_to("视频",  videos_path) %></li>
