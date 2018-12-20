@@ -7,15 +7,42 @@
 
     .h1-title {
       background-color: #222;
-      border-left: 10px solid #333;
-      border-right: 10px solid #333;
+      // border-left: 10px solid #333;
+      // border-right: 10px solid #333;
+      margin-bottom: 50px;
       h1{
-        font-weight: bold;
-        text-align: center;
+        font-weight: 500;
+        // text-align: center;
         color: #bfb199;
         font-size: 30px;
         line-height: 40px;
-        padding: 30px 20px 10px 20px;
+        padding: 20px 0 30px;
+      }
+      p {
+        color: #fff;
+        font-size: 14px;
+        line-height: 26px;
+        span {
+          color: #bfb199;
+        }
+      }
+      .join-video {
+        // background-color: #222;
+        video {
+          width: 100%;
+          height: auto;
+          padding: 20px 10px 15px 10px;
+        }
+      }
+    }
+
+    .join-slogan {
+      h2 {
+        font-weight: bolder;
+        // text-align: center;
+        color: #bfb199;
+        font-size: 30px;
+        // padding-left: 30px;
       }
     }
 
