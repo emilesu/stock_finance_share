@@ -459,8 +459,8 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if (zcb7[i].to_f + zcb7[i-1].to_f) != 0
-        m = lrb1[i].to_f / (zcb7[i].to_f + zcb7[i-1].to_f) * 2
+      if zcb7[i].to_f != 0
+        m = lrb1[i].to_f / zcb7[i].to_f
       else
         m = 0
       end
@@ -489,8 +489,8 @@ class Stock < ApplicationRecord
     # 运算 判断分母不能为0
     result = []
     (0..time-1).each do |i|
-      if (zcb20[i].to_f + zcb20[i-1].to_f) != 0
-        m = lrb9[i].to_f / (zcb20[i].to_f + zcb20[i-1].to_f) * 2
+      if zcb20[i].to_f != 0
+        m = lrb9[i].to_f / zcb20[i].to_f
       else
         m = 0
       end
