@@ -169,6 +169,20 @@
         text-align: justify;
       }
     }
+    .stock-pyramid-rating {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      span {
+        font-weight: lighter;
+        font-size: 22px;
+        color: #bfb199;
+        transition: 0.5s;
+      }
+      span:hover {
+        transition: 0.5s;
+        color: #8B814C;
+      }
+    }
   }
   .star-stock:hover {
     cursor: pointer;

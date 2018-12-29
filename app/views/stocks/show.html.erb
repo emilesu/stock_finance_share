@@ -49,14 +49,34 @@
           <p>上市时间: <%= @stock.time_to_market.strftime("%Y-%m-%d") %></p>
           <p>滚动市盈率(TTM): <%= @latest_price[2].to_f %></p>
           <p>股息率: <%= @stock.the_dividend_yield %> %</p>
+          <!-- 金字塔分数 会员可见 -->
         </strong>
 
         <div class="main_business col-md-12 row">
           <p title="<%= @stock.main_business %>"><strong>主营业务: </strong><%= @stock.main_business %></p>
         </div>
 
+        <div class="stock-pyramid-rating col-md-12 row">
+          <% if current_user && current_user.role == "admin" || current_user && current_user.role == "member" %>
+            <strong>金字塔：</strong>
+            <%= link_to pyramid_index_path, target: "_blank" do %>
+              <span><%= @stock.pyramid_rating %></span>
+            <% end %>
+          <% end %>
+        </div>
+
+
+
+
+
+
+
+
         <!-- 近十年财报分析 & 行业统计分析 只有会员可见 -->
           <div class="to-finance-btn">
+            <span>
+              <a class="btn btn-sm btn-default" href= "http://quotes.money.163.com/f10/zcfzb_<%= @stock.easy_symbol %>.html?type=year" target="_blank">原始财报 >></a>
+            </span>
             <span>
               <%= link_to("近10年财报分析 >>", analyza_stocks_path(@stock), :class => "btn btn-sm btn-default") %>
             </span>
@@ -64,6 +84,8 @@
               <%= link_to("行业统计分析 >>", industry_stocks_path(:order => @stock.industry), :class => "btn btn-sm btn-default") %>
             </span>
           </div>
+
+
 
       </div>
 
