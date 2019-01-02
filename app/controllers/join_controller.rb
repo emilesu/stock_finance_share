@@ -30,7 +30,7 @@ class JoinController < ApplicationController
 
   # 扫码后显示的 ajax 页面
   def is_wxpay_success
-    user = User.find_by(params[:user_id])
+    user = User.find(params[:user_id])
     # if user.role == "member"
     if user.motto == "小猪佩奇"
       logger.info "======扫码支付成功====="
@@ -47,7 +47,7 @@ class JoinController < ApplicationController
 
   # 成为会员提示页面
   def to_be_member
-    @user = User.find_by(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   # 回调和操作
@@ -56,8 +56,8 @@ class JoinController < ApplicationController
     result = Hash.from_xml(request.body.read)["xml"]
     if WxPay::Sign.verify?(result)
       logger.info "======== 验证签名成功 ======= "
-      # user_id = result["attach"].to_s
-      user = User.find_by(result["attach"].to_s)
+      user_id = result["attach"].to_i
+      user = User.find(user_id)
       user.update!(
         # :join_time => Time.now,
         # :end_time => Time.now + 20000.days,
