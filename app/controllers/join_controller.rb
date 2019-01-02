@@ -8,7 +8,7 @@ class JoinController < ApplicationController
 
   def go_wechat_pay
     params = {
-      body: 'HOLD LE 会员VIP - 168元',
+      body: 'HOLD LE - 会员VIP（第二期）',
       out_trade_no: Time.now.to_s(:number),
       total_fee: 1,
       spbill_create_ip: '127.0.0.1',
