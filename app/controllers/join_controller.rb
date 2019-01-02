@@ -31,7 +31,8 @@ class JoinController < ApplicationController
   # 扫码后显示的 ajax 页面
   def is_wxpay_success
     user = User.find_by(params[:user_id])
-    if user.role == "member"
+    # if user.role == "member"
+    if user.motto == "小猪佩奇"
       flash[:notice] = ("======扫码支付成功=====")
       render :json => {
         :is_pay_success => "yes"
@@ -57,10 +58,11 @@ class JoinController < ApplicationController
       logger.info "======== 验证签名成功 ======= "
       user = User.find_by(result["attach"])
       user.update!(
-        :join_time => Time.now,
-        :end_time => Time.now + 20000.days,
-        :nper => 99,
-        :role => "member"
+        # :join_time => Time.now,
+        # :end_time => Time.now + 20000.days,
+        # :nper => 99,
+        # :role => "member"
+        :motto => "小猪佩奇"
       )
       render :xml => {return_code: "SUCCESS"}.to_xml(root: 'xml', dasherize: false)
     else
