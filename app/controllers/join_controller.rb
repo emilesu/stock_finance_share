@@ -1,6 +1,7 @@
 class JoinController < ApplicationController
 
   before_action :authenticate_user! , only: [:go_wechat_pay, :wx_pay_qrcode]
+  protect_from_forgery with: :null_session, only: [:wx_pay_notify]
 
   def index
     #code
