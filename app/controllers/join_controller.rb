@@ -1,6 +1,6 @@
 class JoinController < ApplicationController
 
-  impressionist actions: [:go_wechat_pay]
+  before_action :authenticate_user! , only: [:go_wechat_pay, :wx_pay_qrcode]
 
   def index
     #code
