@@ -1,73 +1,42 @@
-<div class="qr_code">
-  <table>
-    <% @qr.modules.each_index do |x| -%>
-      <tr>
-        <% @qr.modules.each_index do |y| -%>
-          <% if @qr.dark?(x,y) -%>
-            <td class="black"/>
-          <% else -%>
-            <td class="white"/>
-          <% end -%>
-        <% end -%>
-      </tr>
-    <% end -%>
-  </table>
-  <div style="text-align: center; margin:40px 0;">
-    <img src="http://siweitech.b0.upaiyun.com/cms/2018-01-10-%E8%AF%B4%E6%98%8E%E6%96%87%E5%AD%97.png" alt="">
+<div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12 pay_cost">
+  <div class="logo_image row" style="">
+    <%= image_tag "http://siweitech.b0.upaiyun.com/cms/2018-01-10-WePayLogo.png"%>
+  </div>
+  <div style="padding: 20px; ">
     <span class="order_detail">
-      请使用<span class="wx_text">微信扫码二维码</span>完成支付
+      订单名称: <span class="price">HOLD LE 会员VIP</span>
+    </span><br>
+    <span class="order_detail">
+      支付金额: <span class="price">￥168</span>
+    </span><br>
+    <span class="order_detail">
+      用户名: <span class="price"><%= current_user.username %></span>
     </span>
+  </div>
+  <div class="qr_code">
+    <table>
+      <% @qr.modules.each_index do |x| -%>
+        <tr>
+          <% @qr.modules.each_index do |y| -%>
+            <% if @qr.dark?(x,y) -%>
+              <td class="black"/>
+            <% else -%>
+              <td class="white"/>
+            <% end -%>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </table>
+    <div style="text-align: center; margin:40px 0;">
+      <!-- <img src="http://siweitech.b0.upaiyun.com/cms/2018-01-10-%E8%AF%B4%E6%98%8E%E6%96%87%E5%AD%97.png" alt=""> -->
+      <span class="order_detail">
+        请使用<span class="wx_text">微信扫描二维码</span>完成支付
+      </span>
+    </div>
   </div>
 </div>
 
-<%= @url %>
 
-  <style type="text/css">
-  .qr_code {
-    margin: 80px;
-  }
-  .logo_image {
-    text-align: center;
-    padding: 25px;
-    background: #f3f3f3;
-  }
-  .order_detail {
-    margin: 0 70px;
-    color: #9E9E9E;
-  }
-  .pay_cost{
-    font-size: 18px;
-    line-height: 60px;
-    margin: 20px 0;
-    text-align: center;
-    border: 2px solid gainsboro;
-  }
-  .price{
-    font-size: 20px;
-    margin-left: 10px;
-    color: #0fbf0f;
-  }
-  .wx_text {
-    font-size: 20px;
-    margin-left: 0px;
-    color: #f56f2e;
-  }
-  table {
-    border-width: 0;
-    border-style: none;
-    border-color: #0000ff;
-    border-collapse: collapse;
-  }
-    td {
-      border-width: 0;
-      border-style: none;
-      border-color: #0000ff;
-      border-collapse: collapse;
-      padding: 0;
-      margin: 0;
-      width: 7px;
-      height: 7px;
-    }
-    td.black { background-color: #000; }
-    td.white { background-color: #fff; }
+  <style>
+
   </style>
