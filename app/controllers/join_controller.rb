@@ -56,7 +56,7 @@ class JoinController < ApplicationController
     result = Hash.from_xml(request.body.read)["xml"]
     if WxPay::Sign.verify?(result)
       logger.info "======== 验证签名成功 ======= "
-      user = User.find_by(result["attach"])
+      user = User.find_by(result["attach"].to_s)
       user.update!(
         # :join_time => Time.now,
         # :end_time => Time.now + 20000.days,
