@@ -127,7 +127,7 @@ Rails.application.routes.draw do
     get :wx_pay_qrcode
     post :is_wxpay_success
     get :to_be_member
-    post :wx_pay_notify
+    post "wx_pay_notify" => "join#wx_pay_notify"
   end
 
 
