@@ -2,7 +2,7 @@ class JoinController < ApplicationController
 
   before_action :authenticate_user! , only: [:go_wechat_pay, :wx_pay_qrcode]
   # 解决「Can't verify CSRF token authenticity」的问题↓
-  skip_before_filter :verify_authenticity_token, :only => [:to_be_member]
+  skip_before_filter :verify_authenticity_token, :only => [:wx_pay_notify]
 
   def index
     #code
