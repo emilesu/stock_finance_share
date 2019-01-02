@@ -21,8 +21,8 @@ class JoinController < ApplicationController
   end
 
   def wx_pay_qrcode
-    # @qr = RQRCode::QRCode.new(params[:code_url])
-    @qr = RQRCode::QRCode.new("http://github.com/")
+    @qr = RQRCode::QRCode.new(params[:code_url])
+    # @qr = RQRCode::QRCode.new("http://github.com/")
   end
 
   def wx_pay_notify
