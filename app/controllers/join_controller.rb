@@ -10,7 +10,7 @@ class JoinController < ApplicationController
   def go_wechat_pay
     params = {
       body: 'HOLD LE - 会员VIP（第二期）',
-      out_trade_no: current_user.id.to_s,
+      out_trade_no: Time.now.to_s(:number),
       attach: current_user.id.to_s,
       total_fee: 1,
       spbill_create_ip: '127.0.0.1',
@@ -30,7 +30,7 @@ class JoinController < ApplicationController
 
   # 扫码后显示的 ajax 页面
   def is_wxpay_success
-    user = User.find_by(params[:user_id])
+    user = User.find_by_user_id(params[:user_id])
     # if user.role == "member"
     if user.motto == "小猪佩奇"
       logger.info "======扫码支付成功====="
@@ -57,7 +57,7 @@ class JoinController < ApplicationController
     if WxPay::Sign.verify?(result)
       logger.info "======== 验证签名成功 ======= "
       user_id = result["attach"].to_i
-      user = User.find_by(user_id)
+      user = User.find_by_user_id(user_id)
       user.update!(
         # :join_time => Time.now,
         # :end_time => Time.now + 20000.days,
