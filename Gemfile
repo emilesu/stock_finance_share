@@ -82,8 +82,8 @@ gem 'figaro'
 gem 'mysql2'
 
 # 微信支付
-gem 'wx_pay', :github => 'jasl/wx_pay'
-gem 'rqrcode', '0.10.1'      #生成二维码的gem
+gem 'wx_pay'
+gem 'rqrcode'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
