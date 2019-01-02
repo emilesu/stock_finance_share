@@ -37,6 +37,16 @@
 </div>
 
 
-  <style>
-
-  </style>
+<script>
+setInterval(function() {
+  $.post("/join/is_wxpay_success",
+    {
+      user_id: <%= current_user.id %>
+    },
+    function(data) {
+      if (data.is_pay_success == "yes") {
+        window.location.href = "/join/to_be_member?user_id=<%= current_user.id %>"
+      }
+    })
+  }, 2000);
+</script>

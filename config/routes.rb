@@ -125,7 +125,9 @@ Rails.application.routes.draw do
     get :index                  #加入会员文案页
     get :go_wechat_pay
     get :wx_pay_qrcode
-    get :wx_pay_notify
+    post :is_wxpay_success
+    get :to_be_member
+    post :wx_pay_notify
   end
 
 

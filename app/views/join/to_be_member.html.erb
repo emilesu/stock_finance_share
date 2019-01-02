@@ -1,0 +1,4 @@
+<% if @user.role == "member" %>
+  <%= @user.username %> 已成为会员
+<% else %>
+  <%= @user.username %> 支付失败，请再试一次
