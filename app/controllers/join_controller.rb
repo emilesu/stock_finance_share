@@ -17,11 +17,12 @@ class JoinController < ApplicationController
       # openid: 'OPENID' # required when trade_type is `JSAPI`
     }
     result = WxPay::Service.invoke_unifiedorder params
-    redirect_to join_wx_pay_qrcode_path(:code_url => result.to_s)
+    redirect_to join_wx_pay_qrcode_path(:code_url => result["code_url"])
   end
 
   def wx_pay_qrcode
     @qr = RQRCode::QRCode.new(params[:code_url])
+    @url = params[:code_url]
   end
 
   def wx_pay_notify
