@@ -33,12 +33,12 @@ class JoinController < ApplicationController
     user = User.find_by(params[:user_id])
     # if user.role == "member"
     if user.motto == "小猪佩奇"
-      flash[:notice] = ("======扫码支付成功=====")
+      logger.info "======扫码支付成功====="
       render :json => {
         :is_pay_success => "yes"
       }
     else
-      flash[:notice] = ("======未支付=====")
+      logger.info "======未支付====="
       render :json => {
         :is_pay_success => "no"
       }
