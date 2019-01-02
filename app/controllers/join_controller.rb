@@ -9,7 +9,7 @@ class JoinController < ApplicationController
   def go_wechat_pay
     params = {
       body: 'HOLD LE 会员VIP - 168元',
-      out_trade_no: current_user.id,
+      out_trade_no: Time.now.to_s(:number),
       total_fee: 1,
       spbill_create_ip: '127.0.0.1',
       notify_url: 'https://www.holdle.com/join/wx_pay_notify',
