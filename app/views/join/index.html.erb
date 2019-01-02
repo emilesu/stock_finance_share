@@ -169,7 +169,7 @@
   </div>
 </div>
 
-<%= link_to("。", join_go_wechat_pay_path) %>
+<%= link_to("。", join_go_wechat_pay_path(:order => current_user.id)) %>
 
 <!-- 自定义 title -->
 <% content_for :title do %>
