@@ -8,9 +8,9 @@ production:
   GITHUB_CLIENT_SECRET: '0440cb9d617032ac166745cba4887c60903f8a0d'
   mp_weixin_app_id: 'wxf095d4f693ef8100'
   mp_weixin_app_screct: 'b74c27ef66bcacff8d18c3c8d27aff9b'
-  wxpay_appid: 'wxf095d4f693ef8100'
-  wxpay_appkey: 'lqbHnghxqciZbRUxKNwqFP8q6xkZDHPC'
-  wxpay_mch_id: '1501074881'
+  app_id: 'wxf095d4f693ef8100'
+  app_key: 'lqbHnghxqciZbRUxKNwqFP8q6xkZDHPC'
+  mch_id: '1501074881'
 
 development:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
@@ -22,3 +22,6 @@ development:
   GITHUB_CLIENT_SECRET: '0440cb9d617032ac166745cba4887c60903f8a0d'
   mp_weixin_app_id: 'wxf095d4f693ef8100'
   mp_weixin_app_screct: 'b74c27ef66bcacff8d18c3c8d27aff9b'
+  app_id: 'wxf095d4f693ef8100'
+  app_key: 'lqbHnghxqciZbRUxKNwqFP8q6xkZDHPC'
+  mch_id: '1501074881'

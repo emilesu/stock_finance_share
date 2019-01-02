@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181102185241) do
+ActiveRecord::Schema.define(version: 20181231113800) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -101,19 +101,6 @@ ActiveRecord::Schema.define(version: 20181102185241) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "news", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "image"
-    t.datetime "up_time"
-    t.string "link_1"
-    t.string "link_1_info"
-    t.string "link_2"
-    t.string "link_2_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "notes", force: :cascade do |t|
     t.integer "stock_id"
     t.integer "user_id"
@@ -126,6 +113,11 @@ ActiveRecord::Schema.define(version: 20181102185241) do
     t.index ["status"], name: "index_notes_on_status"
     t.index ["stock_id"], name: "index_notes_on_stock_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|

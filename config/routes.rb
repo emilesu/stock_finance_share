@@ -123,8 +123,11 @@ Rails.application.routes.draw do
   # 加入会员页面
   namespace :join do
     get :index                  #加入会员文案页
-    get :pay                    #加入会员付款二维码页
+    get :go_wechat_pay
+    get :wx_pay_qrcode
+    get :wx_pay_notify
   end
+
 
   namespace :welcome do
     get :index2

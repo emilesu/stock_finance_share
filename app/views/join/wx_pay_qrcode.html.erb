@@ -1,0 +1,21 @@
+<div class="qr_code">
+    <table>
+      <% @qr.modules.each_index do |x| -%>
+        <tr>
+          <% @qr.modules.each_index do |y| -%>
+            <% if @qr.dark?(x,y) -%>
+              <td class="black"/>
+            <% else -%>
+              <td class="white"/>
+            <% end -%>
+          <% end -%>
+        </tr>
+      <% end -%>
+    </table>
+    <div style="text-align: center; margin:40px 0;">
+      <%= image_tag "http://siweitech.b0.upaiyun.com/cms/2018-01-10-%E8%AF%B4%E6%98%8E%E6%96%87%E5%AD%97.png", %>
+      <span class="order_detail">
+        请使用<span class="wx_text">微信扫码二维码</span>完成支付
+      </span>
+    </div>
+  </div>
