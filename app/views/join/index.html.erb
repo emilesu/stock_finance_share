@@ -109,7 +109,7 @@
         <% end %>
         <br><br>
         <p><strong> 方法一：</strong></p>
-        <p>点击上图按钮进入  <strong> 微信扫码支付</strong></p>
+        <p><strong>注册/登录</strong>后 点击上按钮进入  <strong> 微信扫码支付</strong></p>
         <p>确认并支付<strong> <span>168</span> </strong>元(CNY)</p>
         <p>支付完成后即 <strong>自动开通会员</strong></p>
       </div>
@@ -124,7 +124,7 @@
         <p>通过 大苏 的 PayPal ：  <strong><a href="https://paypal.me/emilesu" target="_blank">https://paypal.me/emilesu</a></strong></p>
         <p>支付 <strong> <span>26</span> </strong>(USD)<strong> - 或or -  <span>168</span> </strong>(CNY) </p>
         <% if !current_user %>
-          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名 附在留言处 就行了</p>
+          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名 附在留言处 等待确认即可</p>
         <% elsif current_user %>
           <p>把您的用户名<strong> <%= current_user.username %> </strong> 附在留言处 等待确认即可</p>
         <% end %>
