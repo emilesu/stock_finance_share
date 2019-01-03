@@ -14,7 +14,7 @@ class JoinController < ApplicationController
       body: 'HOLD LE - 会员VIP（第二期）',
       out_trade_no: Time.now.to_s(:number),
       attach: current_user.id.to_s,
-      total_fee: 1,
+      total_fee: 16800,
       spbill_create_ip: '127.0.0.1',
       notify_url: 'https://www.holdle.com/join/wx_pay_notify',
       trade_type: 'NATIVE' # could be "MWEB", ""JSAPI", "NATIVE" or "APP",

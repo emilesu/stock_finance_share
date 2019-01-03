@@ -92,20 +92,26 @@
 
     <div class="how-to-join col-md-12">
 
+      <% if !current_user || (current_user && current_user.role != "member" && current_user.role != "admin") %>
+
       <!-- 微信方法： -->
       <div class="wechat-join col-md-6">
         <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
         <br><br>
-        <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        <% if !current_user %>
+          <a data-toggle="modal" data-target="#login-modal">
+            <img class="center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
+          </a>
+        <% elsif current_user && current_user.role != "member" %>
+          <%= link_to join_go_wechat_pay_path do %>
+            <img class="center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
+          <% end %>
+        <% end %>
         <br><br>
         <p><strong> 方法一：</strong></p>
-        <p>扫码添加 大苏 的微信：  <strong>emilesu</strong></p>
-        <p>通过微信支付 或 红包，支付<strong> <span>168</span> </strong>元(CNY)</p>
-        <% if !current_user %>
-          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名发送给 大苏 就行了</p>
-        <% elsif current_user %>
-          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong>发送给 大苏 就行了</p>
-        <% end %>
+        <p>点击上图按钮进入  <strong> 微信扫码支付</strong></p>
+        <p>确认并支付<strong> <span>168</span> </strong>元(CNY)</p>
+        <p>支付完成后即 <strong>自动开通会员</strong></p>
       </div>
 
       <!-- PayPal 方法： -->
@@ -120,7 +126,7 @@
         <% if !current_user %>
           <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名 附在留言处 就行了</p>
         <% elsif current_user %>
-          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong> 附在留言处 就行了</p>
+          <p>把您的用户名<strong> <%= current_user.username %> </strong> 附在留言处 等待确认即可</p>
         <% end %>
       </div>
 
@@ -130,6 +136,31 @@
         <p>现在马上加入吧！<span>越早越好！</span></p>
         <p>这一定是你今年 <span>最值得、最便宜、最划算</span> 的一笔知识投资！</p>
       </div>
+
+      <% elsif current_user && (current_user.role == "member" || current_user.role == "admin") %>
+
+      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 to_be_member" style="margin-top: 0px;">
+
+        <div class="to_be_member_avatar row">
+          <%= link_to user_path(current_user) do %>
+            <%= image_tag(current_user.avatar, :class => "img-circle") %>
+            <h3><%= current_user.username %></h3>
+          <% end %>
+          <h4>您已经是 HOLD LE 会员</h4>
+          <hr>
+        </div>
+
+        <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        <div class="to_be_member_p">
+          <p>欢迎会员朋友添加 大苏 的微信： <strong>emilesu</strong></p>
+          <p>在通往财富自由的道路上 我们一起 <strong>学习、进步、成长！</strong></p>
+        </div>
+      </div>
+
+
+
+
+      <% end %>
 
       <br><br>
       <div class="col-md-8 col-md-offset-2 col-sm-12">
@@ -141,24 +172,28 @@
               <td><strong>计划人数</strong></td>
               <td><strong>加入金额</strong></td>
               <td><strong>截止时间</strong></td>
+              <td><strong>会员期限</strong></td>
             </thead>
             <tr>
               <td>第一期 (已结束)</td>
               <td>60人</td>
               <td>68(CNY) 或 12(USD)</td>
               <td>至2018年11月30日  <strong>或or</strong>  集满60人时</td>
+              <td>永久</td>
             </tr>
             <tr>
-              <td>第二期 (进行中...)</td>
-              <td>100人</td>
-              <td>168(CNY) 或 26(USD)</td>
+              <td><strong>第二期 (进行中...)</strong></td>
+              <td><strong>100人</strong></td>
+              <td><strong>168(CNY) 或 26(USD)</strong></td>
               <td>2018年12月1日起 - 待定  <strong>或or</strong> 集满100人时</td>
+              <td><strong>永久</strong></td>
             </tr>
             <tr>
               <td>第三期</td>
               <td>100人</td>
               <td>268(CNY) 或 40(USD)</td>
               <td>待定</td>
+              <td>一年</td>
             </tr>
         </table>
       </div>
@@ -169,14 +204,6 @@
   </div>
 </div>
 
-<% if !current_user %>
-  <a data-toggle="modal" data-target="#login-modal">。</a>
-<% elsif current_user.role == "member" || current_user.role == "admin" %>
-  已是会员
-<% elsif current_user && current_user.role != "member" %>
-  <%= link_to("。", join_go_wechat_pay_path) %>
-
-<% end %>
 
 <!-- 自定义 title -->
 <% content_for :title do %>
