@@ -144,7 +144,12 @@
         <div class="to_be_member_avatar row">
           <%= link_to user_path(current_user) do %>
             <%= image_tag(current_user.avatar, :class => "img-circle") %>
-            <h3><%= current_user.username %></h3>
+            <h3>
+              <%= current_user.username %>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="12" viewBox="0 0 21 12">
+                <image id="图层_1" data-name="图层 1" width="21" height="12" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAMCAMAAAC6EAb3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB/lBMVEVXTkRkWU1lWk5kWUxqX1JZT0RtYlRvY1VWTUJdU0hSSkBuY1WUh3TCtZ26rZW7rpe7rpa7rpe9sJnCtZ6ThnOfkX6uoIqmmYScjnuilICThnOomoSgk36NgG6XiXa0ppC+sZlvZFaAdGO2qJKcj3uDdmaxpY61p5GBdGSJfGuFeGe8r5iKfWt5bV10aFprYVOKfWyJfGuZjHl2aVuThnObjXlyZlixpI6xo415bF2ThnOLfmyBdGSfkX2+sZmqnYizpY9yZ1h2alu7rZZ0aFqkloJ+cWGFeGfEt6CnmYWIe2q7rpe6rJVwZFaxo424q5S2qJKtn4lxZli2qZN7bl9pXlGGeWh8b1+WiHZ3a1ynmYR8b2B/cmKcjnt0aFm6rJV0aFmfkX2zppC+sJmOgG9hWEtoXlC+sJmFeGd4bF2kloJvZFa9sJmjloGWiXakl4N1aVq6rZedkHx5bV68r5mzpY+uoYuuoYuxo424q5S0p5CShXLDtp68r5e9r5i9sJiRhHLFuKDBtJ3Et5/CtZ3Dtp7GuqLAs5vEt6DGuaLDtp/AtJy+sZq8r5i7rpfBtJy+sZnAtJ3CtZ7Lv6fUybHRxq7Mv6e8rpe/spq9r5nFuKHJvaXOwqrMwKjOw6vNwanHuqO/spvHu6O9sJnIvKTKvaW7rZa3qpO+sJkAAADgJPbNAAAAgXRSTlMAAAAAAAAAAAAAAACQ7/Hx8fL375DC69u9xLnTx5ib2PkGP+iPJqXtNzJy8lYcRC1RSZIRj5EG3+Ede1s1nPvL4T9K/AyzN1Lpronw+gLP8uvPCfAxFCUfjhmhaWSYFPcNptb9Xwgv+l40twP1maOhA+uODvTX4MvN9+WO7/L08oxAA6LLAAAAAWJLR0SpJw8GBAAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+IKFxUEEQQX48MAAAERSURBVBjTY+DhbWzi4xcQbG5pbWvn7+js6hYSFmFo6REVa+/taxWXkJSS7peRlZPvmjCRQaFLUamtd5Iyg4oqo5o6k4Yms1arEIN2o47upN7JevpTDAynGhm3TTNhmT4DKGpqNnOWOavFbEurOdY2nXNt2XrsGLRb7Nkd5jk6zXd2cZ3s5u7hyeG1wJtBe6GPr58/Z8CiwKDgxpDQsPCIWYuBoov7I6OiYyY3x8ZNik9ITEqetbiPn0G7tzElNS29fUlG5tys7J6unt7eXn6GnL7GXK68pRPzuQsKi4q7FwMF+0oYmhYvXla6cPGMsvKK5ZVVK4CCvYsnMlTX1E5oERIUnNHUX9fTLaitrV1f0wAAdh5eRXctzhYAAAAASUVORK5CYII="/>
+              </svg>
+            </h3>
           <% end %>
           <h4>您已经是 HOLD LE 会员</h4>
           <hr>
