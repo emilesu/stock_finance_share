@@ -165,3 +165,38 @@
   td.black { background-color: #222; }
   td.white { background-color: #fff; }
 }
+
+// 成为会员跳转页面
+.to_be_member {
+  font-size: 14px;
+  line-height: 40px;
+  margin: 50px 0 30px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #222;
+  .to_be_member_avatar {
+    text-align: center;
+    margin: 35px 0 20px;
+    img {
+      width: 100px;
+      height: auto;
+    }
+    h3 {
+      color: #bfb199;
+    }
+    h4 {
+      padding: 30px 0 10px;
+      color: #fff;
+      font-weight: lighter;
+      font-size: 16px;
+    }
+    hr {
+      border: 1px solid #666;
+    }
+    span {
+      a {
+        color: #888;
+      }
+    }
+  }
+}

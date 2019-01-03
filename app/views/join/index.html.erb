@@ -169,10 +169,13 @@
   </div>
 </div>
 
-<% if current_user %>
-  <%= link_to("。", join_go_wechat_pay_path) %>
-<% else %>
+<% if !current_user %>
   <a data-toggle="modal" data-target="#login-modal">。</a>
+<% elsif current_user.role == "member" || current_user.role == "admin" %>
+  已是会员
+<% elsif current_user && current_user.role != "member" %>
+  <%= link_to("。", join_go_wechat_pay_path) %>
+
 <% end %>
 
 <!-- 自定义 title -->

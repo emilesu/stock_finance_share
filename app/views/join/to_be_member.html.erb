@@ -1,10 +1,22 @@
-<% if @user.role == "member" %>
-  <%= @user.username %> 已成为会员
-<% else %>
-  <%= @user.username %> 支付失败，请再试一次
-<% end %>
+<div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-12 to_be_member">
+
+  <div class="to_be_member_avatar row" style="">
+    <%= image_tag @user.avatar, :class => "img-circle" %>
+    <h3><%= @user.username %></h3>
+
+    <% if @user.motto == "小猪佩奇" %>
+      <h4>成功！你已成为 HOLD LE 会员</h4>
+    <% else %>
+      <h4>加入失败！请重新尝试...</h4>
+    <% end %>
+
+    <hr>
+    <span><%= link_to( "- 5秒后返回  -", join_index_path) %></span>
+  </div>
+
+</div>
 
 <!-- 3秒后跳转回页面 -->
-<!-- <script language=javascript>
-    setTimeout('window.location="/join/index"',5000)
-</script> -->
+<script language=javascript>
+  setTimeout('window.location="/join/index"',5000)
+</script>
