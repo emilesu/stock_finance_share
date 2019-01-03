@@ -169,7 +169,11 @@
   </div>
 </div>
 
-<%= link_to("。", join_go_wechat_pay_path) %>
+<% if current_user %>
+  <%= link_to("。", join_go_wechat_pay_path) %>
+<% else %>
+  <a data-toggle="modal" data-target="#login-modal">。</a>
+<% end %>
 
 <!-- 自定义 title -->
 <% content_for :title do %>
