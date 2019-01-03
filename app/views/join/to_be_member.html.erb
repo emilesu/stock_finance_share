@@ -4,7 +4,7 @@
     <%= image_tag @user.avatar, :class => "img-circle" %>
     <h3><%= @user.username %></h3>
 
-    <% if @user.motto == "小猪佩奇" %>
+    <% if @user.role == "member" %>
       <h4>成功！你已成为 HOLD LE 会员</h4>
     <% else %>
       <h4>加入失败！请重新尝试...</h4>

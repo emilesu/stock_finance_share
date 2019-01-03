@@ -171,9 +171,9 @@
 
 <% if !current_user %>
   <a data-toggle="modal" data-target="#login-modal">。</a>
-<% elsif current_user.motto == "小猪佩奇" || current_user.motto == "小猪乔治" %>
+<% elsif current_user.role == "member" || current_user.role == "admin" %>
   已是会员
-<% elsif current_user && current_user.role != "小猪佩奇" %>
+<% elsif current_user && current_user.role != "member" %>
   <%= link_to("。", join_go_wechat_pay_path) %>
 
 <% end %>
