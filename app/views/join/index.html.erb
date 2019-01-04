@@ -94,13 +94,13 @@
 
       <% if !current_user || (current_user && current_user.role != "member" && current_user.role != "admin") %>
 
-      <!-- 微信方法： -->
-      <div class="wechat-join col-md-6">
+      <!-- 微信支付 方法： -->
+      <div class="wechat-join col-md-4">
         <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
         <br><br>
         <% if !current_user %>
           <a data-toggle="modal" data-target="#login-modal">
-            <img class="center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
+            <img class="wx-pay-img center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
           </a>
         <% elsif current_user && current_user.role != "member" %>
           <%= link_to join_go_wechat_pay_path do %>
@@ -108,19 +108,35 @@
           <% end %>
         <% end %>
         <br><br>
-        <p><strong> 方法一：</strong></p>
+        <p><strong> 方法一(推荐)：</strong></p>
         <p><strong>注册/登录</strong>后 点击上按钮进入  <strong> 微信扫码支付</strong></p>
         <p>确认并支付<strong> <span>168</span> </strong>元(CNY)</p>
-        <p>支付完成后即 <strong>自动开通会员</strong></p>
+        <p>完成后就将会 <strong>自动开通会员</strong></p>
+      </div>
+
+      <!-- 加微信 方法： -->
+      <div class="paypal-join col-md-4">
+        <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
+        <br><br>
+        <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        <br><br>
+        <p><strong> 方法二：</strong></p>
+        <p>扫码添加 大苏 的微信：  <strong>emilesu</strong></p>
+        <p>通过微信支付 或 红包，支付<strong> <span>168</span> </strong>元(CNY)</p>
+        <% if !current_user %>
+          <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名发送给 大苏 就行了</p>
+        <% elsif current_user %>
+          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong>发送给 大苏 就行了</p>
+        <% end %>
       </div>
 
       <!-- PayPal 方法： -->
-      <div class="paypal-join col-md-6">
+      <div class="paypal-join col-md-4">
         <p class="texit-center"><i class="fa fa-paypal fa-4x" aria-hidden="true"></i>
         <br><br>
         <img class="center-block" src="https://i.loli.net/2018/12/01/5c020dcc53415.jpg" alt="">
         <br><br>
-        <p><strong> 方法二：</strong></p>
+        <p><strong> 方法三：</strong></p>
         <p>通过 大苏 的 PayPal ：  <strong><a href="https://paypal.me/emilesu" target="_blank">https://paypal.me/emilesu</a></strong></p>
         <p>支付 <strong> <span>26</span> </strong>(USD)<strong> - 或or -  <span>168</span> </strong>(CNY) </p>
         <% if !current_user %>
