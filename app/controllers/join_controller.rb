@@ -4,6 +4,8 @@ class JoinController < ApplicationController
   # 解决Can't verify CSRF token authenticity的问题
   protect_from_forgery with: :null_session, only: [:wx_pay_notify]
 
+  impressionist actions: [:index]
+
   def index
     #code
   end
