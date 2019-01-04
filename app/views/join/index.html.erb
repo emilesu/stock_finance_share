@@ -99,9 +99,11 @@
         <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
         <br><br>
         <% if !current_user %>
+        <div class="how-to-join-img">
           <a data-toggle="modal" data-target="#login-modal">
             <img class="wx-pay-img center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
           </a>
+        </div>
         <% elsif current_user && current_user.role != "member" %>
           <%= link_to join_go_wechat_pay_path do %>
             <img class="center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
@@ -118,7 +120,9 @@
       <div class="paypal-join col-md-4">
         <p class="texit-center"><i class="fa fa-weixin fa-4x" aria-hidden="true"></i>
         <br><br>
-        <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        <div class="how-to-join-img">
+          <img class="center-block" src="https://i.loli.net/2018/10/23/5bce37fb981c1.jpg" alt="">
+        </div>
         <br><br>
         <p><strong> 方法二：</strong></p>
         <p>扫码添加 大苏 的微信：  <strong>emilesu</strong></p>
@@ -134,7 +138,9 @@
       <div class="paypal-join col-md-4">
         <p class="texit-center"><i class="fa fa-paypal fa-4x" aria-hidden="true"></i>
         <br><br>
-        <img class="center-block" src="https://i.loli.net/2018/12/01/5c020dcc53415.jpg" alt="">
+        <div class="how-to-join-img">
+          <img class="center-block" src="https://i.loli.net/2018/12/01/5c020dcc53415.jpg" alt="">
+        </div>
         <br><br>
         <p><strong> 方法三：</strong></p>
         <p>通过 大苏 的 PayPal ：  <strong><a href="https://paypal.me/emilesu" target="_blank">https://paypal.me/emilesu</a></strong></p>
