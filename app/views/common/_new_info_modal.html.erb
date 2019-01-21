@@ -33,7 +33,7 @@
                         前
                       </i>
                     </h3>
-                    <p><%= new_info.description %></p>
+                    <p><%= simple_format(new_info.description) %></p>
                   </div>
                 <% else %>
                   <!-- 无图片时 -->
@@ -43,7 +43,7 @@
                         前
                       </i>
                     </h3>
-                    <p><%= new_info.description %></p>
+                    <p><%= simple_format(new_info.description) %></p>
 
                   </div>
                 <% end %>
