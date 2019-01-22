@@ -3514,6 +3514,7 @@ jQuery(function () {
        "600793 - 宜宾纸业 - YBZY",
        "603486 - 科沃斯 - KWS",
        "603712 - 七一二 - QYE",
+       "601598 - 中国外运 - ZGWY",
        "AAPL - 苹果 - US",
        "AMZN - 亚马逊 - US",
        "MSFT - 微软 - US",
