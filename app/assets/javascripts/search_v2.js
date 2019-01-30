@@ -8603,6 +8603,7 @@ jQuery(function () {
 "ZSML - ETFS Zacks Earnings Small-Cap U.S. Index Fund - US",
 "ZTST - ZTST - US",
 "ZXIET - ZXIET - US",
+"CYBR - CyberArk Software Ltd. - US",
      ];
 
      var substringMatcher = function (strs) {

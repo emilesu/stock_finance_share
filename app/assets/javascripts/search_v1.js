@@ -3515,6 +3515,7 @@ jQuery(function () {
        "603486 - 科沃斯 - KWS",
        "603712 - 七一二 - QYE",
        "601598 - 中国外运 - ZGWY",
+       "603259 - 药明康德 - YMKD"
        "AAPL - 苹果 - US",
        "AMZN - 亚马逊 - US",
        "MSFT - 微软 - US",
@@ -12118,6 +12119,7 @@ jQuery(function () {
        "ZSML - ETFS Zacks Earnings Small-Cap U.S. Index Fund - US",
        "ZTST - ZTST - US",
        "ZXIET - ZXIET - US",
+       "CYBR - CyberArk Software Ltd. - US",
      ];
 
      var substringMatcher = function (strs) {
