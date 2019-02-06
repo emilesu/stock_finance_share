@@ -164,7 +164,7 @@ class User < ApplicationRecord
           end
           i = Devise.friendly_token[0,20]
           user = User.create(
-              username: name,
+              username: name.to_s + "_" + rand(36 ** 3).to_s(36),
               email: data["email"],
               avatar: data["image"],
               password: Devise.friendly_token[0,20],
