@@ -105,9 +105,11 @@
           </a>
         </div>
         <% elsif current_user && current_user.role != "member" %>
-          <%= link_to join_go_wechat_pay_path do %>
-            <img class="wx-pay-img center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
-          <% end %>
+        <div class="how-to-join-img">
+        <%= link_to join_go_wechat_pay_path do %>
+          <img class="wx-pay-img center-block" src="https://i.loli.net/2019/01/04/5c2e41f5c785a.png" alt="">
+        <% end %>
+        </div>
         <% end %>
         <br><br>
         <p><strong> 方法一(推荐)：</strong></p>
