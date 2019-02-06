@@ -5,7 +5,7 @@ class Admin::UsersController < AdminController
   end
 
   def show
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
   end
 
   def new
@@ -27,11 +27,11 @@ class Admin::UsersController < AdminController
   end
 
   def edit
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
   end
 
   def update
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
     if @user.update(user_params)
       redirect_to admin_users_path
     else
@@ -40,7 +40,7 @@ class Admin::UsersController < AdminController
   end
 
   def destroy
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
     @user.destroy
     redirect_to admin_users_path
   end
@@ -49,7 +49,7 @@ class Admin::UsersController < AdminController
 
   # 加入会员一年
   def nper_1
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
     if @user.join_time.blank?                     #如果用户是第一次加入,则加入日期是当日,结束日期是一年后
       @user.update!(
         :join_time => Time.now,
@@ -80,7 +80,7 @@ class Admin::UsersController < AdminController
 
   # 加入会员永久
   def nper_99
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
     if @user.join_time.blank?                     #如果用户是第一次加入
       @user.update!(
         :join_time => Time.now,
@@ -103,7 +103,7 @@ class Admin::UsersController < AdminController
 
   # 撤销会员
   def undo
-    @user = User.find_by_username!(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
     if @user.role == "member"
       @user.update!(
         :role => "nonmember",

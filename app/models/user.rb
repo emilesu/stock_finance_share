@@ -52,8 +52,12 @@ class User < ApplicationRecord
 
   # ---把网址改成用户名---
   def to_param
-    self.username
+    self.friendly_id
   end
+
+  # 新建用户时产生随机数friendly_id
+  before_validation :generate_friendly_id, :on => :create
+
 
   #浏览量易受器
   is_impressionable
@@ -176,6 +180,13 @@ class User < ApplicationRecord
 
       return user
     end
+  end
+
+  protected
+
+  # 新建 user 时，给 friendly_id 赋值
+  def generate_friendly_id
+     self.friendly_id ||= rand(36 ** 12).to_s(36)
   end
 
 
