@@ -39,7 +39,7 @@ class TradesController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by_username!(params[:user_id])
+    @user = User.find_by_friendly_id!(params[:user_id])
   end
 
   def trade_params
