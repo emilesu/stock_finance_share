@@ -11,11 +11,23 @@
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <!-- public 所有人可见 -->
         <% if @post.status == "public" %>
+          <% if !@post.video_url.blank? %>
+            <video controls poster="<%= @post.video_img %>">
+              <source src="<%= @post.video_url %>" type="video/mp4">
+            </video>
+            <hr>
+          <% end %>
           <%= sanitize markdown @post.description %>
         <!-- member 会员可见 -->
         <% elsif @post.status == "member" %>
           <% if current_user && ( current_user.role == "member" || current_user.role == "admin" ) %>
-              <%= sanitize markdown @post.description %>
+            <% if !@post.video_url.blank? %>
+              <video controls poster="<%= @post.video_img %>">
+                <source src="<%= @post.video_url %>" type="video/mp4">
+              </video>
+              <hr>
+            <% end %>
+            <%= sanitize markdown @post.description %>
           <% else %>
             <div class="nonmember-post">
               <%= link_to join_index_path do %>
