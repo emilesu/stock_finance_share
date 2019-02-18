@@ -461,7 +461,7 @@ class UsStock < ApplicationRecord
     # 运算
      result = []
      (0..4).each do |i|
-       if to_num(zcb36[i]) != 0
+       if to_num(zcb36[i]) != 0 && to_num(zcb36[i]) > 0 && to_num(lrb25[i]) > 0
          m = to_num(lrb25[i]) / to_num(zcb36[i]) * 100
        else
          m = 0
