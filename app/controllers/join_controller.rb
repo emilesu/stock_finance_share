@@ -13,7 +13,7 @@ class JoinController < ApplicationController
   # 生成订单信息
   def go_wechat_pay
     params = {
-      body: 'HOLD LE - 会员VIP（第二期）',
+      body: 'HOLD LE - 会员VIP（第三期）',
       out_trade_no: Time.now.to_s(:number),
       attach: current_user.id.to_s,
       total_fee: 26800,
