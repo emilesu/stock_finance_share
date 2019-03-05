@@ -1034,7 +1034,7 @@ class UsStock < ApplicationRecord
   def us_stock_operating_margin_ratio_pyramid
     array = JSON.parse(self.static_data)[14][0..3]        # 导入数据 营业毛利率
 
-    if array.sum == 0
+    if array.sum == 0 || array.min <= 5
       rating = 0
     elsif array.min / (array.sum / array.size) >= 0.7 &&  array.max / (array.sum / array.size) <= 1.3
       rating = 50
@@ -1050,7 +1050,7 @@ class UsStock < ApplicationRecord
   def us_stock_roa_ratio_pyramid
     array = JSON.parse(self.static_data)[30][0..3]        # 导入数据 营业利益率
 
-    if array.sum == 0
+    if array.sum == 0  || array.min <= 0
       rating = 0
     elsif (array.sum / array.size) >= 15
       rating = 100
@@ -1070,13 +1070,13 @@ class UsStock < ApplicationRecord
   def us_stock_operating_margin_of_safety_ratio_pyramid
     array = JSON.parse(self.static_data)[16][0..3]        # 导入数据 经营安全边际率
 
-    if array.sum == 0
+    if array.sum == 0 || array.min <= 5
       rating = 0
     elsif (array.sum / array.size) >= 70
       rating = 50
     elsif (array.sum / array.size) >= 50
       rating = 30
-    elsif (array.sum / array.size) >= 40
+    elsif (array.sum / array.size) >= 30
       rating = 10
     else
       rating = 0
