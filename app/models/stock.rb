@@ -1384,7 +1384,7 @@ class Stock < ApplicationRecord
 
     if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0 || num_array.min == 0
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) < 0.1             # 排除掉最大值比最小值大3倍的极端情况
+    elsif num_array.min / (num_array.sum / num_array.size) < 0.3             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
     elsif (num_array.sum / num_array.size) >= 35
       rating = 550
