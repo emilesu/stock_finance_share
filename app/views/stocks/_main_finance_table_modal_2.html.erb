@@ -401,9 +401,9 @@
           end
         ) %>
         <br>
-        <h4>A2-11、股东权益报酬率(%) RoE</h4>
+        <h4>A2-11-1、股东权益报酬率(%) RoE</h4>
         <blockquote>
-          <p>股东报权益酬率（RoE） = 净利 / 股东权益</p>
+          <p>股东报权益酬率（RoE） = 归属于母公司所有者的净利润 / 股东权益</p>
           <p>股东报权益酬率，是指公司赚到的净利润，对应于股东所出的钱，所占的比率是多少？当然是越多越好。</p>
           <p>RoE 是巴菲特最看重的指标之一，同时也是近年来，基金等大型投资机构做投资选择时，最重要的判断依据之一。所以，要成为专业投资者，必须掌握RoE。</p>
         </blockquote>
@@ -413,6 +413,44 @@
           <li>五年内的 RoE 保持基本平稳，不大起大落。</li>
           <li>RoE > 20% ：具备极佳的投资价值，这类企业的各类指标，应该也是十分出色的。</li>
           <li>RoE < 10% ：不值得投资，因为投资收益低于资金成本。</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-default pull-left" target="_blank" href="https://www.holdle.com/courses/looking-for-potential-by-financial-data/posts/21"> 去看相应课程 </a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 股东权益报酬率(%) RoA -->
+<div class="modal fade" id="momal-roa-ratio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">股东权益报酬率(%) RoE</h5>
+      </div>
+      <div class="modal-body">
+        <% m = static_data[30] %>
+        <%= line_chart(
+          stock.modal_data(time, m).reverse.each do |i|
+          end
+        ) %>
+        <br>
+        <h4>A2-11-2、总资产报酬率(%) RoA</h4>
+        <blockquote>
+          <p>总资产报酬率（RoA） = 归属于母公司所有者的净利润 / 总资产</p>
+          <p>总资产报酬率，是指公司赚到的净利润，对应于公司的全部投入，所占的比率是多少？当然是越多越好。</p>
+        </blockquote>
+        <p>RoA 总资产报酬率能真实反映出一家公司的获利能力，相当于一家公司的 <strong>「投资年化率」</strong> 。 </p>
+        <p><strong>总资产报酬率 （最好不低于10%）:</strong></p>
+        <ul>
+          <li>五年内的 RoA 保持基本平稳，不大起大落。</li>
+          <li>RoA > 10% ：说明这家公司赚到的钱大于资金成本，生意基本做到损益平衡。</li>
+          <li>RoA > 20% ：说明这家公司非常能赚钱，投资回报很高，基本上 3-4 年就能够回本。</li>
         </ul>
       </div>
       <div class="modal-footer">

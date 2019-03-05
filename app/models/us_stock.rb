@@ -471,6 +471,25 @@ class UsStock < ApplicationRecord
     return result
   end
 
+  # --- C6-2、总资产报酬率 ---
+  # =  净利润 lrb25 / 总股东权益 zcb15
+  def us_roa_ratio
+    # 数据提取
+    lrb25 = JSON.parse(self.lrb)[25]
+    zcb15 = JSON.parse(self.zcb)[15]
+    # 运算
+     result = []
+     (0..4).each do |i|
+       if to_num(zcb15[i]) != 0 && to_num(zcb15[i]) > 0 && to_num(lrb25[i]) > 0
+         m = to_num(lrb25[i]) / to_num(zcb15[i]) * 100
+       else
+         m = 0
+       end
+       result << m.round(1)
+    end
+    return result
+  end
+
   # --- D1、负债占资产比率 ---
   # =  总负债 zcb26 / 总资产 zcb15
   def us_debt_asset_ratio
@@ -677,9 +696,10 @@ class UsStock < ApplicationRecord
     sd << self.us_operating_cash_flow_ratio                         # 27-现金流量比率
     sd << ["--","--","--","--","--"]                                # 28-现金流量允当比率
     sd << self.us_cash_re_investment_ratio                          # 29-现金再投资比率
-    sd << self.us_stock_years                                       # 30-红利发放期
-    sd << self.us_dividend_amount                                   # 31-分红金额
-    sd << self.us_dividend_rate                                     # 32-分红率
+    sd << self.us_roa_ratio                                         # 30-总资产报酬率 ROA
+    sd << self.us_stock_years                                       # 31-红利发放期
+    sd << self.us_dividend_amount                                   # 32-分红金额
+    sd << self.us_dividend_rate                                     # 33-分红率
     self.update!(
       :static_data => sd
     )
@@ -869,7 +889,7 @@ class UsStock < ApplicationRecord
     self.us_stock_inventory_turnover_ratio_pyramid +
     self.us_stock_business_cycle_ratio_pyramid +
     self.us_stock_operating_margin_ratio_pyramid +
-    self.us_stock_business_profitability_ratio_pyramid +
+    self.us_stock_roa_ratio_pyramid +
     self.us_stock_operating_margin_of_safety_ratio_pyramid +
     self.us_stock_after_tax_profit_pyramid +
     self.us_stock_net_cash_flow_of_business_activities_pyramid
@@ -880,9 +900,9 @@ class UsStock < ApplicationRecord
     array = JSON.parse(self.static_data)[13]        # 导入数据
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0
+    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0  || num_array.min == 0
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
+    elsif num_array.min / (num_array.sum / num_array.size) < 0.1             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
     elsif (num_array.sum / num_array.size) >= 35
       rating = 550
@@ -1035,14 +1055,18 @@ class UsStock < ApplicationRecord
     return rating
   end
 
-  # 净利率均衡 积分算法(净利率的波动不能错过平均值的 30%)
-  def us_stock_business_profitability_ratio_pyramid
-    array = JSON.parse(self.static_data)[15]        # 导入数据 营业利益率
+  # 总资产报酬率 RoA 积分算法(总资产报酬率是否 >= 16(100份) 12(80份) 8(50分))
+  def us_stock_roa_ratio_pyramid
+    array = JSON.parse(self.static_data)[30]        # 导入数据 营业利益率
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
     if num_array.sum == 0
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) >= 0.7 &&  num_array.max / (num_array.sum / num_array.size) <= 1.3
+    elsif (num_array.sum / num_array.size) >= 16
+      rating = 100
+    elsif (num_array.sum / num_array.size) >= 12
+      rating = 80
+    elsif (num_array.sum / num_array.size) >= 8
       rating = 50
     else
       rating = 0

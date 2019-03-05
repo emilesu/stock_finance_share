@@ -4,11 +4,11 @@
     <tr class="theader-style">
       <td class="theader-style" width = "10%">类别</td>
       <td align=left width = "25%">红利发放日</td>
-      <% m = static_data[30].reverse.size %>
+      <% m = static_data[31].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
       <% end %>
-      <% static_data[30].reverse.each do |i| %>
+      <% static_data[31].reverse.each do |i| %>
         <td align=center width = "13%"><%= i %></td>
       <% end %>
     </tr>
@@ -16,17 +16,6 @@
     <tr data-toggle="modal" data-target="#momal-dividend-amount">
       <td class="theader-style" rowspan="3">分红水平</td>
       <td align=left>每10股分红(美元)</td>
-      <% m = static_data[31].reverse.size %>
-      <% (1..5 - m).each do |i| %>
-        <td align=center>--</td>
-      <% end %>
-      <% static_data[31].reverse.each do |i| %>
-        <td><%= i %></td>
-      <% end %>
-    </tr>
-
-    <tr data-toggle="modal" data-target="#momal-dividend-rate">
-      <td align=left>分红率</td>
       <% m = static_data[32].reverse.size %>
       <% (1..5 - m).each do |i| %>
         <td align=center>--</td>
@@ -36,7 +25,18 @@
       <% end %>
     </tr>
 
+    <tr data-toggle="modal" data-target="#momal-dividend-rate">
+      <td align=left>分红率</td>
+      <% m = static_data[33].reverse.size %>
+      <% (1..5 - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[33].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
+    </tr>
+
   </table>
 </div>
 
-  <%= render :partial => "//stocks/main_finance_table_modal_4", :locals => { :static_data => static_data, :time => @us_stock.modal_time, :stock => @us_stock, :sd1 => 31, :sd2 => 32 } %>
+  <%= render :partial => "//stocks/main_finance_table_modal_4", :locals => { :static_data => static_data, :time => @us_stock.modal_time, :stock => @us_stock, :sd1 => 32, :sd2 => 33 } %>

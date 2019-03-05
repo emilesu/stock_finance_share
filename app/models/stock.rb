@@ -787,6 +787,34 @@ class Stock < ApplicationRecord
     return result
   end
 
+  # --- C6-2、总资产报酬率 ---
+  # =  归属于母公司所有者的净利润 lrb41 / 总资产 zcb52
+  def roa_ratio(time)
+    # 数据源
+    if time == 10
+      lrb41 = self.quarter_years(2, 41)[0..9]
+      zcb52 = self.quarter_years(1, 52)[0..9]
+    elsif time == 5
+      lrb41 = self.quarter_years(2, 41)[0..4]
+      zcb52 = self.quarter_years(1, 52)[0..4]
+    elsif time == 2
+      lrb41 = self.quarter_recent(2, 41)
+      zcb52 = self.quarter_recent(1, 52)
+    end
+    # 运算
+    result = []
+    (0..time-1).each do |i|
+      if zcb52[i].to_f != 0 && zcb52[i].to_f > 0 && lrb41[i].to_f > 0
+        m = lrb41[i].to_f / zcb52[i].to_f * 100
+      else
+        m = 0
+      end
+      result << m.round(1)
+    end
+    # 返回每股盈余
+    return result
+  end
+
   # --- D1、负债占资产比率 ---
   # =  总负债 zcb94 / 总资产 zcb52
   def debt_asset_ratio(time)
@@ -1243,9 +1271,10 @@ class Stock < ApplicationRecord
     sd_10 << self.operating_cash_flow_ratio(10)                           # 27-现金流量比率
     sd_10 << self.cash_flow_adequancy_ratio(10)                           # 28-现金流量允当比率
     sd_10 << self.cash_re_investment_ratio(10)                            # 29-现金再投资比率
-    sd_10 << self.dividend_date(10)                                       # 30-红利发放日
-    sd_10 << self.dividend_amount(10)                                     # 31-分红金额
-    sd_10 << self.dividend_rate(10)                                       # 32-分红率
+    sd_10 << self.roa_ratio(10)                                           # 30-总资产报酬率 ROA
+    sd_10 << self.dividend_date(10)                                       # 31-红利发放日
+    sd_10 << self.dividend_amount(10)                                     # 32-分红金额
+    sd_10 << self.dividend_rate(10)                                       # 33-分红率
     self.update!(
       :static_data_10 => sd_10
     )
@@ -1282,9 +1311,10 @@ class Stock < ApplicationRecord
     sd_5 << self.operating_cash_flow_ratio(5)                           # 27-现金流量比率
     sd_5 << self.cash_flow_adequancy_ratio(5)                           # 28-现金流量允当比率
     sd_5 << self.cash_re_investment_ratio(5)                            # 29-现金再投资比率
-    sd_5 << self.dividend_date(5)                                       # 30-红利发放日
-    sd_5 << self.dividend_amount(5)                                     # 31-分红金额
-    sd_5 << self.dividend_rate(5)                                       # 32-分红率
+    sd_5 << self.roa_ratio(5)                                           # 30-总资产报酬率 ROA
+    sd_5 << self.dividend_date(5)                                       # 31-红利发放日
+    sd_5 << self.dividend_amount(5)                                     # 32-分红金额
+    sd_5 << self.dividend_rate(5)                                       # 33-分红率
     self.update!(
       :static_data_5 => sd_5
     )
@@ -1321,6 +1351,7 @@ class Stock < ApplicationRecord
     sd_2 << self.operating_cash_flow_ratio(2)                           # 27-现金流量比率
     sd_2 << self.cash_flow_adequancy_ratio(2)                           # 28-现金流量允当比率
     sd_2 << self.cash_re_investment_ratio(2)                            # 29-现金再投资比率
+    sd_2 << self.roa_ratio(2)                                           # 30-总资产报酬率 ROA
     self.update!(
       :static_data_2 => sd_2
     )
@@ -1340,7 +1371,7 @@ class Stock < ApplicationRecord
     self.stock_inventory_turnover_ratio_pyramid +
     self.stock_business_cycle_ratio_pyramid +
     self.stock_operating_margin_ratio_pyramid +
-    self.stock_business_profitability_ratio_pyramid +
+    self.stock_roa_ratio_pyramid +
     self.stock_operating_margin_of_safety_ratio_pyramid +
     self.stock_after_tax_profit_pyramid +
     self.stock_net_cash_flow_of_business_activities_pyramid
@@ -1351,9 +1382,9 @@ class Stock < ApplicationRecord
     array = JSON.parse(self.static_data_5)[13]        # 导入数据
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0
+    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0 || num_array.min == 0
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
+    elsif num_array.min / (num_array.sum / num_array.size) < 0.1             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
     elsif (num_array.sum / num_array.size) >= 35
       rating = 550
@@ -1506,14 +1537,18 @@ class Stock < ApplicationRecord
     return rating
   end
 
-  # 净利率均衡 积分算法(净利率的波动不能错过平均值的 30%)
-  def stock_business_profitability_ratio_pyramid
-    array = JSON.parse(self.static_data_5)[15]        # 导入数据 营业利益率
+  # 总资产报酬率 RoA 积分算法(总资产报酬率是否 >= 16(100份) 12(80份) 8(50分))
+  def stock_roa_ratio_pyramid
+    array = JSON.parse(self.static_data_5)[30]        # 导入数据 营业利益率
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
     if num_array.sum == 0
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) >= 0.7 &&  num_array.max / (num_array.sum / num_array.size) <= 1.3
+    elsif (num_array.sum / num_array.size) >= 16
+      rating = 100
+    elsif (num_array.sum / num_array.size) >= 12
+      rating = 80
+    elsif (num_array.sum / num_array.size) >= 8
       rating = 50
     else
       rating = 0

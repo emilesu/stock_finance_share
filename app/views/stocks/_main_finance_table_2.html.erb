@@ -169,7 +169,7 @@
 
     <tr data-toggle="modal" data-target="#momal-roe-ratio">
       <% if time != 2 %>
-        <td class="theader-style" rowspan="7">获利能力</td>
+        <td class="theader-style" rowspan="8">获利能力</td>
       <% end %>
       <td align=left>股东权益报酬率 RoE</td>
       <% m = static_data[13].reverse.size %>
@@ -177,6 +177,17 @@
         <td align=center>--</td>
       <% end %>
       <% static_data[13].reverse.each do |i| %>
+        <td><%= i %></td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-roa-ratio">
+      <td align=left>总资产报酬率 RoA</td>
+      <% m = static_data[30].reverse.size %>
+      <% (1..time - m).each do |i| %>
+        <td align=center>--</td>
+      <% end %>
+      <% static_data[30].reverse.each do |i| %>
         <td><%= i %></td>
       <% end %>
     </tr>
