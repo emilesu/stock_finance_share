@@ -1380,27 +1380,24 @@ class Stock < ApplicationRecord
   # ROE 积分算法（以 ROE 的平均值为基础，阶梯递减 7 级）
   def stock_roe_ratio_pyramid
     array = JSON.parse(self.static_data_5)[13]        # 导入数据
-    num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0
+    if array.size == 0 || (array.sum / array.size) == 0 || array.sum == 0 || array.min < 0 || array.include?(0)
       rating = 0
-    elsif array.min == 0 || array.include?(0)
+    elsif array.min / (array.sum / array.size) < 0.3             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
-    elsif num_array.min / (num_array.sum / num_array.size) < 0.3             # 排除掉最大值比最小值大3倍的极端情况
-      rating = 0
-    elsif (num_array.sum / num_array.size) >= 35
+    elsif (array.sum / array.size) >= 35
       rating = 550
-    elsif (num_array.sum / num_array.size) >= 30 && (num_array.sum / num_array.size) < 35
+    elsif (array.sum / array.size) >= 30 && (array.sum / array.size) < 35
       rating = 500
-    elsif (num_array.sum / num_array.size) >= 25 && (num_array.sum / num_array.size) < 30
+    elsif (array.sum / array.size) >= 25 && (array.sum / array.size) < 30
       rating = 450
-    elsif (num_array.sum / num_array.size) >= 20 && (num_array.sum / num_array.size) < 25
+    elsif (array.sum / array.size) >= 20 && (array.sum / array.size) < 25
       rating = 400
-    elsif (num_array.sum / num_array.size) >= 15 && (num_array.sum / num_array.size) < 20
+    elsif (array.sum / array.size) >= 15 && (array.sum / array.size) < 20
       rating = 300
-    elsif (num_array.sum / num_array.size) >= 10 && (num_array.sum / num_array.size) < 15
+    elsif (array.sum / array.size) >= 10 && (array.sum / array.size) < 15
       rating = 250
-    elsif (num_array.sum / num_array.size) < 10
+    elsif (array.sum / array.size) < 10
       rating = 0
     end
 
