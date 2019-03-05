@@ -932,7 +932,7 @@ class UsStock < ApplicationRecord
     elsif (array.sum / array.size) >= 10000
       rating = 150
     elsif (array.sum / array.size) >= 1000 && (array.sum / array.size) < 10000
-      rating = 50
+      rating = 100
     else
       rating = 0
     end
