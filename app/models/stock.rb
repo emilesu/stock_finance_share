@@ -1382,7 +1382,7 @@ class Stock < ApplicationRecord
     array = JSON.parse(self.static_data_5)[13]        # 导入数据
     num_array = array.delete_if {|x| x == 0 }         # 去除空数据
 
-    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0 || num_array.min == 0
+    if num_array.size == 0 || (num_array.sum / num_array.size) == 0 || num_array.sum == 0 || num_array.min < 0 ||
       rating = 0
     elsif num_array.min / (num_array.sum / num_array.size) < 0.5             # 排除掉最大值比最小值大3倍的极端情况
       rating = 0
@@ -1544,11 +1544,11 @@ class Stock < ApplicationRecord
 
     if num_array.sum == 0
       rating = 0
-    elsif (num_array.sum / num_array.size) >= 16
+    elsif (num_array.sum / num_array.size) >= 15
       rating = 100
-    elsif (num_array.sum / num_array.size) >= 12
+    elsif (num_array.sum / num_array.size) >= 11
       rating = 80
-    elsif (num_array.sum / num_array.size) >= 8
+    elsif (num_array.sum / num_array.size) >= 7
       rating = 50
     else
       rating = 0
