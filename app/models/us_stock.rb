@@ -1062,7 +1062,7 @@ class UsStock < ApplicationRecord
     if num_array.sum == 0
       rating = 0
     elsif (num_array.sum / num_array.size) >= 15
-      rating = 50
+      rating = 100
     elsif (num_array.sum / num_array.size) >= 11
       rating = 80
     elsif (num_array.sum / num_array.size) >= 7
