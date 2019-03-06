@@ -173,7 +173,7 @@
     </tr>
 
     <tr data-toggle="modal" data-target="#momal-roe-ratio">
-      <td class="theader-style" rowspan="7">获利能力</td>
+      <td class="theader-style" rowspan="8">获利能力</td>
       <td align=left>股东权益报酬率 RoE</td>
       <% (0..4).reverse_each.each do |i| %>
         <td align=center width = "15.4%">
@@ -181,6 +181,19 @@
           / <%= @stock_b_static_data[13][i] %>
           <% if !@stock_c.blank? %>
           / <%= @stock_c_static_data[13][i] %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr data-toggle="modal" data-target="#momal-roa-ratio">
+      <td align=left>总资产报酬率 RoA</td>
+      <% (0..4).reverse_each.each do |i| %>
+        <td align=center width = "15.4%">
+          <%= @stock_a_static_data[30][i] %>
+          / <%= @stock_b_static_data[30][i] %>
+          <% if !@stock_c.blank? %>
+          / <%= @stock_c_static_data[30][i] %>
           <% end %>
         </td>
       <% end %>
