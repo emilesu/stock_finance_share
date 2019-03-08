@@ -1,7 +1,12 @@
 class Admin::UsersController < AdminController
 
   def index
-    @users = User.all.page(params[:page]).per(25)
+    @users = case params[:order]
+    when 'join_time_sorting'
+      User.all.order('join_time DESC').page(params[:page]).per(25)
+    else
+      User.all.page(params[:page]).per(25)
+    end
   end
 
   def show
