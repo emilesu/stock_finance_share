@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190206025024) do
+ActiveRecord::Schema.define(version: 20190310161826) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -55,6 +55,27 @@ ActiveRecord::Schema.define(version: 20190206025024) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "homeland_posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "homeland_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["homeland_id"], name: "index_homeland_posts_on_homeland_id"
+    t.index ["user_id"], name: "index_homeland_posts_on_user_id"
+  end
+
+  create_table "homelands", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "categories"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categories"], name: "index_homelands_on_categories"
+    t.index ["user_id"], name: "index_homelands_on_user_id"
   end
 
   create_table "identifies", force: :cascade do |t|

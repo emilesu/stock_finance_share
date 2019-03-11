@@ -119,6 +119,8 @@ Rails.application.routes.draw do
     resources :new_infos          #新内容
   end
 
+  # 社群论坛 homeland
+  resources :homelands             #社群论坛
 
   # 加入会员页面
   namespace :join do

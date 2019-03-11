@@ -50,6 +50,10 @@ class User < ApplicationRecord
   has_many :fans, :dependent => :destroy
   has_many :attentions, :dependent => :destroy
 
+  # 与 homeland 和 homeland_posts 关系
+  has_many :homelands, :dependent => :destroy
+  has_many :homeland_posts, :dependent => :destroy
+
   # ---把网址改成用户名---
   def to_param
     self.friendly_id
