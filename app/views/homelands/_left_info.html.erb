@@ -1,0 +1,22 @@
+<%= link_to("发布话题", new_homeland_path, :class => "btn btn-default btn-block") %>
+
+<!-- 全部主题 -->
+<div class="all-homeland">
+  <%= link_to homelands_path do %>
+    <i class="fa fa-comments-o" aria-hidden="true"></i> 
+    <span>全部话题</span>
+  <% end %>
+</div>
+<i class="fa fa-th-large" aria-hidden="true"></i>
+<!-- 主题分类 -->
+<div class="homeland-categories-list">
+
+  <br>
+  <div>
+    <% Homeland::CATEGORIES.each do |categories| %>
+      <%= link_to homelands_path(:order => categories) do %>
+        <li><i class="fa fa-stop" aria-hidden="true"></i> <%= categories %></li>
+      <% end %>
+    <% end %>
+  </div>
+</div>

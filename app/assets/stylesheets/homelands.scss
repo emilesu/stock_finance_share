@@ -1,3 +1,50 @@
-// Place all the styles related to the homelands controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.homeland-index {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 100%;
+  font-size: 13px;
+  a {
+    color: #666;
+    transition: 0.3s;
+  }
+  a:hover {
+    color: #999;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-default {
+    border: 1px #777 solid;
+    background-color: #777;
+    color: #fff;
+    transition: 0.3s;
+  }
+  .btn-default:hover {
+    border: 1px #999 solid;
+    background-color: #999;
+    color: #f8f8f8;
+    transition: 0.3s;
+  }
+
+  .all-homeland {
+    margin: 25px 0 40px;
+    i {
+      // color: #999;
+      margin-right: 3px;
+    }
+  }
+
+  .homeland-categories-list {
+    li {
+      font-size: 13px;
+      list-style: none;
+      padding: 9px 0px;
+      i {
+        color: #f1f1f1;
+        margin-right: 3px;
+      }
+    }
+  }
+
+
+}

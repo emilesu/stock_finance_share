@@ -15,9 +15,9 @@ class HomelandsController < ApplicationController
     @homeland.user_id = current_user.id
 
     if @homeland.save
-      redirect_back fallback_location: homelands_path
+      redirect_to homelands_path
     else
-      redirect_back fallback_location: homelands_path
+      render :new
     end
   end
 
@@ -29,9 +29,9 @@ class HomelandsController < ApplicationController
     @homeland = Homeland.find(params[:id])
 
     if @homeland.update(homeland_params)
-      redirect_back fallback_location: homeland_path(@homeland)
+      redirect_to homeland_path(@homeland)
     else
-      redirect_back fallback_location: homeland_path(@homeland)
+      render :edit
     end
   end
 
@@ -39,7 +39,7 @@ class HomelandsController < ApplicationController
     @homeland = Homeland.find(params[:id])
 
     @homeland.destroy
-    redirect_back fallback_location: homelands_path
+    redirect_to homelands_path
   end
 
   private

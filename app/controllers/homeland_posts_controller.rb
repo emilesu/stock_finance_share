@@ -13,9 +13,9 @@ class HomelandPostsController < ApplicationController
     @homeland_post.homeland_id = @homeland.id
 
     if @homeland.save
-      redirect_back fallback_location: homeland_path(@homeland)
+      redirect_to homeland_path(@homeland)
     else
-      redirect_back fallback_location: homeland_path(@homeland)
+      redirect_to homeland_path(@homeland)
     end
   end
 
@@ -27,9 +27,9 @@ class HomelandPostsController < ApplicationController
     @homeland_post = HomelandPost.find(params[:id])
 
     def @homeland_post.update(homeland_post_params)
-      redirect_back fallback_location: homeland_path(@homeland)
+      redirect_to homeland_path(@homeland)
     else
-      redirect_back fallback_location: homeland_path(@homeland)
+      redirect_to homeland_path(@homeland)
     end
   end
 
@@ -37,7 +37,7 @@ class HomelandPostsController < ApplicationController
     @homeland_post = HomelandPost.find(params[:id])
 
     @homeland_post.destroy
-    redirect_back fallback_location: homeland_path(@homeland)
+    redirect_to homeland_path(@homeland)
   end
 
   private

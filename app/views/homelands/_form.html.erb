@@ -1,0 +1,22 @@
+<%= simple_form_for [@homeland] do |f| %>
+
+  <div class="form-group">
+    <%= f.input :title, :label => "标题/title", :placeholder => "标题/title...", input_html: { class: "form-control"} %>
+
+    <div id="note-status-button" class="btn-group" data-toggle="buttons">
+      <label for="">选择话题类型：</label><br>
+      <% Homeland::CATEGORIES.each do |categories| %>
+        <label class="btn btn-sm btn-default <%= (categories == f.object.categories)? 'active' : '' %>">
+          <%= f.radio_button :categories, categories %>
+          <%= t(categories, :scope => "homeland.categories") %>
+        </label>
+      <% end %>
+    </div> <br> <br>
+
+    <%= f.input :description, :label => false, :placeholder => "写下你的主题内容...", input_html: { class: "form-control", :rows => 30, :style=> 'width: 100%;'} %>
+
+    <br>
+    <%= f.submit "发 布", :class => "btn btn-default", :data => { disable_with: "Submiting..." } %>
+  </div>
+
+<% end %>
