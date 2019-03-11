@@ -10,4 +10,7 @@ class Homeland < ApplicationRecord
   CATEGORIES = ["学习", "股票", "反馈", "公告"]
   validates_inclusion_of :categories, :in => CATEGORIES
 
+  STATUS = ["公开", "不公开"]
+  validates_inclusion_of :status, :in => STATUS
+
 end

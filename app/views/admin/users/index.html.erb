@@ -18,6 +18,7 @@
         <th>入会操作</th>
         <th>注册时间/created_at</th>
         <th>笔记数量/note_count</th>
+        <th>论坛</th>
         <th>被看次数</th>
         <th>浏览量</th>
         <th>编辑用户</th>
@@ -87,6 +88,10 @@
           <!-- 笔记数量/note_count -->
           <td>
             <%= user.notes.size %>
+          </td>
+          <!-- 论坛/homeland_role -->
+          <td>
+            <%= user.homeland_role %>
           </td>
           <!-- 被看次数 -->
           <td>

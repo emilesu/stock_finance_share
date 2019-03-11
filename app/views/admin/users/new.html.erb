@@ -32,6 +32,16 @@
       <%= f.input :password, :label => "密码/password", input_html: { class: "form-control"} %>
       <%= f.input :password_confirmation, :label => "确认密码/password", input_html: { class: "form-control"} %>
       <hr>
+      <label for="note-level-button">homeland</label><br>
+      <div id="note-status-button" class="btn-group" data-toggle="buttons">
+        <% User::HOMELAND_ROLE.each do |homeland_role| %>
+          <label class="btn btn-sm btn-default <%= (homeland_role == f.object.homeland_role)? 'active' : '' %>">
+            <%= f.radio_button :homeland_role, homeland_role %>
+            <%= t(homeland_role, :scope => "user.homeland_role") %>
+          </label>
+        <% end %>
+      </div>
+      <hr>
       <%= f.submit "提交", :class => "btn btn-sm btn-default", :data => { disable_with: "Submiting..." } %>
     </div>
 

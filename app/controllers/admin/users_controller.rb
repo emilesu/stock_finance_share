@@ -134,7 +134,8 @@ class Admin::UsersController < AdminController
       :password_confirmation,           #确认密码
       :join_time,                       #加入会员时间
       :end_time,                        #会员到期时间
-      :nper                             #会员期数
+      :nper,                            #会员期数
+      :homeland_role                    #论坛“可发言”、“禁言”
     )
   end
 

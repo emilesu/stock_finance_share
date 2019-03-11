@@ -54,6 +54,9 @@ class User < ApplicationRecord
   has_many :homelands, :dependent => :destroy
   has_many :homeland_posts, :dependent => :destroy
 
+  HOMELAND_ROLE = ["可发言", "禁言"]
+  validates_inclusion_of :homeland_role, :in => HOMELAND_ROLE
+
   # ---把网址改成用户名---
   def to_param
     self.friendly_id
