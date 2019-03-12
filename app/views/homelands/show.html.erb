@@ -15,7 +15,7 @@
         <div class="homeland-post-box">
           <div class="media">
             <!-- 头像 -->
-            <div class="media-left">
+            <div class="media-left hidden-sm hidden-xs">
               <% if @homeland.user.avatar.present? %>
                 <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
               <% else %>
@@ -25,6 +25,13 @@
 
             <!-- 信息 -->
             <div class="media-body">
+              <span class="sm-avatar hidden-md hidden-lg">
+                <% if @homeland.user.avatar.present? %>
+                  <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
+              </span>
               <span class="post-username"><%= @homeland.user.username %></span>
               <span class="media-update">发布于 <%= time_ago_in_words( @homeland.created_at ) %> 前</span>
               <!-- 发布者或管理员可修改 -->
@@ -35,7 +42,7 @@
                 </span>
               <% end %>
               <!-- description 内容 -->
-              <div class="post-description"><%= @homeland.description %></div>
+              <div class="post-description"><%= simple_format(@homeland.description) %></div>
             </div>
 
           </div>
@@ -47,7 +54,7 @@
           <div class="homeland-post-box">
             <div class="media">
               <!-- 头像 -->
-              <div class="media-left">
+              <div class="media-left hidden-sm hidden-xs">
                 <% if @homeland_post.user.avatar.present? %>
                   <%= image_tag(@homeland_post.user.avatar, :class => " img-circle") %>
                 <% else %>
@@ -57,6 +64,13 @@
 
               <!-- 信息 -->
               <div class="media-body">
+                <span class="sm-avatar hidden-md hidden-lg">
+                  <% if @homeland.user.avatar.present? %>
+                    <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
+                  <% else %>
+                    <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                  <% end %>
+                </span>
                 <span class="post-username"><%= @homeland_post.user.username %></span>
                 <span class="media-update">发布于 <%= time_ago_in_words( @homeland_post.created_at ) %> 前</span>
                 <!-- 发布者或管理员可修改 -->

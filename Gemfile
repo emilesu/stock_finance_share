@@ -70,7 +70,7 @@ gem 'qiniu-rs'
 gem "chartkick"
 
 # 文本编辑器
-gem 'trix'
+gem 'simditor'
 
 # 信息数据爬取
 gem 'rest-client'

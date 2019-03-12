@@ -124,6 +124,9 @@ Rails.application.routes.draw do
     resources :homeland_posts
   end
 
+  # 论坛图片上传
+  post 'upload' => "photos#upload"
+
   # 加入会员页面
   namespace :join do
     get :index                  #加入会员文案页

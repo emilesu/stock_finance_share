@@ -1,7 +1,7 @@
 <%= simple_form_for [@homeland] do |f| %>
 
   <div class="form-group">
-    <%= f.input :title, :label => "标题/title", :placeholder => "标题/title...", input_html: { class: "form-control"} %>
+    <%= f.input :title, :label => false, :placeholder => "标题/title...", input_html: { class: "form-control"} %>
 
     <div id="note-status-button" class="btn-group" data-toggle="buttons">
       <label for="">选择话题类型：</label><br>
@@ -13,10 +13,20 @@
       <% end %>
     </div> <br> <br>
 
-    <%= f.input :description, :label => false, :placeholder => "写下你的主题内容...", input_html: { class: "form-control", :rows => 30, :style=> 'width: 100%;'} %>
+    <%= f.input :description, :label => false, required: true, placeholder: "项目简介",  input_html: {id: "editor", class: "form-control"} %>
 
     <br>
     <%= f.submit "发 布", :class => "btn btn-default", :data => { disable_with: "Submiting..." } %>
   </div>
 
 <% end %>
+
+
+<script type="text/javascript">
+  var editor = new Simditor({
+          textarea: $('#editor'),
+          pasteImage: true,
+          defaultImage: '<%= image_path "upload-loading.png" %>',
+          upload: {url: '/upload'},
+      });
+</script>

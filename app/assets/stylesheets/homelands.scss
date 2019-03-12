@@ -176,6 +176,7 @@
     .homeland-post-box {
       // 头像
       .media-left {
+        padding-right:20px;
         img {
           width: 70px;
           height: 70px;
@@ -183,7 +184,14 @@
       }
       // 信息
       .media-body {
-        padding-left:20px;
+
+        .sm-avatar {
+          img {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+          }
+        }
         .post-username {
           font-size: 14px;
           color: #333;
@@ -201,6 +209,15 @@
           line-height: 1.7em;
           color: #111;
           text-align: justify;
+          img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.3em;
+            border-radius: 2px;
+          }
+          p {
+            margin-bottom: 1.5em;
+          }
         }
       }
 

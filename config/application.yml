@@ -11,6 +11,10 @@ production:
   app_id: 'wxf095d4f693ef8100'
   app_key: 'lqbHnghxqciZbRUxKNwqFP8q6xkZDHPC'
   mch_id: '1501074881'
+  qiniu_access_key: O9nvaWGcvD86W7keehXRPhFNOWUXRi_gTQI8PscX
+  qiniu_secret_key: yegEe9Lf-lXuzBCN2owf_S6E7CUItude0dbWwCXC
+  qiniu_bucket: stock-finance-share
+  qiniu_bucket_domain: image.holdle.com
 
 development:
   juhe_api_key: 421f0d085fa2e9686ac3f6718f6a7fec
@@ -25,3 +29,7 @@ development:
   app_id: 'wxf095d4f693ef8100'
   app_key: 'lqbHnghxqciZbRUxKNwqFP8q6xkZDHPC'
   mch_id: '1501074881'
+  qiniu_access_key: O9nvaWGcvD86W7keehXRPhFNOWUXRi_gTQI8PscX
+  qiniu_secret_key: yegEe9Lf-lXuzBCN2owf_S6E7CUItude0dbWwCXC
+  qiniu_bucket: stock-finance-share
+  qiniu_bucket_domain: image.holdle.com
