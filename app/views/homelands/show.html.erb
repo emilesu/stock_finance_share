@@ -37,8 +37,12 @@
               <!-- 发布者或管理员可修改 -->
               <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
                 <span class="media-update pull-right">
-                  <%= link_to("编辑", edit_homeland_path(@homeland)) %> |
-                  <%= link_to("删除", homeland_path(@homeland), method: :delete, data: { confirm: "确定删除" } ) %>
+                  <%= link_to edit_homeland_path(@homeland) do %>
+                    <i class="fa fa-cog" aria-hidden="true"></i> 丨
+                  <% end %>
+                  <%= link_to homeland_path(@homeland), method: :delete, data: { confirm: "确定删除" } do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
                 </span>
               <% end %>
               <!-- description 内容 -->
@@ -76,8 +80,12 @@
                 <!-- 发布者或管理员可修改 -->
                 <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
                   <span class="media-update pull-right">
-                    <a data-toggle="modal" data-target="#homeland-post-edit-<%= homeland_post.id %>">编辑</a> |
-                    <%= link_to("删除", homeland_homeland_post_path(@homeland, homeland_post), method: :delete, data: { confirm: "确定删除" } ) %>
+                    <a data-toggle="modal" data-target="#homeland-post-edit-<%= homeland_post.id %>">
+                      <i class="fa fa-cog" aria-hidden="true"></i>
+                    </a> 丨
+                    <%= link_to homeland_homeland_post_path(@homeland, homeland_post), method: :delete, data: { confirm: "确定删除" } do %>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    <% end %>
                   </span>
                   <%= render :partial => "//homeland_posts/homeland_post_modal_edit", :locals => { :homeland_post => homeland_post } %>
                 <% end %>
