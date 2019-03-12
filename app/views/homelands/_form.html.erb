@@ -5,15 +5,25 @@
 
     <div id="note-status-button" class="btn-group" data-toggle="buttons">
       <label for="">选择话题类型：</label><br>
-      <% Homeland::CATEGORIES.each do |categories| %>
-        <label class="btn btn-sm btn-default <%= (categories == f.object.categories)? 'active' : '' %>">
-          <%= f.radio_button :categories, categories %>
-          <%= t(categories, :scope => "homeland.categories") %>
-        </label>
+      <!-- 管理员可发公告 -->
+      <% if current_user && current_user.role == "admin" %>
+        <% Homeland::CATEGORIES.each do |categories| %>
+          <label class="btn btn-sm btn-default <%= (categories == f.object.categories)? 'active' : '' %>">
+            <%= f.radio_button :categories, categories %>
+            <%= t(categories, :scope => "homeland.categories") %>
+          </label>
+        <% end %>
+      <% else %>
+        <% Homeland::CATEGORIES[0..-2].each do |categories| %>
+          <label class="btn btn-sm btn-default <%= (categories == f.object.categories)? 'active' : '' %>">
+            <%= f.radio_button :categories, categories %>
+            <%= t(categories, :scope => "homeland.categories") %>
+          </label>
+        <% end %>
       <% end %>
     </div> <br> <br>
 
-    <%= f.input :description, :label => false, required: true, placeholder: "项目简介",  input_html: {id: "editor", class: "form-control"} %>
+    <%= f.input :description, :label => false, required: true, placeholder: "写下话题...",  input_html: {id: "editor", class: "form-control"} %>
 
     <br>
     <%= f.submit "发 布", :class => "btn btn-default", :data => { disable_with: "Submiting..." } %>

@@ -174,6 +174,7 @@
   .homeland-post {
     margin-top: 40px;
     .homeland-post-box {
+      margin-bottom: 40px;
       // 头像
       .media-left {
         padding-right:20px;
@@ -213,10 +214,16 @@
             width: 100%;
             height: auto;
             margin-bottom: 1.3em;
-            border-radius: 2px;
+            border-radius: 3px;
+            border: 1px solid #f9f9f9;
           }
           p {
             margin-bottom: 1.5em;
+          }
+          blockquote {
+            font-size: 14px;
+            line-height: 1.7em;
+            color: #777;
           }
         }
       }

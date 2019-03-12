@@ -9,6 +9,7 @@ class HomelandsController < ApplicationController
 
   def show
     @homeland = Homeland.find(params[:id])
+    @homeland_post_new = HomelandPost.new
   end
 
   def new

@@ -1,0 +1,32 @@
+<!-- 编辑note -->
+<div class="modal fade" id="homeland-post-edit-<%= homeland_post.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="exampleModalLongTitle">编辑</h5>
+      </div>
+      <%= simple_form_for homeland_post, :url => homeland_homeland_post_path(@homeland, homeland_post)  do |f| %>
+      <div class="modal-body">
+        <%= f.input :description, :label => false, required: true, placeholder: "写下回复...",  input_html: {id: "editor-homeland-post-#{homeland_post.id}", class: "form-control rich_text_editor"} %>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "保存修改", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  var editor = new Simditor({
+          textarea: $('#editor-homeland-post-<%= homeland_post.id %>'),
+          pasteImage: true,
+          defaultImage: '<%= image_path "upload-loading.png" %>',
+          upload: {url: '/upload'},
+      });
+</script>

@@ -12,7 +12,7 @@ class HomelandPostsController < ApplicationController
     @homeland_post.user_id = current_user.id
     @homeland_post.homeland_id = @homeland.id
 
-    if @homeland.save
+    if @homeland_post.save
       redirect_to homeland_path(@homeland)
     else
       redirect_to homeland_path(@homeland)
