@@ -1,0 +1,65 @@
+<div class="mid-top-btn">
+  <div class="btn-group col-lg-6">
+    <div class="row">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        最后回复 <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">最后回复</a></li>
+        <li><a href="#">最新话题</a></li>
+        <li><a href="#">最多浏览</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-6 pull-right">
+    <div class="input-group row">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </span>
+    </div>
+  </div>
+</div> <br>
+
+<!-- 话题帖子列表 -->
+<div class="homeland-ul">
+  <% @homelands.each do |homeland| %>
+    <%= link_to homeland_path(homeland) do %>
+    <div class="homeland-li homeland-li">
+
+        <div class="media">
+          <!-- 头像 -->
+          <div class="homeland-user-avatar media-left">
+            <% if homeland.user.avatar.present? %>
+              <%= image_tag(homeland.user.avatar, :class => " img-circle") %>
+            <% else %>
+              <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+            <% end %>
+          </div>
+
+          <!-- 信息 -->
+          <div class="media-body">
+            <h4 class="media-heading"><%= homeland.title %></h4>
+            <span class="media-username"><%= homeland.user.username.split("_")[0] %></span>
+            <span class="media-update">发布于 <%= time_ago_in_words( homeland.created_at ) %> 前</span>
+          </div>
+
+          <!-- 阅读信息 -->
+          <div class="media-body media-info hidden-xs">
+            <span class="media-see pull-right">
+              <i class="fa fa-comment-o" aria-hidden="true"></i>
+              <%= homeland.homeland_posts.count %>
+            </span>
+            <span class="media-see pull-right">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+              <%= homeland.impressionist_count(:filter=>:all) %>
+            </span>
+            <span class="media-categories pull-right"><%= homeland.categories %></span>
+          </div>
+
+        </div>
+
+    </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,9 +1,14 @@
 class HomelandsController < ApplicationController
 
   before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
+  impressionist actions: [:show, :index]
+
+  def index
+    @homelands = Homeland.where(:status => "公开")
+  end
 
   def show
-    @homelands = Homeland.all
+    @homeland = Homeland.find(params[:id])
   end
 
   def new

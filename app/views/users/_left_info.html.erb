@@ -21,8 +21,8 @@
 <!-- <a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>"> -->
   <!-- 用户名 username -->
   <div>
-    <h3>
-      <%= user.username %>
+    <h4>
+      <%= user.username.split("_")[0] %>
 
       <!-- 会员显示 -->
       <span class="pull-right">
@@ -53,7 +53,7 @@
         <% end %>
       </span>
 
-    </h3>
+    </h4>
   </div>
 <!-- </a> -->
 

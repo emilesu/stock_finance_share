@@ -120,7 +120,9 @@ Rails.application.routes.draw do
   end
 
   # 社群论坛 homeland
-  resources :homelands             #社群论坛
+  resources :homelands do             #社群论坛
+    resources :homeland_posts
+  end
 
   # 加入会员页面
   namespace :join do

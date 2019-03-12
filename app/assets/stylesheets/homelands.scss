@@ -5,31 +5,31 @@
   font-size: 13px;
   a {
     color: #666;
-    transition: 0.3s;
+    transition: 0.2s;
   }
   a:hover {
     color: #999;
-    transition: 0.3s;
+    transition: 0.2s;
     text-decoration: none;
   }
 
-  .btn-default {
+  // left_info
+  .new-homeland-btn {
     border: 1px #777 solid;
     background-color: #777;
     color: #fff;
-    transition: 0.3s;
+    transition: 0.2s;
   }
-  .btn-default:hover {
+  .new-homeland-btn:hover {
     border: 1px #999 solid;
     background-color: #999;
     color: #f8f8f8;
-    transition: 0.3s;
+    transition: 0.2s;
   }
 
   .all-homeland {
     margin: 25px 0 40px;
     i {
-      // color: #999;
       margin-right: 3px;
     }
   }
@@ -46,5 +46,182 @@
     }
   }
 
+  .dropdown-toggle {
+    color: #666;
+    transition: 0.2s;
+  }
+  .dropdown-toggle:hover {
+    transition: 0.2s;
+  }
+  .dropdown-menu {
+    li {
+      a {
+        color: #666;
+        font-size: 13px;
+        padding: 9px 12px;
+        transition: 0.2s;
+      }
+      a:hover {
+        color: #999;
+        transition: 0.2s;
+        padding: 9px 15px;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+  // mid_info
+  .mid-top-btn {
+    margin-bottom: 35px;
+  }
+  .homeland-ul {
+    .homeland-li:hover {
+      transition: 0.2s;
+      background-color: #f3f3f3;
+    }
+    .homeland-li {
+      padding: 15px 10px;
+      transition: 0.2s;
+
+      // 头像
+      .homeland-user-avatar {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      // 信息
+      .media-body {
+        h4 {
+          color: #333;
+          font-size: 15px;
+          font-weight: 500;
+          margin: 0 0 4px 3px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 24px;
+          text-align: justify;
+        }
+        .media-username {
+          margin: 0 0 0 3px;
+          font-size: 11px;
+          color: #aaa;
+          font-weight: bolder;
+        }
+        .media-update {
+          margin: 0 0 0 6px;
+          font-size: 11px;
+          color: #aaa;
+          font-weight: normal;
+        }
+      }
+
+      // <!-- 阅读信息 -->
+      .media-info {
+        .media-categories {
+          padding: 1px 6px;
+          margin: 0 10px;
+          border-radius: 2px;
+          color: #666;
+          font-size: 11px;
+          background-color: #e8ecf3;
+        }
+        .media-see {
+          padding: 1px 0;
+          margin: 0 3px 0 15px;
+          color: #aaa;
+          font-size: 13px;
+        }
+      }
+
+    }
+  }
+
+}
+
+
+// homeland-show页面
+.homeland-show {
+  a {
+    color: #888;
+    transition: 0.2s;
+  }
+  a:hover {
+    color: #999;
+    transition: 0.2s;
+    text-decoration: none;
+  }
+  .jumbotron {
+    padding: 30px 20px;
+    span {
+      font-weight: 600;
+      font-size: 15px;
+      color: #999;
+      text-transform: none;
+
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.5em;
+      margin: 15px 0 0;
+    }
+  }
+  // 主体
+  .homeland-post {
+    margin-top: 40px;
+    .homeland-post-box {
+      // 头像
+      .media-left {
+        img {
+          width: 70px;
+          height: 70px;
+        }
+      }
+      // 信息
+      .media-body {
+        padding-left:20px;
+        .post-username {
+          font-size: 14px;
+          color: #333;
+          font-weight: bolder;
+        }
+        .media-update {
+          margin: 0 0 0 8px;
+          font-size: 13px;
+          color: #aaa;
+          font-weight: normal;
+        }
+        .post-description {
+          margin: 20px 0 ;
+          font-size: 14px;
+          line-height: 1.7em;
+          color: #111;
+          text-align: justify;
+        }
+      }
+
+    }
+  }
+
+  .homeland-post-right {
+    padding-left: 60px;
+    // 回复按钮
+    .new-homeland-post-btn {
+      border: 1px #777 solid;
+      background-color: #777;
+      color: #fff;
+      transition: 0.2s;
+    }
+    .new-homeland-post-btn:hover {
+      border: 1px #999 solid;
+      background-color: #999;
+      color: #f8f8f8;
+      transition: 0.2s;
+    }
+  }
 
 }

@@ -1,0 +1,94 @@
+<div class="homeland-show row">
+
+  <div class="jumbotron text-center" style=" border-radius: 0; margin-bottom: 0;">
+    <span><%= @homeland.categories %></span>
+    <h1><%= @homeland.title %></h1>
+  </div>
+
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 homeland-post">
+    <div class="row">
+
+      <!-- 主体 -->
+      <div class="col-md-9">
+
+        <!-- 主题 -->
+        <div class="homeland-post-box">
+          <div class="media">
+            <!-- 头像 -->
+            <div class="media-left">
+              <% if @homeland.user.avatar.present? %>
+                <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
+              <% else %>
+                <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+              <% end %>
+            </div>
+
+            <!-- 信息 -->
+            <div class="media-body">
+              <span class="post-username"><%= @homeland.user.username %></span>
+              <span class="media-update">发布于 <%= time_ago_in_words( @homeland.created_at ) %> 前</span>
+              <!-- 发布者或管理员可修改 -->
+              <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
+                <span class="media-update pull-right">
+                  <%= link_to("编辑", edit_homeland_path(@homeland)) %> |
+                  <%= link_to("删除", homeland_path(@homeland), method: :delete, data: { confirm: "确定删除" } ) %>
+                </span>
+              <% end %>
+              <!-- description 内容 -->
+              <div class="post-description"><%= @homeland.description %></div>
+            </div>
+
+          </div>
+          <hr>
+        </div>
+
+        <!-- 回帖 -->
+        <% @homeland.homeland_posts.each do |homeland_post| %>
+          <div class="homeland-post-box">
+            <div class="media">
+              <!-- 头像 -->
+              <div class="media-left">
+                <% if @homeland_post.user.avatar.present? %>
+                  <%= image_tag(@homeland_post.user.avatar, :class => " img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
+              </div>
+
+              <!-- 信息 -->
+              <div class="media-body">
+                <span class="post-username"><%= @homeland_post.user.username %></span>
+                <span class="media-update">发布于 <%= time_ago_in_words( @homeland_post.created_at ) %> 前</span>
+                <!-- 发布者或管理员可修改 -->
+                <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
+                  <span class="media-update pull-right">
+                    <%= link_to("编辑", edit_homeland_homeland_post_path(@homeland_post, post)) %> |
+                    <%= link_to("删除", homeland_homeland_post_path(@homeland_post, post), method: :delete, data: { confirm: "确定删除" } ) %>
+                  </span>
+                <% end %>
+                <!-- description 内容 -->
+                <div class="post-description"><%= @homeland_post.description %></div>
+              </div>
+
+            </div>
+            <hr>
+          </div>
+        <% end %>
+
+
+      </div>
+
+      <!-- 边栏 -->
+      <div class="col-md-3">
+        <div class="hidden-print hidden-xs hidden-sm affix homeland-post-right">
+          <!-- 回复按钮 -->
+          <%= link_to(" 回 复 ", new_homeland_homeland_post_path(@homeland), :class => "btn btn-default new-homeland-post-btn btn-block") %>
+          <%= link_to(" 收 藏 ", new_homeland_homeland_post_path(@homeland), :class => "btn btn-default btn-block") %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

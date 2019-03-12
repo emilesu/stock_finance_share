@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:emilesu/omniauth-wechat-oauth2-mobile.git
+  revision: 4dd595250670853028a9e9fc97ab23612bc30045
+  specs:
+    omniauth-wechat-oauth2-mobile (0.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+GIT
   remote: git@github.com:yangsr/omniauth-wechat-oauth2.git
   revision: 3dd51708e2fc4019a5c58dbf92e2c17d1733fc0c
   specs:
@@ -324,6 +332,8 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    trix (0.11.1)
+      rails (> 4.1, < 5.2)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.6)
@@ -378,6 +388,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-google-oauth2
   omniauth-wechat-oauth2!
+  omniauth-wechat-oauth2-mobile!
   puma (~> 3.7)
   qiniu-rs
   rails (~> 5.1.4)
@@ -396,6 +407,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  trix
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)

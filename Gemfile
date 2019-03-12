@@ -42,6 +42,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'omniauth'
 gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2-mobile", git: 'git@github.com:emilesu/omniauth-wechat-oauth2-mobile.git'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
@@ -67,6 +68,9 @@ gem 'qiniu-rs'
 
 # 数据图表
 gem "chartkick"
+
+# 文本编辑器
+gem 'trix'
 
 # 信息数据爬取
 gem 'rest-client'
