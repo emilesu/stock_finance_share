@@ -25,6 +25,7 @@ class HomelandsController < ApplicationController
   def show
     @homeland = Homeland.find(params[:id])
     @homeland_post_new = HomelandPost.new
+    @homeland_posts = @homeland.homeland_posts.sort{ |x,y| y.homland_post_most_like <=> x.homland_post_most_like }
   end
 
   def new

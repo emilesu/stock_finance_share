@@ -15,4 +15,9 @@ class HomelandPost < ApplicationRecord
     self.homeland_post_likes.where( :user_id => user.id ).first
   end
 
+  # 按点赞数排序
+  def homland_post_most_like
+    return self.homeland_post_likes.count
+  end
+
 end
