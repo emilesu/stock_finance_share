@@ -78,6 +78,7 @@ class HomelandsController < ApplicationController
     render "like"
   end
 
+  # 搜索功能
   def search
     if @query_string.present?
       @homelands = search_params.where(:status => "公开").order("created_at DESC")
