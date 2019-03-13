@@ -38,7 +38,7 @@
             </a>
             <% end %>
           <% elsif current_user && current_user == user %>
-            <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="会员截止: <%= user.end_time.strftime("%Y/%m/%d") %>">
+            <a id="user-role"  type="button" data-container="body" data-toggle="popover" data-placement="bottom" data-content="永久会员">
               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
             </a>
           <% elsif %>

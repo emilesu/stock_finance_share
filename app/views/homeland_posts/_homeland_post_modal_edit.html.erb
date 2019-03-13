@@ -10,7 +10,7 @@
       </div>
       <%= simple_form_for homeland_post, :url => homeland_homeland_post_path(@homeland, homeland_post)  do |f| %>
       <div class="modal-body">
-        <%= f.input :description, :label => false, required: true, placeholder: "写下回复...",  input_html: {id: "editor-homeland-post-#{homeland_post.id}", class: "form-control rich_text_editor"} %>
+        <%= f.input :description, :label => false, required: true, placeholder: "写下回复...",  input_html: {id: "editor-homeland-post-#{homeland_post.id}", class: "form-control"} %>
       </div>
       <div class="modal-footer">
         <%= f.submit "保存修改", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>

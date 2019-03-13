@@ -26,7 +26,7 @@ class HomelandPostsController < ApplicationController
   def update
     @homeland_post = HomelandPost.find(params[:id])
 
-    def @homeland_post.update(homeland_post_params)
+    if @homeland_post.update(homeland_post_params)
       redirect_to homeland_path(@homeland)
     else
       redirect_to homeland_path(@homeland)

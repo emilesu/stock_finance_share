@@ -1,0 +1,16 @@
+<div class="user-top-box hidden-sm hidden-xs">
+  <div class="user-top-title">
+    网瘾少年榜
+    <span class="pull-right"><i class="fa fa-trophy" aria-hidden="true"></i></span>
+  </div>
+  <div class="user-top-list">
+    <% @user_tops.each do |i| %>
+      <a href="#">
+        <li>
+          <span><%= i.username.split("_")[0] %></span>
+          <span class="pull-right"><%= Impression.where(:user_id => i.id).count %></span>
+        </li>
+      </a>
+    <% end %>
+  </div>
+</div>

@@ -20,12 +20,16 @@ class HomelandsController < ApplicationController
       @homelands = Homeland.where(:status => "公开").where( :categories => params[:categorie] ).order("created_at DESC")
     end
 
+    # 上瘾帮数据筛选
+    @user_tops = User.all.sort{ |x,y| y.user_top_impressionist <=> x.user_top_impressionist }[0...30]
   end
 
   def show
     @homeland = Homeland.find(params[:id])
     @homeland_post_new = HomelandPost.new
-    @homeland_posts = @homeland.homeland_posts.sort{ |x,y| y.homland_post_most_like <=> x.homland_post_most_like }
+    @homeland_posts = @homeland.homeland_posts
+    # 回帖按点赞数排序
+    # @homeland_posts = @homeland.homeland_posts.sort{ |x,y| y.homland_post_most_like <=> x.homland_post_most_like }
   end
 
   def new

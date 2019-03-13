@@ -33,6 +33,7 @@
                 <% end %>
               </span>
               <span class="post-username"><%= @homeland.user.username %></span>
+              <%= render :partial => "member", :locals => { :user => @homeland.user } %>
               <span class="media-update"> <%= time_ago_in_words( @homeland.created_at ) %>前</span>
               <!-- 发布者或管理员可修改 -->
               <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
@@ -53,7 +54,7 @@
         </div>
         <hr>
 
-        <!-- 回帖 -->
+        <!-- 回帖 点赞数 -->
         <% @homeland_posts.each do |homeland_post| %>
           <div class="homeland-post-box">
             <div class="media">
@@ -76,6 +77,7 @@
                   <% end %>
                 </span>
                 <span class="post-username"><%= homeland_post.user.username %></span>
+                <%= render :partial => "member", :locals => { :user => homeland_post.user } %>
                 <span class="media-update"> <%= time_ago_in_words( homeland_post.created_at ) %>前</span>
                 <!-- 发布者或管理员可修改 -->
                 <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
@@ -102,6 +104,8 @@
           </div>
           <hr>
         <% end %>
+
+        <!-- 回帖 除了点赞外按时间排序 -->
 
 
       </div>

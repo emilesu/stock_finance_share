@@ -144,9 +144,37 @@
           margin: 0 5px 0 12px;
           color: #999;
           font-size: 11px;
+          border-radius: 2px;
         }
       }
 
+    }
+  }
+
+  // right_info
+  .user-top-box {
+    // margin-top: 6px;
+    .user-top-title {
+      font-weight: bolder;
+      color: #666;
+      background-color: #e8ecf3;
+      font-size: 13px;
+      padding: 7px 10px;
+      width: 100%;
+      i {
+        font-size: 16px;
+        color: #999;
+      }
+    }
+    .user-top-list {
+      background-color: #f9f9f9;
+      padding: 13px 10px 10px;
+      // margin-top: 30px;
+      li {
+        font-size: 11px;
+        list-style: none;
+        padding: 6px 0px;
+      }
     }
   }
 
@@ -226,7 +254,7 @@
             height: auto;
             margin-bottom: 1.3em;
             border-radius: 3px;
-            border: 1px solid #f9f9f9;
+            border: 5px solid #f9f9f9;
           }
           p {
             margin-bottom: 1.5em;
