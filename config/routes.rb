@@ -121,6 +121,9 @@ Rails.application.routes.draw do
 
   # 社群论坛 homeland
   resources :homelands do             #社群论坛
+    collection do
+      get :search
+    end
     member do
       post "like" => "homelands#like"             #增加 赞/收藏
       post "unlike" => "homelands#unlike"         #取消 赞/收藏

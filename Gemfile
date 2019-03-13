@@ -47,6 +47,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 
+# 文本搜索
+gem 'ransack'
+
 #汉字转拼音工具
 gem 'ruby-pinyin'
 

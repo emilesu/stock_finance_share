@@ -1,6 +1,7 @@
 class HomelandsController < ApplicationController
 
   before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
+  before_action :validate_search_key
   impressionist actions: [:show, :index]
 
   def index
@@ -77,7 +78,24 @@ class HomelandsController < ApplicationController
     render "like"
   end
 
+  def search
+    if @query_string.present?
+      @homelands = search_params.where(:status => "公开").order("created_at DESC")
+    end
+  end
+
+
+  protected
+
+  def validate_search_key
+    @query_string = params[:search].gsub(/\\|\'|\/|\?/, "") if params[:search].present?
+  end
+
   private
+
+  def search_params
+    Homeland.ransack({:title_or_description_cont => @query_string}).result(distinct: true)
+  end
 
   def homeland_params
     params.require(:homeland).permit(:user_id, :categories, :title, :description)

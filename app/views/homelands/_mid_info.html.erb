@@ -21,12 +21,14 @@
     </div>
   </div>
   <div class="col-lg-6 pull-right">
-    <div class="input-group row">
-      <input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-      </span>
-    </div>
+    <%= form_tag search_homelands_path, :method => :get do %>
+      <div class="input-group row">
+        <input type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </span>
+      </div>
+    <% end %>
   </div>
 </div> <br>
 

@@ -1,0 +1,25 @@
+<div class="row">
+
+<div class="col-lg-8 col-lg-offset-2 col-md-12 homeland-index">
+  <div class="row">
+
+    <!-- 左边栏 分类 -->
+    <div class="col-md-2">
+      <%= render :partial => "left_info", :locals => { :user => @user } %>
+    </div>
+
+    <!-- 中间栏 主体 -->
+    <div class="col-md-8 col-sm-12">
+      <%= render :partial => "mid_info", :locals => { :user => @user } %>
+      <br>
+    </div>
+
+    <!-- 右边栏 会员邦 -->
+    <div class="col-md-2">
+      <%= render :partial => "right_info", :locals => { :user => @user } %>
+    </div>
+
+  </div>
+</div>
+
+</div>
