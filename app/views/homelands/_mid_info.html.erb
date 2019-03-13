@@ -5,9 +5,18 @@
         最后回复 <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">最后回复</a></li>
-        <li><a href="#">最新话题</a></li>
-        <li><a href="#">最多浏览</a></li>
+        <li>
+          <%= link_to("最新话题", homelands_path ) %>
+        </li>
+        <li>
+          <%= link_to("最后回复", homelands_path(:order => "last_reply")) %>
+        </li>
+        <li>
+          <%= link_to("最多浏览", homelands_path(:order => "most_view")) %>
+        </li>
+        <li>
+          <%= link_to("最热讨论", homelands_path(:order => "most_post")) %>
+        </li>
       </ul>
     </div>
   </div>
@@ -46,15 +55,25 @@
 
           <!-- 阅读信息 -->
           <div class="media-body media-info hidden-xs">
-            <span class="media-see pull-right">
-              <i class="fa fa-comment-o" aria-hidden="true"></i>
-              <%= homeland.homeland_posts.count %>
+            <h4 class="media-heading">
+              <span class="media-see pull-right">
+                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                <%= homeland.homeland_posts.count %>
+              </span>
+              <span class="media-see pull-right">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <%= homeland.impressionist_count(:filter=>:all) %>
+              </span>
+              <span class="media-categories pull-right">
+                <%= homeland.categories %>
+              </span>
+            </h4>
+            <span class="last-reply pull-right">
+              <% if !homeland.homeland_posts.blank? %>
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                <%= homeland.homeland_posts.last.user.username %>
+              <% end %>
             </span>
-            <span class="media-see pull-right">
-              <i class="fa fa-eye" aria-hidden="true"></i>
-              <%= homeland.impressionist_count(:filter=>:all) %>
-            </span>
-            <span class="media-categories pull-right"><%= homeland.categories %></span>
           </div>
 
         </div>

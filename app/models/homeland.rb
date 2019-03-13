@@ -21,4 +21,27 @@ class Homeland < ApplicationRecord
     self.homeland_likes.where( :user_id => user.id ).first
   end
 
+  # 最后回复排序
+  def homland_last_reply
+    if !self.homeland_posts.blank?
+      return self.homeland_posts.last.created_at
+    else
+      return self.created_at
+    end
+  end
+
+  # 最多浏览排序
+  def homland_most_view
+    if !self.impressionist_count(:filter=>:all).blank?
+      return self.impressionist_count(:filter=>:all)
+    else
+      return 0
+    end
+  end
+
+  # 最热讨论排序
+  def homland_most_post
+    return self.homeland_posts.count
+  end
+
 end

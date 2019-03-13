@@ -4,7 +4,21 @@ class HomelandsController < ApplicationController
   impressionist actions: [:show, :index]
 
   def index
-    @homelands = Homeland.where(:status => "公开")
+    if params[:categorie].blank?
+      @homelands = case params[:order]
+      when "last_reply"
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_last_reply <=> x.homland_last_reply }
+      when "most_view"
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_view <=> x.homland_most_view }
+      when "most_post"
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_post <=> x.homland_most_post }
+      else
+        Homeland.where(:status => "公开").order("created_at DESC")
+      end
+    elsif params[:categorie]
+      @homelands = Homeland.where(:status => "公开").where( :categories => params[:categorie] ).order("created_at DESC")
+    end
+
   end
 
   def show

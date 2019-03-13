@@ -19,7 +19,7 @@
     <br>
     <div>
       <% Homeland::CATEGORIES.each do |categories| %>
-        <%= link_to homelands_path(:order => categories) do %>
+        <%= link_to homelands_path(:categorie => categories) do %>
           <li><i class="fa fa-stop" aria-hidden="true"></i> <%= categories %></li>
         <% end %>
       <% end %>
