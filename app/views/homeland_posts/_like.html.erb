@@ -1,0 +1,19 @@
+<% if current_user %>
+  <% if homeland_post.find_homeland_post_like(current_user) %>
+    <%= link_to(unlike_homeland_homeland_post_path(@homeland, homeland_post), :method => :post, :remote => true) do %>
+      <span>
+        <i class="fa fa-heart" aria-hidden="true"></i> (<%= homeland_post.homeland_post_likes.count %>)
+      </span>
+    <% end %>
+  <% else %>
+    <%= link_to(like_homeland_homeland_post_path(@homeland, homeland_post), :method => :post, :remote => true) do %>
+      <span>
+        <i class="fa fa-heart-o" aria-hidden="true"></i> (<%= homeland_post.homeland_post_likes.count %>)
+      </span>
+    <% end %>
+  <% end %>
+<% else %>
+  <span>
+    <i class="fa fa-heart" aria-hidden="true"></i> (<%= homeland_post.homeland_post_likes.count %>)
+  </span>
+<% end %>

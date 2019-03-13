@@ -121,7 +121,16 @@ Rails.application.routes.draw do
 
   # 社群论坛 homeland
   resources :homelands do             #社群论坛
-    resources :homeland_posts
+    member do
+      post "like" => "homelands#like"             #增加 赞/收藏
+      post "unlike" => "homelands#unlike"         #取消 赞/收藏
+    end
+    resources :homeland_posts do
+      member do
+        post "like" => "homeland_posts#like"             #增加 赞/收藏
+        post "unlike" => "homeland_posts#unlike"         #取消 赞/收藏
+      end
+    end
   end
 
   # 论坛图片上传

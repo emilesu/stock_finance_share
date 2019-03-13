@@ -1,0 +1,19 @@
+<% if current_user %>
+  <% if homeland.find_homeland_like(current_user) %>
+    <%= link_to(unlike_homeland_path(homeland), :method => :post, :remote => true) do %>
+      <button type="button" class="btn btn-default btn-block">
+        <i class="fa fa-star" aria-hidden="true"></i> 已关注 (<%= homeland.homeland_likes.count %>)
+      </button>
+    <% end %>
+  <% else %>
+    <%= link_to(like_homeland_path(homeland), :method => :post, :remote => true) do %>
+      <button type="button" class="btn btn-default btn-block">
+        <i class="fa fa-star-o" aria-hidden="true"></i> 关注 (<%= homeland.homeland_likes.count %>)
+      </button>
+    <% end %>
+  <% end %>
+<% else %>
+  <button type="button" class="btn btn-default btn-block">
+    <i class="fa fa-star-o" aria-hidden="true"></i> 关注 (<%= homeland.homeland_likes.count %>)
+  </button>
+<% end %>

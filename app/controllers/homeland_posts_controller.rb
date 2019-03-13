@@ -40,6 +40,21 @@ class HomelandPostsController < ApplicationController
     redirect_to homeland_path(@homeland)
   end
 
+  # 按赞功能
+  def like
+    @homeland_post = HomelandPost.find(params[:id])
+    unless @homeland_post.find_homeland_post_like(current_user)    # 如果已经按讚过了，就略过不再新增
+      HomelandPostLike.create( :user => current_user, :homeland_post => @homeland_post )
+    end
+  end
+
+  def unlike
+    @homeland_post = HomelandPost.find(params[:id])
+    like = @homeland_post.find_homeland_post_like(current_user)
+    like.destroy
+    render "like"
+  end
+
   private
 
   def current_homeland

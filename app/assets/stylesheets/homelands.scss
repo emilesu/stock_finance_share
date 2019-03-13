@@ -246,6 +246,18 @@
       color: #f8f8f8;
       transition: 0.2s;
     }
+    span {
+
+      button {
+        margin: 10px 0;
+        color: #666;
+        transition: 0.2s;
+        font-size: 13px;
+      }
+      button:hover {
+        transition: 0.2s;
+      }
+    }
   }
 
 }

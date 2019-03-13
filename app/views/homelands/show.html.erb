@@ -91,6 +91,11 @@
                 <% end %>
                 <!-- description 内容 -->
                 <div class="post-description"><%= simple_format(homeland_post.description) %></div>
+
+                <!-- 点赞 -->
+                <span class="pull-right" id="homeland-post-like-<%= homeland_post.id %>">
+                  <%= render :partial => "//homeland_posts/like", :locals => { :homeland_post => homeland_post } %>
+                </span>
               </div>
 
             </div>
@@ -110,7 +115,9 @@
           </button>
 
           <!-- 收藏按钮 -->
-          <%= link_to(" 收 藏 ", new_homeland_homeland_post_path(@homeland), :class => "btn btn-default btn-block") %>
+          <span id="homeland-like-<%= @homeland.id %>">
+            <%= render :partial => "//homelands/like", :locals => { :homeland => @homeland } %>
+          </span>
         </div>
         <%= render :partial => "//homeland_posts/homeland_post_modal_new", :locals => { :homeland => @homeland } %>
       </div>

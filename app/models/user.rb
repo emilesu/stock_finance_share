@@ -42,6 +42,14 @@ class User < ApplicationRecord
   has_many :us_likes, :dependent => :destroy
   has_many :liked_su_notes, :through => :us_likes, :source => :us_note
 
+  # 与 homeland_like 关系
+  has_many :homeland_likes, :dependent => :destroy
+  has_many :user_liked_homelands, :through => :homeland_likes, :source => :homeland
+
+  # 与 homeland_post_like 关系
+  has_many :homeland_post_likes, :dependent => :destroy
+  has_many :user_liked_homeland_posts, :through => :homeland_post_likes, :source => :homeland_post
+
   # 与 twitter 和 review 关系
   has_many :twitters, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
