@@ -38,13 +38,12 @@ class OmniauthCallbacksController < ApplicationController
   # 移动端登录
   def wechat
     auth = request.env['omniauth.auth']       # 引入回调数据 HASH
-    data = auth.fetch('extra').fetch('raw_info')                   # https://github.com/skinnyworm/omniauth-wechat-oauth2
-    openid = auth.fetch('extra').fetch('raw_info').fetch("openid") rescue ''
-    identify = Identify.find_by(provider: data.provider, uid: openid)
+    data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
+    identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
 
-    # if identify                               # 判断是否是已经注册的用户
-    #   @user = identify.user                   # true 则通过 identify直接调去
-    # else                                      # false 则注册新用户
+    if identify                               # 判断是否是已经注册的用户
+      @user = identify.user                   # true 则通过 identify直接调去
+    else                                      # false 则注册新用户
       i = Devise.friendly_token[0,20]
       user = User.create!(
         username: data.nickname.to_s + "_" + rand(36 ** 3).to_s(36),
@@ -54,8 +53,8 @@ class OmniauthCallbacksController < ApplicationController
         # password_confirmation: i
       )
       identify = Identify.create(
-        provider: data.provider,
-        uid: openid,
+        provider: auth.provider,
+        uid: auth.uid,
         user_id: user.id
       )
       @user = user
@@ -66,7 +65,7 @@ class OmniauthCallbacksController < ApplicationController
           :my_attention => User.find_by_role("admin").id
         )
       end
-    # end
+    end
 
     sign_in_and_redirect @user, :event => :authentication
   end
