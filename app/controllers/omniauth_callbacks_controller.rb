@@ -35,6 +35,40 @@ class OmniauthCallbacksController < ApplicationController
     sign_in_and_redirect @user, :event => :authentication
   end
 
+  def wechat_mobile
+    auth = request.env['omniauth.auth']       # 引入回调数据 HASH
+    data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
+    identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
+
+    if identify                               # 判断是否是已经注册的用户
+      @user = identify.user                   # true 则通过 identify直接调去
+    else                                      # false 则注册新用户
+      i = Devise.friendly_token[0,20]
+      user = User.create!(
+        username: data.nickname.to_s + "_" + rand(36 ** 3).to_s(36),
+        email:  "#{i}@holdle.com",       # 因为devise 的缘故,邮箱暂做成随机
+        avatar: data.headimgurl,
+        password: i,                                              # 密码随机
+        # password_confirmation: i
+      )
+      identify = Identify.create(
+        provider: auth.provider,
+        uid: auth.uid,
+        user_id: user.id
+      )
+      @user = user
+      if @user.save!
+        # 注册后直接和站长建立关联
+        @user.attentions.create!(
+          :user_id => @user.id,
+          :my_attention => User.find_by_role("admin").id
+        )
+      end
+    end
+
+    sign_in_and_redirect @user, :event => :authentication
+  end
+
   # def wechat
   #   @user = User.from_wechat(request.env["omniauth.auth"], current_user)
   #   if @user.persisted?
