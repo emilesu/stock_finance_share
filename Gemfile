@@ -41,9 +41,9 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 gem 'ransack'
 gem 'omniauth'
-# gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
+gem "omniauth-wechat-oauth2", git: 'git@github.com:yangsr/omniauth-wechat-oauth2.git'
 # gem "omniauth-wechat-oauth2-mobile", '~> 0.1.4', git: 'git@github.com:emilesu/omniauth-wechat-oauth2-mobile.git'
-gem "omniauth-wechat-oauth2"
+# gem "omniauth-wechat-oauth2"
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
