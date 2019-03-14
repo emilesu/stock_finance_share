@@ -278,7 +278,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
 
-  config.omniauth :wechat, KEY_CONFIG["open_weixin_mobile_app_id"], KEY_CONFIG["open_weixin_mobile_app_screct"], :authorize_params => {:scope => "snsapi_base"}
+  config.omniauth :wechat, KEY_CONFIG["mp_weixin_app_id"], KEY_CONFIG["mp_weixin_app_screct"], :authorize_params => {:scope => "snsapi_base"}
 
   config.omniauth :wechat_qr, KEY_CONFIG["open_weixin_app_id"], KEY_CONFIG["open_weixin_app_screct"]
 
