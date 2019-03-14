@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
-         :omniauth_providers => [:wechat, :google_oauth2, :facebook, :github, :wechat_mobile]
+         :omniauth_providers => [:wechat_qr, :wechat, :google_oauth2, :facebook, :github]
 
   # <---- 微信登入回调数据处理 ---->
   # 微信登陆识别表福
