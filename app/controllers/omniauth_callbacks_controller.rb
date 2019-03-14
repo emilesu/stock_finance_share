@@ -39,7 +39,7 @@ class OmniauthCallbacksController < ApplicationController
   def wechat
     auth = request.env['omniauth.auth']       # 引入回调数据 HASH
     data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
-    identify = Identify.find_by(provider: auth.provider, uid: auth.openid)
+    identify = Identify.find_by(provider: auth.provider, uid: auth.extra.raw_info.openid)
 
     if identify                               # 判断是否是已经注册的用户
       @user = identify.user                   # true 则通过 identify直接调去
