@@ -1,11 +1,10 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-12">
   <div class="row">
 
-
+    <% if current_user == @homeland.user %>
       <br><h3 class="text-center">编辑话题</h3><br>
-
       <%= render "form" %>
-
+    <% end %>
 
     </div>
 

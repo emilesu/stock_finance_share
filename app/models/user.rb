@@ -78,11 +78,6 @@ class User < ApplicationRecord
   is_impressionable
 
 
-  # 用户上瘾榜排序
-  def user_top_impressionist
-    return Impression.where(:user_id => self.id).count
-  end
-
 
   # avatar 头像上传
   # mount_uploader :avatar, AvatarUploader

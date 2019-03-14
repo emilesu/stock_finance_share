@@ -5,29 +5,35 @@ class HomelandsController < ApplicationController
   impressionist actions: [:show, :index]
 
   def index
-    if params[:categorie].blank?
+    if params[:order]
       @homelands = case params[:order]
       when "last_reply"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_last_reply <=> x.homland_last_reply }
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_last_reply <=> x.homland_last_reply }.page(params[:page]).per(25)
       when "most_view"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_view <=> x.homland_most_view }
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_view <=> x.homland_most_view }.page(params[:page]).per(25)
       when "most_post"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_post <=> x.homland_most_post }
+        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_post <=> x.homland_most_post }.page(params[:page]).per(25)
       else
-        Homeland.where(:status => "公开").order("created_at DESC")
+        Homeland.where(:status => "公开").order("created_at DESC").page(params[:page]).per(25)
       end
     elsif params[:categorie]
-      @homelands = Homeland.where(:status => "公开").where( :categories => params[:categorie] ).order("created_at DESC")
+      @homelands = Homeland.where(:status => "公开").where( :categories => params[:categorie] ).order("created_at DESC").page(params[:page]).per(25)
+    elsif params[:my]
+      @homelands = case params[:my]
+      when "my_homelands"
+        Homeland.where( :user => current_user ).order("created_at DESC").page(params[:page]).per(25)
+      when "my_homeland_likes"
+        current_user.user_liked_homelands.order("created_at DESC").page(params[:page]).per(25)
+      end
+    else
+      @homelands = Homeland.where(:status => "公开").order("created_at DESC").page(params[:page]).per(25)
     end
-
-    # 上瘾帮数据筛选
-    @user_tops = User.all.sort{ |x,y| y.user_top_impressionist <=> x.user_top_impressionist }[0...30]
   end
 
   def show
     @homeland = Homeland.find(params[:id])
     @homeland_post_new = HomelandPost.new
-    @homeland_posts = @homeland.homeland_posts
+    @homeland_posts = @homeland.homeland_posts.page(params[:page]).per(15)
     # 回帖按点赞数排序
     # @homeland_posts = @homeland.homeland_posts.sort{ |x,y| y.homland_post_most_like <=> x.homland_post_most_like }
   end
@@ -41,7 +47,7 @@ class HomelandsController < ApplicationController
     @homeland.user_id = current_user.id
 
     if @homeland.save
-      redirect_to homelands_path
+      redirect_to homeland_path(@homeland)
     else
       render :new
     end

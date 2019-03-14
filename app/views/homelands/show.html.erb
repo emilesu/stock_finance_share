@@ -16,27 +16,33 @@
           <div class="media">
             <!-- 头像 -->
             <div class="media-left hidden-sm hidden-xs">
-              <% if @homeland.user.avatar.present? %>
-                <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
-              <% else %>
-                <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+              <%= link_to user_path(@homeland.user) do %>
+                <% if @homeland.user.avatar.present? %>
+                  <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
               <% end %>
             </div>
 
             <!-- 信息 -->
             <div class="media-body">
               <span class="sm-avatar hidden-md hidden-lg">
-                <% if @homeland.user.avatar.present? %>
-                  <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
-                <% else %>
-                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <%= link_to user_path(@homeland.user) do %>
+                  <% if @homeland.user.avatar.present? %>
+                    <%= image_tag(@homeland.user.avatar, :class => " img-circle") %>
+                  <% else %>
+                    <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                  <% end %>
                 <% end %>
               </span>
-              <span class="post-username"><%= @homeland.user.username %></span>
+              <%= link_to user_path(@homeland.user) do %>
+                <span class="post-username"><%= @homeland.user.username %></span>
+              <% end %>
               <%= render :partial => "member", :locals => { :user => @homeland.user } %>
               <span class="media-update"> <%= time_ago_in_words( @homeland.created_at ) %>前</span>
               <!-- 发布者或管理员可修改 -->
-              <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
+              <% if (current_user && @homeland.user == current_user) || (current_user && current_user.role == "admin") %>
                 <span class="media-update pull-right">
                   <%= link_to edit_homeland_path(@homeland) do %>
                     <i class="fa fa-cog" aria-hidden="true"></i> 丨
@@ -60,27 +66,33 @@
             <div class="media">
               <!-- 头像 -->
               <div class="media-left hidden-sm hidden-xs">
-                <% if homeland_post.user.avatar.present? %>
-                  <%= image_tag(homeland_post.user.avatar, :class => " img-circle") %>
-                <% else %>
-                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <%= link_to user_path(homeland_post.user) do %>
+                  <% if homeland_post.user.avatar.present? %>
+                    <%= image_tag(homeland_post.user.avatar, :class => " img-circle") %>
+                  <% else %>
+                    <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                  <% end %>
                 <% end %>
               </div>
 
               <!-- 信息 -->
               <div class="media-body">
                 <span class="sm-avatar hidden-md hidden-lg">
-                  <% if homeland_post.user.avatar.present? %>
-                    <%= image_tag(homeland_post.user.avatar, :class => " img-circle") %>
-                  <% else %>
-                    <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                  <%= link_to user_path(homeland_post.user) do %>
+                    <% if homeland_post.user.avatar.present? %>
+                      <%= image_tag(homeland_post.user.avatar, :class => " img-circle") %>
+                    <% else %>
+                      <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                    <% end %>
                   <% end %>
                 </span>
-                <span class="post-username"><%= homeland_post.user.username %></span>
+                <%= link_to user_path(homeland_post.user) do %>
+                  <span class="post-username"><%= homeland_post.user.username %></span>
+                <% end %>
                 <%= render :partial => "member", :locals => { :user => homeland_post.user } %>
                 <span class="media-update"> <%= time_ago_in_words( homeland_post.created_at ) %>前</span>
                 <!-- 发布者或管理员可修改 -->
-                <% if current_user && (current_user.role == "member" || current_user.role == "admin") %>
+                <% if (current_user && homeland_post.user == current_user) || (current_user && current_user.role == "admin") %>
                   <span class="media-update pull-right">
                     <a data-toggle="modal" data-target="#homeland-post-edit-<%= homeland_post.id %>">
                       <i class="fa fa-cog" aria-hidden="true"></i>
@@ -128,6 +140,10 @@
 
 
     </div>
+
+    <%= paginate @homeland_posts %>
+    <br>
+
   </div>
 
 </div>

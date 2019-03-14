@@ -1,5 +1,5 @@
 <div class="mid-top-btn">
-  <div class="btn-group col-lg-6">
+  <div class="btn-group col-lg-8">
     <div class="row">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         排序 <span class="caret"></span>
@@ -20,7 +20,7 @@
       </ul>
     </div>
   </div>
-  <div class="col-lg-6 pull-right">
+  <div class="col-lg-4 pull-right">
     <%= form_tag search_homelands_path, :method => :get do %>
       <div class="input-group row">
         <input type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search for...">
@@ -84,3 +84,7 @@
     <% end %>
   <% end %>
 </div>
+
+
+<%= paginate @homelands %>
+<br>
