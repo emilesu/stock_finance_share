@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:emilesu/omniauth-wechat-oauth2.git
-  revision: 7c4311f208c0d40fe775e8a115aa90490d5ebb13
+  revision: 45cea93f372049535a35e030f77e15b8aff8ae03
   specs:
-    omniauth-wechat-oauth2 (0.1.7)
+    omniauth-wechat-oauth2 (0.1.8)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
 
@@ -377,7 +377,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
-  omniauth-wechat-oauth2 (~> 0.1.7)!
+  omniauth-wechat-oauth2 (~> 0.1.8)!
   puma (~> 3.7)
   qiniu-rs
   rails (~> 5.1.4)
