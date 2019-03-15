@@ -54,7 +54,7 @@ class OmniauthCallbacksController < ApplicationController
       )
       identify = Identify.create(
         provider: auth.provider,
-        uid: auth.uid,
+        uid: auth,
         user_id: user.id
       )
       @user = user
