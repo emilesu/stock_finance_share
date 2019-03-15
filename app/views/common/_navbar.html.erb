@@ -100,7 +100,13 @@
         <% else %>
           <li class="dropdown navbar-font-size">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <span><%= image_tag(current_user.avatar, :class => "img-circle") %> </span>
+              <span>
+                <% if current_user.avatar.present? %>
+                  <%= image_tag(current_user.avatar, :class => "img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
+              </span>
               <!-- <%= current_user.username %> -->
               <b class="caret"></b>
             </a>
