@@ -50,11 +50,12 @@ class OmniauthCallbacksController < ApplicationController
         email:  "#{i}@holdle.com",       # 因为devise 的缘故,邮箱暂做成随机
         avatar: data.headimgurl,
         password: i,                                              # 密码随机
+        motto: auth.info,
         # password_confirmation: i
       )
       identify = Identify.create(
         provider: auth.provider,
-        uid: auth,
+        uid: auth.uid,
         user_id: user.id
       )
       @user = user
