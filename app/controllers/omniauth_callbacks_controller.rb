@@ -1,7 +1,7 @@
 class OmniauthCallbacksController < ApplicationController
 
   # 网页扫码登录
-  def wechat_qr
+  def wechat
     auth = request.env['omniauth.auth']       # 引入回调数据 HASH
     data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
     identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
@@ -36,7 +36,7 @@ class OmniauthCallbacksController < ApplicationController
   end
 
   # 移动端登录
-  def wechat
+  def wechat_mp
     auth = request.env['omniauth.auth']       # 引入回调数据 HASH
     data = auth.info                          # https://github.com/skinnyworm/omniauth-wechat-oauth2
     identify = Identify.find_by(provider: auth.provider, uid: auth.uid)
