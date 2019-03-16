@@ -71,17 +71,19 @@
 <hr>
 
 <!-- 收藏笔记 -->
-<% if !user.level_uniq("等待入场").blank? || !user.us_level_uniq("等待入场").blank? %>
-  <h4>等待入场</h4>
+<% if !@unl_1.blank? || !@unl_2.blank? %>
+  <h4>等待入场
+    <span class="badge pull-right"><%= @size_12 %></span>
+  </h4>
   <ul class="list-unstyled">
     <!-- A股部分 -->
-    <% user.level_uniq("等待入场").each do |stock| %>
+    <% @unl_1.each do |stock| %>
       <%= link_to stock_path(stock) do %>
         <li><%= stock.easy_symbol %> - <%= stock.name %></li>
       <% end %>
     <% end %>
     <!-- 美股部分 -->
-    <% user.us_level_uniq("等待入场").each do |us_stock| %>
+    <% @unl_2.each do |us_stock| %>
       <%= link_to us_stock_path(us_stock) do %>
         <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
       <% end %>
@@ -90,17 +92,19 @@
 <% end %>
 <br>
 
-<% if !user.level_uniq("近期关注").blank? || !user.us_level_uniq("近期关注").blank? %>
-  <h4>近期关注</h4>
+<% if !@unl_3.blank? || !@unl_4.blank? %>
+  <h4>近期关注
+    <span class="badge pull-right"><%= @size_34 %></span>
+  </h4>
   <ul class="list-unstyled">
     <!-- A股部分 -->
-    <% user.level_uniq("近期关注").each do |stock| %>
+    <% @unl_3.each do |stock| %>
       <%= link_to stock_path(stock) do %>
         <li><%= stock.easy_symbol %> - <%= stock.name %></li>
       <% end %>
     <% end %>
     <!-- 美股部分 -->
-    <% user.us_level_uniq("近期关注").each do |us_stock| %>
+    <% @unl_4.each do |us_stock| %>
       <%= link_to us_stock_path(us_stock) do %>
         <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
       <% end %>
@@ -109,17 +113,19 @@
 <% end %>
 <br>
 
-<% if !user.level_uniq("长期关注").blank? || !user.us_level_uniq("长期关注").blank?  %>
-  <h4>长期关注</h4>
+<% if !@unl_5.blank? || !@unl_6.blank?  %>
+  <h4>长期关注
+    <span class="badge pull-right"><%= @size_56 %></span>
+  </h4>
   <ul class="list-unstyled">
     <!-- A股部分 -->
-    <% user.level_uniq("长期关注").each do |stock| %>
+    <% @unl_5.each do |stock| %>
       <%= link_to stock_path(stock) do %>
         <li><%= stock.easy_symbol %> - <%= stock.name %></li>
       <% end %>
     <% end %>
     <!-- 美股部分 -->
-    <% user.us_level_uniq("长期关注").each do |us_stock| %>
+    <% @unl_6.each do |us_stock| %>
       <%= link_to us_stock_path(us_stock) do %>
         <li><%= us_stock.symbol %> - <%= us_stock.cnname[0..10] %></li>
       <% end %>

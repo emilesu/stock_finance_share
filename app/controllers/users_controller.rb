@@ -28,6 +28,31 @@ class UsersController < ApplicationController
 
     #浏览量极速器
     impressionist(@user)
+
+    # 笔记目录 等等入场 A
+    @unl_1 = @user.level_uniq("等待入场")[0..9]
+
+    # 笔记目录 等等入场 U
+    @unl_2 = @user.us_level_uniq("等待入场")[0..9]
+
+    @size_12 = @user.level_uniq("等待入场").size + @user.us_level_uniq("等待入场").size
+
+    # 笔记目录 近期关注 A
+    @unl_3 = @user.level_uniq("近期关注")[0..9]
+
+    # 笔记目录 近期关注 U
+    @unl_4 = @user.us_level_uniq("近期关注")[0..9]
+
+    @size_34 = @user.level_uniq("近期关注").size + @user.us_level_uniq("近期关注").size
+
+    # 笔记目录 长期关注 A
+    @unl_5 = @user.level_uniq("长期关注")[0..9]
+
+    # 笔记目录 长期关注 U
+    @unl_6 = @user.us_level_uniq("长期关注")[0..9]
+
+    @size_56 = @user.level_uniq("长期关注").size + @user.us_level_uniq("长期关注").size
+
   end
 
   def edit
