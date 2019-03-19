@@ -83,8 +83,11 @@
       transition: 0.2s;
       background-color: #f3f3f3;
     }
+    hr {
+      margin: 0;
+    }
     .homeland-li {
-      padding: 15px 10px;
+      padding: 15px 5px 15px 5px;
       transition: 0.2s;
 
       // 头像
@@ -216,7 +219,7 @@
   .homeland-post {
     margin-top: 40px;
     .homeland-post-box {
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       // 头像
       .media-left {
         padding-right:20px;

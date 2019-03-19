@@ -5,18 +5,7 @@ class HomelandsController < ApplicationController
   impressionist actions: [:show, :index]
 
   def index
-    if params[:order]
-      @homelands = case params[:order]
-      when "last_reply"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_last_reply <=> x.homland_last_reply }.page(params[:page]).per(25)
-      when "most_view"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_view <=> x.homland_most_view }.page(params[:page]).per(25)
-      when "most_post"
-        Homeland.where(:status => "公开").sort{ |x,y| y.homland_most_post <=> x.homland_most_post }.page(params[:page]).per(25)
-      else
-        Homeland.where(:status => "公开").order("created_at DESC").page(params[:page]).per(25)
-      end
-    elsif params[:categorie]
+    if  params[:categorie]
       @homelands = Homeland.where(:status => "公开").where( :categories => params[:categorie] ).order("created_at DESC").page(params[:page]).per(25)
     elsif params[:my]
       @homelands = case params[:my]

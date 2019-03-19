@@ -163,3 +163,21 @@ body {
       color: #fff;
     }
 }
+
+@media screen and (max-width: 760px){
+  .nav {
+    .dropdown-menu {
+      background: #090909;
+      color: #fff;
+      .divider {
+        border-color: #fff;
+      }
+      li {
+        background: #222;
+        a {
+          background: #222;
+        }
+      }
+    }
+  }
+}
