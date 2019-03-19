@@ -126,9 +126,13 @@
       <div class="col-md-3">
         <div class="hidden-print hidden-xs hidden-sm affix homeland-post-right">
           <!-- 回复按钮 -->
-          <button type="button" class="btn btn-defaultbtn btn-default new-homeland-post-btn btn-block" data-toggle="modal" data-target="#momal-homeland-post-new">
-             回 复
-          </button>
+          <% if !current_user %>
+            <button class="btn btn-defaultbtn btn-default new-homeland-post-btn btn-block" data-toggle="modal" data-target="#login-modal"> 回 复 </button>
+          <% else %>
+            <button type="button" class="btn btn-defaultbtn btn-default new-homeland-post-btn btn-block" data-toggle="modal" data-target="#momal-homeland-post-new">
+               回 复
+            </button>
+          <% end %>
 
           <!-- 收藏按钮 -->
           <span id="homeland-like-<%= @homeland.id %>">
@@ -147,6 +151,10 @@
   </div>
 
 </div>
+
+<!-- 登录 login_modal -->
+<%= render :partial => "//common/login_modal" %>
+
 
 <!-- 自定义 title -->
 <% content_for :title do %>

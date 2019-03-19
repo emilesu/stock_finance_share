@@ -1,6 +1,11 @@
 <div class="hidden-print hidden-xs hidden-sm affix homeland-right">
 
-  <%= link_to(" 发布话题 ", new_homeland_path, :class => "btn btn-default new-homeland-btn btn-block") %>
+  <% if !current_user %>
+    <button class="btn btn-default new-homeland-btn btn-block" data-toggle="modal" data-target="#login-modal"> 发布话题 </button>
+  <% else %>
+    <%= link_to(" 发布话题 ", new_homeland_path, :class => "btn btn-default new-homeland-btn btn-block") %>
+  <% end %>
+
 
   <!-- 全部主题 -->
   <div class="all-homeland">
@@ -27,14 +32,28 @@
   </div> <hr>
 
   <div class="">
-    <%= link_to homelands_path(:my => "my_homelands"), :class => "btn btn-sm btn-default btn-block" do %>
-      <i class="fa fa-user-o" aria-hidden="true"></i> 我发布的
+
+    <% if !current_user %>
+      <button class="btn btn-sm btn-default btn-block" data-toggle="modal" data-target="#login-modal"> 我发布的 </button>
+    <% else %>
+      <%= link_to homelands_path(:my => "my_homelands"), :class => "btn btn-sm btn-default btn-block" do %>
+        <i class="fa fa-user-o" aria-hidden="true"></i> 我发布的
+      <% end %>
     <% end %>
-    <%= link_to homelands_path(:my => "my_homeland_likes"), :class => "btn btn-sm btn-default btn-block" do %>
-      <i class="fa fa-star-o" aria-hidden="true"></i> 我点亮的
+
+    <% if !current_user %>
+      <button class="btn btn-sm btn-default btn-block" data-toggle="modal" data-target="#login-modal"> 我点亮的 </button>
+    <% else %>
+      <%= link_to homelands_path(:my => "my_homeland_likes"), :class => "btn btn-sm btn-default btn-block" do %>
+        <i class="fa fa-star-o" aria-hidden="true"></i> 我点亮的
+      <% end %>
     <% end %>
   </div>
 
 
 
 </div>
+
+
+<!-- 登录 login_modal -->
+<%= render :partial => "//common/login_modal" %>
