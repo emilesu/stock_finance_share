@@ -165,6 +165,9 @@ body {
 }
 
 @media screen and (max-width: 760px){
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    background-color: #333;
+  }
   .nav {
     .dropdown-menu {
       background: #090909;
