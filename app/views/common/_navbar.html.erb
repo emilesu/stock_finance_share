@@ -41,6 +41,33 @@
 
       <ul class="nav navbar-nav navbar-right">
 
+        <!--  小屏幕时 登录 放在前面 -->
+        <% if !current_user %>
+          <li class="hidden-lg hidden-md hidden-sm "><a data-toggle="modal" data-target="#login-modal">注册/登录</a></li>
+        <% else %>
+          <li class="hidden-lg hidden-md hidden-sm dropdown navbar-font-size">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span>
+                <% if current_user.avatar.present? %>
+                  <%= image_tag(current_user.avatar, :class => "img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
+              </span>
+              <!-- <%= current_user.username %> -->
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" style="min-width:130px;">
+              <li><%= link_to("个人中心", user_path(current_user)) %></li>
+              <% if current_user.role == "admin" %>
+                <li><%= link_to("管理员后台", admin_users_path) %></li>
+                <li class="divider"> </li>
+              <% end %>
+              <li><%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
+            </ul>
+          </li>
+        <% end %>
+
         <li class="dropdown navbar-font-size">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19" height="10" viewBox="0 0 23 12">
@@ -94,11 +121,11 @@
           <% end %>
         </li>
 
+        <!--  大屏幕时 登录 放在后面 -->
         <% if !current_user %>
-          <li><a data-toggle="modal" data-target="#login-modal">注册/登录</a></li>
-          <!-- <li><%= link_to("注册/登入", user_wechat_omniauth_authorize_path) %></li> -->
+          <li class="hidden-xs"><a data-toggle="modal" data-target="#login-modal">注册/登录</a></li>
         <% else %>
-          <li class="dropdown navbar-font-size">
+          <li class="hidden-xs dropdown navbar-font-size">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span>
                 <% if current_user.avatar.present? %>
