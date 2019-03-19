@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # 登录后重新定向
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+  end
+
   def configure_permitted_parameters
       added_attrs = [:username, :email, :password, :password_confirmation, :remember_me]
       devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
