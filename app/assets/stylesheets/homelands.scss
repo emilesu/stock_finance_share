@@ -256,11 +256,11 @@
           color: #111;
           text-align: justify;
           img {
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            margin-bottom: 1.3em;
+            // margin-bottom: 1.3em;
             border-radius: 3px;
-            border: 5px solid #f9f9f9;
+            border: 1px solid #f9f9f9;
           }
           p {
             margin-bottom: 1.5em;
@@ -302,6 +302,29 @@
       button:hover {
         transition: 0.2s;
       }
+    }
+
+    .dropdown-menu {
+      li {
+        a {
+          color: #666;
+          font-size: 13px;
+          padding: 9px 12px;
+          transition: 0.2s;
+        }
+        a:hover {
+          color: #999;
+          transition: 0.2s;
+          padding: 9px 15px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .navbar-fixed-bottom {
+    .btn-group {
+      
     }
   }
 

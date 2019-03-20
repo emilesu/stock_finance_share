@@ -8,12 +8,12 @@
   <% else %>
     <%= link_to(like_homeland_path(homeland), :method => :post, :remote => true) do %>
       <button type="button" class="btn btn-default btn-block">
-        <i class="fa fa-star-o" aria-hidden="true"></i> 点亮它 (<%= homeland.homeland_likes.count %>)
+        <i class="fa fa-star-o" aria-hidden="true"></i> 点亮TA (<%= homeland.homeland_likes.count %>)
       </button>
     <% end %>
   <% end %>
 <% else %>
-  <button type="button" class="btn btn-default btn-block">
-    <i class="fa fa-star-o" aria-hidden="true"></i> 点亮它 (<%= homeland.homeland_likes.count %>)
+  <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#login-modal">
+    <i class="fa fa-star-o" aria-hidden="true"></i> 点亮TA (<%= homeland.homeland_likes.count %>)
   </button>
 <% end %>

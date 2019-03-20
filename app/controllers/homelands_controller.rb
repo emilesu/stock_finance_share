@@ -22,9 +22,15 @@ class HomelandsController < ApplicationController
   def show
     @homeland = Homeland.find(params[:id])
     @homeland_post_new = HomelandPost.new
-    @homeland_posts = @homeland.homeland_posts.page(params[:page]).per(15)
-    # 回帖按点赞数排序
-    # @homeland_posts = @homeland.homeland_posts.sort{ |x,y| y.homland_post_most_like <=> x.homland_post_most_like }
+
+    if params[:order]
+      @homeland_posts = case params[:order]
+      when "last_reply"
+        @homeland.homeland_posts.order("created_at DESC").page(params[:page]).per(15)
+      end
+    else
+      @homeland_posts = @homeland.homeland_posts.page(params[:page]).per(15)
+    end
   end
 
   def new

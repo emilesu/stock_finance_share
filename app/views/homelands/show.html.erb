@@ -135,9 +135,34 @@
           <% end %>
 
           <!-- 收藏按钮 -->
-          <span id="homeland-like-<%= @homeland.id %>">
+          <span class="homeland-like-<%= @homeland.id %>">
             <%= render :partial => "//homelands/like", :locals => { :homeland => @homeland } %>
           </span>
+
+          <br><hr>
+          <span class="btn-group">
+            <div class="">
+              <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                回复排序 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to homeland_path(@homeland) do %>
+                    最 早 <i class="fa fa-sun-o" aria-hidden="true"></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to homeland_path(:order => "last_reply") do %>
+                    最 后 <i class="fa fa-moon-o" aria-hidden="true"></i>
+                  <% end %>
+                </li>
+                <!-- <li>
+                  <%# <%= link_to("最多点赞", homeland_path(:order => "most_likes")) %> %>
+                </li> -->
+              </ul>
+            </div>
+          </span>
+
         </div>
         <%= render :partial => "//homeland_posts/homeland_post_modal_new", :locals => { :homeland => @homeland } %>
       </div>
@@ -151,6 +176,49 @@
   </div>
 
 </div>
+
+<!-- 手机时底部悬浮菜单导航栏 -->
+<nav class="hidden-lg hidden-md navbar navbar-fixed-bottom">
+  <div class="container">
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <!-- left -->
+      <div class="btn-group" role="group">
+        <% if !current_user %>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">回复</button>
+        <% else %>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#momal-homeland-post-new">回复</button>
+        <% end %>
+      </div>
+
+      <!-- mid -->
+      <div class="btn-group homeland-like-<%= @homeland.id %>" role="group">
+        <%= render :partial => "//homelands/like", :locals => { :homeland => @homeland } %>
+      </div>
+
+      <!-- right -->
+      <div class="btn-group dropup" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          排序
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to homeland_path(@homeland) do %>
+              最 早 <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <% end %>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <%= link_to homeland_path(:order => "last_reply") do %>
+              最 后 <i class="fa fa-moon-o" aria-hidden="true"></i>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <!-- 登录 login_modal -->
 <%= render :partial => "//common/login_modal" %>

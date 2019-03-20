@@ -14,7 +14,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process resize_to_fit: [800, nil]
+  # process resize_to_fit: [640, nil]
 
   # 文件名以时间序列命名
   def filename
