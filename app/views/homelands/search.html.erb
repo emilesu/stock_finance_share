@@ -3,19 +3,14 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-12 homeland-index">
   <div class="row">
 
-    <!-- 左边栏 分类 -->
-    <div class="col-md-2">
-      <%= render :partial => "left_info", :locals => { :user => @user } %>
-    </div>
-
     <!-- 中间栏 主体 -->
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-9 col-sm-12">
       <%= render :partial => "mid_info", :locals => { :user => @user } %>
       <br>
     </div>
 
     <!-- 右边栏 会员邦 -->
-    <div class="col-md-2">
+    <div class="col-md-3">
       <%= render :partial => "right_info", :locals => { :user => @user } %>
     </div>
 
@@ -23,3 +18,97 @@
 </div>
 
 </div>
+
+<!-- 手机时底部悬浮菜单导航栏 -->
+<nav class="hidden-lg hidden-md navbar navbar-fixed-bottom">
+  <div class="container">
+
+    <div class="col-md-12">
+      <%= form_tag search_homelands_path, :method => :get do %>
+        <div class="input-group row">
+          <input type="text" class="form-control" name="search" value="<%= params[:search] %>" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      <% end %>
+    </div> <br>
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <!-- left -->
+      <div class="btn-group" role="group">
+        <% if !current_user %>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#login-modal">发布话题</button>
+        <% else %>
+          <%= link_to(" 发布话题 ", new_homeland_path, :class => "btn btn-default new-homeland-btn btn-block") %>
+        <% end %>
+      </div>
+
+      <!-- mid -->
+      <div class="btn-group dropup" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          我的
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <% if !current_user %>
+              <a data-toggle="modal" data-target="#login-modal">
+                我发布的 <i class="fa fa-sun-o" aria-hidden="true"></i>
+              </a>
+            <% else %>
+              <%= link_to homelands_path(:my => "my_homelands") do %>
+                我发布的 <i class="fa fa-sun-o" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <% if !current_user %>
+              <a data-toggle="modal" data-target="#login-modal">
+                我点亮的 <i class="fa fa-moon-o" aria-hidden="true"></i>
+              </a>
+            <% else %>
+              <%= link_to homelands_path(:my => "my_homeland_likes") do %>
+                我点亮的 <i class="fa fa-moon-o" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- right -->
+      <div class="btn-group dropup" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          分类
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to homelands_path do %>
+              <i class="fa fa-comments-o" aria-hidden="true"></i>
+              全部话题
+            <% end %>
+          </li>
+          <li role="separator" class="divider"></li>
+          <% Homeland::CATEGORIES.each do |categories| %>
+          <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to homelands_path(:categorie => categories) do %>
+                <%= categories %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div><br>
+</nav>
+
+
+<!-- 自定义 title -->
+<% content_for :title do %>
+  社群论坛 -
+<% end %>
