@@ -13,7 +13,11 @@
             <%= link_to user_path(note.user) do %>
             <div class="media">
               <div class="media-left">
-                <%= image_tag(note.user.avatar, :class => "img-circle") %>
+                <% if note.user.avatar.present? %>
+                  <%= image_tag(note.user.avatar, :class => "img-circle") %>
+                <% else %>
+                  <%= image_tag("https://i.loli.net/2018/10/06/5bb7978180537.jpg", :class => " img-circle") %>
+                <% end %>
               </div>
               <div class="media-body">
                 <h5 class="media-heading"><%= note.user.username %></h5>
