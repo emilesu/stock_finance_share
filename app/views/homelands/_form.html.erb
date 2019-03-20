@@ -13,6 +13,14 @@
             <%= t(categories, :scope => "homeland.categories") %>
           </label>
         <% end %>
+        <br><br><br>
+        <label for="">公开或屏蔽：</label><br>
+        <% Homeland::STATUS.each do |status| %>
+          <label class="btn btn-sm btn-default <%= (status == f.object.status)? 'active' : '' %>">
+            <%= f.radio_button :status, status %>
+            <%= t(status, :scope => "homeland.status") %>
+          </label>
+        <% end %>
       <% else %>
         <% Homeland::CATEGORIES[0..-2].each do |categories| %>
           <label class="btn btn-sm btn-default <%= (categories == f.object.categories)? 'active' : '' %>">

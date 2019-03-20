@@ -105,7 +105,7 @@ class HomelandsController < ApplicationController
   end
 
   def homeland_params
-    params.require(:homeland).permit(:user_id, :categories, :title, :description)
+    params.require(:homeland).permit(:user_id, :categories, :title, :description, :status)
   end
 
 end

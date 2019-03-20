@@ -7,7 +7,7 @@ class Homeland < ApplicationRecord
   # 资料验证
   validates_presence_of :title, :description, :categories
 
-  CATEGORIES = ["学习", "股票", "反馈", "公告"]
+  CATEGORIES = ["学习", "股票", "步行街", "反馈", "公告"]
   validates_inclusion_of :categories, :in => CATEGORIES
 
   STATUS = ["公开", "不公开"]
