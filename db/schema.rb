@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190312213645) do
+ActiveRecord::Schema.define(version: 20190320105707) do
 
   create_table "attentions", force: :cascade do |t|
     t.integer "user_id"
@@ -602,9 +602,11 @@ ActiveRecord::Schema.define(version: 20190312213645) do
     t.integer "nper"
     t.string "friendly_id"
     t.string "homeland_role", default: "可发言"
+    t.string "sign_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["friendly_id"], name: "index_users_on_friendly_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["sign_id"], name: "index_users_on_sign_id", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

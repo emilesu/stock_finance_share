@@ -10,6 +10,31 @@ class User < ApplicationRecord
   has_many :identifies, :dependent => :destroy
   # </---- 微信登入回调数据处理 ---->
 
+  # <---- 账号密码登录 用登录码代替邮箱 ---->
+  def login=(login)
+    @login = login
+  end
+
+  def login
+    @login || self.sign_id || self.email
+  end
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(sign_id) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      if conditions[:sign_id].nil?
+        where(conditions).first
+      else
+        where(sign_id: conditions[:sign_id]).first
+      end
+    end
+  end
+
+
+  # <---- -------------------- ---->
+
   # 资料验证
   validates_presence_of :username, :role
   validates :username, presence: true, length: {maximum: 25}
@@ -72,6 +97,9 @@ class User < ApplicationRecord
 
   # 新建用户时产生随机数friendly_id
   before_validation :generate_friendly_id, :on => :create
+
+  # 新建用户时产生随机数sign_id
+  before_validation :generate_sign_id, :on => :create
 
 
   #浏览量易受器
@@ -204,6 +232,11 @@ class User < ApplicationRecord
   # 新建 user 时，给 friendly_id 赋值
   def generate_friendly_id
      self.friendly_id ||= rand(36 ** 12).to_s(36)
+  end
+
+  # 新建 user 时，给 sign_id 赋值
+  def generate_sign_id
+     self.sign_id ||= rand(10 ** 6)
   end
 
 

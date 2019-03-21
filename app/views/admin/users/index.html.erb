@@ -13,10 +13,10 @@
         <th>用户名/username</th>
         <th>权限等级/role</th>
         <th>加入时间/join_time</th>
-        <th>到期时间/end_time</th>
+        <th>注册时间/created_at</th>
         <th>期数/nper</th>
         <th>入会操作</th>
-        <th>注册时间/created_at</th>
+        <th>登录账号/sign_id</th>
         <th>笔记数量/note_count</th>
         <th>论坛</th>
         <th>被看次数</th>
@@ -59,13 +59,9 @@
               <%= user.join_time.strftime("%Y/%m/%d %I:%M %p") %>
             <% end %>
           </td>
-          <!-- 到期时间/ end_time -->
+          <!-- 注册时间/created_at -->
           <td>
-            <% if user.end_time.blank? %>
-              无
-            <% else %>
-              <%= user.end_time.strftime("%Y/%m/%d %I:%M %p") %>
-            <% end %>
+            <%= user.created_at.strftime("%Y/%m/%d %I:%M %p") %>
           </td>
           <!-- 期数/ nper -->
           <td>
@@ -81,9 +77,9 @@
             <%= link_to("永久会员", nper_99_admin_user_path(user), :method => :post, :class => "btn btn-xs btn-default") %>
             <%= link_to("撤销会员", undo_admin_user_path(user), :method => :post, :class => "btn btn-xs btn-default") %>
           </td>
-          <!-- 注册时间/created_at -->
+          <!-- 登录账号/sign_id -->
           <td>
-            <%= user.created_at.strftime("%Y/%m/%d %I:%M %p") %>
+            <%= user.sign_id %>
           </td>
           <!-- 笔记数量/note_count -->
           <td>

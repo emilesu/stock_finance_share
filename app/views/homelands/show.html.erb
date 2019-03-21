@@ -1,3 +1,6 @@
+  <!-- 判断必须问公开的可见 -->
+<% if @homeland.status == "公开" || (current_user && current_user.role == "admin") %>
+
 <div class="homeland-show row">
 
   <div class="jumbotron text-center" style=" border-radius: 0; margin-bottom: 0;">
@@ -176,6 +179,8 @@
   </div>
 
 </div>
+
+<% end %>
 
 <!-- 手机时底部悬浮菜单导航栏 -->
 <nav class="hidden-lg hidden-md navbar navbar-fixed-bottom">

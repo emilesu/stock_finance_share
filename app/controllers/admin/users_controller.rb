@@ -135,7 +135,8 @@ class Admin::UsersController < AdminController
       :join_time,                       #加入会员时间
       :end_time,                        #会员到期时间
       :nper,                            #会员期数
-      :homeland_role                    #论坛“可发言”、“禁言”
+      :homeland_role,                   #论坛“可发言”、“禁言”
+      :sign_id                          #登录账号
     )
   end
 

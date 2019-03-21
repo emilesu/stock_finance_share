@@ -125,4 +125,30 @@
     margin: 70px 0;
     color: #999;
   }
+
+  .sign-in-box {
+    p {
+      font-size: 12px;
+    }
+    span {
+      background-color: #ffe5e4;
+      transition: 0.2s;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-weight: bolder;
+    }
+    span:hover {
+      background-color: #fed5d4;
+      transition: 0.2s;
+      color: #333;
+    }
+  }
+
+  .sign-in-num {
+    color: #fc726c;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+  }
+
 }

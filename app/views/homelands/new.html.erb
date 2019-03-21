@@ -4,7 +4,12 @@
 
       <br><h3 class="text-center">发布话题</h3><br>
 
-      <%= render "form" %>
+      <% if current_user && current_user.homeland_role == "可发言" %>
+        <%= render "form" %>
+      <% else %>
+        <br><br>
+        <p class="text-center"><i> - <%= current_user.username.split("_")[0] %> 你被禁止发言 - </i></p>    
+      <% end %>
 
 
   </div>

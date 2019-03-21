@@ -1,4 +1,4 @@
-<a data-toggle="modal" data-target="#momal-user-edit-<%= user.id %>">
+<a data-toggle="modal" data-target="#momal-user-edit-<%= user.friendly_id %>">
   <!-- 头像 avatar -->
   <div class="user-avatar">
     <% if user.avatar.present? %>
@@ -69,6 +69,21 @@
   <%= user.motto %>
 </div>
 <hr>
+
+<!-- 我的论坛发布 -->
+
+
+<!-- 登录账号和密码 motto -->
+<% if (current_user && user == current_user) || (current_user && current_user.role == "admin") %>
+  <div  class="sign-in-box">
+    <p>手机登录账号：</p>
+    <a data-toggle="modal" data-target="#momal-user-password-edit">
+      <span><%= user.sign_id %></span>
+    </a>
+  </div>
+  <hr>
+<%= render :partial => "user_modal_password_edit", :locals => { :user => user } %>
+<% end %>
 
 <!-- 收藏笔记 -->
 <% if !@unl_1.blank? || !@unl_2.blank? %>

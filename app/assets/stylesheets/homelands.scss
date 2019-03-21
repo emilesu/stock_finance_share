@@ -260,14 +260,15 @@
             height: auto;
             // margin-bottom: 1.3em;
             border-radius: 3px;
-            border: 1px solid #f9f9f9;
+            // border: 1px solid #f9f9f9;
           }
           p {
             margin-bottom: 1.5em;
+            font-size: 13px;
           }
           blockquote {
-            font-size: 14px;
-            line-height: 1.7em;
+            font-size: 13px;
+            line-height: 1.0em;
             color: #777;
           }
         }
@@ -324,7 +325,7 @@
 
   .navbar-fixed-bottom {
     .btn-group {
-      
+
     }
   }
 

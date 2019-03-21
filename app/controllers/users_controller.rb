@@ -104,7 +104,13 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:avatar, :username, :motto)
+    params.require(:user).permit(
+      :avatar,
+      :username,
+      :motto,
+      :password,                        #密码
+      :password_confirmation,           #确认密码
+    )
   end
 
 end

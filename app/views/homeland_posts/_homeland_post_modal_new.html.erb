@@ -8,14 +8,25 @@
         </button>
         <h5 class="modal-title" id="exampleModalLongTitle">回复 - <%= homeland.title %></h5>
       </div>
-      <%= simple_form_for ([homeland, @homeland_post_new]) do |f| %>
-      <div class="modal-body">
-        <%= f.input :description, :label => false, required: true, placeholder: "写下回复...",  input_html: {id: "editor", class: "form-control"} %>
-      </div>
-      <div class="modal-footer">
-        <%= f.submit "发布", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-      </div>
+      <% if current_user && current_user.homeland_role == "可发言" %>
+        <%= simple_form_for ([homeland, @homeland_post_new]) do |f| %>
+        <div class="modal-body">
+          <%= f.input :description, :label => false, required: true, placeholder: "写下回复...",  input_html: {id: "editor", class: "form-control"} %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "发布", class: "btn btn-default pull-left", data: {disable_with: "Submiting"} %>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+        </div>
+        <% end %>
+      <% else %>
+        <br><br><br><br>
+        <% if current_user %>
+        <p class="text-center"><i> - <%= current_user.username.split("_")[0] %> 你被禁止发言 - </i></p>
+        <% end %>
+        <br><br><br><br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+        </div>
       <% end %>
     </div>
   </div>

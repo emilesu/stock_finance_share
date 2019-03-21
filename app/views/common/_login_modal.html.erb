@@ -31,9 +31,10 @@
         <div class="">
           <br><br><br><br><br>
           <hr>
-          <strong>提示：</strong>
-          <p>手机端浏览器不能登录，请使用电脑(PC)端登录！</p>
-        </div>
+          <%= link_to user_session_path, :class => "btn btn-default text-center btn-block" do %>
+            <i class="fa fa-mobile fa-2x" aria-hidden="true"></i> 手机登陆账号 - 登录
+          <% end %>
+        </div><br>
 
       </div>
 

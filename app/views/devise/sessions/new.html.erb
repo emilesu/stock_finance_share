@@ -1,15 +1,61 @@
-<h2>Log in</h2>
+<div class="col-md-2 col-md-offset-5 sign-page">
+  <div class="row">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <label>手机登录账号</label>
+        <%= f.input :login, label: false, required: false, autofocus: true, placeholder: "手机登录账号" %>
+        <%= f.input :password, required: false %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "登 录", :class => "btn btn-default btn-block" %>
+      </div>
+    <% end %>
+
+    <br><hr>
+
+    <div class="modal-body navbar-login-modal">
+      <div class="col-xs-6 login-link-box">
+        <a href="https://www.holdle.com/users/auth/wechat">
+          <img class="img-thumbnail center-block" src="https://i.loli.net/2018/10/06/5bb8803705742.png" alt="">
+        </a>
+        <h5 class="text-center">
+          微 信
+        </h5>
+      </div>
+      <div class="col-xs-6 login-link-box">
+        <a href="https://www.holdle.com/users/auth/github">
+          <img class="img-thumbnail center-block" src="https://i.loli.net/2018/10/06/5bb87a20156b4.png" alt="">
+        </a>
+        <h5 class="text-center">
+          GitHub
+        </h5>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <!-- <h4>提示：</h4> -->
+      <p>请先在 <strong> PC 电脑端通过  </strong> 微信扫码 或 GitHub登录</p>
+      <p>并在「个人中心」获取 <strong> 手机登录账号 </strong></p>
+    </div>
+
+    <hr><br>
+
+    <div class="how-to-sign">
+
+      <h4 class="text-center">如何通过手机登录 HOLD LE</h4>
+
+      <img src="https://i.loli.net/2019/03/21/5c928d4c00fac.png" alt="">
+      <p>1、电脑打开 holdle.com (iPad 或 借别人手机打开也可以)</p>
+      <p>2、点击右上角「注册/登录」，选择「微信」</p>
+      <p>3、用你的手机微信扫码，即可登录成功</p>
+      <img src="https://i.loli.net/2019/03/21/5c9293bc2b4e4.png" alt="">
+      <p>4、进入「个人中心」，点击左栏红色「手机登录账号」</p>
+      <p>5、修改登录密码，即可使用该账号和密码在手机登录</p>
+
+    </div> <br><br>
+
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

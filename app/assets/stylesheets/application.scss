@@ -113,6 +113,18 @@ body {
     }
   }
 
+  // 登录页面
+  .sign-page {
+    margin-top: 30px;
+    text-align: justify;
+    .how-to-sign {
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+  }
+
   // 分页按钮
   .pagination {
     .active {
