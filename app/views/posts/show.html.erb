@@ -60,8 +60,8 @@
         <h3><%= @post.course.title %></h3><br>
         <ul class="row">
           <% @course.posts.order("catalog").each do |post| %>
-            <li class="row col-sm-6 col-xs-12">
-              <%= link_to course_post_path(@course, post) do %>
+            <li class="row col-sm-6 col-xs-12" >
+              <%= link_to course_post_path(@course, post), :id => "post-active-#{post.id}" do %>
                 <%= post.catalog %> - <%= post.title %>
               <% end %>
             </li>
@@ -77,6 +77,16 @@
 <% content_for :title do %>
   <%= @post.title %> -
 <% end %>
+
+
+<script>
+  $(document).ready(function(){
+    $("#post-active-<%= @post.id %>").each(function(){
+      $(this).css("color", "#f9f9f9");
+      $(this).css("text-decoration", "none");
+    });
+  });
+</script>
 
 
 <!-- 百度自动推送 -->
