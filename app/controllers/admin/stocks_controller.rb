@@ -4,7 +4,7 @@ class Admin::StocksController < AdminController
     # @stocks = Stock.order("symbol").page(params[:page]).per(25)
     @industry = params[:order]
     if @industry.nil?
-      @stocks = Stock.order("symbol").page(params[:page]).per(25)                   # 如果参数为空，则显示所有数据
+      @stocks = Stock.order("id").page(params[:page]).per(25)                   # 如果参数为空，则显示所有数据
     else
       @stocks = Stock.where(:industry => @industry).page(params[:page]).per(25)         #筛选出传入参数所属行业的数据
     end

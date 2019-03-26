@@ -162,21 +162,22 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      # industry 行业分类更新
-      response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/field/#fieldstatus"
-      doc = Nokogiri::HTML.parse(response.body)
-      # if s.industry.nil?
-      main = doc.css(".threecate").map{ |x| x.text }[0]
-      if !main.nil?
-        s.update!(
-          :industry => main.split("--")[1].strip,
-        )
-      else
-        s.update!(
-          :industry => "暂无",
-        )
+      if s.industry.blank?
+        # industry 行业分类更新
+        response = RestClient.get "http://stockpage.10jqka.com.cn/#{s.easy_symbol}/field/#fieldstatus"
+        doc = Nokogiri::HTML.parse(response.body)
+        # if s.industry.nil?
+        main = doc.css(".threecate").map{ |x| x.text }[0]
+        if !main.nil?
+          s.update!(
+            :industry => main.split("--")[1].strip,
+          )
+        else
+          s.update!(
+            :industry => "暂无",
+          )
+        end
       end
-      # end
 
     end
     puts "更新完毕*******"
@@ -190,12 +191,10 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-
+      # 更新主营业务
+      if s.main_business.blank?
       response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
       doc = Nokogiri::HTML.parse(response.body)
-
-      # 更新主营业务
-      if s.main_business.nil?
       main = doc.css(".table_bg001[3] tr[11]").map{ |x| x.text }[0].split(" ")
         s.update!(
           :main_business => main[1],
@@ -203,7 +202,9 @@ class Admin::BaseDataController < AdminController
       end
 
       # 更新公司地域
-      if s.regional.nil?
+      if s.regional.blank?
+      response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
+      doc = Nokogiri::HTML.parse(response.body)
       main = doc.css(".table_bg001[3] tr[1]").map{ |x| x.text }[0].split(" ")
         s.update!(
           :regional => main[-1],
@@ -211,7 +212,9 @@ class Admin::BaseDataController < AdminController
       end
 
       # 更新公司网址
-      if s.company_url.nil?
+      if s.company_url.blank?
+      response = RestClient.get "http://quotes.money.163.com/f10/gszl_#{s.easy_symbol}.html#11a01"
+      doc = Nokogiri::HTML.parse(response.body)
       main = doc.css(".table_bg001[3] tr[9]").map{ |x| x.text }[0].split(" ")
         s.update!(
           :company_url => main[1],
@@ -230,7 +233,7 @@ class Admin::BaseDataController < AdminController
     @stocks = Stock.all
     @stocks.each do |s|
 
-      if s.time_to_market.nil?
+      if s.time_to_market.blank?
         response = RestClient.get "http://app.finance.ifeng.com/data/stock/gpjk.php?symbol=#{s.easy_symbol}"
         doc = Nokogiri::HTML.parse(response.body)
           main = doc.css("table tr[5] td").map{ |x| x.text }[1].split(" ")[-8]
@@ -239,7 +242,7 @@ class Admin::BaseDataController < AdminController
           )
       end
 
-      if s.pinyin.nil?
+      if s.pinyin.blank?
         response = RestClient.get "http://app.finance.ifeng.com/data/stock/gpjk.php?symbol=#{s.easy_symbol}"
         doc = Nokogiri::HTML.parse(response.body)
           main = doc.css("table tr[3] td").map{ |x| x.text }[1]

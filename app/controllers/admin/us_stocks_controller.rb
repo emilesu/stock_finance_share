@@ -1,7 +1,7 @@
 class Admin::UsStocksController < AdminController
 
   def index
-    @us_stocks = UsStock.order("symbol").page(params[:page]).per(25)
+    @us_stocks = UsStock.order("id").page(params[:page]).per(25)
   end
 
   def show

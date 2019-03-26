@@ -51,7 +51,7 @@
           <td><%=link_to(stock.easy_symbol, admin_stock_path(stock)) %></td>
           <td><%= stock.name %></td>
           <!--  -->
-          <% if stock.pinyin.nil? %>
+          <% if stock.pinyin.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.pinyin %></td>
@@ -59,67 +59,67 @@
           <!--  -->
           <td><%= stock.pyramid_rating %></td>
           <!--  -->
-          <% if stock.time_to_market.nil? %>
+          <% if stock.time_to_market.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.time_to_market.strftime("%Y-%m-%d") %></td>
           <% end %>
           <!--  -->
-          <% if stock.regional.nil? %>
+          <% if stock.regional.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.regional %></td>
           <% end %>
           <!--  -->
-          <% if stock.company_url.nil?%>
+          <% if stock.company_url.blank?%>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.industry.nil? %>
+          <% if stock.industry.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.industry %></td>
           <% end %>
           <!--  -->
-          <% if stock.lrb.nil? || stock.lrb == "" %>
+          <% if stock.lrb.blank? || stock.lrb == "" %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.llb.nil? || stock.llb == ""  %>
+          <% if stock.llb.blank? || stock.llb == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.zcb.nil? || stock.zcb == ""  %>
+          <% if stock.zcb.blank? || stock.zcb == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.dividends.nil? || stock.dividends == ""  %>
+          <% if stock.dividends.blank? || stock.dividends == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.static_data_10.nil? || stock.static_data_10 == ""  %>
+          <% if stock.static_data_10.blank? || stock.static_data_10 == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.static_data_5.nil? || stock.static_data_5 == ""  %>
+          <% if stock.static_data_5.blank? || stock.static_data_5 == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
           <% end %>
           <!--  -->
-          <% if stock.static_data_2.nil? || stock.static_data_2 == ""  %>
+          <% if stock.static_data_2.blank? || stock.static_data_2 == ""  %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td style="color: green"><i class="fa fa-check" aria-hidden="true"></i></td>
@@ -129,25 +129,25 @@
             <%= link_to("删除", admin_stock_path(stock), method: :delete, :class => "btn btn-xs btn-default", data: { confirm: "确定删除" }) %>
           </td>
           <!--  -->
-          <% if stock.version_1.nil? %>
+          <% if stock.version_1.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.version_1 %></td>
           <% end %>
           <!--  -->
-          <% if stock.version_2.nil? %>
+          <% if stock.version_2.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.version_2 %></td>
           <% end %>
           <!--  -->
-          <% if stock.version_3.nil? %>
+          <% if stock.version_3.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.version_3 %></td>
           <% end %>
           <!--  -->
-          <% if stock.version_4.nil? %>
+          <% if stock.version_4.blank? %>
             <td style="color: red"><i class="fa fa-times" aria-hidden="true"></i></td>
           <% else %>
             <td><%= stock.version_4 %></td>
