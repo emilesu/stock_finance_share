@@ -132,7 +132,7 @@
         <% if !current_user %>
           <p>把您在本站<strong> <a data-toggle="modal" data-target="#login-modal">注册</a> </strong>的用户名发送给 大苏 就行了</p>
         <% elsif current_user %>
-          <p>把您在本站的用户名<strong> <%= current_user.username %> </strong>发送给 大苏 就行了</p>
+          <p>把您在本站的用户名<strong> <%= current_user.username.split("_")[0] %> </strong>发送给 大苏 就行了</p>
         <% end %>
       </div>
 
