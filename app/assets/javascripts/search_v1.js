@@ -3637,6 +3637,7 @@ jQuery(function () {
        "601838 - 成都银行 - CDYH",
        "603356 - 华菱精工 - HLJG",
        "603895 - 天永智能 - TYZN",
+       "600733 - 北汽蓝谷 - BQLG",
        "AAPL - 苹果 - US",
        "AMZN - 亚马逊 - US",
        "MSFT - 微软 - US",
