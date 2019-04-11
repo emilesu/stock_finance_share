@@ -9,4 +9,7 @@ class WelcomeController < ApplicationController
     @setting = Setting.first
   end
 
+  def company
+  end
+
 end
