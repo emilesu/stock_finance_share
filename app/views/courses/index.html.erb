@@ -64,6 +64,15 @@
                   <% if !post.video_url.blank? %>
                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                   <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
@@ -104,6 +113,15 @@
                   <% if !post.video_url.blank? %>
                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                   <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
+                  <% end %>
                 <% end %>
               </div>
             <% end %>
@@ -130,6 +148,15 @@
                   <%= post.catalog %> - <%= post.title %>
                   <% if !post.video_url.blank? %>
                     <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
                   <% end %>
                 <% end %>
               </div>
@@ -170,6 +197,15 @@
                   <%= post.catalog %> - <%= post.title %>
                   <% if !post.video_url.blank? %>
                     <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
                   <% end %>
                 <% end %>
               </div>
@@ -215,6 +251,15 @@
                   <% end %>
                   <% if !post.video_url.blank? %>
                     <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
                   <% end %>
                 <% end %>
               </div>
