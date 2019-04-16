@@ -86,7 +86,7 @@
   </div>
 
 
-  <!-- part_2 课程1-->
+  <!-- part_2 课程2-->
   <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
     <div class="part-title row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <!-- part_2 lesson1 -->
+    <!-- part_2 lesson2 -->
     <div class="course-content row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <div class="col-sm-8 course-post row ">
@@ -133,7 +133,7 @@
       </div>
     </div>
 
-    <!-- part_2 lesson2 -->
+    <!-- part_3 lesson3 -->
     <div class="course-content row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <div class="col-sm-8 course-post row ">
@@ -171,7 +171,7 @@
 
   </div>
 
-  <!-- part_3 课程1-->
+  <!-- part_4 课程4-->
   <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
     <div class="part-title row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -182,7 +182,7 @@
       </div>
     </div>
 
-    <!-- part_3 lesson1 -->
+    <!-- part_4 lesson4 -->
     <div class="course-content row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <div class="col-sm-8 course-post row ">
@@ -220,7 +220,7 @@
 
   </div>
 
-  <!-- part_4 课程1-->
+  <!-- part_5 课程5-->
   <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
     <div class="part-title row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -231,7 +231,7 @@
       </div>
     </div>
 
-    <!-- part_3 lesson1 -->
+    <!-- part_5 lesson5 -->
     <div class="course-content row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
         <div class="col-sm-8 course-post row ">
@@ -243,6 +243,62 @@
             <% Course.find_by_id(7).posts.order("catalog").each do |post| %>
               <div class="post-li">
                 <%= link_to course_post_path(Course.find_by_id(7), post) do %>
+                  <%= post.catalog %> - <%= post.title %>
+                  <% if post.status == "member" %>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="12" viewBox="0 0 21 12">
+                      <image id="图层_1" data-name="图层 1" width="21" height="12" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAMCAMAAAC6EAb3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB/lBMVEVXTkRkWU1lWk5kWUxqX1JZT0RtYlRvY1VWTUJdU0hSSkBuY1WUh3TCtZ26rZW7rpe7rpa7rpe9sJnCtZ6ThnOfkX6uoIqmmYScjnuilICThnOomoSgk36NgG6XiXa0ppC+sZlvZFaAdGO2qJKcj3uDdmaxpY61p5GBdGSJfGuFeGe8r5iKfWt5bV10aFprYVOKfWyJfGuZjHl2aVuThnObjXlyZlixpI6xo415bF2ThnOLfmyBdGSfkX2+sZmqnYizpY9yZ1h2alu7rZZ0aFqkloJ+cWGFeGfEt6CnmYWIe2q7rpe6rJVwZFaxo424q5S2qJKtn4lxZli2qZN7bl9pXlGGeWh8b1+WiHZ3a1ynmYR8b2B/cmKcjnt0aFm6rJV0aFmfkX2zppC+sJmOgG9hWEtoXlC+sJmFeGd4bF2kloJvZFa9sJmjloGWiXakl4N1aVq6rZedkHx5bV68r5mzpY+uoYuuoYuxo424q5S0p5CShXLDtp68r5e9r5i9sJiRhHLFuKDBtJ3Et5/CtZ3Dtp7GuqLAs5vEt6DGuaLDtp/AtJy+sZq8r5i7rpfBtJy+sZnAtJ3CtZ7Lv6fUybHRxq7Mv6e8rpe/spq9r5nFuKHJvaXOwqrMwKjOw6vNwanHuqO/spvHu6O9sJnIvKTKvaW7rZa3qpO+sJkAAADgJPbNAAAAgXRSTlMAAAAAAAAAAAAAAACQ7/Hx8fL375DC69u9xLnTx5ib2PkGP+iPJqXtNzJy8lYcRC1RSZIRj5EG3+Ede1s1nPvL4T9K/AyzN1Lpronw+gLP8uvPCfAxFCUfjhmhaWSYFPcNptb9Xwgv+l40twP1maOhA+uODvTX4MvN9+WO7/L08oxAA6LLAAAAAWJLR0SpJw8GBAAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+IKFxUEEQQX48MAAAERSURBVBjTY+DhbWzi4xcQbG5pbWvn7+js6hYSFmFo6REVa+/taxWXkJSS7peRlZPvmjCRQaFLUamtd5Iyg4oqo5o6k4Yms1arEIN2o47upN7JevpTDAynGhm3TTNhmT4DKGpqNnOWOavFbEurOdY2nXNt2XrsGLRb7Nkd5jk6zXd2cZ3s5u7hyeG1wJtBe6GPr58/Z8CiwKDgxpDQsPCIWYuBoov7I6OiYyY3x8ZNik9ITEqetbiPn0G7tzElNS29fUlG5tys7J6unt7eXn6GnL7GXK68pRPzuQsKi4q7FwMF+0oYmhYvXla6cPGMsvKK5ZVVK4CCvYsnMlTX1E5oERIUnNHUX9fTLaitrV1f0wAAdh5eRXctzhYAAAAASUVORK5CYII="/>
+                    </svg>
+                  <% end %>
+                  <% if !post.video_url.blank? %>
+                    <i class="fa fa-play-circle" aria-hidden="true"></i>
+                  <% end %>
+                  <% if Time.now - post.created_at < 30.days %>
+                    <svg
+                       xmlns="http://www.w3.org/2000/svg"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       width="23px" height="12px">
+                      <image  x="0px" y="0px" width="23px" height="12px"  xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAMBAMAAAB7FTvLAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEWiY2CiZGCiY1+jZGD////zq9RoAAAAAWJLR0QEj2jZUQAAAAd0SU1FB+MEDBESJc1GtycAAABTSURBVAjXLUyBEYBACAJ/Ab5fwJrA/acLLU8FEQVwAYSArijj5kIIexRHdFsczOa2O+WBowT6jHanF6FiexxP4z205hWH41/7f2N+qnKUCjdRRy/36gNymnCMogAAAABJRU5ErkJggg==" />
+                      <text font-family="Helvetica Neue" fill="rgb(254, 254, 254)" transform="matrix( 0.87137474749845, 0, 0, 0.87137474749845,1.48790415124278, 9.54981161624459)" font-size="10.125px">NEW</text>
+                    </svg>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+            <br>
+          </div>
+        </div>
+        <div class="col-sm-4 hidden-xs course-img">
+          <img src="<%= Course.find_by_id(7).surface_img %>">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- part_6 课程6-->
+  <div class="col-lg-8 col-lg-offset-2 col-md-12 course-box">
+    <div class="part-title row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h2>好的规则能替你思考和判断</h2>
+        <p>
+          这些规则组合在一起之后，每个环节都将自动发挥自己的作用，我们要做的就是静静等待，让它自己成长。
+        </p>
+      </div>
+    </div>
+
+    <!-- part_6 lesson6 -->
+    <div class="course-content row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-8 course-post row ">
+          <h3><%= Course.find_by_id(8).title %></h3><br>
+          <div class="course-description">
+            <%= sanitize markdown Course.find_by_id(8).description %>
+          </div>
+          <div class="post-ul">
+            <% Course.find_by_id(8).posts.order("catalog").each do |post| %>
+              <div class="post-li">
+                <%= link_to course_post_path(Course.find_by_id(8), post) do %>
                   <%= post.catalog %> - <%= post.title %>
                   <% if post.status == "member" %>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="12" viewBox="0 0 21 12">
@@ -279,7 +335,7 @@
           <% end %>
         </div>
         <div class="col-sm-4 hidden-xs course-img">
-          <img src="<%= Course.find_by_id(7).surface_img %>">
+          <img src="<%= Course.find_by_id(8).surface_img %>">
         </div>
       </div>
     </div>
