@@ -1,4 +1,6 @@
-# HOLDLE 投資交易課設計程式(www.holdle.com)
+# HOLDLE 投資交易課設計程式(www.holdle.com)it's an amazing aand good stocks website
+
+it
 
 ### 關于 HOLD LE
 HOLD LE 是一個交易策略學習及工具網站，旨在傳播正確的價值投資觀念及技巧，學習如何通過合理運用各種分析方法，提高交易成功率，提升交易回報。
